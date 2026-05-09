@@ -70,6 +70,28 @@ change.
 
 - 08 — Case studies section
 
+## Booking Page (Feature 12) — Completed
+
+- **Database:** `supabase/migrations/002_booking_schema.sql` — `booking_slots`, `blocked_dates`,
+  `bookings` tables created and applied to Supabase; seeded with Mon/Wed/Fri 10:00/12:00/14:00.
+- **API:** `app/api/booking/available/route.ts` (GET — available slots for current month);
+  `app/api/booking/route.ts` (POST — create booking, 409 on double-book, idempotency via UUID).
+- **Lib:** `lib/booking.ts` (server-side slot computation); `lib/validators/booking.ts` (Zod schema).
+- **Components:** `components/booking/BookingCalendar.tsx` (client, manages all state);
+  `components/booking/CalendarDay.tsx` (day cell, available/disabled/selected/today states);
+  `components/booking/TimeSlotPanel.tsx` (Framer Motion slide-in from right, time chips);
+  `components/booking/BookingConfirmBar.tsx` (fixed bottom bar, slides up on date+time selected).
+- **Pages:** `app/booking/page.tsx` (server component — validates lead UUID, checks existing booking,
+  fetches slots, renders calendar or existing-booking view); `app/booking/confirmed/page.tsx` (static).
+- **Layout refactor:** Root layout now has no Navbar/Footer; `app/(main)/layout.tsx` wraps the
+  marketing page with Navbar+Footer; `app/booking/layout.tsx` is a clean layout (no nav) for the
+  booking flow. Old `app/page.tsx` deleted; marketing page moved to `app/(main)/page.tsx`.
+- **Lead API update:** `app/api/leads/route.ts` now returns `lead_id` in the response.
+- **Contact form update:** `ContactFormSection.tsx` now redirects to `/booking?lead=<id>` on submit
+  instead of showing an inline success state.
+- **Build:** passes clean. All routes verified: `/`, `/booking`, `/booking/confirmed`, `/api/booking`,
+  `/api/booking/available`, `/api/leads`.
+
 ## Endorsement Section
 
 - `components/sections/EndorsementSection.tsx` created; full-width `bg-card` section
@@ -79,11 +101,26 @@ change.
   sides with `useReducedMotion` guard; build passes clean.
   **NOTE:** placeholder quote — needs real sign-off from Bartłomiej Glinka before going live.
 
-## Open Questions
+## Email Templates (Feature 13) — Completed
 
-- `@react-email/components@1.0.12` is deprecated upstream; newer react-email uses individual
-  package imports. Confirm whether the email templates should be updated to use current
-  `react-email` API before building email templates.
+- **`emails/LeadConfirmation.tsx`** — React Email template for post-lead-form email; warm
+  welcome tone; "Co dalej?" card with 3 numbered steps; outlined pill CTA (mailto);
+  signature + GDPR-compliant unsubscribe link.
+- **`emails/BookingConfirmation.tsx`** — React Email template for post-booking email;
+  meeting details card (📅 date, 🕐 time, 💻 Google Meet, 🔗 optional meet link);
+  filled pill CTA → Google Calendar deeplink; agenda (3 bullets); "Co przygotować?" section;
+  reminder notice; signature + reschedule mailto link.
+- **`lib/resend.ts`** — Resend singleton + `sendLeadConfirmation(to, name)` +
+  `sendBookingConfirmation(props)` + `buildCalendarLink(date, timeSlot)` helper.
+- Both API routes updated: `app/api/leads/route.ts` uses `sendLeadConfirmation`;
+  `app/api/booking/route.ts` uses `sendBookingConfirmation` + `buildCalendarLink`.
+- Brand translation: all colors inline (#F2EDE6 body, #EBE5DC card, #FF5A1F accent bar +
+  CTA, gradient top bar), system font stack, 600px max-width, single-column layout.
+- Build passes clean.
+  **NOTE:** `meetingLink` prop is optional — Google Meet links are not yet generated
+  server-side; the field renders when provided, omits gracefully when absent.
+
+## Open Questions
 
 ## Architecture Decisions
 

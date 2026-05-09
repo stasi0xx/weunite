@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { createServerClient } from '@/lib/supabase/server'
 import { Resend } from 'resend'
+import { sendLeadConfirmation } from '@/lib/resend'
 
 const schema = z.object({
   name: z.string().min(2, 'Podaj swoje imię i nazwisko'),
@@ -27,26 +28,25 @@ export async function POST(request: NextRequest) {
   const { name, email, businessType, serviceInterest } = parsed.data
 
   const supabase = createServerClient()
-  const { error: dbError } = await supabase.from('leads').insert({
-    name: name.trim(),
-    email: email.trim(),
-    business_type: businessType,
-    service_interest: serviceInterest,
-    status: 'new',
-  })
+  const { data: lead, error: dbError } = await supabase
+    .from('leads')
+    .insert({
+      name: name.trim(),
+      email: email.trim(),
+      business_type: businessType,
+      service_interest: serviceInterest,
+      status: 'new',
+    })
+    .select('id')
+    .single()
 
-  if (dbError) {
+  if (dbError || !lead) {
     console.error('Supabase insert error:', dbError)
     return NextResponse.json({ error: 'Database error' }, { status: 500 })
   }
 
   const emailResults = await Promise.allSettled([
-    resend.emails.send({
-      from: 'WeUnite <hello@weunite.pl>',
-      to: email,
-      subject: `Cześć ${name} — odezwiemy się wkrótce!`,
-      html: `<p>Dziękujemy za kontakt, ${name}. Odezwiemy się w ciągu 24 godzin z planem działania i bezpłatną wizualizacją Twojej strony.</p>`,
-    }),
+    sendLeadConfirmation(email, name),
     resend.emails.send({
       from: 'WeUnite Bot <bot@weunite.pl>',
       to: 'ai.say.agency@gmail.com',
@@ -67,5 +67,5 @@ export async function POST(request: NextRequest) {
     }
   }
 
-  return NextResponse.json({ success: true })
+  return NextResponse.json({ success: true, lead_id: lead.id })
 }

@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
@@ -54,8 +55,8 @@ const TRUST_SIGNALS = [
 ]
 
 export default function ContactFormSection() {
+  const router = useRouter()
   const shouldReduceMotion = useReducedMotion()
-  const [submitted, setSubmitted] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
 
   const form = useForm<FormValues>({
@@ -77,7 +78,8 @@ export default function ContactFormSection() {
         body: JSON.stringify(values),
       })
       if (!response.ok) throw new Error("API error")
-      setSubmitted(true)
+      const { lead_id } = await response.json()
+      router.push(`/booking?lead=${lead_id}`)
     } catch {
       toast.error("Coś poszło nie tak. Spróbuj ponownie lub napisz do nas bezpośrednio.")
     } finally {
@@ -167,27 +169,7 @@ export default function ContactFormSection() {
             viewport={{ once: true, margin: "-100px" }}
             className="bg-card border border-border rounded-3xl p-6 md:p-10"
           >
-            {submitted ? (
-              <motion.div
-                initial={{ opacity: 0, y: shouldReduceMotion ? 0 : 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                role="status"
-                aria-live="polite"
-                className="flex flex-col items-center text-center gap-4 py-8"
-              >
-                <div className="h-14 w-14 rounded-full bg-primary/10 flex items-center justify-center">
-                  <CheckCircle className="h-7 w-7 text-primary" />
-                </div>
-                <h3 className="font-sans font-bold text-xl text-foreground">
-                  Gotowe! Wrócimy do Ciebie wkrótce.
-                </h3>
-                <p className="text-sm text-muted-foreground max-w-xs">
-                  Sprawdź swoją skrzynkę — wysłaliśmy Ci email z potwierdzeniem.
-                  Odezwiemy się w ciągu 24 godzin.
-                </p>
-              </motion.div>
-            ) : (
-              <Form {...form}>
+            <Form {...form}>
                 <form
                   onSubmit={form.handleSubmit(onSubmit)}
                   aria-label="Formularz zgłoszeniowy"
@@ -325,7 +307,6 @@ export default function ContactFormSection() {
                   </button>
                 </form>
               </Form>
-            )}
           </motion.div>
         </div>
       </div>

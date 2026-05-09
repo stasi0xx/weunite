@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
 import { Syne, DM_Sans, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 import { Toaster } from "@/components/ui/sonner";
 
 const syne = Syne({
@@ -39,9 +37,7 @@ export default function RootLayout({
       className={`${syne.variable} ${dmSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-          <Navbar />
-          <main className="flex-1 pt-[72px]">{children}</main>
-          <Footer />
+          {children}
           <Toaster />
         </body>
     </html>
