@@ -39,6 +39,7 @@ const sectionLinks = [
 
 const legalLinks = [
   { label: "Polityka prywatności", href: "/polityka-prywatnosci" },
+  { label: "Polityka cookies", href: "/polityka-cookies" },
   { label: "Regulamin", href: "/regulamin" },
 ];
 
@@ -64,7 +65,7 @@ export default function Footer() {
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         {/* ── Desktop ── */}
         <div className="hidden md:flex items-start justify-between gap-12 mb-12">
-          <a href="#" className="font-sans font-extrabold text-2xl text-foreground shrink-0">
+          <a href="/" className="font-sans font-extrabold text-2xl text-foreground shrink-0">
             WeUnite
           </a>
 
@@ -127,7 +128,7 @@ export default function Footer() {
         {/* ── Mobile ── */}
         <div className="md:hidden mb-8">
           <div className="flex items-center justify-between mb-8">
-            <a href="#" className="font-sans font-extrabold text-2xl text-foreground">
+            <a href="/" className="font-sans font-extrabold text-2xl text-foreground">
               WeUnite
             </a>
             <div className="flex items-center gap-1">

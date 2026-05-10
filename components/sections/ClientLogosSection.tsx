@@ -4,15 +4,15 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 const logos = [
-  { name: "Logo 1",                       src: "/logos/logo1.webp" },
-  { name: "Logo 2",                       src: "/logos/logo2.webp" },
-  { name: "Logo 3",                       src: "/logos/logo3.webp" },
-  { name: "Logo",                         src: "/logos/logo.png" },
-  { name: "Shine Hair",                   src: "/logos/shine-hair.jpeg" },
-  { name: "Akademia Rozwoju Osobistego",  src: "/logos/akademia-rozwoju-osobistego-columbus.jpeg" },
-  { name: "Finanse i Księgowość",         src: "/logos/finanse-i-ksiegowosc.PNG" },
-  { name: "Creo",                         src: "/logos/creo-1.jpg" },
-  { name: "Images",                       src: "/logos/images.png" },
+  { name: "Logo 1", src: "/logos/logo1.webp" },
+  { name: "Logo 2", src: "/logos/logo2.webp" },
+  { name: "Logo 3", src: "/logos/logo3.webp" },
+  { name: "Logo", src: "/logos/logo.png" },
+  { name: "Shine Hair", src: "/logos/shine-hair.jpeg" },
+  { name: "Akademia Rozwoju Osobistego", src: "/logos/akademia-rozwoju-osobistego-columbus.jpeg" },
+  { name: "Finanse i Księgowość", src: "/logos/finanse-i-ksiegowosc.PNG" },
+  { name: "Creo", src: "/logos/creo-1.jpg" },
+  { name: "Images", src: "/logos/images.png" },
 ];
 
 export default function ClientLogosSection() {
@@ -31,7 +31,7 @@ export default function ClientLogosSection() {
           {[...logos, ...logos].map((logo, i) => (
             <div
               key={i}
-              className="relative h-10 w-28 shrink-0 grayscale opacity-40"
+              className="relative h-10 w-28 shrink-0 grayscale opacity-100"
               aria-hidden={i >= logos.length}
             >
               <Image

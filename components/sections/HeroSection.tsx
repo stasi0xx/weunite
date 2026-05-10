@@ -4,6 +4,7 @@ import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { ChevronRight } from "lucide-react";
 import { CtaButton } from "@/components/ui/CtaButton";
 import { HoverLink } from "@/components/ui/hover-link";
+import { usePostHog } from "posthog-js/react";
 import React, { useState, type ReactNode } from "react";
 
 function WebsiteMockup() {
@@ -289,6 +290,7 @@ function CardItem({
 
 export default function HeroSection() {
   const prefersReducedMotion = useReducedMotion();
+  const posthog = usePostHog();
 
   function makeVariants(y: number, delay: number): Variants {
     return {
@@ -345,7 +347,7 @@ export default function HeroSection() {
             animate="visible"
             variants={makeVariants(10, 0.45)}
           >
-            <CtaButton onClick={() => scrollTo("contact")} label="Bezpłatna konsultacja" />
+            <CtaButton onClick={() => { posthog?.capture("cta_clicked", { location: "hero" }); scrollTo("contact"); }} label="Bezpłatna konsultacja" />
             <HoverLink
               href="#services"
               onClick={(e) => { e.preventDefault(); scrollTo("services"); }}

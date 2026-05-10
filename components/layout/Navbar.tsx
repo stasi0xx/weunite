@@ -24,22 +24,21 @@ export default function Navbar() {
   }, []);
 
   const scrollToContact = () => {
-    document.getElementById("kontakt")?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
     setMenuOpen(false);
   };
 
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 border-b border-border transition-all duration-300 ${
-          scrolled
+        className={`fixed top-0 left-0 right-0 z-50 border-b border-border transition-all duration-300 ${scrolled
             ? "py-2 bg-background/90 backdrop-blur-md shadow-sm"
             : "py-4 bg-background/80 backdrop-blur-md"
-        }`}
+          }`}
       >
         <nav className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           <motion.a
-            href="#"
+            href="/"
             whileHover={{ scale: 1.1 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
             className="font-sans font-extrabold text-xl text-foreground cursor-pointer select-none"
@@ -96,9 +95,9 @@ export default function Navbar() {
               className="fixed top-0 left-0 right-0 z-50 h-3/4 bg-background flex flex-col px-6 pt-5 pb-8 rounded-b-3xl overflow-hidden"
             >
               <div className="flex items-center justify-between mb-8">
-                <span className="font-sans font-extrabold text-xl text-foreground">
+                <a href="/" className="font-sans font-extrabold text-xl text-foreground">
                   WeUnite
-                </span>
+                </a>
                 <button
                   onClick={() => setMenuOpen(false)}
                   aria-label="Close menu"

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef } from "react"
 import { useRouter } from "next/navigation"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -8,6 +8,7 @@ import { z } from "zod"
 import { motion, useReducedMotion } from "framer-motion"
 import { CheckCircle, Loader2 } from "lucide-react"
 import { toast } from "sonner"
+import { usePostHog } from "posthog-js/react"
 import {
   Form,
   FormField,
@@ -58,6 +59,14 @@ export default function ContactFormSection() {
   const router = useRouter()
   const shouldReduceMotion = useReducedMotion()
   const [isLoading, setIsLoading] = useState(false)
+  const posthog = usePostHog()
+  const formStartedRef = useRef(false)
+
+  function handleFormStart() {
+    if (formStartedRef.current) return
+    formStartedRef.current = true
+    posthog?.capture("lead_form_started")
+  }
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -79,6 +88,10 @@ export default function ContactFormSection() {
       })
       if (!response.ok) throw new Error("API error")
       const { lead_id } = await response.json()
+      posthog?.capture("lead_form_submitted", {
+        business_type: values.businessType,
+        service_interest: values.serviceInterest,
+      })
       router.push(`/booking?lead=${lead_id}`)
     } catch {
       toast.error("Coś poszło nie tak. Spróbuj ponownie lub napisz do nas bezpośrednio.")
@@ -172,6 +185,7 @@ export default function ContactFormSection() {
             <Form {...form}>
                 <form
                   onSubmit={form.handleSubmit(onSubmit)}
+                  onFocus={handleFormStart}
                   aria-label="Formularz zgłoszeniowy"
                   className="flex flex-col gap-5"
                 >

@@ -4,10 +4,12 @@ import ProblemSection from "@/components/sections/ProblemSection"
 import ServicesSection from "@/components/sections/ServicesSection"
 import EndorsementSection from "@/components/sections/EndorsementSection"
 import ContactFormSection from "@/components/sections/ContactFormSection"
+import ScrollToTop from "@/components/ui/ScrollToTop"
 
 export default function Home() {
   return (
     <>
+      <ScrollToTop />
       <HeroSection />
       <ClientLogosSection />
       <ProblemSection />

@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Syne, DM_Sans, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import { PostHogProvider } from "./providers";
+import CookieBanner from "@/components/ui/CookieBanner";
 
 const syne = Syne({
   variable: "--font-syne",
@@ -37,8 +39,11 @@ export default function RootLayout({
       className={`${syne.variable} ${dmSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
+        <PostHogProvider>
           {children}
           <Toaster />
+          <CookieBanner />
+        </PostHogProvider>
         </body>
     </html>
   );

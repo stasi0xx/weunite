@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import { motion } from "framer-motion"
 import { useReducedMotion } from "framer-motion"
 import { toast } from "sonner"
+import { usePostHog } from "posthog-js/react"
 import CalendarDay from "@/components/booking/CalendarDay"
 import TimeSlotPanel from "@/components/booking/TimeSlotPanel"
 import BookingConfirmBar from "@/components/booking/BookingConfirmBar"
@@ -20,6 +21,7 @@ const DOW_LABELS = ["Pn", "Wt", "Śr", "Cz", "Pt", "So", "Nd"]
 export default function BookingCalendar({ leadId, available, month }: BookingCalendarProps) {
   const router = useRouter()
   const shouldReduceMotion = useReducedMotion()
+  const posthog = usePostHog()
 
   const [selectedDate, setSelectedDate] = useState<string | null>(null)
   const [selectedTime, setSelectedTime] = useState<string | null>(null)
@@ -95,6 +97,10 @@ export default function BookingCalendar({ leadId, available, month }: BookingCal
       }
 
       sessionStorage.removeItem("booking_idem_key")
+      posthog?.capture("booking_confirmed", {
+        date: selectedDate,
+        time_slot: selectedTime,
+      })
       router.push("/booking/confirmed")
     } catch {
       toast.error("Coś poszło nie tak. Spróbuj jeszcze raz.")

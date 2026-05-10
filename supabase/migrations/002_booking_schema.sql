@@ -14,13 +14,15 @@ create table blocked_dates (
 );
 
 create table bookings (
-  id               uuid primary key default gen_random_uuid(),
-  lead_id          uuid not null references leads(id),
-  date             date not null,
-  time_slot        time not null,
-  idempotency_key  uuid not null,
-  status           text not null default 'confirmed' check (status in ('confirmed', 'cancelled')),
-  created_at       timestamptz not null default now(),
+  id                     uuid primary key default gen_random_uuid(),
+  lead_id                uuid not null references leads(id),
+  date                   date not null,
+  time_slot              time not null,
+  idempotency_key        uuid not null,
+  status                 text not null default 'confirmed' check (status in ('confirmed', 'cancelled')),
+  reminder_24h_sent_at   timestamptz,
+  reminder_1h_sent_at    timestamptz,
+  created_at             timestamptz not null default now(),
   unique (date, time_slot),
   unique (idempotency_key)
 );
