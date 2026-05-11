@@ -2,9 +2,11 @@ import type { Metadata } from "next"
 import LegalPageLayout, { LegalSection, LegalList } from "@/components/layout/LegalPageLayout"
 
 export const metadata: Metadata = {
-  title: "Polityka cookies — WeUnite",
+  title: "Polityka cookies",
   description:
     "Informacje o plikach cookies stosowanych przez serwis WeUnite oraz o tym, jak nimi zarządzać.",
+  alternates: { canonical: "https://www.weunite.pl/polityka-cookies" },
+  robots: { index: true, follow: true },
 }
 
 export default function PolitykaCookiesPage() {

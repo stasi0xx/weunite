@@ -322,6 +322,7 @@ export default function HeroSection() {
             animate="visible"
             variants={makeVariants(30, 0.15)}
           >
+            <span className="sr-only">Agencja marketingowa dla domków letniskowych — </span>
             Twój Spotlight
           </motion.h1>
 

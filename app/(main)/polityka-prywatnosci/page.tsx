@@ -2,9 +2,11 @@ import type { Metadata } from "next"
 import LegalPageLayout, { LegalSection, LegalList } from "@/components/layout/LegalPageLayout"
 
 export const metadata: Metadata = {
-  title: "Polityka prywatności — WeUnite",
+  title: "Polityka prywatności",
   description:
     "Dowiedz się, jakie dane osobowe zbiera WeUnite, w jakim celu i na jakiej podstawie prawnej je przetwarza.",
+  alternates: { canonical: "https://www.weunite.pl/polityka-prywatnosci" },
+  robots: { index: true, follow: true },
 }
 
 export default function PolitykaPrywatnosciPage() {

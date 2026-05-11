@@ -2,8 +2,10 @@ import type { Metadata } from "next"
 import LegalPageLayout, { LegalSection, LegalList } from "@/components/layout/LegalPageLayout"
 
 export const metadata: Metadata = {
-  title: "Regulamin — WeUnite",
+  title: "Regulamin",
   description: "Regulamin korzystania z serwisu internetowego WeUnite.",
+  alternates: { canonical: "https://www.weunite.pl/regulamin" },
+  robots: { index: true, follow: true },
 }
 
 export default function RegulaminsPage() {

@@ -4,15 +4,15 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 const logos = [
-  { name: "Logo 1", src: "/logos/logo1.webp" },
-  { name: "Logo 2", src: "/logos/logo2.webp" },
-  { name: "Logo 3", src: "/logos/logo3.webp" },
-  { name: "Logo", src: "/logos/logo.png" },
-  { name: "Shine Hair", src: "/logos/shine-hair.jpeg" },
-  { name: "Akademia Rozwoju Osobistego", src: "/logos/akademia-rozwoju-osobistego-columbus.jpeg" },
-  { name: "Finanse i Księgowość", src: "/logos/finanse-i-ksiegowosc.PNG" },
-  { name: "Creo", src: "/logos/creo-1.jpg" },
-  { name: "Images", src: "/logos/images.png" },
+  { name: "Klient WeUnite", src: "/logos/logo1.webp" },
+  { name: "Klient WeUnite", src: "/logos/logo2.webp" },
+  { name: "Klient WeUnite", src: "/logos/logo3.webp" },
+  { name: "Klient WeUnite", src: "/logos/logo.png" },
+  { name: "Shine Hair — klient WeUnite", src: "/logos/shine-hair.jpeg" },
+  { name: "Akademia Rozwoju Osobistego Columbus — klient WeUnite", src: "/logos/akademia-rozwoju-osobistego-columbus.jpeg" },
+  { name: "Finanse i Księgowość — klient WeUnite", src: "/logos/finanse-i-ksiegowosc.PNG" },
+  { name: "Creo — klient WeUnite", src: "/logos/creo-1.jpg" },
+  { name: "Klient WeUnite", src: "/logos/images.png" },
 ];
 
 export default function ClientLogosSection() {
