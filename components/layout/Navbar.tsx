@@ -7,10 +7,9 @@ import { HoverLink } from "@/components/ui/hover-link";
 import { CtaButton } from "@/components/ui/CtaButton";
 
 const navLinks = [
-  { label: "Co robimy", href: "#co-robimy" },
-  { label: "Dla kogo", href: "#dla-kogo" },
-  { label: "Jak działamy", href: "#jak-dzialamy" },
-  { label: "Polecają", href: "#polecaja" },
+  { label: "Co robimy", href: "#services" },
+  { label: "Dla kogo", href: "#problem" },
+  { label: "Polecają", href: "#endorsement" },
 ];
 
 export default function Navbar() {

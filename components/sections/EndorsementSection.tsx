@@ -7,7 +7,7 @@ export default function EndorsementSection() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <section className="py-24 md:py-32 bg-card" aria-label="Referencja">
+    <section id="endorsement" className="py-24 md:py-32 bg-card" aria-label="Referencja">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
 
@@ -36,7 +36,15 @@ export default function EndorsementSection() {
                 Bartłomiej Glinka
               </p>
               <p className="font-body text-sm text-muted-foreground">
-                Współzałożyciel · Omida Group
+                Współzałożyciel ·{" "}
+                <a
+                  href="https://omida-group.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-foreground transition-colors"
+                >
+                  Omida Group
+                </a>
               </p>
             </div>
           </motion.div>

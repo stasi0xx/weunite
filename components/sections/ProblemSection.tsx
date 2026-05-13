@@ -25,7 +25,7 @@ export default function ProblemSection() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <section className="py-24 md:py-32" aria-labelledby="problem-heading">
+    <section id="problem" className="py-24 md:py-32" aria-labelledby="problem-heading">
       <div className="max-w-7xl mx-auto px-6">
         <motion.p
           className="text-xs font-semibold tracking-widest uppercase text-muted-foreground text-center font-body"
