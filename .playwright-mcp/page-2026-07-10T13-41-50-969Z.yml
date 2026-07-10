@@ -1,0 +1,100 @@
+- generic [active] [ref=f6e1]:
+  - banner [ref=f6e2]:
+    - link "WeUnite" [ref=f6e4] [cursor=pointer]:
+      - /url: /
+  - main [ref=f6e5]:
+    - region "Sekcja główna" [ref=f6e6]:
+      - generic [ref=f6e7]:
+        - heading "Bezpłatna wizualizacja" [level=1] [ref=f6e8]
+        - paragraph [ref=f6e9]: Opowiedz nam o swojej firmie, a przygotujemy bezpłatny projekt wizualny Twojej nowej, inteligentnej strony internetowej. Bez żadnych zobowiązań i bez kosztów najpierw zobacz efekt, a dopiero potem zdecyduj o współpracy.
+        - generic [ref=f6e11]:
+          - generic [ref=f6e12]:
+            - paragraph [ref=f6e13]: Wizualizacje zajęte w tym miesiącu
+            - paragraph [ref=f6e14]:
+              - text: "13"
+              - generic [ref=f6e15]: / 20
+          - progressbar [ref=f6e16]
+          - paragraph [ref=f6e17]:
+            - text: Zostało
+            - generic [ref=f6e18]: 7 miejsc
+            - text: w tym miesiącu.
+        - button "Odbieram" [ref=f6e20] [cursor=pointer]
+    - region "Nasi klienci" [ref=f6e21]:
+      - paragraph [ref=f6e22]: Nasi klienci
+      - generic [ref=f6e24]:
+        - img "Shine Hair — klient WeUnite" [ref=f6e26]
+        - img "Akademia Rozwoju Osobistego Columbus — klient WeUnite" [ref=f6e28]
+        - img "Polska Akademia Dzieci — klient WeUnite" [ref=f6e30]
+        - img "Gedania 1922 — klient WeUnite" [ref=f6e32]
+        - img "Creo — klient WeUnite" [ref=f6e34]
+    - region [ref=f6e45]:
+      - generic [ref=f6e46]:
+        - paragraph [ref=f6e47]: Ostatnia realizacja
+        - heading "Od szablonu z Wixa do strony, która sprzedaje inwestycję." [level=2] [ref=f6e48]
+        - paragraph [ref=f6e49]: "Filipek Investment buduje domy jednorodzinne pod Białą Podlaską. Ich poprzednia strona była darmowym szablonem z Wixa, bez prezentacji inwestycji ani sposobu na zapytanie o dostępność. Zbudowaliśmy im od podstaw dedykowaną stronę: pełną prezentację lokalizacji, etapów budowy i formularz zapytań o dostępność domu."
+        - generic [ref=f6e50]:
+          - generic [ref=f6e51]:
+            - generic [ref=f6e52]: Przed
+            - img "Poprzednia strona inwestycji Nowy Relaks, zbudowana na darmowym szablonie Wix" [ref=f6e59]
+          - generic [ref=f6e60]:
+            - generic [ref=f6e61]: Po
+            - img "Nowa strona inwestycji Nowy Relaks zaprojektowana przez WeUnite" [ref=f6e68]
+        - link "Zobacz stronę na żywo" [ref=f6e70] [cursor=pointer]:
+          - /url: https://www.nowyrelaks.fi-invest.pl/
+    - region "Formularz kontaktowy" [ref=f6e74]:
+      - generic [ref=f6e76]:
+        - generic [ref=f6e77]:
+          - paragraph [ref=f6e78]: BEZPŁATNA WIZUALIZACJA
+          - heading "Zacznijmy razem." [level=2] [ref=f6e79]: Zacznijmyrazem.
+          - paragraph [ref=f6e80]: Powiedz nam, co robisz i co Cię interesuje. Wrócimy do Ciebie w ciągu 24 godzin z planem działania i bezpłatną wizualizacją Twojej strony.
+          - generic [ref=f6e81]:
+            - generic [ref=f6e82]: Odpowiadamy w ciągu 24h
+            - generic [ref=f6e87]: Bezpłatna wizualizacja strony
+            - generic [ref=f6e92]: Zero zobowiązań
+        - form "Formularz zgłoszeniowy" [ref=f6e98]:
+          - generic [ref=f6e99]:
+            - generic [ref=f6e100]: Imię i nazwisko
+            - textbox "Jan Kowalski" [ref=f6e102]
+          - generic [ref=f6e103]:
+            - generic [ref=f6e104]: Nazwa projektu / firmy
+            - textbox "np. Domki nad Jeziorem" [ref=f6e106]
+          - generic [ref=f6e107]:
+            - generic [ref=f6e108]: Rodzaj działalności
+            - generic [ref=f6e109]:
+              - combobox [ref=f6e110]:
+                - generic [ref=f6e111]: Wybierz...
+                - img: ▼
+              - textbox [ref=f6e112]
+          - generic [ref=f6e113]:
+            - generic [ref=f6e114]: Opis projektu
+            - textbox "Krótko opisz swój projekt lub czego potrzebujesz..." [ref=f6e116]
+          - generic [ref=f6e117]:
+            - generic [ref=f6e118]:
+              - text: Kolorystyka
+              - generic [ref=f6e119]: (opcjonalnie)
+            - textbox "np. ciepłe, ziemiste odcienie" [ref=f6e121]
+          - generic [ref=f6e122]:
+            - generic [ref=f6e123]:
+              - text: Dołącz pliki
+              - generic [ref=f6e124]: (opcjonalnie)
+            - button "Dołącz pliki (opcjonalnie) Wybierz pliki lub przeciągnij tutaj" [ref=f6e125]
+            - generic [ref=f6e126] [cursor=pointer]: Wybierz pliki lub przeciągnij tutaj
+          - generic [ref=f6e129]:
+            - generic [ref=f6e130]: Adres email
+            - textbox "jan@domkiletniskowe.pl" [ref=f6e132]
+          - button "Wyślij →" [ref=f6e133]
+  - contentinfo [ref=f6e134]:
+    - generic [ref=f6e135]:
+      - paragraph [ref=f6e136]: Copyright © 2026 WeUnite. All rights reserved.
+      - list [ref=f6e137]:
+        - listitem [ref=f6e138]:
+          - link "Polityka prywatności" [ref=f6e139] [cursor=pointer]:
+            - /url: /polityka-prywatnosci
+        - listitem [ref=f6e141]:
+          - link "Polityka cookies" [ref=f6e142] [cursor=pointer]:
+            - /url: /polityka-cookies
+        - listitem [ref=f6e144]:
+          - link "Regulamin" [ref=f6e145] [cursor=pointer]:
+            - /url: /regulamin
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f6e152] [cursor=pointer]

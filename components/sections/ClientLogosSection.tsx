@@ -4,15 +4,11 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 const logos = [
-  { name: "Klient WeUnite", src: "/logos/logo1.webp" },
-  { name: "Klient WeUnite", src: "/logos/logo2.webp" },
-  { name: "Klient WeUnite", src: "/logos/logo3.webp" },
-  { name: "Klient WeUnite", src: "/logos/logo.png" },
-  { name: "Shine Hair — klient WeUnite", src: "/logos/shine-hair.jpeg" },
-  { name: "Akademia Rozwoju Osobistego Columbus — klient WeUnite", src: "/logos/akademia-rozwoju-osobistego-columbus.jpeg" },
-  { name: "Finanse i Księgowość — klient WeUnite", src: "/logos/finanse-i-ksiegowosc.PNG" },
-  { name: "Creo — klient WeUnite", src: "/logos/creo-1.jpg" },
-  { name: "Klient WeUnite", src: "/logos/images.png" },
+  { name: "Shine Hair — klient WeUnite", src: "/logos/shine.png" },
+  { name: "Akademia Rozwoju Osobistego Columbus — klient WeUnite", src: "/logos/columbus.webp" },
+  { name: "Polska Akademia Dzieci — klient WeUnite", src: "/logos/polska akademia.webp" },
+  { name: "Gedania 1922 — klient WeUnite", src: "/logos/gedania.webp" },
+  { name: "Creo — klient WeUnite", src: "/logos/creo-1.webp" },
 ];
 
 export default function ClientLogosSection() {
@@ -31,7 +27,7 @@ export default function ClientLogosSection() {
           {[...logos, ...logos].map((logo, i) => (
             <div
               key={i}
-              className="relative h-10 w-28 shrink-0 grayscale opacity-100"
+              className="relative h-14 w-36 shrink-0 grayscale opacity-100"
               aria-hidden={i >= logos.length}
             >
               <Image
@@ -39,7 +35,7 @@ export default function ClientLogosSection() {
                 alt={logo.name}
                 fill
                 className="object-contain"
-                sizes="112px"
+                sizes="144px"
               />
             </div>
           ))}

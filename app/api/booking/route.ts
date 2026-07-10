@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextRequest, NextResponse, after } from 'next/server'
 import { bookingSchema } from '@/lib/validators/booking'
 import { createServerClient } from '@/lib/supabase/server'
 import { sendBookingConfirmation, buildCalendarLink } from '@/lib/resend'
@@ -69,13 +69,15 @@ export async function POST(request: NextRequest) {
   })
   const calendarLink = buildCalendarLink(date, time_slot)
 
-  sendBookingConfirmation({
-    to: lead.email,
-    name: lead.name,
-    date: formattedDate,
-    time: time_slot,
-    calendarLink,
-  }).catch(e => console.error('Resend booking confirmation error:', e))
+  after(() =>
+    sendBookingConfirmation({
+      to: lead.email,
+      name: lead.name,
+      date: formattedDate,
+      time: time_slot,
+      calendarLink,
+    }).catch(e => console.error('Resend booking confirmation error:', e))
+  )
 
   return NextResponse.json(booking, { status: 201 })
 }

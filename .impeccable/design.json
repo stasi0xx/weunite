@@ -1,0 +1,266 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-09T00:00:00Z",
+  "title": "Design System: WeUnite",
+  "extensions": {
+    "colorMeta": {
+      "ember-orange": {
+        "role": "primary",
+        "displayName": "Ember Orange",
+        "canonical": "oklch(65% 0.19 40)",
+        "tonalRamp": [
+          "oklch(20% 0.05 40)",
+          "oklch(30% 0.09 40)",
+          "oklch(40% 0.13 40)",
+          "oklch(50% 0.17 40)",
+          "oklch(60% 0.19 40)",
+          "oklch(65% 0.19 40)",
+          "oklch(75% 0.15 40)",
+          "oklch(90% 0.06 40)"
+        ]
+      },
+      "warm-coral-glow": {
+        "role": "secondary",
+        "displayName": "Warm Coral Glow",
+        "canonical": "oklch(75% 0.14 45)",
+        "tonalRamp": [
+          "oklch(25% 0.04 45)",
+          "oklch(35% 0.07 45)",
+          "oklch(45% 0.10 45)",
+          "oklch(55% 0.13 45)",
+          "oklch(65% 0.14 45)",
+          "oklch(75% 0.14 45)",
+          "oklch(85% 0.10 45)",
+          "oklch(95% 0.03 45)"
+        ]
+      },
+      "toasted-cream": {
+        "role": "neutral",
+        "displayName": "Toasted Cream",
+        "canonical": "oklch(94% 0.012 70)",
+        "tonalRamp": [
+          "oklch(15% 0.006 70)",
+          "oklch(30% 0.008 70)",
+          "oklch(45% 0.010 70)",
+          "oklch(60% 0.011 70)",
+          "oklch(75% 0.012 70)",
+          "oklch(87% 0.012 70)",
+          "oklch(94% 0.012 70)",
+          "oklch(98% 0.006 70)"
+        ]
+      },
+      "warm-ash-surface": {
+        "role": "neutral",
+        "displayName": "Warm Ash Surface",
+        "canonical": "oklch(90% 0.012 65)",
+        "tonalRamp": [
+          "oklch(15% 0.006 65)",
+          "oklch(28% 0.008 65)",
+          "oklch(42% 0.010 65)",
+          "oklch(56% 0.011 65)",
+          "oklch(70% 0.012 65)",
+          "oklch(82% 0.012 65)",
+          "oklch(90% 0.012 65)",
+          "oklch(96% 0.006 65)"
+        ]
+      },
+      "charcoal-ink": {
+        "role": "neutral",
+        "displayName": "Charcoal Ink",
+        "canonical": "oklch(18% 0.004 60)",
+        "tonalRamp": [
+          "oklch(10% 0.003 60)",
+          "oklch(18% 0.004 60)",
+          "oklch(28% 0.004 60)",
+          "oklch(40% 0.004 60)",
+          "oklch(55% 0.005 60)",
+          "oklch(70% 0.005 60)",
+          "oklch(85% 0.004 60)",
+          "oklch(96% 0.003 60)"
+        ]
+      },
+      "muted-umber": {
+        "role": "neutral",
+        "displayName": "Muted Umber",
+        "canonical": "oklch(52% 0.02 55)",
+        "tonalRamp": [
+          "oklch(20% 0.015 55)",
+          "oklch(30% 0.018 55)",
+          "oklch(40% 0.020 55)",
+          "oklch(52% 0.020 55)",
+          "oklch(62% 0.018 55)",
+          "oklch(72% 0.015 55)",
+          "oklch(84% 0.010 55)",
+          "oklch(94% 0.006 55)"
+        ]
+      },
+      "sand-border": {
+        "role": "neutral",
+        "displayName": "Sand Border",
+        "canonical": "oklch(86% 0.012 65)",
+        "tonalRamp": [
+          "oklch(20% 0.006 65)",
+          "oklch(35% 0.008 65)",
+          "oklch(50% 0.010 65)",
+          "oklch(65% 0.011 65)",
+          "oklch(78% 0.012 65)",
+          "oklch(86% 0.012 65)",
+          "oklch(92% 0.010 65)",
+          "oklch(97% 0.005 65)"
+        ]
+      },
+      "charred-umber": {
+        "role": "tertiary",
+        "displayName": "Charred Umber",
+        "canonical": "oklch(28% 0.035 45)",
+        "tonalRamp": [
+          "oklch(12% 0.02 45)",
+          "oklch(20% 0.028 45)",
+          "oklch(28% 0.035 45)",
+          "oklch(38% 0.04 45)",
+          "oklch(50% 0.035 45)",
+          "oklch(64% 0.028 45)",
+          "oklch(78% 0.018 45)",
+          "oklch(92% 0.008 45)"
+        ]
+      },
+      "alert-red": {
+        "role": "error",
+        "displayName": "Alert Red",
+        "canonical": "oklch(55% 0.20 25)",
+        "tonalRamp": [
+          "oklch(20% 0.08 25)",
+          "oklch(30% 0.13 25)",
+          "oklch(40% 0.17 25)",
+          "oklch(48% 0.19 25)",
+          "oklch(55% 0.20 25)",
+          "oklch(65% 0.18 25)",
+          "oklch(78% 0.12 25)",
+          "oklch(90% 0.05 25)"
+        ]
+      },
+      "confirmation-green": {
+        "role": "success",
+        "displayName": "Confirmation Green",
+        "canonical": "oklch(55% 0.14 145)",
+        "tonalRamp": [
+          "oklch(20% 0.06 145)",
+          "oklch(30% 0.09 145)",
+          "oklch(40% 0.12 145)",
+          "oklch(48% 0.13 145)",
+          "oklch(55% 0.14 145)",
+          "oklch(65% 0.13 145)",
+          "oklch(78% 0.09 145)",
+          "oklch(90% 0.04 145)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headline only, one per page." },
+      "headline": { "displayName": "Headline", "purpose": "Section H2s, one per section." },
+      "title": { "displayName": "Title", "purpose": "Card and component-level headings." },
+      "body": { "displayName": "Body", "purpose": "Paragraph copy, capped at 65-75ch measure." },
+      "label": { "displayName": "Label", "purpose": "Eyebrows, kickers, uppercase captions." }
+    },
+    "shadows": [],
+    "motion": [
+      { "name": "spring-tactile", "value": "spring(stiffness: 400, damping: 17)", "purpose": "Primary button hover/tap scale (CtaButton) — 1.05 on hover, 0.9 on tap." },
+      { "name": "spring-nav-drawer", "value": "spring(stiffness: 300, damping: 30)", "purpose": "Mobile nav drawer slide-in/out." },
+      { "name": "ease-scroll-reveal", "value": "cubic-bezier(0.25, 0.46, 0.45, 0.94) / 0.5s", "purpose": "Framer Motion whileInView fade + translateY(20px to 0) on section entry." },
+      { "name": "ease-hover-fill", "value": "cubic-bezier(0, 0, 0.2, 1) / 0.2s", "purpose": "HoverLink pill fill-sweep scale(0) to scale(1)." },
+      { "name": "blob-drift", "value": "ease-in-out / 12s / infinite alternate", "purpose": "Decorative gradient blob slow movement." },
+      { "name": "marquee-scroll", "value": "linear / 28s / infinite", "purpose": "Client logo strip horizontal scroll, pauses on hover." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" },
+      { "name": "2xl", "value": "1536px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Pill-shaped primary CTA with spring hover/tap scale and a radial hover glow. Canonical action button across the marketing page.",
+      "html": "<button class=\"ds-btn-primary\">Umów rozmowę</button>",
+      "css": ".ds-btn-primary { position: relative; overflow: hidden; border-radius: 9999px; background: #FF5A1F; color: #ffffff; font-weight: 500; font-size: 0.875rem; padding: 10px 24px; border: none; cursor: pointer; transition: transform 0.15s cubic-bezier(0.4,0,0.2,1); } .ds-btn-primary:hover { transform: scale(1.05); } .ds-btn-primary:active { transform: scale(0.9); } .ds-btn-primary:focus-visible { outline: 2px solid #FF8C5A; outline-offset: 2px; }"
+    },
+    {
+      "name": "Nav Pill Link",
+      "kind": "nav",
+      "refersTo": "nav-pill-link",
+      "description": "Ghost nav link with an ember-orange fill that sweeps in from center on hover.",
+      "html": "<a class=\"ds-nav-link\" href=\"#services\"><span class=\"ds-nav-link-fill\"></span><span class=\"ds-nav-link-text\">Co robimy</span></a>",
+      "css": ".ds-nav-link { position: relative; display: inline-flex; align-items: center; justify-content: center; padding: 6px 12px; border-radius: 9999px; text-decoration: none; cursor: pointer; } .ds-nav-link-fill { position: absolute; inset: 0; background: #FF5A1F; border-radius: 9999px; transform: scale(0); transition: transform 0.2s cubic-bezier(0,0,0.2,1); } .ds-nav-link:hover .ds-nav-link-fill { transform: scale(1); } .ds-nav-link-text { position: relative; z-index: 1; color: #7A7367; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; } .ds-nav-link:hover .ds-nav-link-text { color: #ffffff; }"
+    },
+    {
+      "name": "Pain Point Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Flat, tonal card with a nested icon box. No shadow — elevation from the surface-color step against the page background.",
+      "html": "<div class=\"ds-card\"><div class=\"ds-card-icon\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M13.5 13.5 22 22\"/><path d=\"M22 13.5V22h-8.5\"/><path d=\"M2 2l7 7\"/><path d=\"M2 5V2h3\"/></svg></div><h3 class=\"ds-card-title\">Telefony, SMS-y, arkusze Excela</h3><p class=\"ds-card-body\">Każda rezerwacja to ręczna robota — potwierdzenia, zmiany terminu, ryzyko podwójnej rezerwacji.</p></div>",
+      "css": ".ds-card { display: flex; flex-direction: column; gap: 16px; background: #EBE5DC; border-radius: 16px; padding: 32px; outline: 1px solid rgba(20,20,20,0.1); } .ds-card-icon { width: 48px; height: 48px; border-radius: 12px; background: #F2EDE6; display: flex; align-items: center; justify-content: center; } .ds-card-icon svg { width: 24px; height: 24px; color: #FF5A1F; } .ds-card-title { font-family: Syne, sans-serif; font-weight: 700; font-size: 1.25rem; color: #141414; margin: 0; } .ds-card-body { font-family: 'DM Sans', sans-serif; font-size: 1rem; line-height: 1.6; color: #7A7367; margin: 0; }"
+    },
+    {
+      "name": "Text Input",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "Transparent field with a sand-colored stroke that shifts to ember-orange with a soft ring on focus.",
+      "html": "<input class=\"ds-input\" type=\"email\" placeholder=\"Twój e-mail\" />",
+      "css": ".ds-input { height: 32px; width: 100%; border-radius: 16px; border: 1px solid #DDD6CB; background: transparent; padding: 4px 10px; font-size: 1rem; color: #141414; outline: none; transition: border-color 0.15s, box-shadow 0.15s; } .ds-input::placeholder { color: #7A7367; } .ds-input:focus-visible { border-color: #FF5A1F; box-shadow: 0 0 0 3px rgba(255,90,31,0.5); }"
+    },
+    {
+      "name": "Navbar",
+      "kind": "nav",
+      "refersTo": "nav-pill-link",
+      "description": "Sticky, blurred navbar with logo, pill nav links, and a primary CTA. Shrinks and gains opacity on scroll.",
+      "html": "<nav class=\"ds-navbar\"><a class=\"ds-navbar-logo\" href=\"/\">WeUnite</a><div class=\"ds-navbar-links\"><a class=\"ds-nav-link\" href=\"#services\"><span class=\"ds-nav-link-fill\"></span><span class=\"ds-nav-link-text\">Co robimy</span></a></div><button class=\"ds-btn-primary\">Umów rozmowę</button></nav>",
+      "css": ".ds-navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; padding: 16px 24px; background: rgba(242,237,230,0.8); backdrop-filter: blur(12px); border-bottom: 1px solid #DDD6CB; } .ds-navbar-logo { font-family: Syne, sans-serif; font-weight: 800; font-size: 1.25rem; color: #141414; text-decoration: none; } .ds-navbar-links { display: flex; gap: 8px; }"
+    },
+    {
+      "name": "Gradient Blob",
+      "kind": "custom",
+      "refersTo": "card",
+      "description": "Decorative radial gradient (Ember Orange to Warm Coral Glow to transparent) with a slow drift animation. Hero and CTA sections only, always non-interactive.",
+      "html": "<div class=\"ds-blob\" aria-hidden=\"true\"></div>",
+      "css": ".ds-blob { position: absolute; top: -10%; right: -5%; width: 700px; height: 700px; border-radius: 50%; background: radial-gradient(circle, #FF5A1F 0%, #FF8C5A 40%, transparent 70%); opacity: 0.35; filter: blur(80px); pointer-events: none; animation: ds-blob-drift 12s ease-in-out infinite alternate; } @keyframes ds-blob-drift { 0% { transform: translate(0,0) scale(1); } 33% { transform: translate(-30px,20px) scale(1.05); } 66% { transform: translate(20px,-25px) scale(0.97); } 100% { transform: translate(-15px,15px) scale(1.03); } }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Golden Hour Agency",
+    "overview": "WeUnite's landing page reads like golden-hour light on a warm interior: toasted cream and ash surfaces, one confident ember-orange accent, and massive Syne display type that carries the pitch without needing decoration to prove it. Nothing here is corporate-cold or Silicon-Valley sterile — the palette and type are warm on purpose, because the product being sold is trust from small business owners who are used to being pitched by agencies that feel neither warm nor capable. The system explicitly rejects the cheap, dated, Wix-template feel of the sites WeUnite exists to replace: no clutter, no mismatched stock photography, no inconsistent spacing. Every section is built to demonstrate the same craft quality being sold, so the page functions as its own case study.",
+    "keyCharacteristics": [
+      "Warm neutral base (cream to ash surface to charred-umber) with a single high-energy accent",
+      "Syne ExtraBold display type as the primary hierarchy tool, not decoration",
+      "Flat, tonal depth (ring outlines, surface-color steps) — no drop shadows anywhere",
+      "Pill-shaped interactive elements against softer 16-24px container radii",
+      "Spring-physics micro-interactions rather than linear easing"
+    ],
+    "rules": [
+      { "name": "The One Accent Rule", "body": "Ember Orange is the only saturated color on the page. Warm Coral Glow only ever appears blended into it inside a gradient blob.", "section": "colors" },
+      { "name": "The Single-Voice Rule", "body": "Only Syne is allowed to be loud (ExtraBold, oversized). DM Sans never goes above medium weight or above text-xl.", "section": "typography" },
+      { "name": "The No-Shadow Rule", "body": "Never introduce box-shadow for card, button, or panel elevation. Depth comes from surface-color stepping and a 1px ring-foreground/10 outline only.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep Ember Orange to a single accent role — CTAs, active states, icons, focus rings.",
+      "Do use rounded-full for every primary clickable action and reserve 16-24px radii for containers.",
+      "Do convey elevation via surface-color stepping and ring-1 ring-foreground/10 only.",
+      "Do use spring-physics hover/tap scale on interactive elements, not linear opacity fades.",
+      "Do guard every scroll/hover animation with useReducedMotion.",
+      "Do reference Tailwind utility names mapped in @theme inline — never the raw CSS variable syntax."
+    ],
+    "donts": [
+      "Don't introduce box-shadow anywhere.",
+      "Don't use bg-[--bg-base] or any other raw bg-[--css-var] syntax.",
+      "Don't let this page drift toward cheap local-business site territory: no mismatched stock photography, no cluttered layouts, no inconsistent section spacing.",
+      "Don't use border-left/border-right colored stripes as an accent on cards or callouts.",
+      "Don't use gradient text.",
+      "Don't default to glassmorphism outside the navbar's functional scroll blur.",
+      "Don't reach for a modal as the first solution to a UI problem.",
+      "Don't add a second saturated accent color alongside Ember Orange."
+    ]
+  }
+}

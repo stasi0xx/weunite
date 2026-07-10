@@ -120,7 +120,78 @@ change.
   **NOTE:** `meetingLink` prop is optional — Google Meet links are not yet generated
   server-side; the field renders when provided, omits gracefully when absent.
 
-## Open Questions
+## Contact Form Redesign (Field Reorder + New Fields)
+
+- `components/sections/ContactFormSection.tsx` reordered/redesigned: 1. Imię i nazwisko,
+  2. Nazwa projektu / firmy (new text field), 3. Rodzaj działalności (select, unchanged),
+  4. Opis projektu (new `Textarea`, replaces the old "Co Cię interesuje?" service select),
+  5. Kolorystyka — optional text field, right below Opis projektu, 6. Dołącz pliki —
+  optional, UI only (native file input styled as dashed drop zone, `useState<File[]>`,
+  per-file remove button, `MAX_FILES = 5` / `MAX_FILE_SIZE_MB = 10` client-side caps with
+  `sonner` toasts), 7. Adres email.
+- `app/api/leads/route.ts` zod schema + Supabase insert updated to `projectName` /
+  `projectDescription` / `colorPreference` (optional), `serviceInterest` removed;
+  internal notification email updated to reference the new fields.
+- `supabase/migrations/003_leads_project_fields.sql` — adds `project_name` /
+  `project_description` (`not null`, backfilled via `default ''` then dropped), drops
+  `service_interest` column.
+- `supabase/migrations/004_leads_color_preference.sql` — adds nullable `color_preference`.
+- `context/features-specs/10-contact-form-section.md` updated to match (field list,
+  API contract, DB schema, email trigger subject).
+  **NOTE:** requires applying `003_leads_project_fields.sql` and
+  `004_leads_color_preference.sql` to the live Supabase project before deploying, or
+  inserts will fail against the old schema.
+
+## Case Study Section Redesign (Wizualizacja Page)
+
+- `components/sections/visualization/CaseStudySection.tsx` redesigned from a single
+  before/after case study (Nowy Relaks only) into a two-card portfolio grid: "Ostatnie
+  realizacje" — Nowy Relaks (Filipek Investment, reuses `nowyrelaks-after.jpg`) and
+  Fundacja Pierwsze Trzeźwe Pokolenie (new project, links to
+  `https://www.pierwszetrzezwepokolenie.pl/`). Each `ProjectCard` keeps the browser-chrome
+  frame styling, shows one screenshot (no before/after split), title, short description,
+  and an external link. `tsc --noEmit` passes clean.
+  **NOTE:** `public/casestudy/pierwszetrzezwepokolenie.jpg` does not exist yet — the user
+  is providing this screenshot directly; the `<Image>` will 404 until it's added.
+
+## Contact Form File Uploads (Wired to Supabase Storage)
+
+- Decision: Supabase Storage bucket (persisted, no email size limit) over direct Resend
+  attachments — resolves the prior Open Question.
+- `supabase/migrations/005_leads_attachments.sql` — adds `leads.attachments` (`jsonb not null
+  default '[]'`); creates private bucket `lead-attachments` (10 MB/file limit, mime allowlist:
+  jpeg/png/webp/gif/pdf/doc/docx); RLS policy allows `anon` to `insert` only (no list/read/
+  update/delete) — enough for a public lead form without exposing prior uploads.
+- `lib/supabase/client.ts` — new browser Supabase client (anon key), used only for the direct
+  file upload from `ContactFormSection.tsx`.
+- `components/sections/ContactFormSection.tsx` — `onSubmit` now uploads each selected file
+  straight to `lead-attachments` (path `${crypto.randomUUID()}-${file.name}`) before POSTing
+  the lead; per-file upload failure aborts submission with a named-file toast instead of the
+  generic error. File input gained an `accept` attribute matching the bucket's mime allowlist.
+  Upload happens client → Storage directly (not proxied through the API route) because Vercel's
+  serverless body limit (4.5 MB) is well under `MAX_FILE_SIZE_MB = 10`.
+- `app/api/leads/route.ts` — zod schema gained `attachments` (array, max 5, matches Storage
+  bucket's 10 MB cap); attachments are stored on the lead row and used to generate 7-day
+  Supabase signed URLs, listed as links in the internal notification email (file names are
+  HTML-escaped before interpolation — they're client-supplied strings).
+- `tsc --noEmit` passes clean.
+  **NOTE:** requires `NEXT_PUBLIC_SUPABASE_ANON_KEY` added to `.env.local` (not previously
+  needed — only the service-role key existed) and migration `005_leads_attachments.sql`
+  applied to the live Supabase project before uploads will work.
+
+## Booking Confirmation Email — Fire-and-Forget Bug Fix
+
+- `app/api/booking/route.ts` sent the booking confirmation email via `sendBookingConfirmation(...).catch(...)`
+  without `await` — on Vercel Serverless the function can freeze/terminate right after the HTTP
+  response is returned, so the in-flight Resend request could be silently killed mid-send with
+  no error ever logged. Inconsistent with `app/api/leads/route.ts`, which correctly awaits its
+  Resend calls via `Promise.allSettled` before responding.
+- Fix: wrapped the send in Next.js's `after()` (`next/server`, stable in Next 16) — guarantees
+  the email finishes sending even after the response goes out, without slowing down the booking
+  response for the user.
+- Reminder emails (48h/24h/1h) are a separate, still-open gap: `supabase/functions/send-reminders`
+  only implements 24h/1h (no `reminder_48h_sent_at` column) and nothing currently invokes it on a
+  schedule (no pg_cron migration found) — deferred, not part of this fix.
 
 ## Architecture Decisions
 

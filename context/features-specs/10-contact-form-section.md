@@ -101,17 +101,17 @@ Form element: `<form onSubmit={...} className="flex flex-col gap-5">`
 | Validation | Non-empty string, min 2 chars |
 | Error message | `Podaj swoje imię i nazwisko` |
 
-### Field 2 — Adres email
+### Field 2 — Nazwa projektu / firmy
 
 | Property | Value |
 |----------|-------|
-| Type | `email` |
-| Name | `email` |
-| Label | `Adres email` |
-| Placeholder | `jan@domkiletniskowe.pl` |
+| Type | `text` |
+| Name | `projectName` |
+| Label | `Nazwa projektu / firmy` |
+| Placeholder | `np. Domki nad Jeziorem` |
 | Required | Yes |
-| Validation | Valid email format (zod `z.string().email()`) |
-| Error message | `Podaj poprawny adres email` |
+| Validation | Non-empty string, min 2 chars |
+| Error message | `Podaj nazwę projektu lub firmy` |
 
 ### Field 3 — Rodzaj działalności
 
@@ -134,26 +134,57 @@ Pensjonat / hotel
 Inny rodzaj biznesu
 ```
 
-### Field 4 — Co Cię interesuje?
+### Field 4 — Opis projektu
 
 | Property | Value |
 |----------|-------|
-| Type | shadcn `<Select>` |
-| Name | `serviceInterest` |
-| Label | `Co Cię interesuje?` |
-| Placeholder | `Wybierz usługę...` |
+| Type | shadcn `<Textarea>` |
+| Name | `projectDescription` |
+| Label | `Opis projektu` |
+| Placeholder | `Krótko opisz swój projekt lub czego potrzebujesz...` |
 | Required | Yes |
-| Validation | Must select one option |
-| Error message | `Wybierz interesującą Cię usługę` |
+| Validation | Non-empty string, min 10 chars |
+| Error message | `Opisz krótko swój projekt` |
 
-Options:
+### Field 5 — Kolorystyka (opcjonalne)
 
-```
-Strona internetowa + system rezerwacji
-Zarządzanie social media
-Automatyzacje
-Wszystkie usługi
-```
+| Property | Value |
+|----------|-------|
+| Type | `text` |
+| Name | `colorPreference` |
+| Label | `Kolorystyka (opcjonalnie)` |
+| Placeholder | `np. ciepłe, ziemiste odcienie` |
+| Required | No |
+| Validation | None — free text |
+
+### Field 6 — Dołącz pliki (opcjonalne)
+
+| Property | Value |
+|----------|-------|
+| Type | native `<input type="file" multiple>`, styled as a dashed drop zone |
+| Name | `files` (UI-only — not part of the zod schema, not submitted to the API) |
+| Label | `Dołącz pliki (opcjonalnie)` |
+| Required | No |
+| Constraints | up to `MAX_FILES = 5` files, `MAX_FILE_SIZE_MB = 10` each — oversized/excess files are rejected client-side with a `sonner` toast |
+| Selected files | listed below the drop zone with a per-file remove (`X`) button |
+
+> **Status: wired.** On submit, selected files are uploaded directly from the browser to the
+> private Supabase Storage bucket `lead-attachments` (via `lib/supabase/client.ts`, anon key,
+> INSERT-only RLS policy — see `supabase/migrations/005_leads_attachments.sql`). The resulting
+> `{ path, name, size, type }` records are sent to `/api/leads` as `attachments` and stored on
+> the lead row. The internal notification email includes a 7-day signed download link per file.
+
+### Field 7 — Adres email
+
+| Property | Value |
+|----------|-------|
+| Type | `email` |
+| Name | `email` |
+| Label | `Adres email` |
+| Placeholder | `jan@domkiletniskowe.pl` |
+| Required | Yes |
+| Validation | Valid email format (zod `z.string().email()`) |
+| Error message | `Podaj poprawny adres email` |
 
 ### Field styling
 
@@ -234,20 +265,29 @@ Field-level validation errors are shown inline (react-hook-form `formState.error
 
 ```ts
 interface LeadPayload {
-  name: string            // min 2 chars
-  email: string           // valid email
-  businessType: string    // one of the four select options
-  serviceInterest: string // one of the four select options
+  name: string                // min 2 chars
+  projectName: string         // min 2 chars
+  businessType: string        // one of the four select options
+  projectDescription: string  // min 10 chars
+  colorPreference?: string    // optional, free text
+  email: string                // valid email
+  attachments?: {              // max 5, populated after client-side Storage upload
+    path: string
+    name: string
+    size: number                // bytes, max 10 MB
+    type: string
+  }[]
 }
 ```
 
 **Handler logic (in order):**
 
 1. Parse and validate body with zod — return `400` on invalid input
-2. Insert row into Supabase `leads` table with `status: 'new'`
-3. Fire Resend email: confirmation to visitor (template: `lead-confirmation`)
-4. Fire Resend email: internal notification to `ai.say.agency@gmail.com` (template: `lead-internal`)
-5. Return `200 { success: true }`
+2. Insert row into Supabase `leads` table (incl. `attachments` jsonb) with `status: 'new'`
+3. If attachments present, create 7-day signed URLs for each (`storage.createSignedUrls`)
+4. Fire Resend email: confirmation to visitor (template: `lead-confirmation`)
+5. Fire Resend email: internal notification to `ai.say.agency@gmail.com` (template: `lead-internal`), including signed attachment links
+6. Return `200 { success: true, lead_id }`
 
 Both Resend calls use `Promise.allSettled` — email failure must not fail the API response.
 Log email send errors server-side but return success if the DB insert succeeded.
@@ -262,13 +302,21 @@ Table: `leads`
 |--------|------|-------------|
 | `id` | `uuid` | `primary key default gen_random_uuid()` |
 | `name` | `text` | `not null` |
+| `project_name` | `text` | `not null` |
 | `email` | `text` | `not null` |
 | `business_type` | `text` | `not null` |
-| `service_interest` | `text` | `not null` |
+| `project_description` | `text` | `not null` |
+| `color_preference` | `text` | nullable — optional field |
+| `attachments` | `jsonb` | `not null default '[]'` — array of `{path, name, size, type}` |
 | `status` | `text` | `not null default 'new'` — enum: `new`, `nurturing`, `call_booked`, `client` |
 | `created_at` | `timestamptz` | `not null default now()` |
 
-Migration file: `supabase/migrations/001_leads.sql`
+Migration files: `supabase/migrations/001_leads.sql`,
+`supabase/migrations/003_leads_project_fields.sql` (adds `project_name` /
+`project_description`, drops `service_interest`),
+`supabase/migrations/004_leads_color_preference.sql` (adds `color_preference`),
+`supabase/migrations/005_leads_attachments.sql` (adds `attachments` column, creates the
+private `lead-attachments` Storage bucket + anon INSERT-only RLS policy)
 
 ---
 
@@ -286,9 +334,9 @@ Migration file: `supabase/migrations/001_leads.sql`
 
 - **From:** `WeUnite Bot <bot@weunite.pl>`
 - **To:** `ai.say.agency@gmail.com`
-- **Subject:** `Nowy lead: {name} — {serviceInterest}`
+- **Subject:** `Nowy lead: {name} — {projectName}`
 - **Template ID:** `lead-internal`
-- **Content summary:** name, email, businessType, serviceInterest, timestamp
+- **Content summary:** name, projectName, email, businessType, projectDescription, timestamp
 
 > Email template bodies are not in scope for this spec — see email templates spec when ready.
 

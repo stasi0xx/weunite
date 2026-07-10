@@ -4,11 +4,33 @@ import { createServerClient } from '@/lib/supabase/server'
 import { Resend } from 'resend'
 import { sendLeadConfirmation } from '@/lib/resend'
 
+const MAX_FILES = 5
+const MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+}
+
+const attachmentSchema = z.object({
+  path: z.string().min(1),
+  name: z.string().min(1),
+  size: z.number().int().positive().max(MAX_FILE_SIZE_BYTES),
+  type: z.string(),
+})
+
 const schema = z.object({
   name: z.string().min(2, 'Podaj swoje imię i nazwisko'),
-  email: z.string().email('Podaj poprawny adres email'),
+  projectName: z.string().min(2, 'Podaj nazwę projektu lub firmy'),
   businessType: z.string().min(1, 'Wybierz rodzaj działalności'),
-  serviceInterest: z.string().min(1, 'Wybierz interesującą Cię usługę'),
+  projectDescription: z.string().min(10, 'Opisz krótko swój projekt'),
+  colorPreference: z.string().optional(),
+  email: z.string().email('Podaj poprawny adres email'),
+  attachments: z.array(attachmentSchema).max(MAX_FILES).optional().default([]),
 })
 
 export async function POST(request: NextRequest) {
@@ -25,16 +47,19 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Invalid input' }, { status: 400 })
   }
 
-  const { name, email, businessType, serviceInterest } = parsed.data
+  const { name, projectName, email, businessType, projectDescription, colorPreference, attachments } = parsed.data
 
   const supabase = createServerClient()
   const { data: lead, error: dbError } = await supabase
     .from('leads')
     .insert({
       name: name.trim(),
+      project_name: projectName.trim(),
       email: email.trim(),
       business_type: businessType,
-      service_interest: serviceInterest,
+      project_description: projectDescription.trim(),
+      color_preference: colorPreference?.trim() || null,
+      attachments,
       status: 'new',
     })
     .select('id')
@@ -45,17 +70,40 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Database error' }, { status: 500 })
   }
 
+  let attachmentsHtml = '<p><strong>Załączniki:</strong> brak</p>'
+  if (attachments.length > 0) {
+    const { data: signedUrls, error: signError } = await supabase.storage
+      .from('lead-attachments')
+      .createSignedUrls(
+        attachments.map((a) => a.path),
+        60 * 60 * 24 * 7 // 7 days
+      )
+    if (signError) console.error('Supabase signed URL error:', signError)
+
+    const links = (signedUrls ?? [])
+      .map((signed, i) => {
+        const fileName = escapeHtml(attachments[i].name)
+        if (!signed.signedUrl) return `<li>${fileName} (błąd generowania linku)</li>`
+        return `<li><a href="${signed.signedUrl}">${fileName}</a></li>`
+      })
+      .join('')
+    attachmentsHtml = `<p><strong>Załączniki (link ważny 7 dni):</strong></p><ul>${links}</ul>`
+  }
+
   const emailResults = await Promise.allSettled([
     sendLeadConfirmation(email, name),
     resend.emails.send({
       from: 'WeUnite Bot <bot@weunite.pl>',
       to: 'ai.say.agency@gmail.com',
-      subject: `Nowy lead: ${name} — ${serviceInterest}`,
+      subject: `Nowy lead: ${name} — ${projectName}`,
       html: `
         <p><strong>Imię:</strong> ${name}</p>
+        <p><strong>Nazwa projektu / firmy:</strong> ${projectName}</p>
         <p><strong>Email:</strong> ${email}</p>
         <p><strong>Rodzaj biznesu:</strong> ${businessType}</p>
-        <p><strong>Interesująca usługa:</strong> ${serviceInterest}</p>
+        <p><strong>Opis projektu:</strong> ${projectDescription}</p>
+        <p><strong>Kolorystyka:</strong> ${colorPreference || '—'}</p>
+        ${attachmentsHtml}
         <p><strong>Data:</strong> ${new Date().toISOString()}</p>
       `,
     }),

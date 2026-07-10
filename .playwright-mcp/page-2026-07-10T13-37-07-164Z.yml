@@ -1,0 +1,92 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - link "WeUnite" [ref=e4] [cursor=pointer]:
+      - /url: /
+  - main [ref=e5]:
+    - region "Sekcja główna" [ref=e6]:
+      - generic [ref=e7]:
+        - heading "Bezpłatna wizualizacja" [level=1] [ref=e8]
+        - paragraph [ref=e9]: Opowiedz nam o swojej firmie, a przygotujemy bezpłatny projekt wizualny Twojej nowej, inteligentnej strony internetowej. Bez żadnych zobowiązań i bez kosztów najpierw zobacz efekt, a dopiero potem zdecyduj o współpracy.
+        - generic [ref=e11]:
+          - generic [ref=e12]:
+            - paragraph [ref=e13]: Wizualizacje zajęte w tym miesiącu
+            - paragraph [ref=e14]:
+              - text: "13"
+              - generic [ref=e15]: / 20
+          - progressbar [ref=e16]
+          - paragraph [ref=e17]:
+            - text: Zostało
+            - generic [ref=e18]: 7 miejsc
+            - text: w tym miesiącu.
+        - button "Odbieram" [ref=e20] [cursor=pointer]
+    - region [ref=e21]:
+      - generic [ref=e22]:
+        - paragraph [ref=e23]: Ostatnia realizacja
+        - heading "Od szablonu z Wixa do strony, która sprzedaje inwestycję." [level=2] [ref=e24]
+        - paragraph [ref=e25]: "Filipek Investment buduje domy jednorodzinne pod Białą Podlaską. Ich poprzednia strona była darmowym szablonem z Wixa, bez prezentacji inwestycji ani sposobu na zapytanie o dostępność. Zbudowaliśmy im od podstaw dedykowaną stronę: pełną prezentację lokalizacji, etapów budowy i formularz zapytań o dostępność domu."
+        - generic [ref=e26]:
+          - generic [ref=e27]:
+            - generic [ref=e28]: Przed
+            - img "Poprzednia strona inwestycji Nowy Relaks, zbudowana na darmowym szablonie Wix" [ref=e35]
+          - generic [ref=e36]:
+            - generic [ref=e37]: Po
+            - img "Nowa strona inwestycji Nowy Relaks zaprojektowana przez WeUnite" [ref=e44]
+        - link "Zobacz stronę na żywo" [ref=e46] [cursor=pointer]:
+          - /url: https://www.nowyrelaks.fi-invest.pl/
+    - region "Formularz kontaktowy" [ref=e50]:
+      - generic [ref=e52]:
+        - generic [ref=e53]:
+          - paragraph [ref=e54]: BEZPŁATNA WIZUALIZACJA
+          - heading "Zacznijmy razem." [level=2] [ref=e55]: Zacznijmyrazem.
+          - paragraph [ref=e56]: Powiedz nam, co robisz i co Cię interesuje. Wrócimy do Ciebie w ciągu 24 godzin z planem działania i bezpłatną wizualizacją Twojej strony.
+          - generic [ref=e57]:
+            - generic [ref=e58]: Odpowiadamy w ciągu 24h
+            - generic [ref=e63]: Bezpłatna wizualizacja strony
+            - generic [ref=e68]: Zero zobowiązań
+        - form "Formularz zgłoszeniowy" [ref=e74]:
+          - generic [ref=e75]:
+            - generic [ref=e76]: Imię i nazwisko
+            - textbox "Jan Kowalski" [ref=e78]
+          - generic [ref=e79]:
+            - generic [ref=e80]: Nazwa projektu / firmy
+            - textbox "np. Domki nad Jeziorem" [ref=e82]
+          - generic [ref=e83]:
+            - generic [ref=e84]: Rodzaj działalności
+            - generic [ref=e85]:
+              - combobox [ref=e86]:
+                - generic [ref=e87]: Wybierz...
+                - img: ▼
+              - textbox [ref=e88]
+          - generic [ref=e89]:
+            - generic [ref=e90]: Opis projektu
+            - textbox "Krótko opisz swój projekt lub czego potrzebujesz..." [ref=e92]
+          - generic [ref=e93]:
+            - generic [ref=e94]:
+              - text: Kolorystyka
+              - generic [ref=e95]: (opcjonalnie)
+            - textbox "np. ciepłe, ziemiste odcienie" [ref=e97]
+          - generic [ref=e98]:
+            - generic [ref=e99]:
+              - text: Dołącz pliki
+              - generic [ref=e100]: (opcjonalnie)
+            - button "Dołącz pliki (opcjonalnie) Wybierz pliki lub przeciągnij tutaj" [ref=e101]
+            - generic [ref=e102] [cursor=pointer]: Wybierz pliki lub przeciągnij tutaj
+          - generic [ref=e105]:
+            - generic [ref=e106]: Adres email
+            - textbox "jan@domkiletniskowe.pl" [ref=e108]
+          - button "Wyślij →" [ref=e109]
+  - contentinfo [ref=e110]:
+    - generic [ref=e111]:
+      - paragraph [ref=e112]: Copyright © 2026 WeUnite. All rights reserved.
+      - list [ref=e113]:
+        - listitem [ref=e114]:
+          - link "Polityka prywatności" [ref=e115] [cursor=pointer]:
+            - /url: /polityka-prywatnosci
+        - listitem [ref=e117]:
+          - link "Polityka cookies" [ref=e118] [cursor=pointer]:
+            - /url: /polityka-cookies
+        - listitem [ref=e120]:
+          - link "Regulamin" [ref=e121] [cursor=pointer]:
+            - /url: /regulamin
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=e128] [cursor=pointer]

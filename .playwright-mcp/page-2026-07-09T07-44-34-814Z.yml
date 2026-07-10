@@ -1,0 +1,135 @@
+- generic [active] [ref=f7e1]:
+  - banner [ref=f7e2]:
+    - link "WeUnite" [ref=f7e4] [cursor=pointer]:
+      - /url: /
+  - main [ref=f7e5]:
+    - region "Sekcja główna" [ref=f7e6]:
+      - generic [ref=f7e7]:
+        - paragraph [ref=f7e8]: Bezpłatna wizualizacja
+        - heading "Zobacz swoją nową stronę, zanim podejmiesz decyzję." [level=1] [ref=f7e9]
+        - paragraph [ref=f7e10]: "Opisz nam swój biznes, a przygotujemy bezpłatny projekt wizualny nowej strony z systemem rezerwacji. Zero zobowiązań, zero kosztów: zobacz efekt, zanim zdecydujesz się na współpracę."
+        - button "Odbierz bezpłatną wizualizację" [ref=f7e12] [cursor=pointer]: Odbierz bezpłatną wizualizację
+        - generic [ref=f7e14]:
+          - generic [ref=f7e15]:
+            - paragraph [ref=f7e16]: Wizualizacje zajęte w tym miesiącu
+            - paragraph [ref=f7e17]:
+              - text: "13"
+              - generic [ref=f7e18]: / 20
+          - progressbar [ref=f7e19]
+          - paragraph [ref=f7e20]:
+            - text: Zostało
+            - generic [ref=f7e21]: 7 miejsc
+            - text: w tym miesiącu. Bierzemy tyle, ile dwie osoby mogą dopracować.
+    - region "Formularz kontaktowy" [ref=f7e22]:
+      - generic [ref=f7e24]:
+        - generic [ref=f7e25]:
+          - paragraph [ref=f7e26]: BEZPŁATNA KONSULTACJA
+          - heading "Zacznijmy razem." [level=2] [ref=f7e27]:
+            - text: Zacznijmy
+            - text: razem.
+          - paragraph [ref=f7e28]: Powiedz nam, co robisz i co Cię interesuje. Wrócimy do Ciebie w ciągu 24 godzin z planem działania i bezpłatną wizualizacją Twojej strony.
+          - generic [ref=f7e29]:
+            - generic [ref=f7e30]:
+              - img [ref=f7e31]
+              - generic [ref=f7e34]: Odpowiadamy w ciągu 24h
+            - generic [ref=f7e35]:
+              - img [ref=f7e36]
+              - generic [ref=f7e39]: Bezpłatna wizualizacja strony
+            - generic [ref=f7e40]:
+              - img [ref=f7e41]
+              - generic [ref=f7e44]: Zero zobowiązań
+        - form "Formularz zgłoszeniowy" [ref=f7e46]:
+          - generic [ref=f7e47]:
+            - generic [ref=f7e48]: Imię i nazwisko
+            - textbox "Jan Kowalski" [ref=f7e50]
+          - generic [ref=f7e51]:
+            - generic [ref=f7e52]: Adres email
+            - textbox "jan@domkiletniskowe.pl" [ref=f7e54]
+          - generic [ref=f7e55]:
+            - generic [ref=f7e56]: Rodzaj działalności
+            - generic [ref=f7e57]:
+              - combobox [ref=f7e58]:
+                - generic [ref=f7e59]: Wybierz...
+                - img: ▼
+              - textbox [ref=f7e60]
+          - generic [ref=f7e61]:
+            - generic [ref=f7e62]: Co Cię interesuje?
+            - generic [ref=f7e63]:
+              - combobox [ref=f7e64]:
+                - generic [ref=f7e65]: Wybierz usługę...
+                - img: ▼
+              - textbox [ref=f7e66]
+          - button "Zgłoś się po bezpłatną konsultację →" [ref=f7e67]
+    - region "Od szablonu z Wixa do strony, która sprzedaje inwestycję." [ref=f7e68]:
+      - generic [ref=f7e69]:
+        - paragraph [ref=f7e70]: Ostatnia realizacja
+        - heading "Od szablonu z Wixa do strony, która sprzedaje inwestycję." [level=2] [ref=f7e71]
+        - paragraph [ref=f7e72]: "Filipek Investment buduje domy jednorodzinne pod Białą Podlaską. Ich poprzednia strona była darmowym szablonem z Wixa, bez prezentacji inwestycji ani sposobu na zapytanie o dostępność. Zbudowaliśmy im od podstaw dedykowaną stronę: pełną prezentację lokalizacji, etapów budowy i formularz zapytań o dostępność domu."
+        - generic [ref=f7e73]:
+          - generic [ref=f7e74]:
+            - generic [ref=f7e80]: Przed
+            - img "Poprzednia strona inwestycji Nowy Relaks, zbudowana na darmowym szablonie Wix" [ref=f7e82]
+          - generic [ref=f7e83]:
+            - generic [ref=f7e89]: Po
+            - img "Nowa strona inwestycji Nowy Relaks zaprojektowana przez WeUnite" [ref=f7e91]
+        - link "Zobacz stronę na żywo" [ref=f7e93] [cursor=pointer]:
+          - /url: https://www.nowyrelaks.fi-invest.pl/
+          - text: Zobacz stronę na żywo
+          - img [ref=f7e94]
+    - region "Formularz kontaktowy" [ref=f7e97]:
+      - generic [ref=f7e99]:
+        - generic [ref=f7e100]:
+          - paragraph [ref=f7e101]: GOTOWY/A?
+          - heading "Twoja kolej." [level=2] [ref=f7e102]
+          - paragraph [ref=f7e103]: "Widziałeś, jak to wygląda w praktyce. Wyślij nam swoje dane, a przygotujemy to samo dla Ciebie: bezpłatnie."
+          - generic [ref=f7e104]:
+            - generic [ref=f7e105]:
+              - img [ref=f7e106]
+              - generic [ref=f7e109]: Odpowiadamy w ciągu 24h
+            - generic [ref=f7e110]:
+              - img [ref=f7e111]
+              - generic [ref=f7e114]: Bezpłatna wizualizacja strony
+            - generic [ref=f7e115]:
+              - img [ref=f7e116]
+              - generic [ref=f7e119]: Zero zobowiązań
+        - form "Formularz zgłoszeniowy" [ref=f7e121]:
+          - generic [ref=f7e122]:
+            - generic [ref=f7e123]: Imię i nazwisko
+            - textbox "Jan Kowalski" [ref=f7e125]
+          - generic [ref=f7e126]:
+            - generic [ref=f7e127]: Adres email
+            - textbox "jan@domkiletniskowe.pl" [ref=f7e129]
+          - generic [ref=f7e130]:
+            - generic [ref=f7e131]: Rodzaj działalności
+            - generic [ref=f7e132]:
+              - combobox [ref=f7e133]:
+                - generic [ref=f7e134]: Wybierz...
+                - img: ▼
+              - textbox [ref=f7e135]
+          - generic [ref=f7e136]:
+            - generic [ref=f7e137]: Co Cię interesuje?
+            - generic [ref=f7e138]:
+              - combobox [ref=f7e139]:
+                - generic [ref=f7e140]: Wybierz usługę...
+                - img: ▼
+              - textbox [ref=f7e141]
+          - button "Zgłoś się po bezpłatną konsultację →" [ref=f7e142]
+  - contentinfo [ref=f7e143]:
+    - generic [ref=f7e144]:
+      - paragraph [ref=f7e145]: Copyright © 2026 WeUnite. All rights reserved.
+      - list [ref=f7e146]:
+        - listitem [ref=f7e147]:
+          - link "Polityka prywatności" [ref=f7e148] [cursor=pointer]:
+            - /url: /polityka-prywatnosci
+            - generic [ref=f7e149]: Polityka prywatności
+        - listitem [ref=f7e150]:
+          - link "Polityka cookies" [ref=f7e151] [cursor=pointer]:
+            - /url: /polityka-cookies
+            - generic [ref=f7e152]: Polityka cookies
+        - listitem [ref=f7e153]:
+          - link "Regulamin" [ref=f7e154] [cursor=pointer]:
+            - /url: /regulamin
+            - generic [ref=f7e155]: Regulamin
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f7e161] [cursor=pointer]:
+    - img [ref=f7e162]
