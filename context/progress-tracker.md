@@ -193,6 +193,28 @@ change.
   only implements 24h/1h (no `reminder_48h_sent_at` column) and nothing currently invokes it on a
   schedule (no pg_cron migration found) — deferred, not part of this fix.
 
+## Booking Step Removed From Lead Flow
+
+- Business decision: WeUnite no longer self-books strategy calls with leads — the team follows
+  up manually (email/phone) instead. `components/sections/ContactFormSection.tsx` now redirects
+  to a new static `/dziekujemy` (thank-you) page instead of `/booking?lead=<id>`.
+- New `app/dziekujemy/page.tsx` + `app/dziekujemy/layout.tsx` (noindex) — mirrors the old
+  `/booking/confirmed` page's styling (CheckCircle icon, heading, CTA back to home).
+- `app/sitemap.ts` — removed the `/booking` entry (no longer part of the linked funnel).
+- `emails/LeadConfirmation.tsx` — reworded the "Co dalej?" 3-step card and preview text to
+  drop "Umawiamy rozmowę strategiczną" (booking-specific copy); now says the team will reach
+  out directly within 24h instead of the lead self-booking a call.
+- **Decision (explicitly confirmed by user):** booking infrastructure was NOT deleted — `app/booking/*`,
+  `app/api/booking/*`, `components/booking/*`, `lib/booking.ts`, `lib/validators/booking.ts`,
+  `supabase/functions/send-reminders`, and the `booking_slots` / `blocked_dates` / `bookings`
+  Supabase tables all remain in place, just unlinked from the active lead flow. Kept as a
+  live demo of the booking product WeUnite builds for vacation rental clients.
+- `context/project-overview.md` and `context/architecture.md` updated to reflect the flow
+  change (Goals, Core User Flow, Features, Scope, Success Criteria, invariant #3 note).
+  **NOTE:** `context/features-specs/11_forward_to_choosing_date.md` and
+  `12_booking_page.md` still describe the old redirect-to-booking flow — left as historical
+  spec records, not updated.
+
 ## Architecture Decisions
 
 - shadcn/ui v4 uses `@base-ui/react` instead of `@radix-ui/react-*` — form.tsx was written

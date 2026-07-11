@@ -39,5 +39,7 @@
 1. Email scheduling logic lives exclusively in Supabase Edge Functions — no external cron services and no in-process timers in route handlers
 2. Route handlers do not perform long-running work — background tasks belong in Edge Functions
 3. Lead status must be updated on every state transition: `new → nurturing → call_booked → client`
+   (the `call_booked` transition is currently set manually by the team — the self-service booking
+   flow that used to trigger it automatically is unlinked from the funnel, see `project-overview.md`)
 4. Only email delivery metadata is stored in the database — never full email HTML or body content
 5. Single source of truth per entity — lead and booking state is not duplicated across tables

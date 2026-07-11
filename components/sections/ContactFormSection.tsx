@@ -107,7 +107,7 @@ export default function ContactFormSection({
   description = (
     <>
       Powiedz nam, co robisz i co Cię interesuje.
-      Wrócimy do Ciebie w ciągu 24 godzin z planem działania i bezpłatną wizualizacją Twojej strony.
+      Wrócimy do Ciebie w ciągu 24 godzin z planem działania, a bezpłatną wizualizację Twojej strony otrzymasz w ciągu 72h.
     </>
   ),
   showBackground = true,
@@ -172,13 +172,12 @@ export default function ContactFormSection({
         body: JSON.stringify({ ...values, attachments }),
       })
       if (!response.ok) throw new Error("API error")
-      const { lead_id } = await response.json()
       posthog?.capture("lead_form_submitted", {
         business_type: values.businessType,
         project_name: values.projectName,
         attached_files: files.length,
       })
-      router.push(`/booking?lead=${lead_id}`)
+      router.push("/dziekujemy")
     } catch (error) {
       const message =
         error instanceof UploadError

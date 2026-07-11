@@ -34,7 +34,7 @@ export function LeadConfirmation({ name }: LeadConfirmationProps) {
   return (
     <Html lang="pl">
       <Head />
-      <Preview>Twoje bezpłatne konsultacje + wizualizacja strony są zarezerwowane.</Preview>
+      <Preview>Twoje zgłoszenie dotarło — sprawdź, co dalej.</Preview>
       <Body style={{ backgroundColor: C.base, margin: '0', padding: '32px 16px', fontFamily: FONT }}>
         <Container style={{ maxWidth: '600px', margin: '0 auto' }}>
           {/* Top accent bar — sits above the card, matching top corners */}
@@ -68,9 +68,9 @@ export function LeadConfirmation({ name }: LeadConfirmationProps) {
 
             <Text style={{ fontFamily: FONT, fontSize: '16px', color: C.text, lineHeight: '1.6', margin: '0 0 32px 0' }}>
               Zgłoszenie trafiło do nas i już je mamy. Cieszmy się — to naprawdę dobry
-              krok. Właściciele domków letniskowych, którzy zdecydowali się na
-              profesjonalną stronę z systemem rezerwacji, przestają tracić klientów
-              na rzecz portali, które biorą prowizję od każdej transakcji.
+              krok. Firmy, które decydują się na profesjonalną stronę internetową,
+              przestają tracić klientów na rzecz konkurencji i pośredników, którzy
+              biorą prowizję od każdej transakcji.
             </Text>
 
             {/* "Co dalej?" card */}
@@ -87,13 +87,13 @@ export function LeadConfirmation({ name }: LeadConfirmationProps) {
                 Co dalej?
               </Text>
               <Text style={{ fontFamily: FONT, fontSize: '15px', color: C.text, lineHeight: '1.6', margin: '0 0 12px 0' }}>
-                <strong>1. Umawiamy rozmowę strategiczną</strong> — omówimy Twoją sytuację, zarysujemy plan działania i omówimy następny krok.
+                <strong>1. Analizujemy Twoje zgłoszenie</strong> — sprawdzamy szczegóły projektu i przygotowujemy wstępny plan działania.
               </Text>
               <Text style={{ fontFamily: FONT, fontSize: '15px', color: C.text, lineHeight: '1.6', margin: '0 0 12px 0' }}>
-                <strong>2. Ty decydujesz</strong> — zero presji. Rozmowa jest bezpłatna i do niczego nie zobowiązuje.
+                <strong>2. Odzywamy się do Ciebie</strong> — napiszemy lub zadzwonimy w ciągu 24h. Zero presji, zero zobowiązań.
               </Text>
               <Text style={{ fontFamily: FONT, fontSize: '15px', color: C.text, lineHeight: '1.6', margin: '0' }}>
-                <strong>3. Przygotowujemy wizualizację</strong> — tworzymy wstępny projekt tego, nad czym będziemy pracować, a Ty możesz zdecydować czy w ten sposób chcesz pracować.
+                <strong>3. Przygotowujemy wizualizację</strong> — w ciągu 72h wyślemy Ci wstępny projekt Twojej strony, a Ty możesz zdecydować czy w ten sposób chcesz pracować.
               </Text>
             </Section>
 
