@@ -34,8 +34,7 @@ export default function MonthlyCapProgress() {
         <motion.div
           className="h-full rounded-full bg-primary"
           initial={{ width: prefersReducedMotion ? `${percent}%` : "0%" }}
-          whileInView={{ width: `${percent}%` }}
-          viewport={{ once: true, margin: "-50px" }}
+          animate={{ width: `${percent}%` }}
           transition={{ duration: prefersReducedMotion ? 0 : 0.9, ease: [0.25, 1, 0.5, 1] }}
         />
       </div>

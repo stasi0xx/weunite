@@ -1,0 +1,1 @@
+[    1693ms] [ERROR] [PostHog.js] PostHog was initialized without a token. This likely indicates a misconfiguration. Please check the first argument passed to posthog.init() @ https://www.weunite.pl/_next/static/chunks/0u6lk.onwyrla.js:9

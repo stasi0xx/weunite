@@ -33,7 +33,7 @@ export default function VisualizationHero() {
 
 
         <motion.h1
-          className="font-sans font-extrabold tracking-tight text-5xl md:text-6xl lg:text-7xl text-foreground max-w-2xl"
+          className="font-sans font-extrabold tracking-tight text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-foreground max-w-2xl"
           initial="hidden"
           animate="visible"
           variants={makeVariants(24, 0.1)}
