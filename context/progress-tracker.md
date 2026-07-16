@@ -215,6 +215,56 @@ change.
   `12_booking_page.md` still describe the old redirect-to-booking flow — left as historical
   spec records, not updated.
 
+## Meta Pixel + Conversions API, PostHog Consent Fix
+
+- **Problem:** a Facebook ad drove ~150 link clicks to `/wizualizacja` and PostHog recorded
+  essentially nothing. Two causes: (1) `providers.tsx` set `opt_out_capturing_by_default: true`
+  and the only opt-in path was clicking "Akceptuj wszystkie" in the cookie banner — cold ad
+  traffic never clicks it, so ~0 events were captured; (2) `NEXT_PUBLIC_POSTHOG_HOST` pointed
+  straight at `eu.i.posthog.com`, which adblockers and mobile DNS filters drop. There was also
+  no Meta Pixel in the codebase at all, so FB's "150" was link clicks, not landing page views.
+- **`lib/consent.ts`** — single source of truth for consent: `readConsent` / `writeConsent` /
+  `hasMarketingConsent` / `onConsentChange` (custom `cookie-consent-change` window event).
+  Keeps the existing `cookie_consent` localStorage key, so returning visitors keep their choice.
+- **`app/providers.tsx`** — `opt_out_capturing_by_default` removed. PostHog now always captures:
+  `persistence: "memory"` + `disable_session_recording: true` before consent (cookieless, no
+  device storage → no cookie consent required), upgrading to `localStorage+cookie` + session
+  replay on "Akceptuj wszystkie" via `onConsentChange`.
+  **Tradeoff:** in memory mode a visitor is re-counted per page load — pageviews are exact,
+  unique visitor counts skew high.
+- **`next.config.ts`** — `/ingest/static/:path*` → `eu-assets.i.posthog.com`, `/ingest/:path*` →
+  `eu.i.posthog.com` rewrites + `skipTrailingSlashRedirect: true`; `NEXT_PUBLIC_POSTHOG_HOST`
+  changed to `/ingest`.
+- **`lib/meta/pixel.ts`** — typed `fbq` wrapper: `initMetaPixel()` (loads fbevents.js + first
+  PageView, no-ops without `NEXT_PUBLIC_META_PIXEL_ID`), `trackMetaEvent(name, params, eventId)`,
+  `newMetaEventId()`.
+- **`components/analytics/MetaPixel.tsx`** — loads the pixel only when consent is `"all"` (on
+  mount or later via `onConsentChange`); fires PageView on client-side navigations (the initial
+  one comes from `initMetaPixel`). Mounted in `app/layout.tsx` inside `PostHogProvider`.
+- **`lib/meta/capi.ts`** — `sendMetaLeadEvent()` posts a `Lead` event to
+  `graph.facebook.com/v21.0/{pixel_id}/events`; SHA-256 hashes email + first/last name per Meta's
+  normalisation rules, forwards `_fbp` / `_fbc` / IP / user-agent as match signals. Never throws;
+  no-ops without `META_PIXEL_ID` + `META_CAPI_ACCESS_TOKEN`.
+- **`app/api/leads/route.ts`** — fires the CAPI Lead event via `after()` (same pattern as the
+  booking route) after a successful insert; reads `_fbp`/`_fbc` cookies and headers off the
+  request *before* `after()` runs. Zod schema gained optional `metaEventId` (uuid).
+- **`components/sections/ContactFormSection.tsx`** — generates one `metaEventId` per submit,
+  sends it to the API and passes it to `trackMetaEvent("Lead", ...)` so browser + server events
+  deduplicate.
+- **`components/ui/CookieBanner.tsx`** — now writes through `lib/consent.ts` instead of calling
+  `posthog.opt_in_capturing()` directly; copy updated (traffic measured anonymously without
+  cookies; consent covers cross-visit recognition + Meta Pixel).
+- `tsc --noEmit` and `next build` both pass clean.
+  **NOTE:** requires `NEXT_PUBLIC_META_PIXEL_ID` and `META_CAPI_ACCESS_TOKEN` in `.env.local`
+  *and in Vercel*, plus `NEXT_PUBLIC_POSTHOG_HOST=/ingest` updated in Vercel — placeholders are
+  empty, so both Meta integrations silently no-op until filled.
+  **NOTE:** `app/(main)/polityka-cookies/page.tsx` still documents only PostHog analytics cookies
+  — it needs a marketing-cookies section for Meta Pixel (`_fbp` / `_fbc`, 90 days) and the PostHog
+  section needs rewording (cookieless before consent). Not written yet — legal copy needs sign-off.
+  **DECISION (open):** the CAPI Lead event currently fires on every submission regardless of banner
+  consent — that is the point of CAPI, but strict RODO reading would gate it too. One-line change
+  in `app/api/leads/route.ts` if the call goes the other way.
+
 ## Architecture Decisions
 
 - shadcn/ui v4 uses `@base-ui/react` instead of `@radix-ui/react-*` — form.tsx was written

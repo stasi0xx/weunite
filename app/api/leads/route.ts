@@ -1,8 +1,9 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextRequest, NextResponse, after } from 'next/server'
 import { z } from 'zod'
 import { createServerClient } from '@/lib/supabase/server'
 import { Resend } from 'resend'
 import { sendLeadConfirmation } from '@/lib/resend'
+import { sendMetaLeadEvent } from '@/lib/meta/capi'
 
 const MAX_FILES = 5
 const MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024
@@ -31,6 +32,7 @@ const schema = z.object({
   colorPreference: z.string().optional(),
   email: z.string().email('Podaj poprawny adres email'),
   attachments: z.array(attachmentSchema).max(MAX_FILES).optional().default([]),
+  metaEventId: z.string().uuid().optional(),
 })
 
 export async function POST(request: NextRequest) {
@@ -47,7 +49,17 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Invalid input' }, { status: 400 })
   }
 
-  const { name, projectName, email, businessType, projectDescription, colorPreference, attachments } = parsed.data
+  const { name, projectName, email, businessType, projectDescription, colorPreference, attachments, metaEventId } = parsed.data
+
+  // Read off the request before `after()` — the request context is not guaranteed
+  // to still be readable once the response has been sent.
+  const metaContext = {
+    fbp: request.cookies.get('_fbp')?.value ?? null,
+    fbc: request.cookies.get('_fbc')?.value ?? null,
+    clientIp: request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() ?? null,
+    userAgent: request.headers.get('user-agent'),
+    eventSourceUrl: request.headers.get('referer'),
+  }
 
   const supabase = createServerClient()
   const { data: lead, error: dbError } = await supabase
@@ -69,6 +81,16 @@ export async function POST(request: NextRequest) {
     console.error('Supabase insert error:', dbError)
     return NextResponse.json({ error: 'Database error' }, { status: 500 })
   }
+
+  after(
+    sendMetaLeadEvent({
+      ...metaContext,
+      eventId: metaEventId ?? crypto.randomUUID(),
+      email,
+      name,
+      customData: { content_name: projectName, business_type: businessType },
+    })
+  )
 
   let attachmentsHtml = '<p><strong>Załączniki:</strong> brak</p>'
   if (attachments.length > 0) {

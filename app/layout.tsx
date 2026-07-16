@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { PostHogProvider } from "./providers";
 import CookieBanner from "@/components/ui/CookieBanner";
+import MetaPixel from "@/components/analytics/MetaPixel";
 
 const syne = Syne({
   variable: "--font-syne",
@@ -176,6 +177,7 @@ export default function RootLayout({
       </head>
       <body className="min-h-full flex flex-col">
         <PostHogProvider>
+          <MetaPixel />
           {children}
           <Toaster />
           <CookieBanner />

@@ -10,6 +10,8 @@
 | Auth        | Supabase Auth                                   | Admin panel protection — public pages require no auth             |
 | Database    | Supabase (PostgreSQL + Edge Functions)          | Lead storage, booking slots, email scheduling via Edge Functions  |
 | Email       | Resend                                          | All transactional emails: sequences, confirmations, reminders     |
+| Analytics   | PostHog (cookieless by default)                 | Product analytics — pageviews, funnel events, session replay      |
+| Ad tracking | Meta Pixel + Conversions API                    | Ad attribution — client-side pixel behind consent, server-side Lead |
 | Deployment  | Vercel                                          | Hosting + Edge runtime for Next.js                                |
 
 ## System Boundaries
@@ -43,3 +45,12 @@
    flow that used to trigger it automatically is unlinked from the funnel, see `project-overview.md`)
 4. Only email delivery metadata is stored in the database — never full email HTML or body content
 5. Single source of truth per entity — lead and booking state is not duplicated across tables
+6. Consent is read and written only through `lib/consent.ts` — PostHog and the Meta Pixel subscribe
+   to it via `onConsentChange`; no component touches the `cookie_consent` localStorage key directly
+7. PostHog runs without consent in cookieless (`persistence: "memory"`) mode and upgrades to cookies
+   plus session replay only after "Akceptuj wszystkie" — it is never fully opted out, or ad traffic
+   becomes unmeasurable
+8. The Meta Pixel never loads before consent; the Conversions API is the fallback signal and fires
+   server-side on lead submission regardless
+9. Any Meta conversion sent from both the browser and the server must carry the same `event_id`,
+   or Meta double-counts it

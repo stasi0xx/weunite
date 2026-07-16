@@ -2,7 +2,23 @@ import { withSentryConfig } from "@sentry/nextjs";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // Proxies PostHog through our own origin — requests to eu.i.posthog.com are
+  // blocked by uBlock/Brave and a lot of mobile DNS filters, which silently
+  // drops a large share of ad traffic. Requires NEXT_PUBLIC_POSTHOG_HOST=/ingest.
+  async rewrites() {
+    return [
+      {
+        source: "/ingest/static/:path*",
+        destination: "https://eu-assets.i.posthog.com/static/:path*",
+      },
+      {
+        source: "/ingest/:path*",
+        destination: "https://eu.i.posthog.com/:path*",
+      },
+    ];
+  },
+  // PostHog's ingestion endpoints are trailing-slash sensitive.
+  skipTrailingSlashRedirect: true,
 };
 
 export default withSentryConfig(nextConfig, {

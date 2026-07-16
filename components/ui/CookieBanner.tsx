@@ -2,26 +2,19 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import posthog from "posthog-js"
 import Link from "next/link"
-
-type Consent = "all" | "necessary"
+import { readConsent, writeConsent, type ConsentValue } from "@/lib/consent"
 
 export default function CookieBanner() {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
-    const saved = localStorage.getItem("cookie_consent")
-    if (!saved) setVisible(true)
+    if (!readConsent()) setVisible(true)
   }, [])
 
-  const save = (value: Consent) => {
-    localStorage.setItem("cookie_consent", value)
-    if (value === "all") {
-      posthog.opt_in_capturing()
-    } else {
-      posthog.opt_out_capturing()
-    }
+  // PostHog and the Meta Pixel both subscribe to this via `onConsentChange`.
+  const save = (value: ConsentValue) => {
+    writeConsent(value)
     setVisible(false)
   }
 
@@ -40,8 +33,8 @@ export default function CookieBanner() {
               Ta strona używa cookies
             </p>
             <p className="text-xs text-muted-foreground leading-relaxed mb-4">
-              Używamy plików cookies do analizy ruchu (PostHog) i poprawy jakości Serwisu.
-              Możesz zaakceptować wszystkie lub wybrać tylko niezbędne.{" "}
+              Ruch mierzymy anonimowo, bez cookies. Zgoda pozwala nam rozpoznawać Cię między
+              wizytami (PostHog) i mierzyć skuteczność reklam (Meta Pixel).{" "}
               <Link
                 href="/polityka-cookies"
                 className="underline underline-offset-4 text-foreground"

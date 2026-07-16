@@ -9,6 +9,7 @@ import { motion, useReducedMotion } from "framer-motion"
 import { CheckCircle, Loader2, Paperclip, X } from "lucide-react"
 import { toast } from "sonner"
 import { usePostHog } from "posthog-js/react"
+import { newMetaEventId, trackMetaEvent } from "@/lib/meta/pixel"
 import {
   Form,
   FormField,
@@ -166,10 +167,12 @@ export default function ContactFormSection({
     setIsLoading(true)
     try {
       const attachments = await uploadFiles(files)
+      // Shared with the server-side Conversions API call so Meta counts one lead, not two.
+      const metaEventId = newMetaEventId()
       const response = await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...values, attachments }),
+        body: JSON.stringify({ ...values, attachments, metaEventId }),
       })
       if (!response.ok) throw new Error("API error")
       posthog?.capture("lead_form_submitted", {
@@ -177,6 +180,11 @@ export default function ContactFormSection({
         project_name: values.projectName,
         attached_files: files.length,
       })
+      trackMetaEvent(
+        "Lead",
+        { content_name: values.projectName, business_type: values.businessType },
+        metaEventId
+      )
       router.push("/dziekujemy")
     } catch (error) {
       const message =
