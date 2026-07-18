@@ -1,0 +1,108 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - link "WeUnite" [ref=e4] [cursor=pointer]:
+      - /url: /
+  - main [ref=e5]:
+    - region "Sekcja główna" [ref=e6]:
+      - generic [ref=e7]:
+        - heading "Bezpłatna wizualizacja" [level=1] [ref=e8]
+        - paragraph [ref=e9]: Opowiedz nam o swojej firmie, a przygotujemy bezpłatny projekt wizualny Twojej nowej, inteligentnej strony internetowej. Bez żadnych zobowiązań i bez kosztów najpierw zobacz efekt, a dopiero potem zdecyduj o współpracy.
+        - generic [ref=e11]:
+          - generic [ref=e12]:
+            - paragraph [ref=e13]: Wizualizacje zajęte w tym miesiącu
+            - paragraph [ref=e14]:
+              - text: "13"
+              - generic [ref=e15]: / 20
+          - progressbar [ref=e16]
+          - paragraph [ref=e17]:
+            - text: Zostało
+            - generic [ref=e18]: 7 miejsc
+            - text: w tym miesiącu.
+        - button "Odbieram" [ref=e20] [cursor=pointer]
+    - region "Nasi klienci" [ref=e21]:
+      - paragraph [ref=e22]: Nasi klienci
+      - generic [ref=e24]:
+        - img "Shine Hair — klient WeUnite" [ref=e26]
+        - img "Akademia Rozwoju Osobistego Columbus — klient WeUnite" [ref=e28]
+        - img "Polska Akademia Dzieci — klient WeUnite" [ref=e30]
+        - img "Gedania 1922 — klient WeUnite" [ref=e32]
+        - img "Creo — klient WeUnite" [ref=e34]
+    - region [ref=e45]:
+      - generic [ref=e46]:
+        - paragraph [ref=e47]: Ostatnie realizacje
+        - heading "Strony, które realnie pracują na cele naszych klientów." [level=2] [ref=e48]
+        - paragraph [ref=e49]: Od dewelopera domów jednorodzinnych po fundację edukacyjną — projektujemy dedykowane strony, które prezentują ofertę, budują zaufanie i ułatwiają kontakt.
+        - generic [ref=e50]:
+          - generic [ref=e51]:
+            - generic [ref=e52]: Deweloper
+            - img "Strona inwestycji Nowy Relaks zaprojektowana przez WeUnite" [ref=e59]
+            - generic [ref=e60]:
+              - heading "Nowy Relaks — Filipek Investment" [level=3] [ref=e61]
+              - paragraph [ref=e62]: "Domy jednorodzinne pod Białą Podlaską. W miejsce darmowego szablonu z Wixa zbudowaliśmy stronę od podstaw: pełną prezentację lokalizacji i etapów budowy oraz formularz zapytań o dostępność domu."
+              - link "Zobacz stronę na żywo" [ref=e63] [cursor=pointer]:
+                - /url: https://www.nowyrelaks.fi-invest.pl/
+          - generic [ref=e67]:
+            - generic [ref=e68]: Fundacja
+            - img "Strona Fundacji Pierwsze Trzeźwe Pokolenie zaprojektowana przez WeUnite" [ref=e75]
+            - generic [ref=e76]:
+              - heading "Pierwsze Trzeźwe Pokolenie" [level=3] [ref=e77]
+              - paragraph [ref=e78]: Strona fundacji edukującej i wspierającej młodzież w trzeźwości. Przejrzysta prezentacja misji i programów profilaktycznych wraz z prostym sposobem na kontakt.
+              - link "Zobacz stronę na żywo" [ref=e79] [cursor=pointer]:
+                - /url: https://www.pierwszetrzezwepokolenie.pl/
+    - region "Formularz kontaktowy" [ref=e83]:
+      - generic [ref=e85]:
+        - generic [ref=e86]:
+          - paragraph [ref=e87]: BEZPŁATNA WIZUALIZACJA
+          - heading "Zacznijmy razem." [level=2] [ref=e88]: Zacznijmyrazem.
+          - paragraph [ref=e89]: Powiedz nam, co robisz i co Cię interesuje. Wrócimy do Ciebie w ciągu 24 godzin z planem działania, a bezpłatną wizualizację Twojej strony otrzymasz w ciągu 72h.
+          - generic [ref=e90]:
+            - generic [ref=e91]: Odpowiadamy w ciągu 24h
+            - generic [ref=e96]: Bezpłatna wizualizacja strony
+            - generic [ref=e101]: Zero zobowiązań
+        - form "Formularz zgłoszeniowy" [ref=e107]:
+          - generic [ref=e108]:
+            - generic [ref=e109]: Imię i nazwisko
+            - textbox "Jan Kowalski" [ref=e111]
+          - generic [ref=e112]:
+            - generic [ref=e113]: Nazwa projektu / firmy
+            - textbox "np. Domki nad Jeziorem" [ref=e115]
+          - generic [ref=e116]:
+            - generic [ref=e117]: Rodzaj działalności
+            - generic [ref=e118]:
+              - combobox [ref=e119]:
+                - generic [ref=e120]: Wybierz...
+                - img: ▼
+              - textbox [ref=e121]
+          - generic [ref=e122]:
+            - generic [ref=e123]: Opis projektu
+            - textbox "Krótko opisz swój projekt lub czego potrzebujesz..." [ref=e125]
+          - generic [ref=e126]:
+            - generic [ref=e127]:
+              - text: Kolorystyka
+              - generic [ref=e128]: (opcjonalnie)
+            - textbox "np. ciepłe, ziemiste odcienie" [ref=e130]
+          - generic [ref=e131]:
+            - generic [ref=e132]:
+              - text: Dołącz pliki
+              - generic [ref=e133]: (opcjonalnie)
+            - button "Dołącz pliki (opcjonalnie) Wybierz pliki lub przeciągnij tutaj" [ref=e134]
+            - generic [ref=e135] [cursor=pointer]: Wybierz pliki lub przeciągnij tutaj
+          - generic [ref=e138]:
+            - generic [ref=e139]: Adres email
+            - textbox "jan@domkiletniskowe.pl" [ref=e141]
+          - button "Wyślij →" [ref=e142]
+  - contentinfo [ref=e143]:
+    - generic [ref=e144]:
+      - paragraph [ref=e145]: Copyright © 2026 WeUnite. All rights reserved.
+      - list [ref=e146]:
+        - listitem [ref=e147]:
+          - link "Polityka prywatności" [ref=e148] [cursor=pointer]:
+            - /url: /polityka-prywatnosci
+        - listitem [ref=e150]:
+          - link "Polityka cookies" [ref=e151] [cursor=pointer]:
+            - /url: /polityka-cookies
+        - listitem [ref=e153]:
+          - link "Regulamin" [ref=e154] [cursor=pointer]:
+            - /url: /regulamin
+  - region "Notifications alt+T"
+  - alert [ref=e157]

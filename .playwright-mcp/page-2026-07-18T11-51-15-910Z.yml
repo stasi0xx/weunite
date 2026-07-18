@@ -1,0 +1,282 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e4]:
+      - link [ref=e6] [cursor=pointer]:
+        - /url: /
+        - img "Gdynia Padel Club" [ref=e7]
+      - generic [ref=e8]:
+        - link "Jak zacząć" [ref=e9] [cursor=pointer]:
+          - /url: /jak-zaczac
+        - link "Usługi" [ref=e10] [cursor=pointer]:
+          - /url: /#oferta
+        - link "Regulamin" [ref=e11] [cursor=pointer]:
+          - /url: /regulamin
+        - link "Rezerwuj Kort" [ref=e12] [cursor=pointer]:
+          - /url: https://kluby.org/gdynia-padel-club/rezerwacje
+  - main [ref=e13]:
+    - main [ref=e14]:
+      - generic [ref=e15]:
+        - generic [ref=e16]: Twoja przeglądarka nie obsługuje wideo.
+        - generic [ref=e19]:
+          - generic [ref=e20]: Najlepszy klub w Trójmieście
+          - heading "GRAJ W PADLA W GDYNI" [level=1] [ref=e21]
+          - paragraph [ref=e22]: Dołącz do społeczności Gdynia Padel Club. Profesjonalne korty, treningi dla każdego poziomu i niesamowita atmosfera.
+          - generic [ref=e23]:
+            - link "Rezerwuj online" [ref=e24] [cursor=pointer]:
+              - /url: https://kluby.org/gdynia-padel-club/rezerwacje
+            - link "Cennik" [ref=e25] [cursor=pointer]:
+              - /url: /#Pricing
+      - generic [ref=e27]:
+        - generic [ref=e28]:
+          - heading "Nasza Oferta" [level=2] [ref=e29]
+          - paragraph [ref=e30]: W Gdynia Padel Club znajdziesz wszystko, czego potrzebujesz – od pierwszego odbicia po profesjonalne turnieje.
+        - generic [ref=e31]:
+          - link [ref=e33] [cursor=pointer]:
+            - /url: /oferta/wydarzenia
+            - img "Wydarzenia" [ref=e35]
+            - generic [ref=e38]:
+              - heading "Wydarzenia" [level=3] [ref=e42]
+              - paragraph [ref=e43]: Luźne rozgrywki i inne atrakcje
+          - link [ref=e46] [cursor=pointer]:
+            - /url: /oferta/biznes
+            - img "Eventy i Integracje" [ref=e48]
+            - generic [ref=e51]:
+              - heading "Eventy i Integracje" [level=3] [ref=e56]
+              - paragraph [ref=e57]: Firmy, urodziny, catering i grill.
+          - link [ref=e60] [cursor=pointer]:
+            - /url: /oferta/treningi
+            - img "Grupy Treningowe" [ref=e62]
+            - generic [ref=e65]:
+              - heading "Grupy Treningowe" [level=3] [ref=e72]
+              - paragraph [ref=e73]: Regularne zajęcia dopasowane do poziomu.
+          - link [ref=e76] [cursor=pointer]:
+            - /url: /oferta/dla-dzieci
+            - img "Padel dla Dzieci" [ref=e78]
+            - generic [ref=e81]:
+              - heading "Padel dla Dzieci" [level=3] [ref=e86]
+              - paragraph [ref=e87]: Nauka przez zabawę.
+          - link [ref=e90] [cursor=pointer]:
+            - /url: /oferta/liga
+            - img "Liga" [ref=e92]
+            - generic [ref=e95]:
+              - heading "Liga" [level=3] [ref=e103]
+              - paragraph [ref=e104]: Długoterminowe rozgrywki z awansami.
+          - link [ref=e107] [cursor=pointer]:
+            - /url: /oferta/treningi-indywidualne
+            - img "Treningi Indywidualne" [ref=e109]
+            - generic [ref=e112]:
+              - heading "Treningi Indywidualne" [level=3] [ref=e117]
+              - paragraph [ref=e118]: Intensywna praca 1 na 1 z trenerem.
+          - link [ref=e121] [cursor=pointer]:
+            - /url: /oferta/turnieje
+            - img "Turnieje" [ref=e123]
+            - generic [ref=e126]:
+              - heading "Turnieje" [level=3] [ref=e134]
+              - paragraph [ref=e135]: Walka o puchary i nagrody.
+          - link [ref=e138] [cursor=pointer]:
+            - /url: /oferta/sklep
+            - img "Sklep" [ref=e140]
+            - generic [ref=e143]:
+              - heading "Sklep" [level=3] [ref=e148]
+              - paragraph [ref=e149]: Sprzęt i akcesoria na miejscu.
+      - generic [ref=e152]:
+        - heading "Co nas wyróżnia?" [level=2] [ref=e154]
+        - generic [ref=e156]:
+          - generic [ref=e157]:
+            - heading "Korty Kryte i Otwarte" [level=3] [ref=e165]
+            - paragraph [ref=e166]: Niezależnie od pogody, graj komfortowo. Wybierz halę w zimę lub ciesz się słońcem latem na kortach zewnętrznych.
+          - generic [ref=e167]:
+            - heading "Wypożyczalnia Sprzętu" [level=3] [ref=e175]
+            - paragraph [ref=e176]: Dopiero zaczynasz? Nie musisz inwestować w własną rakietę. Na miejscu wypożyczysz profesjonalny sprzęt BABOLAT, HEAD, SIUX i wiele innych.
+          - generic [ref=e177]:
+            - heading "Szatnie i Prysznice" [level=3] [ref=e183]
+            - paragraph [ref=e184]: Pełen komfort przed i po treningu. Do Twojej dyspozycji są szatnie z prysznicami.
+        - generic [ref=e185]:
+          - generic [ref=e186]: Parking dla klientów
+          - generic [ref=e189]: Strefa Chillout
+          - generic [ref=e192]: Honorujemy karty sportowe
+      - generic [ref=e196]:
+        - generic [ref=e197]:
+          - heading "Cennik" [level=2] [ref=e198]
+          - paragraph [ref=e199]: Przejrzyste zasady, brak ukrytych opłat.
+        - generic [ref=e200]:
+          - generic [ref=e201]:
+            - heading "Wynajem Kortu ( Hala )" [level=3] [ref=e208]
+            - generic [ref=e209]:
+              - generic [ref=e210]:
+                - generic [ref=e211]: Pon - Pt do 16:00
+                - generic [ref=e212]: 98 zł / h
+              - generic [ref=e213]:
+                - generic [ref=e214]: Pon - Pt po 16:00
+                - generic [ref=e215]: 128 zł / h
+              - generic [ref=e216]:
+                - generic [ref=e217]: Sobota – Niedziela (oraz święta)
+                - generic [ref=e218]: 128 zł / h
+            - paragraph [ref=e220]: Minimalny czas rezerwacji to 60 minut.
+          - generic [ref=e221]:
+            - heading "Trening Grupowy" [level=3] [ref=e230]
+            - generic [ref=e231]:
+              - generic [ref=e232]:
+                - generic [ref=e233]: Pon - Pt do 16:00
+                - generic [ref=e234]: 65 zł
+              - generic [ref=e235]:
+                - generic [ref=e236]: Pon - Pt po 16:00
+                - generic [ref=e237]: 70 zł
+              - generic [ref=e238]:
+                - generic [ref=e239]: Sobota – Niedziela
+                - generic [ref=e240]: 70 zł
+            - paragraph [ref=e242]: Zajęcia z trenerem w grupie.
+          - generic [ref=e243]:
+            - heading "Trening Dziecięcy" [level=3] [ref=e250]
+            - generic [ref=e251]:
+              - generic [ref=e252]:
+                - generic [ref=e253]: Grupa 4-5 osobowa
+                - generic [ref=e254]: 65 zł
+              - generic [ref=e255]:
+                - generic [ref=e256]: Grupa 6+ osobowa
+                - generic [ref=e257]: 55 zł
+            - paragraph [ref=e259]: Szkółka dla najmłodszych.
+          - generic [ref=e260]:
+            - generic [ref=e261]: Popularne
+            - heading "Trening Indywidualny" [level=3] [ref=e268]
+            - generic [ref=e269]:
+              - generic [ref=e270]:
+                - generic [ref=e271]: Cena za 1os
+                - generic [ref=e272]: 100 zł
+              - generic [ref=e273]:
+                - generic [ref=e274]: Cena za 2os
+                - generic [ref=e275]: 120 zł
+              - generic [ref=e276]:
+                - generic [ref=e277]: Cena za 3os
+                - generic [ref=e278]: 130 zł
+              - generic [ref=e279]:
+                - generic [ref=e280]: Cena za 4os
+                - generic [ref=e281]: 140 zł
+              - generic [ref=e282]:
+                - generic [ref=e283]: Dodatkowo
+                - generic [ref=e284]: + koszt kortu
+            - paragraph [ref=e286]: 1 na 1 z trenerem dla szybkiego progresu.
+          - generic [ref=e287]:
+            - heading "Americano / Mexicano" [level=3] [ref=e297]
+            - generic [ref=e298]:
+              - generic [ref=e299]:
+                - generic [ref=e300]: Korty wewnętrzne
+                - generic [ref=e301]: 65 zł
+              - generic [ref=e302]:
+                - generic [ref=e303]: Korty zewnętrzne
+                - generic [ref=e304]: 45 zł
+            - paragraph [ref=e306]: AMERICANO / MEXICANO/ KRÓL KORTU/ KRÓLOWA KORTU
+          - generic [ref=e307]:
+            - heading "WYNAJEM KORTÓW ( Korty Zewnętrzne )" [level=3] [ref=e313]
+            - generic [ref=e314]:
+              - generic [ref=e315]:
+                - generic [ref=e316]: Poniedziałek – Piątek 06:00 – 16:00
+                - generic [ref=e317]: 60 zł / h
+              - generic [ref=e318]:
+                - generic [ref=e319]: Poniedziałek – Piątek 16:00 – 00:00
+                - generic [ref=e320]: 88 zł / h
+              - generic [ref=e321]:
+                - generic [ref=e322]: Sobota – Niedziela (oraz święta)
+                - generic [ref=e323]: 88 zł
+            - paragraph [ref=e325]: Minimalny czas rezerwacji to 60 minut.
+          - generic [ref=e326]:
+            - heading "INNE WYDARZENIA" [level=3] [ref=e333]
+            - generic [ref=e334]:
+              - generic [ref=e335]:
+                - generic [ref=e336]: Nocne granie
+                - generic [ref=e337]: 60 zł
+              - generic [ref=e338]:
+                - generic [ref=e339]: Americano z trenerem (tylko dla osób trenujących w GCP)
+                - generic [ref=e340]: 60 zł
+              - generic [ref=e341]:
+                - generic [ref=e342]: After Work
+                - generic [ref=e343]: 60 zł
+              - generic [ref=e344]:
+                - generic [ref=e345]: Intro
+                - generic [ref=e346]: 15 zł
+            - generic [ref=e347]:
+              - paragraph
+        - generic [ref=e348]:
+          - link "Rezerwuj termin" [ref=e349] [cursor=pointer]:
+            - /url: https://kluby.org/gdynia-padel-club/rezerwacje
+          - paragraph [ref=e353]: Rezerwacja odbywa się przez system Kluby.org
+        - generic [ref=e354]:
+          - generic [ref=e355]: Honorujemy Karty Sportowe
+          - heading "Masz kartę sportową?" [level=3] [ref=e358]
+          - paragraph [ref=e359]:
+            - text: Z kartą
+            - strong [ref=e360]: MultiSport, FitProfit, PZU Sport lub Medicover
+            - text: wchodzisz na zajęcia grupowe Intro oraz wybrane wydarzenia całkowicie za darmo lub z dużą zniżką. Pamiętaj o odbiciu karty w recepcji przed grą!
+          - generic [ref=e361]:
+            - img "Honorujemy kartę Multisport" [ref=e363]
+            - img "Honorujemy kartę FitProfit" [ref=e365]
+            - img "Honorujemy kartę PZU Sport" [ref=e367]
+            - img "Honorujemy kartę Medicover" [ref=e369]
+      - generic [ref=e371]:
+        - generic [ref=e372]:
+          - generic [ref=e373]:
+            - heading "Galeria Klubu" [level=2] [ref=e374]
+            - paragraph [ref=e375]: Zobacz, jak wygląda gra w Gdynia Padel Club.
+          - link "Obserwuj nas na Instagramie" [ref=e376] [cursor=pointer]:
+            - /url: https://www.instagram.com/gdynia_padel_club/
+        - generic [ref=e380]:
+          - img "Rozgrywki na korcie centralnym" [ref=e382] [cursor=pointer]
+          - img "Trening z trenerem" [ref=e389] [cursor=pointer]
+          - img "Strefa chillout" [ref=e396] [cursor=pointer]
+          - img "Turniej świąteczny" [ref=e403] [cursor=pointer]
+          - img "Padel dla dzieci" [ref=e410] [cursor=pointer]
+          - img "Emocje sportowe" [ref=e417] [cursor=pointer]
+  - contentinfo [ref=e423]:
+    - generic [ref=e425]:
+      - generic [ref=e426]:
+        - link [ref=e427] [cursor=pointer]:
+          - /url: /
+          - img "Gdynia Padel Club" [ref=e429]
+        - paragraph [ref=e430]: Pierwszy klub padlowy w Gdyni. Profesjonalne korty, szkolenia i niesamowita atmosfera. Dołącz do gry!
+        - generic [ref=e431]:
+          - link "Instagram" [ref=e432] [cursor=pointer]:
+            - /url: https://www.instagram.com/gdynia_padel_club/
+          - link "Facebook" [ref=e436] [cursor=pointer]:
+            - /url: https://www.facebook.com/profile.php?id=100070520303087
+      - generic [ref=e439]:
+        - heading "Nawigacja" [level=3] [ref=e440]
+        - list [ref=e441]:
+          - listitem [ref=e442]:
+            - link "Jak zacząć?" [ref=e443] [cursor=pointer]:
+              - /url: /jak-zaczac
+          - listitem [ref=e444]:
+            - link "Cennik" [ref=e445] [cursor=pointer]:
+              - /url: /cennik
+          - listitem [ref=e446]:
+            - link "Regulamin" [ref=e447] [cursor=pointer]:
+              - /url: /regulamin
+          - listitem [ref=e448]:
+            - link "Rezerwacja" [ref=e449] [cursor=pointer]:
+              - /url: https://kluby.org/gdynia-padel-club/rezerwacje
+      - generic [ref=e454]:
+        - heading "Kontakt" [level=3] [ref=e455]
+        - list [ref=e456]:
+          - listitem [ref=e457]:
+            - generic [ref=e461]: ul. Zamenhofa 17,81-218 Gdynia
+          - listitem [ref=e462]:
+            - link "+48 534 044 544" [ref=e465] [cursor=pointer]:
+              - /url: tel:534044544
+          - listitem [ref=e466]:
+            - link "recepcja@gdyniapadelclub.pl" [ref=e470] [cursor=pointer]:
+              - /url: mailto:recepcja@gdyniapadelclub.pl
+          - listitem [ref=e471]:
+            - generic [ref=e475]:
+              - generic [ref=e476]: "Godziny otwarcia:"
+              - text: "Codziennie: 06:00 - 24:00"
+      - generic [ref=e477]:
+        - iframe [ref=e478]
+        - link "Wyznacz trasę" [ref=e479] [cursor=pointer]:
+          - /url: https://www.google.com/maps/dir//ul.+Zamenhofa+17,+81-218+Gdynia
+    - generic [ref=e481]:
+      - paragraph [ref=e482]: © 2026 Gdynia Padel Club. Wszelkie prawa zastrzeżone. Design & Maintenance by Stanisław Korycki
+      - generic [ref=e483]:
+        - link "Polityka Prywatności" [ref=e484] [cursor=pointer]:
+          - /url: /polityka-prywatnosci
+        - link "Logowanie" [ref=e485] [cursor=pointer]:
+          - /url: /admin/add
+  - alert [ref=e486]

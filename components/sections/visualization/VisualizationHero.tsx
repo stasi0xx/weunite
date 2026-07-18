@@ -66,6 +66,7 @@ export default function VisualizationHero() {
         >
           <CtaButton
             label="Odbieram"
+            size="lg"
             onClick={() => {
               posthog?.capture("cta_clicked", { location: "wizualizacja_hero" })
               scrollTo("contact")

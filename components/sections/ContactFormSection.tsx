@@ -486,6 +486,7 @@ export default function ContactFormSection({
                   type="submit"
                   disabled={isLoading}
                   aria-busy={isLoading}
+                  onClick={() => posthog?.capture("cta_clicked", { location: "contact_form_submit" })}
                   className="w-full rounded-full bg-primary text-primary-foreground px-6 py-3 text-sm font-medium hover:bg-accent transition-all duration-200 disabled:opacity-60 disabled:cursor-not-allowed mt-2 flex items-center justify-center gap-2"
                 >
                   {isLoading ? (

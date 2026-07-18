@@ -24,13 +24,13 @@ const projects: Project[] = [
     alt: "Strona inwestycji Nowy Relaks zaprojektowana przez WeUnite",
   },
   {
-    label: "Fundacja",
-    title: "Pierwsze Trzeźwe Pokolenie",
+    label: "Klub sportowy",
+    title: "Gdynia Padel Club",
     description:
-      "Strona fundacji edukującej i wspierającej młodzież w trzeźwości. Przejrzysta prezentacja misji i programów profilaktycznych wraz z prostym sposobem na kontakt.",
-    href: "https://www.pierwszetrzezwepokolenie.pl/",
-    image: "/casestudy/pierwszetrzezwepokolenie.png",
-    alt: "Strona Fundacji Pierwsze Trzeźwe Pokolenie zaprojektowana przez WeUnite",
+      "Strona klubu padlowego w Gdyni. Dynamiczna prezentacja kortów i oferty wraz z systemem rezerwacji online, który ułatwia klientom szybkie umówienie gry.",
+    href: "https://www.gdyniapadelclub.pl/",
+    image: "/casestudy/gdyniapadelclub.jpg",
+    alt: "Strona Gdynia Padel Club zaprojektowana przez WeUnite",
   },
 ]
 
@@ -101,25 +101,15 @@ export default function CaseStudySection() {
   return (
     <section id="realizacja" className="py-24 md:py-32" aria-labelledby="case-study-heading">
       <div className="max-w-6xl mx-auto px-6">
-        <motion.p
-          className="text-xs font-semibold tracking-widest uppercase text-muted-foreground text-center font-body"
-          initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
-        >
-          Ostatnie realizacje
-        </motion.p>
-
         <motion.h2
           id="case-study-heading"
           className="mt-4 mb-6 text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground text-center font-sans max-w-3xl mx-auto"
           initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
         >
-          Strony, które realnie pracują na cele naszych klientów.
+          Ostatnie realizacje
         </motion.h2>
 
         <motion.p
@@ -129,7 +119,7 @@ export default function CaseStudySection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.15 }}
         >
-          Od dewelopera domów jednorodzinnych po fundację edukacyjną — projektujemy dedykowane
+          Od dewelopera domów jednorodzinnych po klub sportowy — projektujemy dedykowane
           strony, które prezentują ofertę, budują zaufanie i ułatwiają kontakt.
         </motion.p>
 
