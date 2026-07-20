@@ -30,6 +30,7 @@ const schema = z.object({
   businessType: z.string().min(1, 'Wybierz rodzaj działalności'),
   projectDescription: z.string().min(10, 'Opisz krótko swój projekt'),
   colorPreference: z.string().optional(),
+  reference: z.string().optional(),
   email: z.string().email('Podaj poprawny adres email'),
   attachments: z.array(attachmentSchema).max(MAX_FILES).optional().default([]),
   metaEventId: z.string().uuid().optional(),
@@ -49,7 +50,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Invalid input' }, { status: 400 })
   }
 
-  const { name, projectName, email, businessType, projectDescription, colorPreference, attachments, metaEventId } = parsed.data
+  const { name, projectName, email, businessType, projectDescription, colorPreference, reference, attachments, metaEventId } = parsed.data
 
   // Read off the request before `after()` — the request context is not guaranteed
   // to still be readable once the response has been sent.
@@ -71,6 +72,7 @@ export async function POST(request: NextRequest) {
       business_type: businessType,
       project_description: projectDescription.trim(),
       color_preference: colorPreference?.trim() || null,
+      reference: reference?.trim() || null,
       attachments,
       status: 'new',
     })
@@ -125,6 +127,7 @@ export async function POST(request: NextRequest) {
         <p><strong>Rodzaj biznesu:</strong> ${businessType}</p>
         <p><strong>Opis projektu:</strong> ${projectDescription}</p>
         <p><strong>Kolorystyka:</strong> ${colorPreference || '—'}</p>
+        <p><strong>Referencja:</strong> ${reference ? escapeHtml(reference) : '—'}</p>
         ${attachmentsHtml}
         <p><strong>Data:</strong> ${new Date().toISOString()}</p>
       `,

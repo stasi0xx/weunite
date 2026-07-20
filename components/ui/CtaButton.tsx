@@ -12,12 +12,16 @@ export function CtaButton({
   onClick: () => void;
   fullWidth?: boolean;
   label?: string;
-  size?: "md" | "lg";
+  size?: "md" | "lg" | "xl";
 }) {
   const [hovered, setHovered] = useState(false);
 
   const sizeClasses =
-    size === "lg" ? "text-base px-8 py-3.5" : "text-sm px-6 py-2.5";
+    size === "xl"
+      ? "text-2xl px-16 py-7"
+      : size === "lg"
+        ? "text-base px-8 py-3.5"
+        : "text-sm px-6 py-2.5";
 
   return (
     <motion.button

@@ -21,13 +21,6 @@ import {
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
 import { createBrowserClient } from "@/lib/supabase/client"
 
 const formSchema = z.object({
@@ -36,17 +29,11 @@ const formSchema = z.object({
   businessType: z.string().min(1, "Wybierz rodzaj działalności"),
   projectDescription: z.string().min(10, "Opisz krótko swój projekt"),
   colorPreference: z.string().optional(),
+  reference: z.string().optional(),
   email: z.string().email("Podaj poprawny adres email"),
 })
 
 type FormValues = z.infer<typeof formSchema>
-
-const BUSINESS_TYPES = [
-  "Domki letniskowe",
-  "Apartamenty na wynajem",
-  "Pensjonat / hotel",
-  "Inny rodzaj biznesu",
-]
 
 const MAX_FILES = 5
 const MAX_FILE_SIZE_MB = 10
@@ -89,7 +76,6 @@ async function uploadFiles(files: File[]): Promise<AttachmentPayload[]> {
 
 interface ContactFormSectionProps {
   id?: string
-  eyebrow?: string
   heading?: React.ReactNode
   description?: React.ReactNode
   showBackground?: boolean
@@ -97,18 +83,16 @@ interface ContactFormSectionProps {
 
 export default function ContactFormSection({
   id = "contact",
-  eyebrow = "BEZPŁATNA WIZUALIZACJA",
   heading = (
     <>
-      Zacznijmy
+      Bezpłatna
       <br />
-      razem.
+      wizualizacja
     </>
   ),
   description = (
     <>
-      Powiedz nam, co robisz i co Cię interesuje.
-      Wrócimy do Ciebie w ciągu 24 godzin z planem działania, a bezpłatną wizualizację Twojej strony otrzymasz w ciągu 72h.
+      Opisz projekt swojej strony. Wrócimy do Ciebie w ciągu 24 godzin z gotową wizualizacją Twojej nowej strony.
     </>
   ),
   showBackground = true,
@@ -159,6 +143,7 @@ export default function ContactFormSection({
       businessType: "",
       projectDescription: "",
       colorPreference: "",
+      reference: "",
       email: "",
     },
   })
@@ -223,22 +208,12 @@ export default function ContactFormSection({
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left column */}
           <div>
-            <motion.p
-              variants={makeVariants(10, 0)}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-100px" }}
-              className="text-xs font-medium tracking-widest uppercase text-muted-foreground"
-            >
-              {eyebrow}
-            </motion.p>
-
             <motion.h2
-              variants={makeVariants(20, 0.1)}
+              variants={makeVariants(20, 0)}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, margin: "-100px" }}
-              className="font-sans font-extrabold tracking-tight text-4xl md:text-5xl lg:text-6xl text-foreground mt-4"
+              className="font-sans font-extrabold tracking-tight text-4xl md:text-5xl lg:text-6xl text-foreground"
             >
               {heading}
             </motion.h2>
@@ -320,7 +295,7 @@ export default function ContactFormSection({
                       <FormControl>
                         <Input
                           type="text"
-                          placeholder="np. Domki nad Jeziorem"
+                          placeholder="np. InPost"
                           aria-required="true"
                           className="rounded-xl border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-primary"
                           {...field}
@@ -341,24 +316,13 @@ export default function ContactFormSection({
                         Rodzaj działalności
                       </FormLabel>
                       <FormControl>
-                        <Select
-                          value={field.value}
-                          onValueChange={(value) => field.onChange(value)}
-                        >
-                          <SelectTrigger
-                            aria-required="true"
-                            className="w-full rounded-xl border-border bg-background text-foreground focus-visible:ring-primary data-placeholder:text-muted-foreground"
-                          >
-                            <SelectValue placeholder="Wybierz..." />
-                          </SelectTrigger>
-                          <SelectContent>
-                            {BUSINESS_TYPES.map((type) => (
-                              <SelectItem key={type} value={type}>
-                                {type}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
+                        <Input
+                          type="text"
+                          placeholder="np. Sklep internetowy"
+                          aria-required="true"
+                          className="rounded-xl border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-primary"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage className="text-xs text-destructive mt-1" />
                     </FormItem>
@@ -376,7 +340,7 @@ export default function ContactFormSection({
                       </FormLabel>
                       <FormControl>
                         <Textarea
-                          placeholder="Krótko opisz swój projekt lub czego potrzebujesz..."
+                          placeholder="Chcę, aby strona była nowoczesna z funkcją rezerwacji..."
                           aria-required="true"
                           rows={4}
                           className="rounded-xl border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-primary resize-none"
@@ -401,7 +365,30 @@ export default function ContactFormSection({
                       <FormControl>
                         <Input
                           type="text"
-                          placeholder="np. ciepłe, ziemiste odcienie"
+                          placeholder="np. jasny niebieski, neonowy..."
+                          className="rounded-xl border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-primary"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage className="text-xs text-destructive mt-1" />
+                    </FormItem>
+                  )}
+                />
+
+                {/* Reference */}
+                <FormField
+                  control={form.control}
+                  name="reference"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel className="text-sm font-medium text-foreground mb-1.5">
+                        Referencja{" "}
+                        <span className="text-muted-foreground font-normal">(opcjonalnie)</span>
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          type="text"
+                          placeholder="Tutaj wklej stronę, na której mamy bazować."
                           className="rounded-xl border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-primary"
                           {...field}
                         />
@@ -417,7 +404,7 @@ export default function ContactFormSection({
                     htmlFor="lead-files"
                     className="text-sm font-medium text-foreground mb-1.5"
                   >
-                    Dołącz pliki{" "}
+                    Dołącz logo{" "}
                     <span className="text-muted-foreground font-normal">(opcjonalnie)</span>
                   </Label>
                   <input
@@ -470,7 +457,7 @@ export default function ContactFormSection({
                       <FormControl>
                         <Input
                           type="email"
-                          placeholder="jan@domkiletniskowe.pl"
+                          placeholder="jan@biznes.pl"
                           aria-required="true"
                           className="rounded-xl border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-primary"
                           {...field}
