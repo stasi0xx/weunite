@@ -8,8 +8,8 @@ import { CtaButton } from "@/components/ui/CtaButton";
 
 const navLinks = [
   { label: "Co robimy", href: "#services" },
-  { label: "Dla kogo", href: "#problem" },
-  { label: "Polecają", href: "#endorsement" },
+  { label: "Dla kogo", href: "#mission" },
+  { label: "Case study", href: "#customer-success" },
 ];
 
 export default function Navbar() {
@@ -59,7 +59,7 @@ export default function Navbar() {
           </ul>
 
           <div className="hidden md:block">
-            <CtaButton onClick={scrollToContact} />
+            <CtaButton onClick={scrollToContact} label="Odbierz wizualizację" />
           </div>
 
           <button
@@ -134,7 +134,7 @@ export default function Navbar() {
                 transition={{ delay: 0.28, duration: 0.25 }}
                 className="mt-6"
               >
-                <CtaButton onClick={scrollToContact} fullWidth />
+                <CtaButton onClick={scrollToContact} label="Odbierz wizualizację" fullWidth />
               </motion.div>
             </motion.div>
           </>

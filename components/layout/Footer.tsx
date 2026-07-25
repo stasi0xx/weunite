@@ -29,12 +29,10 @@ function InstagramIcon({ className }: { className?: string }) {
 }
 
 const sectionLinks = [
-  { label: "O nas", href: "#o-nas" },
-  { label: "Co robimy", href: "#co-robimy" },
-  { label: "Dla kogo", href: "#dla-kogo" },
-  { label: "Jak działamy", href: "#jak-dzialamy" },
-  { label: "Polecają", href: "#polecaja" },
-  { label: "Kontakt", href: "#kontakt" },
+  { label: "Co robimy", href: "#services" },
+  { label: "Dla kogo", href: "#mission" },
+  { label: "Case study", href: "#customer-success" },
+  { label: "Kontakt", href: "#contact" },
 ];
 
 const legalLinks = [

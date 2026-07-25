@@ -1,0 +1,143 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - link "WeUnite" [ref=e4] [cursor=pointer]:
+        - /url: /
+      - list [ref=e5]:
+        - listitem [ref=e6]:
+          - link "Co robimy" [ref=e7] [cursor=pointer]:
+            - /url: "#services"
+        - listitem [ref=e9]:
+          - link "Dla kogo" [ref=e10] [cursor=pointer]:
+            - /url: "#problem"
+        - listitem [ref=e12]:
+          - link "Polecają" [ref=e13] [cursor=pointer]:
+            - /url: "#endorsement"
+      - button "Umów rozmowę" [ref=e16] [cursor=pointer]
+  - main [ref=e17]:
+    - region "Social media — wprowadzenie" [ref=e18]:
+      - generic [ref=e19]:
+        - paragraph [ref=e20]: Social media
+        - heading "Od 8 lat jednoczymy społeczności z markami w świecie social mediów przez…" [level=1] [ref=e21]
+    - region [ref=e22]:
+      - generic [ref=e23]:
+        - heading "Trzy filary naszych działań" [level=2] [ref=e24]
+        - generic [ref=e25]:
+          - generic [ref=e26]:
+            - generic [ref=e27]: "01"
+            - link "Zobacz post" [ref=e33] [cursor=pointer]:
+              - /url: https://www.instagram.com/p/Cu5CgwhNWdz/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA==
+            - generic [ref=e40]:
+              - heading "Instagram – Najpotężniejsze narzędzie wizualne." [level=3] [ref=e41]
+              - paragraph [ref=e42]: Opieramy się na estetycznych, regularnych publikacjach, które konsekwentnie budują zasięg co przekłada się na wyniki oraz silny wizerunek Twojej marki. Skalujemy zasięgi poprzez strategiczną współpracę z influencerami, błyskawicznie docierając do nowych, zaangażowanych odbiorców i zamieniając ich w Twoich lojalnych klientów.
+          - generic [ref=e43]:
+            - generic [ref=e44]: "02"
+            - generic [ref=e49]: Wideo w przygotowaniu
+            - generic [ref=e54]:
+              - heading "TikTok i Formaty Wideo – Wirusowe zasięgi." [level=3] [ref=e55]
+              - paragraph [ref=e56]: Nie robimy nudnych reklam. Produkujemy dynamiczne, pionowe wideo, które jest natywne dla platform i zatrzymuje scrollowanie. Przyciągamy uwagę w pierwsze 3 sekundy, generując ogromne, organiczne zasięgi.
+          - generic [ref=e57]:
+            - generic [ref=e58]: "03"
+            - generic [ref=e64]:
+              - heading "Kampanie Social Ads – Paliwo dla sprzedaży." [level=3] [ref=e65]
+              - paragraph [ref=e66]: Nawet najlepszy content potrzebuje dystrybucji. Łączymy piękne kreacje z precyzyjnie targetowanymi kampaniami płatnymi, aby docierać do ludzi gotowych na zakup i domykać proces sprzedażowy.
+    - region [ref=e67]:
+      - generic [ref=e68]:
+        - heading "Nasze nagrania wideo" [level=2] [ref=e69]
+        - paragraph [ref=e70]: Krótkie, dynamiczne wideo, jakie tworzymy dla naszych klientów. Przewiń w bok, żeby zobaczyć więcej.
+      - generic [ref=e72]:
+        - generic [ref=e73]: TikTok reel
+        - generic [ref=e78]: Wkrótce
+        - generic [ref=e83]: Wkrótce
+        - generic [ref=e88]: Wkrótce
+        - generic [ref=e93]: Wkrótce
+        - generic [ref=e98]: Wkrótce
+    - region "Wezwanie do działania" [ref=e103]:
+      - link "Umów konsultację" [ref=e105] [cursor=pointer]:
+        - /url: /#contact
+    - region [ref=e108]:
+      - generic [ref=e109]:
+        - paragraph [ref=e110]: "Zobacz, jak pomagamy innym markom rosnąć:"
+        - generic [ref=e111]:
+          - button "Poprzednia historia" [ref=e112]
+          - button "Następna historia" [ref=e115]
+      - generic [ref=e119]:
+        - generic [ref=e120]:
+          - paragraph [ref=e124]: „Tu wstawimy prawdziwą wypowiedź klienta o współpracy z WeUnite.”
+          - generic [ref=e125]:
+            - paragraph [ref=e126]: Marka A (placeholder)
+            - paragraph [ref=e127]: Branża do uzupełnienia
+            - paragraph [ref=e128]: Wynik do uzupełnienia
+        - generic [ref=e129]:
+          - paragraph [ref=e133]: „Tu wstawimy prawdziwą wypowiedź klienta o współpracy z WeUnite.”
+          - generic [ref=e134]:
+            - paragraph [ref=e135]: Marka B (placeholder)
+            - paragraph [ref=e136]: Branża do uzupełnienia
+            - paragraph [ref=e137]: Wynik do uzupełnienia
+        - generic [ref=e138]:
+          - paragraph [ref=e142]: „Tu wstawimy prawdziwą wypowiedź klienta o współpracy z WeUnite.”
+          - generic [ref=e143]:
+            - paragraph [ref=e144]: Marka C (placeholder)
+            - paragraph [ref=e145]: Branża do uzupełnienia
+            - paragraph [ref=e146]: Wynik do uzupełnienia
+        - generic [ref=e147]:
+          - paragraph [ref=e151]: „Tu wstawimy prawdziwą wypowiedź klienta o współpracy z WeUnite.”
+          - generic [ref=e152]:
+            - paragraph [ref=e153]: Marka D (placeholder)
+            - paragraph [ref=e154]: Branża do uzupełnienia
+            - paragraph [ref=e155]: Wynik do uzupełnienia
+  - contentinfo [ref=e156]:
+    - generic: WeUnite
+    - generic [ref=e157]:
+      - generic [ref=e158]:
+        - link "WeUnite" [ref=e159] [cursor=pointer]:
+          - /url: /
+        - list [ref=e160]:
+          - listitem [ref=e161]:
+            - link "O nas" [ref=e162] [cursor=pointer]:
+              - /url: "#o-nas"
+          - listitem [ref=e164]:
+            - link "Co robimy" [ref=e165] [cursor=pointer]:
+              - /url: "#co-robimy"
+          - listitem [ref=e167]:
+            - link "Dla kogo" [ref=e168] [cursor=pointer]:
+              - /url: "#dla-kogo"
+          - listitem [ref=e170]:
+            - link "Jak działamy" [ref=e171] [cursor=pointer]:
+              - /url: "#jak-dzialamy"
+          - listitem [ref=e173]:
+            - link "Polecają" [ref=e174] [cursor=pointer]:
+              - /url: "#polecaja"
+          - listitem [ref=e176]:
+            - link "Kontakt" [ref=e177] [cursor=pointer]:
+              - /url: "#kontakt"
+        - list [ref=e179]:
+          - listitem [ref=e180]:
+            - link "Polityka prywatności" [ref=e181] [cursor=pointer]:
+              - /url: /polityka-prywatnosci
+          - listitem [ref=e183]:
+            - link "Polityka cookies" [ref=e184] [cursor=pointer]:
+              - /url: /polityka-cookies
+          - listitem [ref=e186]:
+            - link "Regulamin" [ref=e187] [cursor=pointer]:
+              - /url: /regulamin
+        - generic [ref=e189]:
+          - paragraph [ref=e190]: "Adres: ul. Gdyńska G/9,80-340 Gdańsk"
+          - paragraph [ref=e191]:
+            - text: "Email:"
+            - link "info@weunite.pl" [ref=e192] [cursor=pointer]:
+              - /url: mailto:info@weunite.pl
+          - paragraph [ref=e194]:
+            - text: "Telefon:"
+            - link "+48 537 732 320" [ref=e195] [cursor=pointer]:
+              - /url: tel:+48537732320
+        - generic [ref=e197]:
+          - link "LinkedIn" [ref=e198] [cursor=pointer]:
+            - /url: https://linkedin.com/company/weunite
+          - link "Facebook" [ref=e204] [cursor=pointer]:
+            - /url: https://facebook.com/weunite
+          - link "Instagram" [ref=e208] [cursor=pointer]:
+            - /url: https://instagram.com/weunite
+      - paragraph [ref=e214]: Copyright © 2026 WeUnite. All rights reserved.
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=e220] [cursor=pointer]

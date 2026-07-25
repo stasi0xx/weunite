@@ -1,0 +1,100 @@
+- generic [active] [ref=f4e1]:
+  - banner [ref=f4e2]:
+    - navigation [ref=f4e3]:
+      - link "WeUnite" [ref=f4e4] [cursor=pointer]:
+        - /url: /
+      - button "Toggle menu" [ref=f4e5]
+  - main [ref=f4e7]:
+    - region "Strony internetowe — wprowadzenie" [ref=f4e8]:
+      - generic [ref=f4e9]:
+        - paragraph [ref=f4e10]: Strony internetowe
+        - heading "Poznaj nasz proces realizacji inteligentnych stron internetowych." [level=1] [ref=f4e11]
+    - region [ref=f4e29]:
+      - generic [ref=f4e30]:
+        - heading "Jak dowozimy strony, które sprzedają?" [level=2] [ref=f4e31]
+        - paragraph [ref=f4e32]: "Nasz proces w 3 krokach:"
+        - generic [ref=f4e33]:
+          - generic [ref=f4e34]:
+            - generic [ref=f4e35]: "01"
+            - heading "Audyt i Architektura Konwersji" [level=3] [ref=f4e41]
+            - paragraph [ref=f4e42]: Nie zaczynamy od designu. Najpierw analizujemy Twoją grupę docelową i projektujemy makietę UX tak, aby każdy element strony prowadził klienta za rękę do zakupu lub zostawienia leada.
+          - generic [ref=f4e43]:
+            - generic [ref=f4e44]: "02"
+            - heading "Design i Wdrożenie Technologiczne" [level=3] [ref=f4e51]
+            - paragraph [ref=f4e52]: Kodujemy szybkie, responsywne i nowoczesne strony. Łączymy estetykę z bezbłędną optymalizacją techniczną (szybkość ładowania, Core Web Vitals).
+          - generic [ref=f4e53]:
+            - generic [ref=f4e54]: "03"
+            - heading "Automatyzacja i Skalowanie" [level=3] [ref=f4e59]
+            - paragraph [ref=f4e60]: Strona to dopiero początek. Wpinamy analitykę, systemy CRM i automatyzacje mailowe, dzięki którym Twój nowy ekosystem pracuje na Ciebie 24/7.
+        - link "Umów konsultację" [ref=f4e62] [cursor=pointer]:
+          - /url: /#contact
+    - region [ref=f4e65]:
+      - generic [ref=f4e66]:
+        - heading "Nasze projekty" [level=2] [ref=f4e67]
+        - paragraph [ref=f4e68]: Kilka realizacji, które pokazują, jak podchodzimy do projektów naszych klientów.
+        - generic [ref=f4e69]:
+          - generic [ref=f4e70]:
+            - link "Zobacz stronę Nowy Relaks — Filipek Investment (otwiera się w nowej karcie)" [ref=f4e71] [cursor=pointer]:
+              - /url: https://www.nowyrelaks.fi-invest.pl/
+              - img "Strona inwestycji Nowy Relaks zaprojektowana przez WeUnite" [ref=f4e74]
+            - generic [ref=f4e75]:
+              - text: Deweloper
+              - heading "Nowy Relaks — Filipek Investment" [level=3] [ref=f4e76]
+              - paragraph [ref=f4e77]: "Nowy Relaks to inwestycja domów jednorodzinnych pod Białą Podlaską, prowadzona przez dewelopera Filipek Investment. Wcześniej firma korzystała z darmowego szablonu, który nie budował zaufania i nie prezentował oferty w sposób, na jaki inwestycja zasługuje. Zaprojektowaliśmy i wdrożyliśmy stronę od podstaw, z pełną prezentacją lokalizacji, etapów budowy oraz galerii wnętrz. Dodaliśmy przejrzysty formularz zapytań o dostępność konkretnych domów, trafiający wprost do zespołu sprzedaży. Efekt: nowocześniejszy wizerunek marki i więcej zapytań o zakup."
+              - link "Zobacz stronę na żywo" [ref=f4e78] [cursor=pointer]:
+                - /url: https://www.nowyrelaks.fi-invest.pl/
+          - generic [ref=f4e82]:
+            - link "Zobacz stronę Gdynia Padel Club (otwiera się w nowej karcie)" [ref=f4e83] [cursor=pointer]:
+              - /url: https://www.gdyniapadelclub.pl/
+              - img "Strona Gdynia Padel Club zaprojektowana przez WeUnite" [ref=f4e86]
+            - generic [ref=f4e87]:
+              - text: Klub sportowy
+              - heading "Gdynia Padel Club" [level=3] [ref=f4e88]
+              - paragraph [ref=f4e89]: "Gdynia Padel Club to klub sportowy w Gdyni, dla którego zbudowaliśmy stronę prezentującą korty i pełną ofertę zajęć. Kluczowym wyzwaniem było umożliwienie klientom szybkiej rezerwacji terminu bez telefonowania do recepcji. Wdrożyliśmy dynamiczny system rezerwacji online, zintegrowany z bieżącą dostępnością kortów. Strona prezentuje też cennik, wydarzenia i social media klubu w jednym miejscu. Efekt: mniej pracy administracyjnej dla zespołu i wygodniejsza ścieżka rezerwacji dla graczy."
+              - link "Zobacz stronę na żywo" [ref=f4e90] [cursor=pointer]:
+                - /url: https://www.gdyniapadelclub.pl/
+  - contentinfo [ref=f4e94]:
+    - generic: WeUnite
+    - generic [ref=f4e95]:
+      - generic [ref=f4e96]:
+        - generic [ref=f4e97]:
+          - link "WeUnite" [ref=f4e98] [cursor=pointer]:
+            - /url: /
+          - generic [ref=f4e99]:
+            - link "LinkedIn" [ref=f4e100] [cursor=pointer]:
+              - /url: https://linkedin.com/company/weunite
+            - link "Facebook" [ref=f4e106] [cursor=pointer]:
+              - /url: https://facebook.com/weunite
+            - link "Instagram" [ref=f4e110] [cursor=pointer]:
+              - /url: https://instagram.com/weunite
+        - list [ref=f4e115]:
+          - listitem [ref=f4e116]:
+            - link "O nas" [ref=f4e117] [cursor=pointer]:
+              - /url: "#o-nas"
+          - listitem [ref=f4e120]:
+            - link "Co robimy" [ref=f4e121] [cursor=pointer]:
+              - /url: "#co-robimy"
+          - listitem [ref=f4e124]:
+            - link "Dla kogo" [ref=f4e125] [cursor=pointer]:
+              - /url: "#dla-kogo"
+          - listitem [ref=f4e128]:
+            - link "Jak działamy" [ref=f4e129] [cursor=pointer]:
+              - /url: "#jak-dzialamy"
+          - listitem [ref=f4e132]:
+            - link "Polecają" [ref=f4e133] [cursor=pointer]:
+              - /url: "#polecaja"
+          - listitem [ref=f4e136]:
+            - link "Kontakt" [ref=f4e137] [cursor=pointer]:
+              - /url: "#kontakt"
+          - listitem [ref=f4e140]:
+            - link "Polityka prywatności" [ref=f4e141] [cursor=pointer]:
+              - /url: /polityka-prywatnosci
+          - listitem [ref=f4e144]:
+            - link "Polityka cookies" [ref=f4e145] [cursor=pointer]:
+              - /url: /polityka-cookies
+          - listitem [ref=f4e148]:
+            - link "Regulamin" [ref=f4e149] [cursor=pointer]:
+              - /url: /regulamin
+      - paragraph [ref=f4e152]: Copyright © 2026 WeUnite. All rights reserved.
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=f4e158] [cursor=pointer]

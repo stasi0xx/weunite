@@ -1,0 +1,17 @@
+[     391ms] [LOG] [Client Instrumentation Hook] Slow execution detected: 55ms (Note: Code download overhead is not included in this measurement) @ http://localhost:3000/_next/static/chunks/node_modules_%40sentry_core_build_esm_042slge._.js:10848
+[     400ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_%40sentry_core_build_esm_042slge._.js:10848
+[     484ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_%40sentry_core_build_esm_042slge._.js:10848
+[   56815ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_%40sentry_core_build_esm_042slge._.js:10848
+[   56833ms] [LOG] [Fast Refresh] done in 121ms @ http://localhost:3000/_next/static/chunks/node_modules_%40sentry_core_build_esm_042slge._.js:10848
+[  314328ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_%40sentry_core_build_esm_042slge._.js:10848
+[  314366ms] [LOG] [Fast Refresh] done in 155ms @ http://localhost:3000/_next/static/chunks/node_modules_%40sentry_core_build_esm_042slge._.js:10848
+[  330986ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_%40sentry_core_build_esm_042slge._.js:10848
+[  331074ms] [LOG] [Fast Refresh] done in 159ms @ http://localhost:3000/_next/static/chunks/node_modules_%40sentry_core_build_esm_042slge._.js:10848
+[  335903ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_%40sentry_core_build_esm_042slge._.js:10848
+[  335932ms] [LOG] [Fast Refresh] done in 18ms @ http://localhost:3000/_next/static/chunks/node_modules_%40sentry_core_build_esm_042slge._.js:10848
+[  336055ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_%40sentry_core_build_esm_042slge._.js:10848
+[  336102ms] [LOG] [Fast Refresh] done in 149ms @ http://localhost:3000/_next/static/chunks/node_modules_%40sentry_core_build_esm_042slge._.js:10848
+[  339792ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_%40sentry_core_build_esm_042slge._.js:10848
+[  339798ms] [LOG] [Fast Refresh] done in 85ms @ http://localhost:3000/_next/static/chunks/node_modules_%40sentry_core_build_esm_042slge._.js:10848
+[  339920ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_%40sentry_core_build_esm_042slge._.js:10848
+[  339944ms] [LOG] [Fast Refresh] done in 141ms @ http://localhost:3000/_next/static/chunks/node_modules_%40sentry_core_build_esm_042slge._.js:10848

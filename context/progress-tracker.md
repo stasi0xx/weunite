@@ -101,6 +101,44 @@ change.
   sides with `useReducedMotion` guard; build passes clean.
   **NOTE:** placeholder quote — needs real sign-off from Bartłomiej Glinka before going live.
 
+## Customer Success Section (replaces Endorsement on the homepage)
+
+- Business decision (from user): the placeholder Bartłomiej Glinka pull-quote was never signed
+  off, so the slot between `ServicesSection` and `ContactFormSection` now holds a full
+  scroll-driven case study of **Pierwsze Trzeźwe Pokolenie (Fundacja Columbus)** instead.
+- `components/sections/CustomerSuccessSection.tsx` — orchestrator; `id="customer-success"`,
+  `sr-only` H2, right-edge reading-progress rail (`scaleY` ← section `useScroll`), outro with
+  two CTAs (`pierwszetrzezwepokolenie.pl` + `#contact`).
+- `components/sections/customer-success/` — `data.ts` (all copy + numbers, single source of
+  truth), `SuccessCounterHero.tsx` (pinned `h-[220vh]` track; reach counter 0 → 27 000 000 is
+  *scrubbed by scroll position* via `useScroll` → `useTransform` → `useSpring`, written to the
+  DOM through `useMotionValueEvent` + a ref so it never re-renders per frame; SSR renders the
+  final number so crawlers see it; stops on the rounded `HERO_REACH` = 27 000 000, while the
+  exact `TOTAL_REACH` = 27 200 000 stays in `ResultsBlock`'s stat and drives the platform share
+  bars), `ChallengeBlock.tsx` (sticky heading + 3-item list with
+  line-draw dividers), `StrategyStack.tsx` (sticky card deck — Glinka / Kusznierewicz /
+  Tchórzewski; each card pins at a stepped `top`, the next slides over it, covered cards scale
+  to 0.94 and dim), `OfflineBlock.tsx` (parallaxed "OFFLINE" ghost word + 5 school cards
+  dealing in with rotation), `ResultsBlock.tsx` (3 GSAP counters + 3 platform rows with
+  `scaleX` share bars).
+- Every animated element is guarded by `useReducedMotion`; all counters degrade to their final
+  value, all transforms to identity.
+- **Theme decision:** the whole section runs on `bg-dark` / `text-dark-foreground` — a
+  deliberate dark "chapter" break in the light page, documented as an exception in
+  `ui-context.md`. Reversible by swapping the two classes on the section root.
+- `components/layout/Navbar.tsx` — nav link "Polecają" → `#endorsement` replaced with
+  "Case study" → `#customer-success`.
+- `components/sections/EndorsementSection.tsx` left on disk but no longer imported anywhere —
+  kept in case the real signed-off quote arrives.
+- `tsc --noEmit` and `next build` both pass clean.
+  **NOTE (blocking for visuals):** two images are referenced but not yet in the repo —
+  `public/casestudy/ptp-podcast.jpg` (the podcast still with Łukasz Tchórzewski) and
+  `public/casestudy/ptp-ambasador.jpg` (the Mateusz Kusznierewicz ambassador graphic). Until
+  they are added, those two stack cards render an empty tinted panel with alt text.
+- **NOTE:** `StrategyStack` stack-card scale/dim is driven by the *container's* scroll progress,
+  not per-card — `useScroll` on a `position: sticky` target does not advance, because a pinned
+  element's bounding rect stops moving. Do not "fix" it by moving the ref onto the card.
+
 ## Email Templates (Feature 13) — Completed
 
 - **`emails/LeadConfirmation.tsx`** — React Email template for post-lead-form email; warm
@@ -264,6 +302,147 @@ change.
   **DECISION (open):** the CAPI Lead event currently fires on every submission regardless of banner
   consent — that is the point of CAPI, but strict RODO reading would gate it too. One-line change
   in `app/api/leads/route.ts` if the call goes the other way.
+
+## Hero Section Redesign (Photographic Brand Statement)
+
+- `components/sections/HeroSection.tsx` rewritten: replaced the light-theme headline +
+  sub-headline + CTA pair + 3 fan-layout service cards with a full-bleed photo hero
+  (`public/hero/gdansk-hero.png`, Gdańsk waterfront/Żuraw) + dark gradient/vignette
+  overlay + centered "WeUnite" wordmark (Syne ExtraBold, white) with an animated white
+  underline bar, plus a bottom scroll-cue chevron linking to `#services`. No sub-headline,
+  no CTA button, no cards — those already exist independently in `ServicesSection.tsx`,
+  so nothing was lost, just de-duplicated.
+- Decision (explicit, from user): this is a deliberate one-off exception to the
+  light/cream/blob theme documented in `ui-context.md` — a brand-statement opener before
+  the light theme resumes from `ClientLogosSection` onward. `ui-context.md` (Theme note +
+  Hero layout pattern) and `context/features-specs/04-hero-section.md` updated to match.
+- `next/image` `fill` + `priority` used for the background photo (LCP element).
+- `tsc --noEmit` and `next build` both pass clean.
+  **NOTE:** source photo is 1200×630 PNG — will look soft on large desktop monitors when
+  stretched full-bleed; recommend swapping in a higher-resolution JPG/WebP (2400px+ wide)
+  before this goes live in production.
+  **NOTE:** dropping the sub-headline/CTA from the Hero means the first conversion prompt
+  on the page is now further down the scroll (Problem → Services → Contact form) — flagged
+  as an open question, not blocking, since it was an explicit design call.
+
+## Service Subpages: Strony Internetowe + Social Media
+
+- **`/strony-internetowe`** (`app/(main)/strony-internetowe/page.tsx`) — new marketing subpage
+  for the websites service. `components/sections/websites/`: `WebsitesHero.tsx` (headline +
+  inline SVG/CSS browser-chrome mockup with a chatbot bubble, no image asset needed),
+  `WebsitesProcessSection.tsx` (3-step process cards + "Umów konsultację" CTA linking to
+  `/#contact`), `WebsitesCaseStudies.tsx` (2 real case studies — Nowy Relaks, Gdynia Padel
+  Club — reused from `CaseStudySection.tsx`'s data; desktop: clickable mockup left / ~5-sentence
+  description right; mobile: mockup on top capped at `h-[32vh]`, text below). Only 2 projects
+  shown, not 3 — no third client screenshot exists yet in `public/casestudy/` (explicit user
+  decision, layout is ready for a third `ProjectRow` when one is supplied).
+- **`/social-media`** (`app/(main)/social-media/page.tsx`) — new marketing subpage for the
+  social media service. `components/sections/social/`: `SocialHero.tsx`, `SocialPillarsSection.tsx`
+  (redesigned per explicit user feedback — the original 3-column icon-card grid "nie podobało
+  się"; rewritten via `/impeccable` as three asymmetric editorial rows instead: Instagram row
+  uses the real screenshot `public/casestudy/ig-socialmedia2.png` — a full Instagram-UI capture
+  with visible engagement numbers, `aspect-[3/2]`, shown straight/uncropped-content for
+  credibility, media-dominant `md:col-span-8`; TikTok row is an honest stylized placeholder — a
+  tilted `bg-dark` panel with a large "3s" typographic moment tied to the "pierwsze 3 sekundy"
+  copy, text-dominant `md:col-span-7`, no fake icon-box filler; Social Ads (pillar 03, no media
+  asset at all) got a custom animated `AdsPanel`, rewritten twice: v1 was an abstract radar/target
+  animation that the user flagged as unclear ("problem z adspanel jest taki że jego przekaz jest
+  nie jasny"); v2 replaced it with a literal, unmistakable mock paid-ad unit instead — sponsored-post
+  chrome (avatar + "Twoja marka" / "Sponsorowane"), a gradient creative block, illustrative ad copy
+  + a real CTA pill in the site's own button style, and a results chip (GSAP `countTo`, same pattern
+  as `ProblemSection.tsx`'s stat counters) overlapping the corner reading "2 400+ gotowych na zakup"
+  — the phrase pulled directly from the pillar's own copy ("ludzi gotowych na zakup"). Row 03 uses
+  the same `PillarRow` (`align="left"`, `mediaSpan={5}`) behind a `border-t` divider instead of a
+  text-only breakout. All three rows share a huge low-opacity "ghost numeral"
+  (`text-foreground/[0.06]`, Syne ExtraBold) as the unifying motif, alternating left/right per row.
+  Added `--color-dark` / `--color-dark-foreground` to `@theme inline` in `globals.css` (maps the
+  previously-unused `--bg-dark` token to proper `bg-dark`/`text-dark-foreground` Tailwind
+  utilities — this token existed in `:root` but had no utility mapping before). **Caught before
+  shipping:** an early draft used template-literal Tailwind classes
+  (`` `md:col-span-${mediaSpan}` ``) for the responsive column spans — Tailwind's static scanner
+  can't see interpolated class names, so those spans would have silently done nothing at build
+  time; fixed by branching to fully static literal class strings instead. A second bug in the v1
+  radar rings (absolutely positioned with no offsets, so they'd have rendered at their flow-position
+  origin instead of centered on the target dot) was also caught and fixed before the v1→v2 rewrite.
+  **NOTE:** TikTok panel is still a placeholder pending the real video file from Załącznik 2.
+  `SocialReelsSection.tsx` (horizontally scrollable reel strip,
+  `snap-x snap-mandatory` + `.scrollbar-hide`), `SocialCtaSection.tsx`, `SocialSuccessCarousel.tsx`
+  (scroll-snap carousel, arrow buttons desktop / native swipe mobile, `scrollBy` via ref).
+  **NOTE (placeholder content, explicit user decisions):** Instagram pillar links out to the
+  real post (`instagram.com/p/Cu5CgwhNWdz`) via a static card rather than an embedded widget
+  (avoids loading Meta's third-party embed script/cookies outside the existing consent gate —
+  see `lib/consent.ts` + architecture invariants #6–#8). TikTok pillar and the reels strip are
+  visual placeholders (`Play` icon, "Wkrótce" labels) with a one-line `TODO` marking where to
+  swap in `<video src="/social/tiktok-reel.mp4">` once the file from Załącznik 2 is provided.
+  Customer Success carousel uses clearly-labeled placeholder story cards ("(placeholder)"),
+  not fabricated client quotes — needs real success-story content before shipping.
+- Both pages follow the same subpage skeleton: `ScrollToTop`, `Metadata` with canonical URL,
+  hero → content → CTA linking to the homepage's `ContactFormSection` (`id="contact"` by default).
+- **Bug found + fixed:** both new hero sections use the shared `.hero-blob` decoration (a 700px
+  circle, `filter: blur(80px)`) inside a `relative overflow-hidden` section. That class was only
+  ever used before in tall sections (`ContactFormSection`, full-viewport hero layouts) where the
+  blob fits inside the box; in these short intro-header sections the section's own `overflow-hidden`
+  clipped straight through the blob's still-visible blurred edge, producing a hard-edged cutoff
+  (reported by user via screenshot). Fix: removed `overflow-hidden` from `WebsitesHero.tsx` and
+  `SocialHero.tsx` (the blob now fades to fully transparent before it would be clipped, and simply
+  bleeds harmlessly into the next section's top padding) and added a global `overflow-x: hidden`
+  on `html, body` in `globals.css` as the safety net against horizontal scroll from any full-bleed
+  absolutely-positioned decoration sitewide (this was a latent, pre-existing gap — no prior page
+  had this protection). **Gotcha:** a plain CSS rule placed between `@import "tailwindcss"` and
+  `@theme inline { ... }` at the top of `globals.css` was silently dropped by the Tailwind v4/
+  Lightning CSS build — plain custom CSS must go in the existing custom-CSS block near the bottom
+  of the file (alongside `.hero-blob`, `.marquee-track`, etc.), not interleaved with the Tailwind
+  directives at the top.
+- `tsc --noEmit` and `eslint` both pass clean on all new files.
+
+## Multi-Stage Progressive Contact Form Redesign
+
+- **`components/sections/ContactFormSection.tsx`** refactored into a 4-step wizard:
+  - **Etap 1 (Email)**: Email input (`email`). Triggers draft lead creation (`status: 'draft'`, `current_step: 1`), returns `leadId`.
+  - **Etap 2 (Projekt & Działalność)**: Project name (`projectName`) and business type (`businessType`). Progressive DB save (`current_step: 2`).
+  - **Etap 3 (Opis projektu)**: Project description (`projectDescription`). Progressive DB save (`current_step: 3`).
+  - **Etap 4 (Wizualia & Logo)**: Optional color preference (`colorPreference`), reference link (`reference`), and logo/attachments (`attachments`). Progressive DB update (`status: 'new'`, `current_step: 4`), triggers Resend emails, Meta CAPI event, and redirects to `/dziekujemy`.
+- **"Po co nam to?" Explanations**: Prominent badge box at the top of each step explaining why the specific information is requested.
+- **`app/api/leads/route.ts`** updated to support step-based payload discriminated by `step` (1, 2, 3, 4), allowing real-time DB progressive saves. Fallback for legacy single-step POST preserved.
+- **`supabase/migrations/007_leads_progressive_saving.sql`** created: drops NOT NULL constraints on `name`, `business_type`, `project_name`, `project_description`, and adds `current_step integer default 1`.
+- `tsc --noEmit` and `next build` pass clean.
+
+## Services Section CTA Buttons Update
+
+- `components/sections/ServicesSection.tsx`:
+  - **Strony internetowe**: Przycisk główny (primary): `"Odbierz wizualizację"` (`#contact`), Przycisk pomocniczy (secondary): `"Zobacz projekty"` (`/strony-internetowe`).
+  - **Social media i wideo**: Przycisk główny (primary): `"Odbierz plan"` (`#contact`), Przycisk pomocniczy (secondary): `"Zobacz więcej"` (`/social-media`).
+- `tsc --noEmit` passes clean.
+
+## Customer Success Section Buttons Update
+
+- `components/sections/CustomerSuccessSection.tsx`:
+  - Przycisk **"Chcę takie wyniki"** zmieniony na element przyklejony do dołu ekranu (`sticky bottom-6 z-40`), dzięki czemu jest stale widoczny podczas przewijania całej sekcji case study (`#customer-success`).
+  - Przycisk **"Zobacz projekt"** zaktualizowany o nowy odnośnik prowadzący do kanału YouTube: `https://www.youtube.com/@PierwszeTrze%C5%BAwePokolenie` (`target="_blank"`).
+- `tsc --noEmit` passes clean.
+
+## Contact Form Offer Type Selector (Websites vs Marketing Plan Splitter)
+
+- `components/sections/ContactFormSection.tsx`:
+  - Dodano rozgałęźnik na Etapie 1 ("Wybierz, co chcesz bezpłatnie otrzymać"): `Darmowa wizualizacja strony` (`website_visualization`) vs `Darmowy plan marketingowy` (`marketing_plan`).
+  - Wybór dynamicznie dostosowuje box z wyjaśnieniem ("Po co nam to?"), sygnalizatory zaufania oraz treść przycisku końcowego wysyłki ("Wyślij i odbierz plan →" / "Wyślij i odbierz wizualizację →").
+  - Wspiera opcjonalny prop `defaultOfferType`.
+- `app/api/leads/route.ts`:
+  - Dodano walidację `offerType` do schematów `step1Schema` i `fullSchema`.
+  - Zapis pola `offer_type` w tabeli Supabase `leads` (z bezpiecznym fallbackiem w przypadku braku kolumny w cache PostgREST).
+  - Wzbogacono treść wewnętrznej wiadomości email z powiadomieniem (Resend) o informację o wybranym materiale.
+- `supabase/migrations/008_leads_offer_type.sql`:
+  - Tworzy migrację dodającą kolumnę `offer_type text default 'website_visualization'` do tabeli `leads`.
+- `tsc --noEmit` przechodzi czysto.
+
+## Navbar & Footer Links & CTA Update
+
+- `components/layout/Navbar.tsx`:
+  - Zaktualizowano linki w nawigacji: `"Dla kogo"` poprawnie wskazuje `#mission` (zamiast nieistniejącego `#problem`), a pozostałe linki zachowują wskazanie na `#services` oraz `#customer-success`.
+  - Zmieniono etykietę przycisku CTA (zarówno w wersji desktop, jak i w menu mobilnym) na `"Odbierz wizualizację"`.
+- `components/layout/Footer.tsx`:
+  - Zaktualizowano listę `sectionLinks` w stopce (`"Co robimy"` → `#services`, `"Dla kogo"` → `#mission`, `"Case study"` → `#customer-success`, `"Kontakt"` → `#contact`), wyrównując odnośniki z rzeczywistymi identyfikatorami sekcji na stronie.
+- `tsc --noEmit` przechodzi czysto.
 
 ## Architecture Decisions
 

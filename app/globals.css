@@ -36,6 +36,9 @@
 
     --color-destructive: var(--state-error);
 
+    --color-dark: var(--bg-dark);
+    --color-dark-foreground: var(--bg-base);
+
     --color-border: var(--border-default);
     --color-input: var(--border-default);
     --color-ring: var(--accent-primary);
@@ -185,4 +188,22 @@
 
 .marquee-track:hover {
     animation-play-state: paused;
+}
+
+/* ─── Scroll-snap carousels ─── */
+.scrollbar-hide {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
+/* ─── Prevent horizontal scroll from full-bleed decorative elements ───
+   overflow-x: clip (not hidden) — hidden on body creates a scrolling
+   ancestor that breaks position: sticky (used by ServicesSection's
+   pin-scroll accordion) across the whole site. */
+html, body {
+    overflow-x: clip;
 }

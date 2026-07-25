@@ -1,0 +1,5 @@
+[     816ms] [LOG] [Client Instrumentation Hook] Slow execution detected: 44ms (Note: Code download overhead is not included in this measurement) @ http://localhost:3000/_next/static/chunks/node_modules_%40sentry_core_build_esm_042slge._.js:10848
+[     839ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_%40sentry_core_build_esm_042slge._.js:10848
+[     981ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_%40sentry_core_build_esm_042slge._.js:10848
+[    3886ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_%40sentry_core_build_esm_042slge._.js:10848
+[    3952ms] [LOG] [Fast Refresh] done in 172ms @ http://localhost:3000/_next/static/chunks/node_modules_%40sentry_core_build_esm_042slge._.js:10848

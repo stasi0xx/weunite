@@ -7,6 +7,16 @@ and bold: massive display typography dominates each section, generous whitespace
 breathing room, and vivid orange/coral gradient blobs provide energy and warmth. The overall
 feeling is a confident, modern agency — approachable but clearly capable.
 
+**Exception:** the Hero section uses a full-bleed photographic background with a dark
+overlay (see Layout Patterns → Hero) instead of the cream/blob treatment — a deliberate
+one-off "brand statement" opener before the light theme takes over from the social proof
+bar onward.
+
+**Exception:** the Customer Success case study section runs on the warm-dark surface
+(`bg-dark` / `text-dark-foreground`, `#3D2B1F` on `#F2EDE6`) for its full height — a
+deliberate "chapter" break in the light page. It is the only long-form dark block; the
+light theme resumes immediately after it at the contact form.
+
 ## Colors
 
 All components must use these tokens — no hardcoded hex values.
@@ -73,13 +83,28 @@ GSAP handles complex sequential animations (e.g. staggered counters in stats sec
 
 - **Page structure:** single-column, full-width sections, `max-w-7xl mx-auto px-6` for content
 - **Section spacing:** `py-24 md:py-32` between sections — generous breathing room
-- **Hero:** full-viewport (`min-h-screen`), display text left-aligned or centered, blob in top-right corner, two CTA buttons (filled pill + outline pill)
+- **Hero:** full-viewport (`min-h-screen`), full-bleed photographic background
+  (`/hero/gdansk-hero.png`, `next/image fill object-cover`) with a dark gradient
+  overlay for legibility — this is the one section that departs from the light,
+  blob-based theme. Centered "WeUnite" wordmark (Syne ExtraBold, white,
+  `text-6xl` → `text-[9rem]`) with a full-width white underline bar beneath it,
+  and nothing else — no sub-headline, no CTA pair, no service cards (those moved
+  to / already live in the Services section below). A small animated scroll-cue
+  chevron sits at the bottom edge.
 - **Navbar:** sticky top, `bg-[--bg-base]/80 backdrop-blur-md`, logo left — nav center — CTAs right, bottom border `border-b border-[--border-default]`
 - **Logo bar:** full-width marquee/scroll strip for client logos, `border-y border-[--border-default]`, muted opacity
 - **Cards:** CSS grid `grid-cols-1 md:grid-cols-2 lg:grid-cols-3`, gap-6, `rounded-2xl bg-[--bg-surface]`
 - **Services (expandable):** 3 cards in a row, each with icon + title + one-line teaser. On click, the active card expands vertically (Framer Motion `layout`) revealing details, bullet points, and a CTA. One card open at a time. Inspired by Podia's feature expansion pattern.
 - **Case studies (collage):** cards positioned with slight overlap and varied subtle rotations (`-1deg` to `1deg`), each with its own background color (warm tones from palette). On scroll-entry, cards animate in staggered with scale + rotation correction. Inspired by Fluz's scene-based card layout.
 - **Stats row:** 3–4 large numbers in a horizontal row, bold display size, label below in muted text
+- **Customer Success (dark chapter):** full-width `bg-dark` block on the homepage, structured
+  as four numbered chapters (01 Wyzwanie → 02 Strategia → 03 Ekspansja → 04 Wyniki). Opens
+  with a pinned `h-[220vh]` track whose sticky screen holds a reach counter scrubbed by
+  `useScroll` progress, then a sticky-heading challenge list, a stacked card deck (each card
+  `position: sticky` at a stepped `top`, next card slides over it), a parallaxed ghost-word
+  offline block, and a results block with GSAP counters + `scaleX` share bars. A 1px
+  reading-progress rail runs down the right edge (`lg` and up), `scaleY` bound to section
+  scroll progress.
 - **Testimonials:** 2-column grid on desktop, each card with avatar + name + company + quote
 - **Final CTA:** full-width section with centered text + large single CTA button, optional blob background
 

@@ -1,0 +1,120 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - navigation [ref=e3]:
+      - link "WeUnite" [ref=e4] [cursor=pointer]:
+        - /url: /
+      - list [ref=e5]:
+        - listitem [ref=e6]:
+          - link "Co robimy" [ref=e7] [cursor=pointer]:
+            - /url: "#services"
+        - listitem [ref=e9]:
+          - link "Dla kogo" [ref=e10] [cursor=pointer]:
+            - /url: "#problem"
+        - listitem [ref=e12]:
+          - link "Polecają" [ref=e13] [cursor=pointer]:
+            - /url: "#endorsement"
+      - button "Umów rozmowę" [ref=e16] [cursor=pointer]
+  - main [ref=e17]:
+    - region "Strony internetowe — wprowadzenie" [ref=e18]:
+      - generic [ref=e19]:
+        - paragraph [ref=e20]: Strony internetowe
+        - heading "Poznaj nasz proces realizacji inteligentnych stron internetowych." [level=1] [ref=e21]
+    - region [ref=e39]:
+      - generic [ref=e40]:
+        - heading "Jak dowozimy strony, które sprzedają?" [level=2] [ref=e41]
+        - paragraph [ref=e42]: "Nasz proces w 3 krokach:"
+        - generic [ref=e43]:
+          - generic [ref=e44]:
+            - generic [ref=e45]: "01"
+            - heading "Audyt i Architektura Konwersji" [level=3] [ref=e51]
+            - paragraph [ref=e52]: Nie zaczynamy od designu. Najpierw analizujemy Twoją grupę docelową i projektujemy makietę UX tak, aby każdy element strony prowadził klienta za rękę do zakupu lub zostawienia leada.
+          - generic [ref=e53]:
+            - generic [ref=e54]: "02"
+            - heading "Design i Wdrożenie Technologiczne" [level=3] [ref=e61]
+            - paragraph [ref=e62]: Kodujemy szybkie, responsywne i nowoczesne strony. Łączymy estetykę z bezbłędną optymalizacją techniczną (szybkość ładowania, Core Web Vitals).
+          - generic [ref=e63]:
+            - generic [ref=e64]: "03"
+            - heading "Automatyzacja i Skalowanie" [level=3] [ref=e69]
+            - paragraph [ref=e70]: Strona to dopiero początek. Wpinamy analitykę, systemy CRM i automatyzacje mailowe, dzięki którym Twój nowy ekosystem pracuje na Ciebie 24/7.
+        - link "Umów konsultację" [ref=e72] [cursor=pointer]:
+          - /url: /#contact
+    - region [ref=e75]:
+      - generic [ref=e76]:
+        - heading "Nasze projekty" [level=2] [ref=e77]
+        - paragraph [ref=e78]: Kilka realizacji, które pokazują, jak podchodzimy do projektów naszych klientów.
+        - generic [ref=e79]:
+          - generic [ref=e80]:
+            - link "Zobacz stronę Nowy Relaks — Filipek Investment (otwiera się w nowej karcie)" [ref=e81] [cursor=pointer]:
+              - /url: https://www.nowyrelaks.fi-invest.pl/
+              - img "Strona inwestycji Nowy Relaks zaprojektowana przez WeUnite" [ref=e84]
+            - generic [ref=e85]:
+              - text: Deweloper
+              - heading "Nowy Relaks — Filipek Investment" [level=3] [ref=e86]
+              - paragraph [ref=e87]: "Nowy Relaks to inwestycja domów jednorodzinnych pod Białą Podlaską, prowadzona przez dewelopera Filipek Investment. Wcześniej firma korzystała z darmowego szablonu, który nie budował zaufania i nie prezentował oferty w sposób, na jaki inwestycja zasługuje. Zaprojektowaliśmy i wdrożyliśmy stronę od podstaw, z pełną prezentacją lokalizacji, etapów budowy oraz galerii wnętrz. Dodaliśmy przejrzysty formularz zapytań o dostępność konkretnych domów, trafiający wprost do zespołu sprzedaży. Efekt: nowocześniejszy wizerunek marki i więcej zapytań o zakup."
+              - link "Zobacz stronę na żywo" [ref=e88] [cursor=pointer]:
+                - /url: https://www.nowyrelaks.fi-invest.pl/
+          - generic [ref=e92]:
+            - link "Zobacz stronę Gdynia Padel Club (otwiera się w nowej karcie)" [ref=e93] [cursor=pointer]:
+              - /url: https://www.gdyniapadelclub.pl/
+              - img "Strona Gdynia Padel Club zaprojektowana przez WeUnite" [ref=e96]
+            - generic [ref=e97]:
+              - text: Klub sportowy
+              - heading "Gdynia Padel Club" [level=3] [ref=e98]
+              - paragraph [ref=e99]: "Gdynia Padel Club to klub sportowy w Gdyni, dla którego zbudowaliśmy stronę prezentującą korty i pełną ofertę zajęć. Kluczowym wyzwaniem było umożliwienie klientom szybkiej rezerwacji terminu bez telefonowania do recepcji. Wdrożyliśmy dynamiczny system rezerwacji online, zintegrowany z bieżącą dostępnością kortów. Strona prezentuje też cennik, wydarzenia i social media klubu w jednym miejscu. Efekt: mniej pracy administracyjnej dla zespołu i wygodniejsza ścieżka rezerwacji dla graczy."
+              - link "Zobacz stronę na żywo" [ref=e100] [cursor=pointer]:
+                - /url: https://www.gdyniapadelclub.pl/
+  - contentinfo [ref=e104]:
+    - generic: WeUnite
+    - generic [ref=e105]:
+      - generic [ref=e106]:
+        - link "WeUnite" [ref=e107] [cursor=pointer]:
+          - /url: /
+        - list [ref=e108]:
+          - listitem [ref=e109]:
+            - link "O nas" [ref=e110] [cursor=pointer]:
+              - /url: "#o-nas"
+          - listitem [ref=e112]:
+            - link "Co robimy" [ref=e113] [cursor=pointer]:
+              - /url: "#co-robimy"
+          - listitem [ref=e115]:
+            - link "Dla kogo" [ref=e116] [cursor=pointer]:
+              - /url: "#dla-kogo"
+          - listitem [ref=e118]:
+            - link "Jak działamy" [ref=e119] [cursor=pointer]:
+              - /url: "#jak-dzialamy"
+          - listitem [ref=e121]:
+            - link "Polecają" [ref=e122] [cursor=pointer]:
+              - /url: "#polecaja"
+          - listitem [ref=e124]:
+            - link "Kontakt" [ref=e125] [cursor=pointer]:
+              - /url: "#kontakt"
+        - list [ref=e127]:
+          - listitem [ref=e128]:
+            - link "Polityka prywatności" [ref=e129] [cursor=pointer]:
+              - /url: /polityka-prywatnosci
+          - listitem [ref=e131]:
+            - link "Polityka cookies" [ref=e132] [cursor=pointer]:
+              - /url: /polityka-cookies
+          - listitem [ref=e134]:
+            - link "Regulamin" [ref=e135] [cursor=pointer]:
+              - /url: /regulamin
+        - generic [ref=e137]:
+          - paragraph [ref=e138]: "Adres: ul. Gdyńska G/9,80-340 Gdańsk"
+          - paragraph [ref=e139]:
+            - text: "Email:"
+            - link "info@weunite.pl" [ref=e140] [cursor=pointer]:
+              - /url: mailto:info@weunite.pl
+          - paragraph [ref=e142]:
+            - text: "Telefon:"
+            - link "+48 537 732 320" [ref=e143] [cursor=pointer]:
+              - /url: tel:+48537732320
+        - generic [ref=e145]:
+          - link "LinkedIn" [ref=e146] [cursor=pointer]:
+            - /url: https://linkedin.com/company/weunite
+          - link "Facebook" [ref=e152] [cursor=pointer]:
+            - /url: https://facebook.com/weunite
+          - link "Instagram" [ref=e156] [cursor=pointer]:
+            - /url: https://instagram.com/weunite
+      - paragraph [ref=e162]: Copyright © 2026 WeUnite. All rights reserved.
+  - region "Notifications alt+T"
+  - button "Open Next.js Dev Tools" [ref=e168] [cursor=pointer]

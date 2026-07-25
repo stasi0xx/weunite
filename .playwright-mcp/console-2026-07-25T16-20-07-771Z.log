@@ -1,0 +1,7 @@
+[     707ms] [LOG] [Client Instrumentation Hook] Slow execution detected: 25ms (Note: Code download overhead is not included in this measurement) @ http://localhost:3000/_next/static/chunks/node_modules_%40sentry_core_build_esm_042slge._.js:10848
+[     730ms] [INFO] %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold @ http://localhost:3000/_next/static/chunks/node_modules_%40sentry_core_build_esm_042slge._.js:10848
+[     827ms] [LOG] [HMR] connected @ http://localhost:3000/_next/static/chunks/node_modules_%40sentry_core_build_esm_042slge._.js:10848
+[    1134ms] [LOG] [Fast Refresh] rebuilding @ http://localhost:3000/_next/static/chunks/node_modules_%40sentry_core_build_esm_042slge._.js:10848
+[    1182ms] [LOG] [Fast Refresh] done in 201ms @ http://localhost:3000/_next/static/chunks/node_modules_%40sentry_core_build_esm_042slge._.js:10848
+[    1774ms] [WARNING] Image with src "/casestudy/ig-socialmedia.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading @ http://localhost:3000/_next/static/chunks/node_modules_%40sentry_core_build_esm_042slge._.js:10848
