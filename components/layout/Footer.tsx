@@ -32,6 +32,7 @@ const sectionLinks = [
   { label: "Co robimy", href: "#services" },
   { label: "Dla kogo", href: "#mission" },
   { label: "Case study", href: "#customer-success" },
+  { label: "Realizacje", href: "/realizacje" },
   { label: "Kontakt", href: "#contact" },
 ];
 

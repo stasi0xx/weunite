@@ -6,7 +6,7 @@ import gsap from "gsap";
 
 const stats = [
   {
-    value: 27,
+    value: 36,
     suffix: " mln",
     suffixClassName: "text-2xl md:text-3xl lg:text-4xl ",
     label: "Razy wyświetlono nasze materiały w 2026 roku.",

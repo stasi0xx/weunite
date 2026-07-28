@@ -10,6 +10,8 @@ const logos = [
   { name: "Gedania 1922 — klient WeUnite", src: "/logos/gedania.webp" },
   { name: "Creo — klient WeUnite", src: "/logos/creo-1.webp" },
   { name: "PTP — klient WeUnite", src: "/logos/ptp.png" },
+  { name: "Filipek Investment — klient WeUnite", src: "/logos/filipek.png" },
+  { name: "LanLab — klient WeUnite", src: "/logos/lanlab.webp" },
 ];
 
 export default function ClientLogosSection() {

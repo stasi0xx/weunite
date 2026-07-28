@@ -5,22 +5,19 @@ import Link from "next/link";
 import { motion, useReducedMotion, useScroll } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
-import SuccessCounterHero from "./customer-success/SuccessCounterHero";
-import MovementIntro from "./customer-success/MovementIntro";
-import ChallengeBlock from "./customer-success/ChallengeBlock";
-import ChallengeReel from "./customer-success/ChallengeReel";
-import StrategyStack from "./customer-success/StrategyStack";
-import OfflineBlock from "./customer-success/OfflineBlock";
-import ResultsBlock from "./customer-success/ResultsBlock";
+import CreoHero from "./CreoHero";
+import CreoIntro from "./CreoIntro";
+import NumberedChapter from "./NumberedChapter";
+import CreoVideoBlock from "./CreoVideoBlock";
+import CreoResultsBlock from "./CreoResultsBlock";
+import { challenges, strategySteps } from "./data";
 
 /**
- * Customer Success case study — "Pierwsze Trzeźwe Pokolenie".
- *
- * Deliberate one-off dark chapter in an otherwise light/cream page: it frames
- * the case study as a self-contained story and gives the scroll-driven counter
- * somewhere to glow. Replaces the old EndorsementSection slot.
+ * Case study — "Creo Gedania". Same dark, scroll-driven chapter architecture
+ * as CustomerSuccessSection (Pierwsze Trzeźwe Pokolenie), with a photo-led
+ * hero in place of the abstract counter opener — see CreoHero for why.
  */
-export default function CustomerSuccessSection() {
+export default function CreoGedaniaSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const prefersReducedMotion = useReducedMotion();
 
@@ -32,15 +29,14 @@ export default function CustomerSuccessSection() {
   return (
     <section
       ref={sectionRef}
-      id="customer-success"
+      id="creo-gedania"
       className="relative bg-dark text-dark-foreground"
-      aria-labelledby="customer-success-heading"
+      aria-labelledby="creo-gedania-heading"
     >
-      <h2 id="customer-success-heading" className="sr-only">
-        Case study: Pierwsze Trzeźwe Pokolenie — od zera do 27 milionów wyświetleń
+      <h2 id="creo-gedania-heading" className="sr-only">
+        Case study: Creo Gedania — 10 nowych uczniów z dwóch rolek
       </h2>
 
-      {/* Reading-progress rail — fills as the chapter is scrolled through. */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-y-0 right-5 hidden w-px bg-dark-foreground/10 lg:block"
@@ -51,13 +47,20 @@ export default function CustomerSuccessSection() {
         />
       </div>
 
-      <SuccessCounterHero />
-      <MovementIntro />
-      <ChallengeBlock />
-      <ChallengeReel />
-      <StrategyStack />
-      <OfflineBlock />
-      <ResultsBlock />
+      <CreoHero />
+      <CreoIntro />
+      <NumberedChapter
+        chapterLabel="01 — Wyzwanie"
+        heading="Jak dotrzeć do rodziców, nie przepalając budżetu poza regionem?"
+        items={challenges}
+      />
+      <NumberedChapter
+        chapterLabel="02 — Strategia i realizacja"
+        heading="Scenariusz, twórca i precyzyjne ads’y."
+        items={strategySteps}
+      />
+      <CreoVideoBlock />
+      <CreoResultsBlock />
 
       {/* Outro */}
       <div className="mx-auto max-w-4xl px-6 pb-24 text-center md:pb-32">
@@ -68,7 +71,7 @@ export default function CustomerSuccessSection() {
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          Zaczęliśmy z czystą kartą. Skończyliśmy z fenomenem.
+          Precyzyjne planowanie w lokalnym marketingu działa jak skalpel.
         </motion.p>
         <motion.p
           className="mx-auto mt-6 max-w-2xl font-body text-base leading-relaxed text-dark-foreground/65 md:text-lg"
@@ -77,8 +80,9 @@ export default function CustomerSuccessSection() {
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
         >
-          Klient: Pierwsze Trzeźwe Pokolenie (Fundacja Columbus). Architektura
-          i komunikacja projektu — od zera, w 6 miesięcy.
+          Klient: Creo Gedania. Konsultacje strategiczne, scenariusz, dobór
+          twórcy i punktowe wsparcie reklamowe — 10 nowych, pełnowymiarowych
+          czesnych z dwóch materiałów wideo.
         </motion.p>
 
         <motion.div
@@ -89,18 +93,18 @@ export default function CustomerSuccessSection() {
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
         >
           <a
-            href="https://www.youtube.com/@PierwszeTrze%C5%BAwePokolenie"
+            href="https://www.tiktok.com/@poznajtrojmiasto"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full border border-dark-foreground/25 px-6 py-3 font-body text-sm font-semibold text-dark-foreground transition-all duration-200 hover:border-dark-foreground/60 hover:bg-dark-foreground/5"
           >
-            Zobacz projekt
+            Zobacz profil @poznajtrojmiasto
             <ArrowUpRight className="h-4 w-4" />
           </a>
         </motion.div>
       </div>
 
-      {/* Sticky Floating CTA — stay visible at bottom throughout the section */}
+      {/* Sticky Floating CTA — stays visible throughout the section. */}
       <div className="sticky bottom-6 z-40 flex justify-center pointer-events-none pb-6 px-4">
         <Link
           href="/#contact"

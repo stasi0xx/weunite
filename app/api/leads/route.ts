@@ -108,12 +108,11 @@ export async function POST(request: NextRequest) {
         .select('id')
         .single()
 
-      // Fallback if current_step or offer_type column is missing in live Supabase DB schema cache
+      // Fallback if current_step column is missing in live Supabase DB schema cache
       if (dbError && dbError.code === 'PGRST204') {
-        const { offer_type, ...baseWithoutOfferType } = baseInsert
         const retry = await supabase
           .from('leads')
-          .insert(baseWithoutOfferType)
+          .insert(baseInsert)
           .select('id')
           .single()
         lead = retry.data
@@ -324,10 +323,9 @@ export async function POST(request: NextRequest) {
     .single()
 
   if (dbError && dbError.code === 'PGRST204') {
-    const { offer_type, ...baseWithoutOfferType } = baseFullInsert
     const retry = await supabase
       .from('leads')
-      .insert(baseWithoutOfferType)
+      .insert(baseFullInsert)
       .select('id')
       .single()
     lead = retry.data

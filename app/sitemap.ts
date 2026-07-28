@@ -11,6 +11,36 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
+      url: `${BASE_URL}/realizacje`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: `${BASE_URL}/realizacje/nowy-relaks`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.6,
+    },
+    {
+      url: `${BASE_URL}/realizacje/gdynia-padel-club`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.6,
+    },
+    {
+      url: `${BASE_URL}/realizacje/pierwsze-trzezwe-pokolenie`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.6,
+    },
+    {
+      url: `${BASE_URL}/realizacje/creo-gedania`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.6,
+    },
+    {
       url: `${BASE_URL}/regulamin`,
       lastModified: new Date(),
       changeFrequency: "yearly",

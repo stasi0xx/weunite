@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import {
   motion,
@@ -23,6 +23,17 @@ export default function SuccessCounterHero() {
   const numberRef = useRef<HTMLSpanElement>(null);
   const prefersReducedMotion = useReducedMotion();
 
+  const [finished, setFinished] = useState(false);
+  const [isBold, setIsBold] = useState(() => !!prefersReducedMotion);
+  const lockedRef = useRef(false);
+  const lockYRef = useRef<number | null>(null);
+
+  // Reduced motion skips the scroll-scrubbed climb and shows the final value
+  // right away, so it should be bold from the start too.
+  useEffect(() => {
+    if (prefersReducedMotion) setIsBold(true);
+  }, [prefersReducedMotion]);
+
   const { scrollYProgress } = useScroll({
     target: trackRef,
     offset: ["start start", "end end"],
@@ -35,6 +46,32 @@ export default function SuccessCounterHero() {
     restDelta: 500,
   });
 
+  // Gate the section: once scroll has driven the raw count up to the target,
+  // freeze scroll position (any input — wheel, touch, keyboard) until the
+  // spring actually settles on 27 000 000, so users can't scroll past the
+  // hero while the number is still visibly climbing.
+  useMotionValueEvent(scrollYProgress, "change", (progress) => {
+    if (prefersReducedMotion || finished || lockedRef.current) return;
+    if (progress >= 0.7) {
+      lockedRef.current = true;
+      lockYRef.current = window.scrollY;
+    }
+  });
+
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+
+    function handleScroll() {
+      if (!lockedRef.current || lockYRef.current === null) return;
+      if (window.scrollY > lockYRef.current) {
+        window.scrollTo(0, lockYRef.current);
+      }
+    }
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [prefersReducedMotion]);
+
   const glowScale = useTransform(scrollYProgress, [0, 0.7], [0.5, 1.4]);
   const glowOpacity = useTransform(scrollYProgress, [0, 0.35, 1], [0.2, 0.6, 0.35]);
   const cueOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
@@ -43,7 +80,20 @@ export default function SuccessCounterHero() {
 
   useMotionValueEvent(count, "change", (value) => {
     if (!numberRef.current || prefersReducedMotion) return;
-    numberRef.current.textContent = formatCount(Math.round(value));
+    const rounded = Math.round(value);
+
+    if (!isBold && rounded >= 25_000_000) {
+      setIsBold(true);
+    }
+
+    if (!finished && rounded >= HERO_REACH - 500) {
+      numberRef.current.textContent = formatCount(HERO_REACH);
+      lockedRef.current = false;
+      setFinished(true);
+      return;
+    }
+
+    numberRef.current.textContent = formatCount(rounded);
   });
 
   // Reset to the scroll-derived value on mount so the SSR fallback (the final
@@ -84,7 +134,7 @@ export default function SuccessCounterHero() {
                 sizes="32px"
               />
             </span>
-            <span className="font-body text-xs font-semibold uppercase tracking-widest text-dark-foreground/70">
+            <span className="font-body text-base font-bold uppercase tracking-widest text-dark-foreground md:text-xl">
               Customer Success · Pierwsze Trzeźwe Pokolenie
             </span>
           </motion.div>
@@ -95,21 +145,19 @@ export default function SuccessCounterHero() {
 
           {/* 8vw max: "27 000 000+" is ~10em wide in Syne ExtraBold, so anything
               above that overflows the viewport at every breakpoint. */}
-          <p className="mt-4 font-sans text-[clamp(1.5rem,8vw,8rem)] font-extrabold leading-[0.9] tracking-tight tabular-nums text-dark-foreground">
+          <p
+            className={`mt-4 font-sans text-[clamp(1.5rem,8vw,8rem)] leading-[0.9] tracking-tight tabular-nums text-dark-foreground ${isBold ? "font-extrabold" : "font-normal"
+              }`}
+          >
             <span ref={numberRef}>{formatCount(HERO_REACH)}</span>
             <span className="text-primary">+</span>
           </p>
 
-          <motion.p
-            className="mt-6 max-w-xl font-body text-base text-dark-foreground/70 md:text-lg"
-            style={{
-              opacity: prefersReducedMotion ? 1 : captionOpacity,
-              y: prefersReducedMotion ? 0 : captionY,
-            }}
-          >
-            kontaktów z marką w 6 miesięcy — i realnego wpływu na edukację.
-            Zbudowaliśmy ten projekt kompletnie od czystej karty.
-          </motion.p>
+          <p className="mt-3 font-body text-sm uppercase tracking-[0.3em] text-dark-foreground/50">
+            organicznych <span className="font-bold text-dark-foreground">wyświetleń</span>
+          </p>
+
+
         </div>
 
         <motion.div

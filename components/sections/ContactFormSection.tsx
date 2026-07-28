@@ -188,11 +188,17 @@ export default function ContactFormSection({
 
   // Progressive Step 1 Save
   async function handleNextStep1() {
+    const offerType = form.getValues("offerType")
+
+    if (offerType === "marketing_plan") {
+      await handleMarketingPlanSubmit()
+      return
+    }
+
     const isStep1Valid = await form.trigger(["offerType", "email"])
     if (!isStep1Valid) return
 
     const email = form.getValues("email")
-    const offerType = form.getValues("offerType")
     setIsLoading(true)
     try {
       const res = await fetch("/api/leads", {
@@ -209,6 +215,60 @@ export default function ContactFormSection({
       posthog?.capture("lead_form_step_completed", { step: 1, offer_type: offerType })
     } catch {
       toast.error("Wystąpił błąd podczas zapisywania. Spróbuj ponownie.")
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  // Single-step submission for the marketing plan offer (email + description only)
+  async function handleMarketingPlanSubmit() {
+    const isValid = await form.trigger(["offerType", "email", "projectDescription"])
+    if (!isValid) return
+
+    const email = form.getValues("email")
+    const projectDescription = form.getValues("projectDescription")
+    setIsLoading(true)
+    try {
+      const step1Res = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ step: 1, email, offerType: "marketing_plan" }),
+      })
+      if (!step1Res.ok) throw new Error("Step 1 failed")
+      const step1Data = await step1Res.json()
+      const newLeadId = step1Data.leadId as string
+      setLeadId(newLeadId)
+
+      const step3Res = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ step: 3, leadId: newLeadId, projectDescription }),
+      })
+      if (!step3Res.ok) throw new Error("Step 3 failed")
+
+      const metaEventId = newMetaEventId()
+      const step4Res = await fetch("/api/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          step: 4,
+          leadId: newLeadId,
+          colorPreference: "",
+          reference: "",
+          attachments: [],
+          metaEventId,
+        }),
+      })
+      if (!step4Res.ok) throw new Error("Step 4 failed")
+
+      posthog?.capture("lead_form_submitted", {
+        offer_type: "marketing_plan",
+        attached_files: 0,
+      })
+      trackMetaEvent("Lead", { content_name: "", business_type: "" }, metaEventId)
+      router.push("/dziekujemy")
+    } catch {
+      toast.error("Coś poszło nie tak. Spróbuj ponownie lub napisz do nas bezpośrednio.")
     } finally {
       setIsLoading(false)
     }
@@ -338,13 +398,15 @@ export default function ContactFormSection({
     "Zero zobowiązań",
   ]
 
+  const totalSteps = selectedOffer === "marketing_plan" ? 1 : 4
+
   const currentExplanationBase = STEP_EXPLANATIONS.find((e) => e.step === currentStep) || STEP_EXPLANATIONS[0]
   const currentExplanation = {
     ...currentExplanationBase,
     text:
       currentStep === 1
         ? selectedOffer === "marketing_plan"
-          ? "Potrzebujemy Twojego adresu email, aby przesłać Ci darmowy, spersonalizowany plan marketingowy oraz omówić szczegóły. Nie wysyłamy spamu."
+          ? "Podaj adres email i krótko opisz, jaki kanał social media chcesz prowadzić — na tej podstawie przygotujemy darmowy, spersonalizowany plan marketingowy. Nie wysyłamy spamu."
           : "Potrzebujemy Twojego adresu email, aby przesłać Ci darmową, spersonalizowaną wizualizację strony oraz omówić szczegóły. Nie wysyłamy spamu."
         : currentExplanationBase.text,
   }
@@ -424,13 +486,13 @@ export default function ContactFormSection({
             <div className="mb-6">
               <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
                 <span>{currentExplanation.title}</span>
-                <span>Etap {currentStep} z 4</span>
+                <span>Etap {currentStep} z {totalSteps}</span>
               </div>
               <div className="w-full bg-border/50 h-2 rounded-full overflow-hidden">
                 <motion.div
                   className="bg-primary h-full rounded-full"
-                  initial={{ width: "25%" }}
-                  animate={{ width: `${currentStep * 25}%` }}
+                  initial={{ width: `${100 / totalSteps}%` }}
+                  animate={{ width: `${(currentStep / totalSteps) * 100}%` }}
                   transition={{ duration: 0.3 }}
                 />
               </div>
@@ -557,7 +619,7 @@ export default function ContactFormSection({
                                 className="rounded-xl border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-primary h-12"
                                 {...field}
                                 onKeyDown={(e) => {
-                                  if (e.key === "Enter") {
+                                  if (e.key === "Enter" && selectedOffer !== "marketing_plan") {
                                     e.preventDefault()
                                     handleNextStep1()
                                   }
@@ -569,6 +631,30 @@ export default function ContactFormSection({
                         )}
                       />
 
+                      {selectedOffer === "marketing_plan" && (
+                        <FormField
+                          control={form.control}
+                          name="projectDescription"
+                          render={({ field }) => (
+                            <FormItem>
+                              <FormLabel className="text-sm font-medium text-foreground mb-1.5 block">
+                                Opis tego, czego potrzebujesz <span className="text-primary">*</span>
+                              </FormLabel>
+                              <FormControl>
+                                <Textarea
+                                  placeholder="Chciałbym poprowadzić profesjonalny kanał dla..."
+                                  aria-required="true"
+                                  rows={4}
+                                  className="rounded-xl border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-primary resize-none"
+                                  {...field}
+                                />
+                              </FormControl>
+                              <FormMessage className="text-xs text-destructive mt-1" />
+                            </FormItem>
+                          )}
+                        />
+                      )}
+
                       <button
                         type="button"
                         onClick={handleNextStep1}
@@ -578,8 +664,10 @@ export default function ContactFormSection({
                         {isLoading ? (
                           <>
                             <Loader2 className="h-4 w-4 animate-spin" />
-                            Zapisywanie...
+                            {selectedOffer === "marketing_plan" ? "Wysyłanie zgłoszenia..." : "Zapisywanie..."}
                           </>
+                        ) : selectedOffer === "marketing_plan" ? (
+                          "Wyślij i odbierz plan →"
                         ) : (
                           "Przejdź dalej →"
                         )}
