@@ -106,6 +106,19 @@ export default function SuccessCounterHero() {
   return (
     <div ref={trackRef} className="relative h-[220vh]">
       <div className="sticky top-0 flex h-screen flex-col items-center justify-center overflow-hidden px-6">
+        <Image
+          src="/casestudy/logo-ptp.png"
+          alt=""
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-dark/80"
+        />
+
         <motion.div
           aria-hidden="true"
           className="pointer-events-none absolute left-1/2 top-1/2 h-[80vmin] w-[80vmin] -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl"

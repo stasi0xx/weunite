@@ -54,7 +54,7 @@ export const caseStudyProjects: CaseStudyProject[] = [
       "Kampania społeczna zbudowana od zera: ponad 27,2 mln kontaktów z marką, blisko 27 500 nowych obserwujących i patronat 5 placówek oświatowych — w 6 miesięcy.",
     description:
       "Architektura i komunikacja kampanii Pierwsze Trzeźwe Pokolenie (Fundacja Columbus) — od zera, w 6 miesięcy: strategia, ambasadorowie, treści wideo i realne wsparcie edukacyjne w placówkach oświatowych.",
-    image: "/entrepreneurs/lukasz-tchorzewski.jpg",
+    image: "/casestudy/logo-ptp.png",
     imageAlt: "Kadr z podcastu wideo nagranego dla Pierwszego Trzeźwego Pokolenia",
     variant: "deep-dive",
   },
