@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "title": "Social media marketing",
+    "description": "For 8 years we've united communities with brands across social media — Instagram, TikTok, and ad campaigns that sell."
+  },
+  "hero": {
+    "sectionAria": "Social media — introduction",
+    "eyebrow": "Social media",
+    "heading": "For 8 years we've been uniting communities with brands across social media through…"
+  },
+  "pillars": {
+    "sectionHeading": "Three pillars of what we do",
+    "filarLabel": "Pillar {number}",
+    "instagram": {
+      "title": "Instagram – The most powerful visual tool.",
+      "description": "We rely on polished, regular posts that consistently build reach, which translates into results and a strong brand image for you. We scale reach through strategic influencer partnerships, quickly reaching new, engaged audiences and turning them into your loyal customers.",
+      "imageAlt": "Screenshot of an Instagram post — 4,854 likes, 35 comments",
+      "viewPost": "View post"
+    },
+    "tiktok": {
+      "title": "TikTok & Video Formats – Viral reach.",
+      "description": "We don't make boring ads. We produce dynamic, vertical video that's native to the platform and stops the scroll. We grab attention in the first 3 seconds, generating huge organic reach.",
+      "countdown": "3s",
+      "countdownCaption": "That's how long you have to stop the scroll"
+    },
+    "ads": {
+      "title": "Social Ads Campaigns – Fuel for sales.",
+      "description": "Even the best content needs distribution. We pair beautiful creative with precisely targeted paid campaigns to reach people ready to buy and close the sale.",
+      "brandLabel": "Your brand",
+      "sponsoredLabel": "Sponsored",
+      "adCopy": "Your offer, in front of people ready to buy today.",
+      "ctaLabel": "Check the offer",
+      "counterCaption": "ready to buy"
+    }
+  },
+  "cta": {
+    "heading": "Ready for social media that actually sells?",
+    "body": "Book a free consultation and see how we'll build a strategy for your brand that grabs attention and turns followers into customers.",
+    "cta": "Book a consultation"
+  }
+}

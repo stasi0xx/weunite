@@ -1,12 +1,14 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 /**
  * Bridges the hero into the case study body: who Creo Gedania is and what
  * the campaign had to solve before the chapters dig into strategy and results.
  */
 export default function CreoIntro() {
+  const t = useTranslations("creoGedania.intro");
   const prefersReducedMotion = useReducedMotion();
 
   return (
@@ -18,7 +20,7 @@ export default function CreoIntro() {
         viewport={{ once: true }}
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
-        O kliencie
+        {t("eyebrow")}
       </motion.p>
 
       <motion.h3
@@ -28,7 +30,7 @@ export default function CreoIntro() {
         viewport={{ once: true }}
         transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
       >
-        Kameralne klasy, niszowa grupa docelowa, jeden precyzyjny strzał
+        {t("heading")}
       </motion.h3>
 
       <motion.p
@@ -38,11 +40,7 @@ export default function CreoIntro() {
         viewport={{ once: true }}
         transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
       >
-        Creo Gedania to nowoczesna placówka na edukacyjnej mapie Gdańska,
-        wyróżniająca się kameralnymi klasami i naciskiem na wszechstronny
-        rozwój dzieci. Przed zbliżającymi się Dniami Otwartymi szkoła
-        potrzebowała skutecznego sposobu na dotarcie do bardzo konkretnej
-        niszy — rodziców dzieci w wieku szkolnym z Trójmiasta.
+        {t("body1")}
       </motion.p>
 
       <motion.p
@@ -52,9 +50,7 @@ export default function CreoIntro() {
         viewport={{ once: true }}
         transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
       >
-        Cel: promocja Dni Otwartych i rekrutacja nowych uczniów. Potrzebne
-        było rozwiązanie, które zagwarantuje precyzyjne dotarcie, uwiarygodni
-        placówkę i natychmiastowo zaangażuje lokalną społeczność.
+        {t("body2")}
       </motion.p>
     </div>
   );

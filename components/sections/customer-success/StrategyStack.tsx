@@ -10,6 +10,7 @@ import {
   type MotionValue,
 } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { strategists, type Strategist } from "./data";
 
@@ -26,6 +27,7 @@ function StackCard({
   progress: MotionValue<number>;
   prefersReducedMotion: boolean | null;
 }) {
+  const t = useTranslations("home.customerSuccess.strategists");
   const isLast = index === total - 1;
   // While the next card slides over this one, push it back a little.
   const scale = useTransform(progress, [index / total, (index + 1) / total], [1, 0.94]);
@@ -55,7 +57,7 @@ function StackCard({
             <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-dark-foreground/10">
               <Image
                 src={person.image}
-                alt={person.imageAlt}
+                alt={t(`${person.id}.imageAlt`)}
                 fill
                 className="object-cover object-top"
                 sizes="(max-width: 768px) 90vw, 40vw"
@@ -74,24 +76,24 @@ function StackCard({
               {person.name}
             </h4>
             <p className="mt-2 font-body text-sm uppercase tracking-widest text-dark-foreground/50">
-              {person.role}
+              {t(`${person.id}.role`)}
             </p>
             <p className="mt-5 font-body text-base leading-relaxed text-dark-foreground/75 md:text-lg">
-              {person.blurb}
+              {t(`${person.id}.blurb`)}
             </p>
 
-            {person.stats && (
+            {person.statValues && (
               <div className="mt-6 flex flex-wrap gap-3">
-                {person.stats.map((stat) => (
+                {person.statValues.map((value, i) => (
                   <div
-                    key={stat.label}
+                    key={value}
                     className="rounded-2xl border border-dark-foreground/15 px-4 py-3"
                   >
                     <p className="font-sans text-xl font-extrabold tracking-tight text-dark-foreground">
-                      {stat.value}
+                      {value}
                     </p>
                     <p className="font-body text-xs text-dark-foreground/60">
-                      {stat.label}
+                      {t(`${person.id}.stat${i + 1}Label`)}
                     </p>
                   </div>
                 ))}
@@ -105,7 +107,7 @@ function StackCard({
                 rel="noopener noreferrer"
                 className="mt-6 inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 font-body text-sm font-semibold text-primary-foreground transition-all duration-200 hover:gap-3"
               >
-                {person.hrefLabel}
+                {t(`${person.id}.hrefLabel`)}
                 <ArrowUpRight className="h-4 w-4" />
               </a>
             )}
@@ -127,6 +129,7 @@ function StackCard({
  * card pins, then the next slides over it.
  */
 export default function StrategyStack() {
+  const t = useTranslations("home.customerSuccess.strategyStack");
   const containerRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useReducedMotion();
 
@@ -144,7 +147,7 @@ export default function StrategyStack() {
         viewport={{ once: true }}
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
-        02 — Strategia
+        {t("eyebrow")}
       </motion.p>
       <motion.h3
         className="mt-4 max-w-3xl font-sans text-3xl font-extrabold leading-tight tracking-tight text-dark-foreground md:text-5xl"
@@ -153,7 +156,7 @@ export default function StrategyStack() {
         viewport={{ once: true }}
         transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
       >
-        Twarze kampanii, obok których nie da się przejść obojętnie.
+        {t("heading")}
       </motion.h3>
 
       <div ref={containerRef} className="relative mt-16">

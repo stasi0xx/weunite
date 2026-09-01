@@ -1,12 +1,14 @@
 "use client"
 
 import { motion, useReducedMotion } from "framer-motion"
+import { useTranslations } from "next-intl"
 
 export default function CaseStudiesIntro() {
+  const t = useTranslations("caseStudies.intro")
   const prefersReducedMotion = useReducedMotion()
 
   return (
-    <section className="relative pt-14 pb-16 md:pt-20 md:pb-20" aria-label="Realizacje — wprowadzenie">
+    <section className="relative pt-14 pb-16 md:pt-20 md:pb-20" aria-label={t("sectionAria")}>
       <div
         className="hero-blob absolute top-0 right-0 opacity-30 blur-3xl pointer-events-none"
         aria-hidden="true"
@@ -19,7 +21,7 @@ export default function CaseStudiesIntro() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
-          Realizacje
+          {t("eyebrow")}
         </motion.p>
 
         <motion.h1
@@ -28,7 +30,7 @@ export default function CaseStudiesIntro() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
         >
-          Zobacz, jak pracujemy — nie tylko o tym czytaj.
+          {t("heading")}
         </motion.h1>
 
         <motion.p
@@ -37,8 +39,7 @@ export default function CaseStudiesIntro() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
         >
-          Deweloper, klub sportowy, kampania społeczna: trzy różne wyzwania i trzy
-          projekty, które faktycznie zmieniły wyniki naszych klientów.
+          {t("body")}
         </motion.p>
       </div>
     </section>

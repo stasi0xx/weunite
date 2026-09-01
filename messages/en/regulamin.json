@@ -1,0 +1,91 @@
+{
+  "meta": {
+    "title": "Terms of Service",
+    "description": "Terms of service for using the WeUnite website."
+  },
+  "title": "Terms of Service",
+  "lastUpdated": "May 10, 2026",
+  "s1": {
+    "title": "§ 1. General provisions",
+    "p1": "These Terms of Service set out the rules for using the website available at <b>weunite.pl</b> (the \"Site\") and the terms on which WeUnite, based at ul. Gdyńska G/9, 80-340 Gdańsk, Poland (the \"Service Provider\" or \"WeUnite\"), provides services by electronic means.",
+    "p2": "Service Provider contact details: email <email>info@weunite.pl</email>, phone +48 537 732 320.",
+    "p3": "Using the Site means you accept these Terms of Service. If you do not agree with its provisions, please do not use the Site."
+  },
+  "s2": {
+    "title": "§ 2. Definitions",
+    "items": [
+      "Site — the website available at weunite.pl, together with all its subpages.",
+      "User — any natural person, legal person, or organizational unit using the Site.",
+      "Lead / Form — the contact form allowing a User to sign up for a free consultation and website visualization.",
+      "Booking system — the built-in calendar that lets a User independently choose a time for a strategy call.",
+      "Services — the services provided by WeUnite, in particular: building websites with booking and payment systems, social media management, and business automations.",
+      "GDPR — Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data."
+    ]
+  },
+  "s3": {
+    "title": "§ 3. Type and scope of electronic services",
+    "intro": "Through the Site, WeUnite provides the following electronic services:",
+    "items": [
+      "Providing the contact form (Lead) — allowing a User to submit their details in order to receive a free consultation and website visualization.",
+      "An automatic email sequence — after filling out the form, the User receives a series of emails (Day 0 / Day 2 / Day 4) containing information about the Services and an invitation to book a call.",
+      "A strategy call booking system — allowing the User to independently choose an available time slot and receive a confirmation and reminders (48h / 24h / 1h before the call).",
+      "Presentation of the offer — information about WeUnite's Services, case studies, and references."
+    ],
+    "p1": "The services listed above are free of charge. Any paid services (project delivery) are governed by a separate agreement between WeUnite and the client."
+  },
+  "s4": {
+    "title": "§ 4. Conditions for using the Site",
+    "intro1": "To use the Site, you need:",
+    "items1": [
+      "a device with internet access (computer, tablet, smartphone),",
+      "an up-to-date web browser supporting HTML5, CSS3, and JavaScript,",
+      "an active email address (if using the form or booking system)."
+    ],
+    "intro2": "The User agrees to:",
+    "items2": [
+      "use the Site in accordance with applicable law and good practice,",
+      "refrain from any action that could disrupt the Site's proper functioning,",
+      "not provide third parties' personal data without their consent,",
+      "provide true and current information in any forms."
+    ]
+  },
+  "s5": {
+    "title": "§ 5. Contact form and booking system",
+    "p1": "Filling out the contact form is voluntary. It constitutes an invitation to start a business relationship and does not create a binding agreement to provide services.",
+    "p2": "By submitting the form, the User consents to being contacted by WeUnite by email to present the offer and arrange a call.",
+    "p3": "Booking a strategy call through the booking system is equivalent to expressing interest in a free consultation. It does not constitute entering into an agreement for paid services.",
+    "p4": "WeUnite reserves the right to cancel or reschedule a booked call in the event of circumstances beyond the Service Provider's control, with reasonable notice given by email."
+  },
+  "s6": {
+    "title": "§ 6. Intellectual property",
+    "p1": "All content published on the Site (text, graphics, logos, source code, page layout) is the property of WeUnite or of parties that have licensed its use. It is protected by copyright law.",
+    "p2": "Without WeUnite's written consent, it is prohibited to copy, modify, publicly display, or distribute any material from the Site for commercial purposes."
+  },
+  "s7": {
+    "title": "§ 7. Limitation of liability",
+    "p1": "WeUnite will make every effort to keep the Site running continuously and without interruption. However, the Service Provider is not liable for interruptions to the Site's availability resulting from maintenance, technical failures, or force majeure.",
+    "p2": "WeUnite is not liable for consequences arising from a User providing false or incomplete information in the contact form or booking system.",
+    "p3": "The Site may contain links to external websites. WeUnite is not responsible for the content or privacy policy of such sites."
+  },
+  "s8": {
+    "title": "§ 8. Complaints",
+    "intro": "Complaints about the Site's functioning or the electronic services provided may be submitted:",
+    "items": [
+      "by email to: info@weunite.pl,",
+      "in writing to: ul. Gdyńska G/9, 80-340 Gdańsk, Poland."
+    ],
+    "p1": "A complaint should include: full name or company name, contact details, a description of the problem, and the expected resolution.",
+    "p2": "WeUnite will review the complaint within 14 business days of receiving it and will inform the User of the outcome by email."
+  },
+  "s9": {
+    "title": "§ 9. Protection of personal data and cookies",
+    "p1": "The rules WeUnite follows for processing personal data are set out in the <privacyLink>Privacy Policy</privacyLink>.",
+    "p2": "The rules for the use of cookies are set out in the <cookiesLink>Cookie Policy</cookiesLink>."
+  },
+  "s10": {
+    "title": "§ 10. Final provisions",
+    "p1": "Matters not covered by these Terms of Service are governed by Polish law, in particular the Polish Civil Code, the Act on Providing Services by Electronic Means, and the GDPR.",
+    "p2": "WeUnite reserves the right to amend these Terms of Service. Users will be informed of any material change by the publication of a new version on the Site, stating its effective date. Using the Site after changes are published constitutes acceptance of those changes.",
+    "p3": "Any disputes arising from the use of the Site will be resolved by the court with jurisdiction over WeUnite's registered office."
+  }
+}

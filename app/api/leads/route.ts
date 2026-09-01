@@ -28,6 +28,9 @@ const step1Schema = z.object({
   step: z.literal(1),
   email: z.string().email('Podaj poprawny adres email'),
   offerType: z.enum(['website_visualization', 'marketing_plan']).optional().default('website_visualization'),
+  // A missing or invalid value is coerced to 'pl' rather than rejected, so a
+  // malformed locale never blocks a real lead submission.
+  locale: z.enum(['pl', 'en']).catch('pl'),
 })
 
 const step2Schema = z.object({
@@ -63,6 +66,7 @@ const fullSchema = z.object({
   offerType: z.enum(['website_visualization', 'marketing_plan']).optional().default('website_visualization'),
   attachments: z.array(attachmentSchema).max(MAX_FILES).optional().default([]),
   metaEventId: z.string().uuid().optional(),
+  locale: z.enum(['pl', 'en']).catch('pl'),
 })
 
 const payloadSchema = z.discriminatedUnion('step', [
@@ -94,6 +98,7 @@ export async function POST(request: NextRequest) {
       const baseInsert = {
         email: data.email.trim(),
         offer_type: offerType,
+        locale: data.locale,
         name: '',
         project_name: '',
         business_type: '',
@@ -257,7 +262,7 @@ export async function POST(request: NextRequest) {
           : 'Darmowa wizualizacja strony'
 
         const emailResults = await Promise.allSettled([
-          sendLeadConfirmation(lead.email, lead.name || lead.email.split('@')[0]),
+          sendLeadConfirmation(lead.email, lead.name || lead.email.split('@')[0], lead.locale === 'en' ? 'en' : 'pl'),
           resend.emails.send({
             from: 'WeUnite Bot <bot@weunite.pl>',
             to: 'ai.say.agency@gmail.com',
@@ -293,7 +298,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'Invalid input' }, { status: 400 })
   }
 
-  const { name, projectName, email, businessType, projectDescription, colorPreference, reference, offerType, attachments, metaEventId } = fullParsed.data
+  const { name, projectName, email, businessType, projectDescription, colorPreference, reference, offerType, attachments, metaEventId, locale } = fullParsed.data
 
   const metaContext = {
     fbp: request.cookies.get('_fbp')?.value ?? null,
@@ -312,6 +317,7 @@ export async function POST(request: NextRequest) {
     color_preference: colorPreference?.trim() || null,
     reference: reference?.trim() || null,
     offer_type: offerType || 'website_visualization',
+    locale,
     attachments,
     status: 'new',
   }
@@ -372,7 +378,7 @@ export async function POST(request: NextRequest) {
     : 'Darmowa wizualizacja strony'
 
   const emailResults = await Promise.allSettled([
-    sendLeadConfirmation(email, name || email.split('@')[0]),
+    sendLeadConfirmation(email, name || email.split('@')[0], locale),
     resend.emails.send({
       from: 'WeUnite Bot <bot@weunite.pl>',
       to: 'ai.say.agency@gmail.com',

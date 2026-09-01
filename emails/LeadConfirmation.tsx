@@ -26,15 +26,63 @@ const C = {
   border: '#DDD6CB',
 }
 
+export type LeadConfirmationLocale = 'pl' | 'en'
+
 export interface LeadConfirmationProps {
   name: string
+  locale?: LeadConfirmationLocale
 }
 
-export function LeadConfirmation({ name }: LeadConfirmationProps) {
+const COPY = {
+  pl: {
+    preview: 'Twoje zgłoszenie dotarło — sprawdź, co dalej.',
+    greeting: (name: string) => `Hej ${name}, dobrze że jesteś!`,
+    intro:
+      'Zgłoszenie trafiło do nas i już je mamy. Cieszmy się — to naprawdę dobry krok. Firmy, które decydują się na profesjonalną stronę internetową, przestają tracić klientów na rzecz konkurencji i pośredników, którzy biorą prowizję od każdej transakcji.',
+    nextStepsHeading: 'Co dalej?',
+    step1Title: '1. Analizujemy Twoje zgłoszenie',
+    step1Body: ' — sprawdzamy szczegóły projektu i przygotowujemy wstępny plan działania.',
+    step2Title: '2. Odzywamy się do Ciebie',
+    step2Body: ' — napiszemy lub zadzwonimy w ciągu 24h. Zero presji, zero zobowiązań.',
+    step3Title: '3. Przygotowujemy wizualizację',
+    step3Body:
+      ' — w ciągu 72h wyślemy Ci wstępny projekt Twojej strony, a Ty możesz zdecydować czy w ten sposób chcesz pracować.',
+    cta: 'Masz pytanie? Napisz do nas →',
+    signatureLine: 'Jan i Stanisław',
+    signatureBrand: 'WeUnite — Twój SPOTLIGHT',
+    footer: 'WeUnite · weunite.pl · Możesz odpowiedzieć bezpośrednio na tego maila',
+    unsubscribe: 'Zrezygnuj z komunikacji',
+    unsubscribeSubject: 'Rezygnacja+z+komunikacji',
+  },
+  en: {
+    preview: 'Your submission is in — here’s what happens next.',
+    greeting: (name: string) => `Hey ${name}, great to have you!`,
+    intro:
+      "Your submission has reached us. That's a genuinely good step. Businesses that invest in a professional website stop losing customers to competitors and to middlemen who take a cut of every transaction.",
+    nextStepsHeading: "What's next?",
+    step1Title: '1. We review your submission',
+    step1Body: ' — we check the project details and put together an initial plan.',
+    step2Title: '2. We reach out to you',
+    step2Body: " — we'll write or call within 24h. Zero pressure, zero commitment.",
+    step3Title: '3. We prepare your visualization',
+    step3Body:
+      " — within 72h we'll send you an initial design of your website, and you decide whether you'd like to work with us.",
+    cta: 'Got a question? Write to us →',
+    signatureLine: 'Jan and Stanisław',
+    signatureBrand: 'WeUnite — Your SPOTLIGHT',
+    footer: 'WeUnite · weunite.pl · You can reply directly to this email',
+    unsubscribe: 'Unsubscribe',
+    unsubscribeSubject: 'Unsubscribe',
+  },
+} as const
+
+export function LeadConfirmation({ name, locale = 'pl' }: LeadConfirmationProps) {
+  const t = COPY[locale]
+
   return (
-    <Html lang="pl">
+    <Html lang={locale}>
       <Head />
-      <Preview>Twoje zgłoszenie dotarło — sprawdź, co dalej.</Preview>
+      <Preview>{t.preview}</Preview>
       <Body style={{ backgroundColor: C.base, margin: '0', padding: '32px 16px', fontFamily: FONT }}>
         <Container style={{ maxWidth: '600px', margin: '0 auto' }}>
           {/* Top accent bar — sits above the card, matching top corners */}
@@ -63,17 +111,14 @@ export function LeadConfirmation({ name }: LeadConfirmationProps) {
               as="h1"
               style={{ fontFamily: FONT, fontWeight: 700, fontSize: '28px', color: C.text, margin: '0 0 20px 0', lineHeight: '1.2' }}
             >
-              Hej {name}, dobrze że jesteś!
+              {t.greeting(name)}
             </Heading>
 
             <Text style={{ fontFamily: FONT, fontSize: '16px', color: C.text, lineHeight: '1.6', margin: '0 0 32px 0' }}>
-              Zgłoszenie trafiło do nas i już je mamy. Cieszmy się — to naprawdę dobry
-              krok. Firmy, które decydują się na profesjonalną stronę internetową,
-              przestają tracić klientów na rzecz konkurencji i pośredników, którzy
-              biorą prowizję od każdej transakcji.
+              {t.intro}
             </Text>
 
-            {/* "Co dalej?" card */}
+            {/* "What's next?" card */}
             <Section
               style={{
                 backgroundColor: C.base,
@@ -84,16 +129,19 @@ export function LeadConfirmation({ name }: LeadConfirmationProps) {
               }}
             >
               <Text style={{ fontFamily: FONT, fontWeight: 700, fontSize: '16px', color: C.text, margin: '0 0 16px 0' }}>
-                Co dalej?
+                {t.nextStepsHeading}
               </Text>
               <Text style={{ fontFamily: FONT, fontSize: '15px', color: C.text, lineHeight: '1.6', margin: '0 0 12px 0' }}>
-                <strong>1. Analizujemy Twoje zgłoszenie</strong> — sprawdzamy szczegóły projektu i przygotowujemy wstępny plan działania.
+                <strong>{t.step1Title}</strong>
+                {t.step1Body}
               </Text>
               <Text style={{ fontFamily: FONT, fontSize: '15px', color: C.text, lineHeight: '1.6', margin: '0 0 12px 0' }}>
-                <strong>2. Odzywamy się do Ciebie</strong> — napiszemy lub zadzwonimy w ciągu 24h. Zero presji, zero zobowiązań.
+                <strong>{t.step2Title}</strong>
+                {t.step2Body}
               </Text>
               <Text style={{ fontFamily: FONT, fontSize: '15px', color: C.text, lineHeight: '1.6', margin: '0' }}>
-                <strong>3. Przygotowujemy wizualizację</strong> — w ciągu 72h wyślemy Ci wstępny projekt Twojej strony, a Ty możesz zdecydować czy w ten sposób chcesz pracować.
+                <strong>{t.step3Title}</strong>
+                {t.step3Body}
               </Text>
             </Section>
 
@@ -113,7 +161,7 @@ export function LeadConfirmation({ name }: LeadConfirmationProps) {
                   textDecoration: 'none',
                 }}
               >
-                Masz pytanie? Napisz do nas →
+                {t.cta}
               </Button>
             </Section>
 
@@ -121,20 +169,20 @@ export function LeadConfirmation({ name }: LeadConfirmationProps) {
 
             {/* Signature */}
             <Text style={{ fontFamily: FONT, fontSize: '15px', color: C.text, lineHeight: '1.6', margin: '0 0 32px 0' }}>
-              Jan i Stanisław
+              {t.signatureLine}
               <br />
-              <strong>WeUnite — Twój SPOTLIGHT</strong>
+              <strong>{t.signatureBrand}</strong>
             </Text>
 
             {/* Footer */}
             <Text style={{ fontFamily: FONT, fontSize: '13px', color: C.muted, lineHeight: '1.5', margin: '0' }}>
-              WeUnite · weunite.pl · Możesz odpowiedzieć bezpośrednio na tego maila
+              {t.footer}
               <br />
               <Link
-                href="mailto:kontakt@weunite.pl?subject=Rezygnacja+z+komunikacji"
+                href={`mailto:kontakt@weunite.pl?subject=${t.unsubscribeSubject}`}
                 style={{ color: C.muted }}
               >
-                Zrezygnuj z komunikacji
+                {t.unsubscribe}
               </Link>
             </Text>
           </Section>

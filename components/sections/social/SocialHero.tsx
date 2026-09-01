@@ -1,8 +1,10 @@
 "use client"
 
 import { motion, useReducedMotion, type Variants } from "framer-motion"
+import { useTranslations } from "next-intl"
 
 export default function SocialHero() {
+  const t = useTranslations("social.hero")
   const prefersReducedMotion = useReducedMotion()
 
   function makeVariants(y: number, delay: number): Variants {
@@ -19,7 +21,7 @@ export default function SocialHero() {
   return (
     <section
       className="relative pt-14 pb-10 md:pt-20 md:pb-16"
-      aria-label="Social media — wprowadzenie"
+      aria-label={t("sectionAria")}
     >
       <div
         className="hero-blob absolute top-0 left-0 opacity-30 blur-3xl pointer-events-none"
@@ -33,7 +35,7 @@ export default function SocialHero() {
           animate="visible"
           variants={makeVariants(16, 0)}
         >
-          Social media
+          {t("eyebrow")}
         </motion.p>
 
         <motion.h1
@@ -42,7 +44,7 @@ export default function SocialHero() {
           animate="visible"
           variants={makeVariants(24, 0.1)}
         >
-          Od 8 lat jednoczymy społeczności z markami w świecie social mediów przez…
+          {t("heading")}
         </motion.h1>
       </div>
     </section>

@@ -1,18 +1,18 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion, useInView } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 
 /* ─── Service data ─── */
 
 interface ServiceData {
-  label: string;
   title: string;
   description: string;
   device: "monitor" | "phone";
@@ -24,34 +24,32 @@ interface ServiceData {
   secondaryHref: string;
 }
 
-const services: ServiceData[] = [
-  {
-    label: "Inteligentne strony internetowe",
-    title: "01 Inteligentne strony internetowe",
-    description:
-      "Tworzymy witryny, które pracują dla Ciebie. Wdrażamy inteligentne automatyzacje, chatboty AI, zaawansowane systemy rezerwacyjne oraz bezpieczne logowanie do panelu klienta. Zapewniamy dziesiątki udogodnień technologicznych, w pełni dopasowując je do Twojego indywidualnego projektu i potrzeb biznesowych.",
-    device: "monitor",
+const serviceConfig = {
+  websites: {
+    device: "monitor" as const,
     image: "/casestudy/nowyrelaks-after.jpg",
-    imageAlt: "Realizacja strony internetowej Nowy Relaks",
-    primaryLabel: "Odbierz wizualizację",
     primaryHref: "#contact",
-    secondaryLabel: "Zobacz projekty",
     secondaryHref: "/strony-internetowe",
   },
-  {
-    label: "Social media i wideo",
-    title: "02 Social media i wideo",
-    description:
-      "Zbudujemy społeczność wokół Twojej marki. Kompleksowo prowadzimy profile na Instagramie, YouTube, Facebooku i TikToku, dbając o angażujący content. Dodatkowo zapewniamy profesjonalną obsługę wideo i sesje zdjęciowe na terenie całej Polski, dostarczając materiały, które wyróżnią Cię na tle konkurencji.",
-    device: "phone",
+  socialMedia: {
+    device: "phone" as const,
     image: "/casestudy/gdyniapadelclub.jpg",
-    imageAlt: "Realizacja social media dla Gdynia Padel Club",
-    primaryLabel: "Odbierz plan",
     primaryHref: "#contact",
-    secondaryLabel: "Zobacz więcej",
     secondaryHref: "/social-media",
   },
-];
+};
+
+function useServices(): ServiceData[] {
+  const t = useTranslations("home.services");
+  return (Object.keys(serviceConfig) as (keyof typeof serviceConfig)[]).map((id) => ({
+    ...serviceConfig[id],
+    title: t(`${id}.title`),
+    description: t(`${id}.description`),
+    imageAlt: t(`${id}.imageAlt`),
+    primaryLabel: t(`${id}.primaryLabel`),
+    secondaryLabel: t(`${id}.secondaryLabel`),
+  }));
+}
 
 /* ─── Shared bits ─── */
 
@@ -200,6 +198,8 @@ function ServicePhoto({ service }: { service: ServiceData }) {
 gsap.registerPlugin(ScrollTrigger);
 
 export default function ServicesSection() {
+  const t = useTranslations("home.services");
+  const services = useServices();
   const reduced = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
   const pinRef = useRef<HTMLDivElement>(null);
@@ -246,6 +246,10 @@ export default function ServicesSection() {
     }, sectionRef);
 
     return () => ctx.revert();
+    // `services` only needs to be stable in length (fixed at 2 regardless of
+    // locale) for this scroll-scrubbing setup, not in content — omitted
+    // deliberately so a translation-driven re-render doesn't re-run ScrollTrigger.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reduced]);
 
   const ease = "easeOut" as const;
@@ -253,7 +257,7 @@ export default function ServicesSection() {
   return (
     <section
       id="services"
-      aria-label="Nasze usługi"
+      aria-label={t("sectionAria")}
       className="bg-background"
       ref={sectionRef}
     >
@@ -265,7 +269,7 @@ export default function ServicesSection() {
           animate={sectionInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, ease }}
         >
-          USŁUGI
+          {t("eyebrow")}
         </motion.p>
         <motion.h2
           className="font-sans font-extrabold tracking-tight text-foreground text-4xl md:text-5xl lg:text-6xl"
@@ -273,9 +277,11 @@ export default function ServicesSection() {
           animate={sectionInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, ease, delay: 0.1 }}
         >
-          Dwa obszary.
-          <br />
-          Jeden zespół.
+          {t("heading").split("\n").map((line, i) => (
+            <span key={i} className="block">
+              {line}
+            </span>
+          ))}
         </motion.h2>
       </div>
 

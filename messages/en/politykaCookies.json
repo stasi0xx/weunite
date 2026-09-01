@@ -1,0 +1,81 @@
+{
+  "meta": {
+    "title": "Cookie Policy",
+    "description": "Information about the cookies used on the WeUnite website and how to manage them."
+  },
+  "title": "Cookie Policy",
+  "lastUpdated": "May 10, 2026",
+  "s1": {
+    "title": "1. What are cookies?",
+    "p1": "Cookies are small text files stored on your device (computer, tablet, smartphone) by your web browser. They are commonly used to ensure a website works properly, to remember user preferences, and to collect statistics.",
+    "p2": "Cookies do not contain viruses or malicious software. You can delete or block them in your browser settings at any time."
+  },
+  "s2": {
+    "title": "2. What cookies do we use?",
+    "a": {
+      "title": "a) Necessary (technical) cookies",
+      "body": "Required for the Site to work properly. Without them, key features — such as the contact form or the booking system — would not be available. They do not require your consent.",
+      "table": {
+        "name": "Name",
+        "purpose": "Purpose",
+        "duration": "Lifetime",
+        "rows": [
+          { "name": "sb-*", "purpose": "User session (Supabase Auth — admin panel)", "duration": "Session / 1 week" }
+        ]
+      }
+    },
+    "b": {
+      "title": "b) Analytics cookies",
+      "body": "We use <b>PostHog</b> to collect anonymous data about how the Site is used (e.g. pages visited, time spent on the Site, referral source). This data helps us improve the Site. These cookies are only used once you have given your consent.",
+      "table": {
+        "name": "Name",
+        "purpose": "Purpose",
+        "duration": "Lifetime",
+        "rows": [
+          { "name": "ph_*", "purpose": "Analytics session identifier (PostHog)", "duration": "1 year" },
+          { "name": "posthog", "purpose": "Distinguishing unique users (PostHog)", "duration": "1 year" }
+        ]
+      },
+      "moreInfo": "More information: <posthogLink>PostHog's Privacy Policy</posthogLink>."
+    },
+    "c": {
+      "title": "c) Language preference cookie",
+      "body": "Remembers your chosen language for the Site (Polish or English), so you don't have to select it again on your next visit. It does not require your consent — it's necessary for the language switcher to work correctly.",
+      "table": {
+        "name": "Name",
+        "purpose": "Purpose",
+        "duration": "Lifetime",
+        "rows": [
+          { "name": "NEXT_LOCALE", "purpose": "Remembering your chosen Site language", "duration": "Browser session" }
+        ]
+      }
+    }
+  },
+  "s3": {
+    "title": "3. Legal basis for using cookies",
+    "items": [
+      "Necessary cookies — Article 6(1)(f) GDPR (the Controller's legitimate interest in ensuring the Site works properly) and Article 173 of the Polish Telecommunications Law — no consent required.",
+      "Analytics cookies — Article 6(1)(a) GDPR (user consent) — used only after consent is given in the cookie banner."
+    ]
+  },
+  "s4": {
+    "title": "4. How to manage cookies",
+    "intro": "You can manage cookies yourself in your browser settings. You can block them, delete them, or choose which types you accept. Instructions for the most popular browsers:",
+    "items": [
+      "Google Chrome: Settings → Privacy and security → Cookies and other site data",
+      "Mozilla Firefox: Options → Privacy & Security → Cookies and Site Data",
+      "Microsoft Edge: Settings → Cookies and site permissions",
+      "Safari: Preferences → Privacy"
+    ],
+    "p1": "Blocking all cookies may affect how the Site works — in particular, the contact form and booking system may not function correctly.",
+    "p2": "You can also opt out of PostHog analytics by clicking the relevant option in the cookie banner shown on your first visit to the Site."
+  },
+  "s5": {
+    "title": "5. Third-party cookies",
+    "p1": "The Site may use third-party tools that may place their own cookies on your device. This applies in particular to PostHog (analytics). These parties have their own privacy and cookie policies — WeUnite has no control over the cookies they use."
+  },
+  "s6": {
+    "title": "6. Changes to this Policy",
+    "p1": "We may update this Cookie Policy, for example in connection with a change in the tools we use or in legal requirements. A new version will be published on the Site together with its effective date."
+  }
+}

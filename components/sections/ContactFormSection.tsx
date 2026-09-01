@@ -1,14 +1,15 @@
 "use client"
 
-import { useState, useRef } from "react"
-import { useRouter } from "next/navigation"
+import { useState, useRef, useMemo } from "react"
+import { useRouter } from "@/i18n/navigation"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion"
-import { CheckCircle, Loader2, Paperclip, X, ArrowLeft, Info, Sparkles, Layout, TrendingUp } from "lucide-react"
+import { CheckCircle, Loader2, Paperclip, X, ArrowLeft, Sparkles, Layout, TrendingUp } from "lucide-react"
 import { toast } from "sonner"
 import { usePostHog } from "posthog-js/react"
+import { useLocale, useTranslations, type useTranslations as UseTranslationsType } from "next-intl"
 import { newMetaEventId, trackMetaEvent } from "@/lib/meta/pixel"
 import {
   Form,
@@ -23,61 +24,35 @@ import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
 import { createBrowserClient } from "@/lib/supabase/client"
 
-// Schemas per step
-const step1Schema = z.object({
-  offerType: z.enum(["website_visualization", "marketing_plan"]),
-  email: z.string().email("Podaj poprawny adres email"),
-})
+type FormT = ReturnType<typeof UseTranslationsType<"home.contactForm">>
 
-const step2Schema = z.object({
-  projectName: z.string().min(2, "Podaj nazwę projektu lub firmy"),
-  businessType: z.string().min(1, "Podaj rodzaj działalności"),
-})
+// Schemas per step — built from translations, since zod error messages need
+// to render in the visitor's current language (docs/specs/0001-multi-language-support, AC-5).
+function buildFormSchema(t: FormT) {
+  const step1Schema = z.object({
+    offerType: z.enum(["website_visualization", "marketing_plan"]),
+    email: z.string().email(t("errors.invalidEmail")),
+  })
+  const step2Schema = z.object({
+    projectName: z.string().min(2, t("errors.projectNameRequired")),
+    businessType: z.string().min(1, t("errors.businessTypeRequired")),
+  })
+  const step3Schema = z.object({
+    projectDescription: z.string().min(10, t("errors.descriptionTooShort")),
+  })
+  const step4Schema = z.object({
+    colorPreference: z.string().optional(),
+    reference: z.string().optional(),
+  })
+  return step1Schema.merge(step2Schema).merge(step3Schema).merge(step4Schema)
+}
 
-const step3Schema = z.object({
-  projectDescription: z.string().min(10, "Opisz krótko swój projekt (min. 10 znaków)"),
-})
-
-const step4Schema = z.object({
-  colorPreference: z.string().optional(),
-  reference: z.string().optional(),
-})
-
-const fullFormSchema = step1Schema.merge(step2Schema).merge(step3Schema).merge(step4Schema)
-
-type FormValues = z.infer<typeof fullFormSchema>
+type FormValues = z.infer<ReturnType<typeof buildFormSchema>>
 
 const MAX_FILES = 5
 const MAX_FILE_SIZE_MB = 10
 const ACCEPTED_FILE_TYPES =
   "image/jpeg,image/png,image/webp,image/gif,application/pdf,.doc,.docx"
-
-const STEP_EXPLANATIONS = [
-  {
-    step: 1,
-    title: "Wybór i Email",
-    heading: "Po co nam Twój wybór i adres email?",
-    text: "Adres email jest nam potrzebny, aby przesłać Ci darmowy materiał (wizualizację lub plan marketingowy) oraz omówić szczegóły. Nie wysyłamy spamu.",
-  },
-  {
-    step: 2,
-    title: "Projekt i Branża",
-    heading: "Po co nam nazwa projektu i branża?",
-    text: "Poznanie specyfiki Twojego biznesu pomaga nam zaprojektować układ i stylistykę materiałów dostosowane dokładnie do potrzeb Twoich klientów.",
-  },
-  {
-    step: 3,
-    title: "Opis wymagań",
-    heading: "Po co nam opis Twojego projektu?",
-    text: "Twój opis i cele biznesowe pozwalają nam zaplanować unikalne sekcje i wyeksponować największe zalety Twojej oferty.",
-  },
-  {
-    step: 4,
-    title: "Wizualia i Logo",
-    heading: "Po co nam preferencje kolorystyczne i logo?",
-    text: "Twoja preferowana kolorystyka, strony referencyjne oraz logo pozwolą nam stworzyć projekt idealnie spójny z Twoją obecną marką.",
-  },
-]
 
 interface AttachmentPayload {
   path: string
@@ -117,21 +92,13 @@ interface ContactFormSectionProps {
 
 export default function ContactFormSection({
   id = "contact",
-  heading = (
-    <>
-      Bezpłatna
-      <br />
-      wizualizacja lub plan
-    </>
-  ),
-  description = (
-    <>
-      Wybierz interesującą Cię opcję i wypełnij formularz krok po kroku. Przygotujemy dla Ciebie darmową wizualizację lub plan marketingowy w ciągu 24h.
-    </>
-  ),
+  heading,
+  description,
   showBackground = true,
   defaultOfferType = "website_visualization",
 }: ContactFormSectionProps) {
+  const t = useTranslations("home.contactForm")
+  const locale = useLocale()
   const router = useRouter()
   const shouldReduceMotion = useReducedMotion()
   const [currentStep, setCurrentStep] = useState<number>(1)
@@ -141,6 +108,15 @@ export default function ContactFormSection({
   const fileInputRef = useRef<HTMLInputElement>(null)
   const posthog = usePostHog()
   const formStartedRef = useRef(false)
+
+  const headingContent = heading ?? (
+    <>
+      {t("headingLine1")}
+      <br />
+      {t("headingLine2")}
+    </>
+  )
+  const descriptionContent = description ?? <>{t("description")}</>
 
   function handleFormStart() {
     if (formStartedRef.current) return
@@ -152,7 +128,7 @@ export default function ContactFormSection({
     if (!fileList) return
     const incoming = Array.from(fileList).filter((file) => {
       if (file.size > MAX_FILE_SIZE_MB * 1024 * 1024) {
-        toast.error(`Plik "${file.name}" przekracza ${MAX_FILE_SIZE_MB} MB`)
+        toast.error(t("errors.fileTooLarge", { fileName: file.name, maxSize: MAX_FILE_SIZE_MB }))
         return false
       }
       return true
@@ -160,7 +136,7 @@ export default function ContactFormSection({
     setFiles((prev) => {
       const combined = [...prev, ...incoming]
       if (combined.length > MAX_FILES) {
-        toast.error(`Możesz dołączyć maksymalnie ${MAX_FILES} plików`)
+        toast.error(t("errors.tooManyFiles", { maxFiles: MAX_FILES }))
         return combined.slice(0, MAX_FILES)
       }
       return combined
@@ -171,6 +147,8 @@ export default function ContactFormSection({
   function removeFile(index: number) {
     setFiles((prev) => prev.filter((_, i) => i !== index))
   }
+
+  const fullFormSchema = useMemo(() => buildFormSchema(t), [t])
 
   const form = useForm<FormValues>({
     resolver: zodResolver(fullFormSchema),
@@ -204,7 +182,7 @@ export default function ContactFormSection({
       const res = await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ step: 1, email, offerType }),
+        body: JSON.stringify({ step: 1, email, offerType, locale }),
       })
       if (!res.ok) throw new Error("Step 1 failed")
       const data = await res.json()
@@ -214,7 +192,7 @@ export default function ContactFormSection({
       setCurrentStep(2)
       posthog?.capture("lead_form_step_completed", { step: 1, offer_type: offerType })
     } catch {
-      toast.error("Wystąpił błąd podczas zapisywania. Spróbuj ponownie.")
+      toast.error(t("errors.saveFailed"))
     } finally {
       setIsLoading(false)
     }
@@ -232,7 +210,7 @@ export default function ContactFormSection({
       const step1Res = await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ step: 1, email, offerType: "marketing_plan" }),
+        body: JSON.stringify({ step: 1, email, offerType: "marketing_plan", locale }),
       })
       if (!step1Res.ok) throw new Error("Step 1 failed")
       const step1Data = await step1Res.json()
@@ -268,7 +246,7 @@ export default function ContactFormSection({
       trackMetaEvent("Lead", { content_name: "", business_type: "" }, metaEventId)
       router.push("/dziekujemy")
     } catch {
-      toast.error("Coś poszło nie tak. Spróbuj ponownie lub napisz do nas bezpośrednio.")
+      toast.error(t("errors.submitFailed"))
     } finally {
       setIsLoading(false)
     }
@@ -298,7 +276,7 @@ export default function ContactFormSection({
       setCurrentStep(3)
       posthog?.capture("lead_form_step_completed", { step: 2 })
     } catch {
-      toast.error("Wystąpił błąd podczas zapisywania. Spróbuj ponownie.")
+      toast.error(t("errors.saveFailed"))
     } finally {
       setIsLoading(false)
     }
@@ -326,7 +304,7 @@ export default function ContactFormSection({
       setCurrentStep(4)
       posthog?.capture("lead_form_step_completed", { step: 3 })
     } catch {
-      toast.error("Wystąpił błąd podczas zapisywania. Spróbuj ponownie.")
+      toast.error(t("errors.saveFailed"))
     } finally {
       setIsLoading(false)
     }
@@ -362,7 +340,7 @@ export default function ContactFormSection({
         const response = await fetch("/api/leads", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ ...values, attachments, metaEventId }),
+          body: JSON.stringify({ ...values, attachments, metaEventId, locale }),
         })
         if (!response.ok) throw new Error("API error")
       }
@@ -382,8 +360,8 @@ export default function ContactFormSection({
     } catch (error) {
       const message =
         error instanceof UploadError
-          ? `Nie udało się przesłać pliku "${error.fileName}". Spróbuj ponownie.`
-          : "Coś poszło nie tak. Spróbuj ponownie lub napisz do nas bezpośrednio."
+          ? t("errors.uploadFailed", { fileName: error.fileName })
+          : t("errors.submitFailed")
       toast.error(message)
     } finally {
       setIsLoading(false)
@@ -393,22 +371,23 @@ export default function ContactFormSection({
   const selectedOffer = form.watch("offerType") || "website_visualization"
 
   const trustSignals = [
-    "Odpowiadamy w ciągu 24h",
-    selectedOffer === "marketing_plan" ? "Bezpłatny plan marketingowy" : "Bezpłatna wizualizacja strony",
-    "Zero zobowiązań",
+    t("trustSignals.response"),
+    selectedOffer === "marketing_plan" ? t("trustSignals.freeMarketingPlan") : t("trustSignals.freeVisualization"),
+    t("trustSignals.noObligation"),
   ]
 
   const totalSteps = selectedOffer === "marketing_plan" ? 1 : 4
 
-  const currentExplanationBase = STEP_EXPLANATIONS.find((e) => e.step === currentStep) || STEP_EXPLANATIONS[0]
+  const stepKey = (["step1", "step2", "step3", "step4"] as const)[currentStep - 1] ?? "step1"
   const currentExplanation = {
-    ...currentExplanationBase,
+    title: t(`explanations.${stepKey}.title`),
+    heading: t(`explanations.${stepKey}.heading`),
     text:
       currentStep === 1
         ? selectedOffer === "marketing_plan"
-          ? "Podaj adres email i krótko opisz, jaki kanał social media chcesz prowadzić — na tej podstawie przygotujemy darmowy, spersonalizowany plan marketingowy. Nie wysyłamy spamu."
-          : "Potrzebujemy Twojego adresu email, aby przesłać Ci darmową, spersonalizowaną wizualizację strony oraz omówić szczegóły. Nie wysyłamy spamu."
-        : currentExplanationBase.text,
+          ? t("explanations.step1.textMarketingPlan")
+          : t("explanations.step1.textVisualization")
+        : t(`explanations.${stepKey}.text`),
   }
 
   const makeVariants = (y: number, delay: number) => ({
@@ -423,7 +402,7 @@ export default function ContactFormSection({
   return (
     <section
       id={id}
-      aria-label="Formularz kontaktowy"
+      aria-label={t("sectionAria")}
       className={`py-24 md:py-38 relative overflow-hidden ${showBackground ? "bg-background" : ""}`}
     >
       {showBackground && (
@@ -444,7 +423,7 @@ export default function ContactFormSection({
               viewport={{ once: true, margin: "-100px" }}
               className="font-sans font-extrabold tracking-tight text-4xl md:text-5xl lg:text-6xl text-foreground"
             >
-              {heading}
+              {headingContent}
             </motion.h2>
 
             <motion.p
@@ -454,7 +433,7 @@ export default function ContactFormSection({
               viewport={{ once: true, margin: "-100px" }}
               className="font-body text-base text-muted-foreground max-w-md mt-4"
             >
-              {description}
+              {descriptionContent}
             </motion.p>
 
             <div className="mt-8 space-y-3">
@@ -486,7 +465,7 @@ export default function ContactFormSection({
             <div className="mb-6">
               <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">
                 <span>{currentExplanation.title}</span>
-                <span>Etap {currentStep} z {totalSteps}</span>
+                <span>{t("stepProgress", { current: currentStep, total: totalSteps })}</span>
               </div>
               <div className="w-full bg-border/50 h-2 rounded-full overflow-hidden">
                 <motion.div
@@ -524,7 +503,7 @@ export default function ContactFormSection({
               <form
                 onSubmit={(e) => e.preventDefault()}
                 onFocus={handleFormStart}
-                aria-label="Formularz zgłoszeniowy"
+                aria-label={t("formAria")}
                 className="flex flex-col gap-5"
               >
                 <AnimatePresence mode="wait">
@@ -545,7 +524,7 @@ export default function ContactFormSection({
                         render={({ field }) => (
                           <FormItem className="space-y-2">
                             <FormLabel className="text-sm font-medium text-foreground block">
-                              Wybierz, co chcesz bezpłatnie otrzymać <span className="text-primary">*</span>
+                              {t("offerSelector.label")} <span className="text-primary">*</span>
                             </FormLabel>
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                               <button
@@ -566,9 +545,9 @@ export default function ContactFormSection({
                                   )}
                                 </div>
                                 <div>
-                                  <p className="font-semibold text-sm text-foreground">Darmowa wizualizacja strony</p>
+                                  <p className="font-semibold text-sm text-foreground">{t("offerSelector.visualization.title")}</p>
                                   <p className="text-xs text-muted-foreground mt-1 leading-snug">
-                                    Projekt graficzny nowej strony www dopasowany do Twojego biznesu.
+                                    {t("offerSelector.visualization.description")}
                                   </p>
                                 </div>
                               </button>
@@ -591,9 +570,9 @@ export default function ContactFormSection({
                                   )}
                                 </div>
                                 <div>
-                                  <p className="font-semibold text-sm text-foreground">Darmowy plan marketingowy</p>
+                                  <p className="font-semibold text-sm text-foreground">{t("offerSelector.marketingPlan.title")}</p>
                                   <p className="text-xs text-muted-foreground mt-1 leading-snug">
-                                    Strategia promocji, leada i wzrostu sprzedaży w sieci.
+                                    {t("offerSelector.marketingPlan.description")}
                                   </p>
                                 </div>
                               </button>
@@ -609,12 +588,12 @@ export default function ContactFormSection({
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel className="text-sm font-medium text-foreground mb-1.5 block">
-                              Adres email <span className="text-primary">*</span>
+                              {t("fields.email.label")} <span className="text-primary">*</span>
                             </FormLabel>
                             <FormControl>
                               <Input
                                 type="email"
-                                placeholder="jan@biznes.pl"
+                                placeholder={t("fields.email.placeholder")}
                                 aria-required="true"
                                 className="rounded-xl border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-primary h-12"
                                 {...field}
@@ -638,11 +617,11 @@ export default function ContactFormSection({
                           render={({ field }) => (
                             <FormItem>
                               <FormLabel className="text-sm font-medium text-foreground mb-1.5 block">
-                                Opis tego, czego potrzebujesz <span className="text-primary">*</span>
+                                {t("fields.marketingDescription.label")} <span className="text-primary">*</span>
                               </FormLabel>
                               <FormControl>
                                 <Textarea
-                                  placeholder="Chciałbym poprowadzić profesjonalny kanał dla..."
+                                  placeholder={t("fields.marketingDescription.placeholder")}
                                   aria-required="true"
                                   rows={4}
                                   className="rounded-xl border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-primary resize-none"
@@ -664,12 +643,12 @@ export default function ContactFormSection({
                         {isLoading ? (
                           <>
                             <Loader2 className="h-4 w-4 animate-spin" />
-                            {selectedOffer === "marketing_plan" ? "Wysyłanie zgłoszenia..." : "Zapisywanie..."}
+                            {selectedOffer === "marketing_plan" ? t("buttons.sending") : t("buttons.saving")}
                           </>
                         ) : selectedOffer === "marketing_plan" ? (
-                          "Wyślij i odbierz plan →"
+                          t("buttons.submitMarketing")
                         ) : (
-                          "Przejdź dalej →"
+                          t("buttons.next")
                         )}
                       </button>
                     </motion.div>
@@ -691,12 +670,12 @@ export default function ContactFormSection({
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel className="text-sm font-medium text-foreground mb-1.5 block">
-                              Nazwa projektu / firmy <span className="text-primary">*</span>
+                              {t("fields.projectName.label")} <span className="text-primary">*</span>
                             </FormLabel>
                             <FormControl>
                               <Input
                                 type="text"
-                                placeholder="np. Domki Pod Lasem"
+                                placeholder={t("fields.projectName.placeholder")}
                                 autoFocus
                                 aria-required="true"
                                 className="rounded-xl border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-primary h-11"
@@ -714,12 +693,12 @@ export default function ContactFormSection({
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel className="text-sm font-medium text-foreground mb-1.5 block">
-                              Rodzaj działalności <span className="text-primary">*</span>
+                              {t("fields.businessType.label")} <span className="text-primary">*</span>
                             </FormLabel>
                             <FormControl>
                               <Input
                                 type="text"
-                                placeholder="np. Wynajem domków letniskowych, Sklep internetowy..."
+                                placeholder={t("fields.businessType.placeholder")}
                                 aria-required="true"
                                 className="rounded-xl border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-primary h-11"
                                 {...field}
@@ -743,7 +722,7 @@ export default function ContactFormSection({
                           className="rounded-full border border-border text-foreground px-5 py-3 text-sm font-medium hover:bg-muted transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
                         >
                           <ArrowLeft className="h-4 w-4" />
-                          Wstecz
+                          {t("buttons.back")}
                         </button>
 
                         <button
@@ -755,10 +734,10 @@ export default function ContactFormSection({
                           {isLoading ? (
                             <>
                               <Loader2 className="h-4 w-4 animate-spin" />
-                              Zapisywanie...
+                              {t("buttons.saving")}
                             </>
                           ) : (
-                            "Przejdź dalej →"
+                            t("buttons.next")
                           )}
                         </button>
                       </div>
@@ -781,11 +760,11 @@ export default function ContactFormSection({
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel className="text-sm font-medium text-foreground mb-1.5 block">
-                              Opis projektu i Twoich oczekiwań <span className="text-primary">*</span>
+                              {t("fields.projectDescription.label")} <span className="text-primary">*</span>
                             </FormLabel>
                             <FormControl>
                               <Textarea
-                                placeholder="Chcę nową stronę z systemem rezerwacji bezpośrednich, cennikiem i opcją zapytania o wolne terminy..."
+                                placeholder={t("fields.projectDescription.placeholder")}
                                 autoFocus
                                 aria-required="true"
                                 rows={4}
@@ -805,7 +784,7 @@ export default function ContactFormSection({
                           className="rounded-full border border-border text-foreground px-5 py-3 text-sm font-medium hover:bg-muted transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
                         >
                           <ArrowLeft className="h-4 w-4" />
-                          Wstecz
+                          {t("buttons.back")}
                         </button>
 
                         <button
@@ -817,10 +796,10 @@ export default function ContactFormSection({
                           {isLoading ? (
                             <>
                               <Loader2 className="h-4 w-4 animate-spin" />
-                              Zapisywanie...
+                              {t("buttons.saving")}
                             </>
                           ) : (
-                            "Przejdź dalej →"
+                            t("buttons.next")
                           )}
                         </button>
                       </div>
@@ -844,13 +823,13 @@ export default function ContactFormSection({
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel className="text-sm font-medium text-foreground mb-1 block">
-                              Kolorystyka{" "}
-                              <span className="text-muted-foreground font-normal">(opcjonalnie)</span>
+                              {t("fields.colorPreference.label")}{" "}
+                              <span className="text-muted-foreground font-normal">{t("fields.colorPreference.optional")}</span>
                             </FormLabel>
                             <FormControl>
                               <Input
                                 type="text"
-                                placeholder="np. ciepłe drewno, leśna zieleń, nowoczesny ciemny..."
+                                placeholder={t("fields.colorPreference.placeholder")}
                                 className="rounded-xl border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-primary h-11"
                                 {...field}
                               />
@@ -867,13 +846,13 @@ export default function ContactFormSection({
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel className="text-sm font-medium text-foreground mb-1 block">
-                              Strona referencyjna / inspiracja{" "}
-                              <span className="text-muted-foreground font-normal">(opcjonalnie)</span>
+                              {t("fields.reference.label")}{" "}
+                              <span className="text-muted-foreground font-normal">{t("fields.reference.optional")}</span>
                             </FormLabel>
                             <FormControl>
                               <Input
                                 type="text"
-                                placeholder="Wklej adres www strony, która Ci się podoba"
+                                placeholder={t("fields.reference.placeholder")}
                                 className="rounded-xl border-border bg-background text-foreground placeholder:text-muted-foreground focus-visible:ring-primary h-11"
                                 {...field}
                               />
@@ -889,8 +868,8 @@ export default function ContactFormSection({
                           htmlFor="lead-files"
                           className="text-sm font-medium text-foreground mb-1 block"
                         >
-                          Dołącz logo lub pliki{" "}
-                          <span className="text-muted-foreground font-normal">(opcjonalnie)</span>
+                          {t("fields.files.label")}{" "}
+                          <span className="text-muted-foreground font-normal">{t("fields.files.optional")}</span>
                         </Label>
                         <input
                           ref={fileInputRef}
@@ -906,7 +885,7 @@ export default function ContactFormSection({
                           className="flex items-center gap-2 rounded-xl border border-dashed border-border bg-background px-4 py-3 text-sm text-muted-foreground cursor-pointer transition-colors hover:border-primary hover:text-foreground"
                         >
                           <Paperclip className="h-4 w-4 flex-shrink-0" />
-                          Wybierz pliki lub przeciągnij tutaj
+                          {t("fields.files.dropzone")}
                         </label>
                         {files.length > 0 && (
                           <ul className="flex flex-col gap-1.5">
@@ -919,7 +898,7 @@ export default function ContactFormSection({
                                 <button
                                   type="button"
                                   onClick={() => removeFile(index)}
-                                  aria-label={`Usuń plik ${file.name}`}
+                                  aria-label={t("fields.files.removeAria", { fileName: file.name })}
                                   className="text-muted-foreground hover:text-destructive transition-colors flex-shrink-0 cursor-pointer"
                                 >
                                   <X className="h-3.5 w-3.5" />
@@ -937,7 +916,7 @@ export default function ContactFormSection({
                           className="rounded-full border border-border text-foreground px-5 py-3 text-sm font-medium hover:bg-muted transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
                         >
                           <ArrowLeft className="h-4 w-4" />
-                          Wstecz
+                          {t("buttons.back")}
                         </button>
 
                         <button
@@ -950,12 +929,12 @@ export default function ContactFormSection({
                           {isLoading ? (
                             <>
                               <Loader2 className="h-4 w-4 animate-spin" />
-                              Wysyłanie zgłoszenia...
+                              {t("buttons.sending")}
                             </>
                           ) : selectedOffer === "marketing_plan" ? (
-                            "Wyślij i odbierz plan →"
+                            t("buttons.submitMarketing")
                           ) : (
-                            "Wyślij i odbierz wizualizację →"
+                            t("buttons.submitVisualization")
                           )}
                         </button>
                       </div>

@@ -2,10 +2,12 @@
 
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import Link from "next/link"
+import { useTranslations } from "next-intl"
+import { Link } from "@/i18n/navigation"
 import { readConsent, writeConsent, type ConsentValue } from "@/lib/consent"
 
 export default function CookieBanner() {
+  const t = useTranslations("common.cookieBanner")
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
@@ -30,16 +32,15 @@ export default function CookieBanner() {
         >
           <div className="bg-card border border-border rounded-2xl p-5 shadow-xl shadow-foreground/5">
             <p className="font-sans font-bold text-sm text-foreground mb-1">
-              Ta strona używa cookies
+              {t("title")}
             </p>
             <p className="text-xs text-muted-foreground leading-relaxed mb-4">
-              Ruch mierzymy anonimowo, bez cookies. Zgoda pozwala nam rozpoznawać Cię między
-              wizytami (PostHog) i mierzyć skuteczność reklam (Meta Pixel).{" "}
+              {t("body")}{" "}
               <Link
                 href="/polityka-cookies"
                 className="underline underline-offset-4 text-foreground"
               >
-                Dowiedz się więcej
+                {t("learnMore")}
               </Link>
               .
             </p>
@@ -48,13 +49,13 @@ export default function CookieBanner() {
                 onClick={() => save("all")}
                 className="flex-1 rounded-full bg-primary text-white text-xs font-medium py-2.5 px-4 transition-opacity duration-150 hover:opacity-90 cursor-pointer"
               >
-                Akceptuj wszystkie
+                {t("acceptAll")}
               </button>
               <button
                 onClick={() => save("necessary")}
                 className="flex-1 rounded-full border border-border text-foreground text-xs font-medium py-2.5 px-4 transition-colors duration-150 hover:bg-muted cursor-pointer"
               >
-                Tylko niezbędne
+                {t("necessaryOnly")}
               </button>
             </div>
           </div>

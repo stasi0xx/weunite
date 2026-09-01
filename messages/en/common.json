@@ -1,0 +1,64 @@
+{
+  "nav": {
+    "logo": "WeUnite",
+    "links": {
+      "services": "What we do",
+      "mission": "Who it's for",
+      "customerSuccess": "Case study",
+      "realizacje": "Our work"
+    },
+    "cta": "Get your visualization",
+    "toggleMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "footer": {
+    "sectionLinks": {
+      "services": "What we do",
+      "mission": "Who it's for",
+      "customerSuccess": "Case study",
+      "realizacje": "Our work",
+      "contact": "Contact"
+    },
+    "legalLinks": {
+      "privacy": "Privacy policy",
+      "cookies": "Cookie policy",
+      "terms": "Terms of service"
+    },
+    "addressLine1": "Address: ul. Gdyńska G/9,",
+    "addressLine2": "80-340 Gdańsk, Poland",
+    "emailLabel": "Email:",
+    "phoneLabel": "Phone:",
+    "social": {
+      "linkedin": "LinkedIn",
+      "facebook": "Facebook",
+      "instagram": "Instagram"
+    },
+    "copyright": "Copyright © 2026 WeUnite. All rights reserved."
+  },
+  "cookieBanner": {
+    "title": "This site uses cookies",
+    "body": "We measure traffic anonymously, without cookies. Consent lets us recognize you across visits (PostHog) and measure ad performance (Meta Pixel).",
+    "learnMore": "Learn more",
+    "acceptAll": "Accept all",
+    "necessaryOnly": "Necessary only"
+  },
+  "languageSwitcher": {
+    "label": "Language",
+    "pl": "Polski",
+    "en": "English"
+  },
+  "seo": {
+    "titleTemplate": "%s | WeUnite",
+    "defaultTitle": "WeUnite — Websites and Marketing for Vacation Rentals",
+    "defaultDescription": "Professional websites with online booking and payment systems for vacation rental owners. Social media management and automations. Free consultation and website visualization.",
+    "ogDescription": "Professional websites with online booking systems for vacation rental owners. Free consultation and visualization.",
+    "businessDescription": "Marketing agency specializing in websites with online booking systems, social media management, and automations for vacation rental owners.",
+    "websiteDescription": "Professional websites with online booking systems for vacation rental owners.",
+    "serviceWebsite": "Website with booking system for vacation rentals",
+    "serviceWebsiteDescription": "A professional website with an integrated online booking and payment system, built for vacation rental and accommodation owners.",
+    "serviceSocialMedia": "Social media management",
+    "serviceSocialMediaDescription": "Regular content creation, Facebook and Instagram ad campaigns, and organic reach growth.",
+    "serviceAutomation": "Business automation",
+    "serviceAutomationDescription": "Automating business processes — email sequences, booking reminders, and notifications, no manual work, 24/7."
+  }
+}

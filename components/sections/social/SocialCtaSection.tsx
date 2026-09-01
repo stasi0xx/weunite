@@ -1,10 +1,12 @@
 "use client"
 
-import Link from "next/link"
 import { motion, useReducedMotion } from "framer-motion"
 import { ArrowRight } from "lucide-react"
+import { useTranslations } from "next-intl"
+import { Link } from "@/i18n/navigation"
 
 export default function SocialCtaSection() {
+  const t = useTranslations("social.cta")
   const prefersReducedMotion = useReducedMotion()
 
   return (
@@ -23,17 +25,16 @@ export default function SocialCtaSection() {
           id="social-cta-heading"
           className="font-sans font-extrabold text-4xl md:text-5xl tracking-tight text-foreground"
         >
-          Gotowy na social media, które realnie sprzedają?
+          {t("heading")}
         </h2>
         <p className="font-body text-base md:text-lg text-muted-foreground leading-relaxed max-w-xl">
-          Umów bezpłatną konsultację i sprawdź, jak zbudujemy dla Twojej marki strategię,
-          która przyciąga uwagę i zamienia obserwujących w klientów.
+          {t("body")}
         </p>
         <Link
           href="/#contact"
           className="mt-2 inline-flex items-center gap-2 bg-primary text-primary-foreground rounded-full px-8 py-4 text-base font-medium hover:bg-accent transition-all duration-200 font-body"
         >
-          Umów konsultację
+          {t("cta")}
           <ArrowRight className="h-5 w-5" />
         </Link>
       </motion.div>

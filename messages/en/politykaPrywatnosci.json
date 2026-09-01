@@ -1,0 +1,100 @@
+{
+  "meta": {
+    "title": "Privacy Policy",
+    "description": "Find out what personal data WeUnite collects, why, and under what legal basis it's processed."
+  },
+  "title": "Privacy Policy",
+  "lastUpdated": "May 10, 2026",
+  "s1": {
+    "title": "1. Data controller",
+    "p1": "The controller of your personal data is WeUnite, based at <b>ul. Gdyńska G/9, 80-340 Gdańsk, Poland</b>.",
+    "p2": "Contact the Controller at <email>info@weunite.pl</email> or by phone: +48 537 732 320."
+  },
+  "s2": {
+    "title": "2. What data we collect, and from where",
+    "intro": "We only collect data that you provide to us yourself:",
+    "items": [
+      "Contact form (Lead): full name, email address, type of business, service interest.",
+      "Call booking system: full name, email address, chosen meeting time.",
+      "Email correspondence: information contained in the message itself."
+    ],
+    "p1": "We do not collect sensitive data (Article 9 GDPR) or data relating to children under 16. The Site is not directed at minors."
+  },
+  "s3": {
+    "title": "3. Purposes and legal bases for processing",
+    "intro": "We process your data for the following purposes:",
+    "a": {
+      "title": "a) Handling your inquiry and sending a free consultation",
+      "body": "Legal basis: Article 6(1)(b) GDPR (necessary for the performance of a contract or to take steps prior to entering into one) and Article 6(1)(a) GDPR (consent given by submitting the form)."
+    },
+    "b": {
+      "title": "b) The automatic email sequence (Day 0 / Day 2 / Day 4)",
+      "body": "Legal basis: Article 6(1)(a) GDPR (consent) — you can opt out at any time by clicking the \"unsubscribe\" link in any email."
+    },
+    "c": {
+      "title": "c) Managing your call booking and reminders (48h / 24h / 1h)",
+      "body": "Legal basis: Article 6(1)(b) GDPR (performance of a contract / steps prior to entering into one)."
+    },
+    "d": {
+      "title": "d) Marketing WeUnite's own services",
+      "body": "Legal basis: Article 6(1)(f) GDPR (the Controller's legitimate interest) — only toward people who have previously expressed interest in our offer."
+    },
+    "e": {
+      "title": "e) Analytics and improving the Site",
+      "body": "Legal basis: Article 6(1)(f) GDPR (legitimate interest) — using analytics tools (PostHog) we collect anonymous/pseudonymized data about how the Site is used."
+    }
+  },
+  "s4": {
+    "title": "4. How long we keep your data",
+    "items": [
+      "Data from the contact form and booking system: until your inquiry has been handled, and then for 3 years from the last contact, or until you successfully object.",
+      "Data used for marketing purposes: until consent is withdrawn or an objection is raised.",
+      "Data necessary to establish, pursue, or defend legal claims: for the statutory limitation period for claims (generally 3 years for claims related to business activity).",
+      "System logs and analytics data: up to 13 months."
+    ]
+  },
+  "s5": {
+    "title": "5. Recipients of data (sub-processors)",
+    "intro": "Your data may only be shared with trusted parties that process data on our behalf, under data processing agreements:",
+    "items": [
+      "Supabase Inc. (USA) — database and storage of lead records and booking slots. Data is stored in the EU region (Frankfurt). Transfer takes place under Standard Contractual Clauses (Article 46 GDPR).",
+      "Resend Inc. (USA) — sending emails (confirmations, sequences, reminders). Transfer takes place under Standard Contractual Clauses.",
+      "Vercel Inc. (USA) — application hosting. Data is stored in the EU region. Transfer under Standard Contractual Clauses.",
+      "PostHog Inc. (USA/EU) — analytics tool. Data may be stored in the EU region. Transfer under Standard Contractual Clauses."
+    ],
+    "p1": "We do not sell your personal data to third parties or share it with external parties for advertising purposes."
+  },
+  "s6": {
+    "title": "6. Your rights",
+    "intro": "Under the GDPR, you have the following rights:",
+    "items": [
+      "Right of access (Article 15 GDPR) — you can request a copy of your data.",
+      "Right to rectification (Article 16 GDPR) — you can request that inaccurate data be corrected or incomplete data be completed.",
+      "Right to erasure (\"right to be forgotten\", Article 17 GDPR) — you can request that your data be deleted once it is no longer needed for the purposes it was collected for.",
+      "Right to restriction of processing (Article 18 GDPR) — you can request that processing be restricted in certain cases.",
+      "Right to data portability (Article 20 GDPR) — available for data processed on the basis of consent or a contract.",
+      "Right to object (Article 21 GDPR) — you can object to processing based on legitimate interest, including direct marketing.",
+      "Right to withdraw consent — at any time, without affecting the lawfulness of processing carried out before the withdrawal."
+    ],
+    "p1": "To exercise the rights above, contact us at <email>info@weunite.pl</email>. We will respond within 30 days of receiving your request.",
+    "p2": "You also have the right to lodge a complaint with the supervisory authority — the President of the Personal Data Protection Office (UODO), ul. Stawki 2, 00-193 Warszawa, Poland, <uodoLink>uodo.gov.pl</uodoLink>."
+  },
+  "s7": {
+    "title": "7. Data security",
+    "intro": "We apply appropriate technical and organizational security measures to protect your data against unauthorized access, loss, or destruction, including:",
+    "items": [
+      "encrypted HTTPS (TLS) connections,",
+      "access control on the admin panel (Supabase Auth authentication),",
+      "restricting data access to authorized WeUnite staff only,",
+      "regular reviews of permissions and security configuration."
+    ]
+  },
+  "s8": {
+    "title": "8. Profiling and automated decision-making",
+    "p1": "Your data is not used for profiling or for automated decision-making that produces legal effects or similarly significant effects within the meaning of Article 22 GDPR. The email sequence is automatic, but sending it is not a decision that produces legal effects."
+  },
+  "s9": {
+    "title": "9. Changes to this Policy",
+    "p1": "We may update this Privacy Policy. We will inform you of any material change by publishing a new version on the Site together with its effective date. We recommend reviewing it regularly."
+  }
+}

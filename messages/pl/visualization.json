@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "title": "Bezpłatna wizualizacja strony",
+    "description": "Odbierz bezpłatną wizualizację nowej strony z systemem rezerwacji dla swojego biznesu. Zero zobowiązań, zero kosztów."
+  },
+  "hero": {
+    "sectionAria": "Sekcja główna",
+    "heading": "Bezpłatna wizualizacja",
+    "body": "Opowiedz nam o swojej firmie, a przygotujemy bezpłatny projekt wizualny Twojej nowej, inteligentnej strony internetowej. Bez żadnych zobowiązań i bez kosztów najpierw zobacz efekt, a dopiero potem zdecyduj o współpracy.",
+    "cta": "Odbieram"
+  },
+  "monthlyCap": {
+    "label": "Wizualizacje zajęte w tym miesiącu",
+    "valueText": "{taken} z {cap} bezpłatnych wizualizacji zajętych w tym miesiącu",
+    "remaining": "Zostało <b>{count, plural, one {# miejsce} other {# miejsc}}</b> w tym miesiącu.",
+    "full": "Pula na ten miesiąc jest zajęta. Zostaw kontakt, odezwiemy się, gdy zwolni się miejsce."
+  },
+  "caseStudy": {
+    "heading": "Ostatnie realizacje",
+    "body": "Od dewelopera domów jednorodzinnych po klub sportowy — projektujemy dedykowane strony, które prezentują ofertę, budują zaufanie i ułatwiają kontakt.",
+    "viewLive": "Zobacz stronę na żywo",
+    "nowyRelaks": {
+      "label": "Deweloper",
+      "title": "Nowy Relaks — Filipek Investment",
+      "description": "Domy jednorodzinne pod Białą Podlaską. W miejsce darmowego szablonu z Wixa zbudowaliśmy stronę od podstaw: pełną prezentację lokalizacji i etapów budowy oraz formularz zapytań o dostępność domu.",
+      "alt": "Strona inwestycji Nowy Relaks zaprojektowana przez WeUnite"
+    },
+    "gdyniaPadelClub": {
+      "label": "Klub sportowy",
+      "title": "Gdynia Padel Club",
+      "description": "Strona klubu padlowego w Gdyni. Dynamiczna prezentacja kortów i oferty wraz z systemem rezerwacji online, który ułatwia klientom szybkie umówienie gry.",
+      "alt": "Strona Gdynia Padel Club zaprojektowana przez WeUnite"
+    }
+  }
+}

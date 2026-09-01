@@ -1,11 +1,12 @@
 "use client"
 
-import Link from "next/link"
 import Image from "next/image"
 import { motion, useReducedMotion } from "framer-motion"
 import { ArrowUpRight } from "lucide-react"
+import { useTranslations } from "next-intl"
+import { Link } from "@/i18n/navigation"
 import { cn } from "@/lib/utils"
-import { caseStudyProjects, type CaseStudyProject } from "./data"
+import { caseStudyProjects, toProjectMessageKey, type CaseStudyProject } from "./data"
 
 function ProjectMockup({
   image,
@@ -41,6 +42,10 @@ function ProjectRow({
   reversed: boolean
   delay: number
 }) {
+  const t = useTranslations("caseStudies")
+  const key = toProjectMessageKey(project.slug)
+  const title = t(`projects.${key}.title`)
+  const alt = t(`projects.${key}.imageAlt`)
   const prefersReducedMotion = useReducedMotion()
 
   return (
@@ -53,33 +58,33 @@ function ProjectRow({
       <Link
         href={`/realizacje/${project.slug}`}
         className="group grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-16 items-center"
-        aria-label={`Zobacz case study: ${project.title}`}
+        aria-label={t("list.viewAria", { title })}
       >
         <div className={cn(reversed && "md:order-2")}>
           <ProjectMockup
             image={project.image}
-            alt={project.imageAlt}
+            alt={alt}
             wrapperClassName="h-[32vh] md:hidden"
           />
           <ProjectMockup
             image={project.image}
-            alt={project.imageAlt}
+            alt={alt}
             wrapperClassName="hidden md:block aspect-[16/10]"
           />
         </div>
 
         <div className={cn(reversed && "md:order-1")}>
           <span className="text-xs font-semibold tracking-widest uppercase text-muted-foreground font-body">
-            {project.label}
+            {t(`projects.${key}.label`)}
           </span>
           <h2 className="mt-2 font-sans font-bold text-2xl md:text-3xl text-foreground">
-            {project.title}
+            {title}
           </h2>
           <p className="mt-4 font-body text-base text-muted-foreground leading-relaxed">
-            {project.teaser}
+            {t(`projects.${key}.teaser`)}
           </p>
           <span className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-foreground group-hover:text-primary transition-colors duration-200 w-fit">
-            Zobacz case study
+            {t("list.viewCaseStudy")}
             <ArrowUpRight
               className="h-4 w-4 transition-transform duration-200 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
               aria-hidden="true"
@@ -92,8 +97,9 @@ function ProjectRow({
 }
 
 export default function CaseStudiesList() {
+  const t = useTranslations("caseStudies.list")
   return (
-    <section className="pb-24 md:pb-32" aria-label="Lista realizacji">
+    <section className="pb-24 md:pb-32" aria-label={t("sectionAria")}>
       <div className="max-w-6xl mx-auto px-6">
         <div className="flex flex-col gap-16 md:gap-20">
           {caseStudyProjects.map((project, i) => (

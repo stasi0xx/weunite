@@ -3,19 +3,23 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { HoverLink } from "@/components/ui/hover-link";
 import { CtaButton } from "@/components/ui/CtaButton";
-
-const navLinks = [
-  { label: "Co robimy", href: "#services" },
-  { label: "Dla kogo", href: "#mission" },
-  { label: "Case study", href: "#customer-success" },
-  { label: "Realizacje", href: "/realizacje" },
-];
+import { Link } from "@/i18n/navigation";
+import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 
 export default function Navbar() {
+  const t = useTranslations("common.nav");
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const navLinks = [
+    { label: t("links.services"), href: "#services" },
+    { label: t("links.mission"), href: "#mission" },
+    { label: t("links.customerSuccess"), href: "#customer-success" },
+    { label: t("links.realizacje"), href: "/realizacje" },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -37,14 +41,15 @@ export default function Navbar() {
           }`}
       >
         <nav className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          <motion.a
-            href="/"
-            whileHover={{ scale: 1.1 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="font-sans font-extrabold text-xl text-foreground cursor-pointer select-none"
-          >
-            WeUnite
-          </motion.a>
+          <Link href="/" className="cursor-pointer select-none">
+            <motion.span
+              whileHover={{ scale: 1.1 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="inline-block font-sans font-extrabold text-xl text-foreground"
+            >
+              {t("logo")}
+            </motion.span>
+          </Link>
 
           <ul className="hidden md:flex items-center gap-2">
             {navLinks.map((link) => (
@@ -59,14 +64,15 @@ export default function Navbar() {
             ))}
           </ul>
 
-          <div className="hidden md:block">
-            <CtaButton onClick={scrollToContact} label="Odbierz wizualizację" />
+          <div className="hidden md:flex items-center gap-3">
+            <LanguageSwitcher />
+            <CtaButton onClick={scrollToContact} label={t("cta")} />
           </div>
 
           <button
             className="md:hidden p-2 text-foreground"
             onClick={() => setMenuOpen((v) => !v)}
-            aria-label="Toggle menu"
+            aria-label={menuOpen ? t("closeMenu") : t("toggleMenu")}
           >
             {menuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
@@ -95,12 +101,12 @@ export default function Navbar() {
               className="fixed top-0 left-0 right-0 z-50 h-3/4 bg-background flex flex-col px-6 pt-5 pb-8 rounded-b-3xl overflow-hidden"
             >
               <div className="flex items-center justify-between mb-8">
-                <a href="/" className="font-sans font-extrabold text-xl text-foreground">
-                  WeUnite
-                </a>
+                <Link href="/" className="font-sans font-extrabold text-xl text-foreground">
+                  {t("logo")}
+                </Link>
                 <button
                   onClick={() => setMenuOpen(false)}
-                  aria-label="Close menu"
+                  aria-label={t("closeMenu")}
                   className="p-1 text-muted-foreground"
                 >
                   <X className="h-6 w-6" />
@@ -132,10 +138,19 @@ export default function Navbar() {
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.28, duration: 0.25 }}
-                className="mt-6"
+                transition={{ delay: 0.24, duration: 0.25 }}
+                className="flex justify-center mb-4"
               >
-                <CtaButton onClick={scrollToContact} label="Odbierz wizualizację" fullWidth />
+                <LanguageSwitcher />
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.28, duration: 0.25 }}
+                className="mt-2"
+              >
+                <CtaButton onClick={scrollToContact} label={t("cta")} fullWidth />
               </motion.div>
             </motion.div>
           </>

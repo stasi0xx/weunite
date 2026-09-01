@@ -5,6 +5,7 @@ import { motion, useReducedMotion } from "framer-motion"
 import Image from "next/image"
 import gsap from "gsap"
 import { Play, ArrowUpRight, Store } from "lucide-react"
+import { useLocale, useTranslations } from "next-intl"
 
 interface Pillar {
   number: string
@@ -12,26 +13,20 @@ interface Pillar {
   description: string
 }
 
-const pillars: Pillar[] = [
-  {
-    number: "01",
-    title: "Instagram – Najpotężniejsze narzędzie wizualne.",
-    description:
-      "Opieramy się na estetycznych, regularnych publikacjach, które konsekwentnie budują zasięg co przekłada się na wyniki oraz silny wizerunek Twojej marki. Skalujemy zasięgi poprzez strategiczną współpracę z influencerami, błyskawicznie docierając do nowych, zaangażowanych odbiorców i zamieniając ich w Twoich lojalnych klientów.",
-  },
-  {
-    number: "02",
-    title: "TikTok i Formaty Wideo – Wirusowe zasięgi.",
-    description:
-      "Nie robimy nudnych reklam. Produkujemy dynamiczne, pionowe wideo, które jest natywne dla platform i zatrzymuje scrollowanie. Przyciągamy uwagę w pierwsze 3 sekundy, generując ogromne, organiczne zasięgi.",
-  },
-  {
-    number: "03",
-    title: "Kampanie Social Ads – Paliwo dla sprzedaży.",
-    description:
-      "Nawet najlepszy content potrzebuje dystrybucji. Łączymy piękne kreacje z precyzyjnie targetowanymi kampaniami płatnymi, aby docierać do ludzi gotowych na zakup i domykać proces sprzedażowy.",
-  },
+const pillarConfig = [
+  { id: "instagram" as const, number: "01" },
+  { id: "tiktok" as const, number: "02" },
+  { id: "ads" as const, number: "03" },
 ]
+
+function usePillars(): Pillar[] {
+  const t = useTranslations("social.pillars")
+  return pillarConfig.map(({ id, number }) => ({
+    number,
+    title: t(`${id}.title`),
+    description: t(`${id}.description`),
+  }))
+}
 
 const instagramPostUrl =
   "https://www.instagram.com/p/Cu5CgwhNWdz/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
@@ -50,6 +45,7 @@ function GhostNumeral({ value, align }: { value: string; align: "left" | "right"
 }
 
 function InstagramFrame() {
+  const t = useTranslations("social.pillars.instagram")
   return (
     <div className="relative max-w-lg md:ml-auto">
       <div
@@ -64,7 +60,7 @@ function InstagramFrame() {
       >
         <Image
           src="/casestudy/ig-socialmedia2.png"
-          alt="Zrzut ekranu publikacji na Instagramie — 4854 polubienia, 35 komentarzy"
+          alt={t("imageAlt")}
           fill
           className="object-cover"
           style={{ objectPosition: "top" }}
@@ -75,7 +71,7 @@ function InstagramFrame() {
           aria-hidden="true"
         />
         <div className="absolute inset-x-0 bottom-0 flex items-center justify-center gap-1.5 py-2.5 bg-gradient-to-t from-foreground/70 to-transparent text-white opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-          <span className="text-sm font-medium">Zobacz post</span>
+          <span className="text-sm font-medium">{t("viewPost")}</span>
           <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
         </div>
       </a>
@@ -84,6 +80,7 @@ function InstagramFrame() {
 }
 
 function TikTokFrame() {
+  const t = useTranslations("social.pillars.tiktok")
   return (
     <div className="relative max-w-xs">
       <div
@@ -93,10 +90,10 @@ function TikTokFrame() {
       {/* TODO: swap for <video src="/social/tiktok-reel.mp4"> once the file is provided */}
       <div className="relative aspect-[4/5] rounded-2xl overflow-hidden ring-1 ring-foreground/10 bg-dark rotate-2 transition-transform duration-300 ease-out motion-safe:hover:rotate-0 flex flex-col items-center justify-center gap-4 p-8 text-center">
         <span className="font-sans font-extrabold text-7xl md:text-8xl text-dark-foreground tracking-tight leading-none">
-          3s
+          {t("countdown")}
         </span>
         <p className="font-body text-sm text-dark-foreground/60 max-w-[18ch]">
-          Tyle masz, żeby zatrzymać scrollowanie
+          {t("countdownCaption")}
         </p>
         <div className="mt-1 flex items-center justify-center w-11 h-11 rounded-full bg-primary">
           <Play className="h-4 w-4 text-primary-foreground" aria-hidden="true" />
@@ -107,6 +104,8 @@ function TikTokFrame() {
 }
 
 function AdsPanel() {
+  const t = useTranslations("social.pillars.ads")
+  const locale = useLocale()
   const prefersReducedMotion = useReducedMotion()
   const counterRef = useRef<HTMLSpanElement>(null)
   const hasAnimated = useRef(false)
@@ -116,7 +115,7 @@ function AdsPanel() {
     hasAnimated.current = true
 
     if (prefersReducedMotion) {
-      counterRef.current.textContent = "2 400+"
+      counterRef.current.textContent = `${(2400).toLocaleString(locale)}+`
       return
     }
 
@@ -127,7 +126,7 @@ function AdsPanel() {
       ease: "power2.out",
       onUpdate: () => {
         if (counterRef.current) {
-          counterRef.current.textContent = `${Math.round(counter.val).toLocaleString("pl-PL")}+`
+          counterRef.current.textContent = `${Math.round(counter.val).toLocaleString(locale)}+`
         }
       },
     })
@@ -146,8 +145,8 @@ function AdsPanel() {
             <Store className="h-4 w-4 text-primary" aria-hidden="true" />
           </span>
           <div className="flex flex-col leading-tight">
-            <span className="text-sm font-semibold text-foreground">Twoja marka</span>
-            <span className="text-xs text-muted-foreground">Sponsorowane</span>
+            <span className="text-sm font-semibold text-foreground">{t("brandLabel")}</span>
+            <span className="text-xs text-muted-foreground">{t("sponsoredLabel")}</span>
           </div>
         </div>
 
@@ -158,10 +157,10 @@ function AdsPanel() {
 
         <div className="p-4 flex flex-col gap-3">
           <p className="font-body text-sm text-foreground leading-snug">
-            Twoja oferta, przed ludźmi gotowymi kupić już dziś.
+            {t("adCopy")}
           </p>
           <span className="inline-flex self-start items-center justify-center rounded-full bg-primary text-primary-foreground text-xs font-medium px-4 py-2">
-            Sprawdź ofertę
+            {t("ctaLabel")}
           </span>
         </div>
       </motion.div>
@@ -178,7 +177,7 @@ function AdsPanel() {
           <span ref={counterRef}>0</span>
         </p>
         <p className="mt-1 text-[11px] text-muted-foreground max-w-[16ch]">
-          gotowych na zakup
+          {t("counterCaption")}
         </p>
       </motion.div>
     </div>
@@ -198,6 +197,7 @@ function PillarRow({
   mediaSpan: 8 | 5
   delay: number
 }) {
+  const t = useTranslations("social.pillars")
   const prefersReducedMotion = useReducedMotion()
   const mediaSpanClass = mediaSpan === 8 ? "md:col-span-8" : "md:col-span-5"
   const textSpanClass = mediaSpan === 8 ? "md:col-span-4" : "md:col-span-7"
@@ -205,7 +205,7 @@ function PillarRow({
   const text = (
     <div className="relative z-10">
       <span className="font-body text-xs font-semibold tracking-widest uppercase text-primary">
-        Filar {pillar.number}
+        {t("filarLabel", { number: pillar.number })}
       </span>
       <h3 className="mt-3 font-sans font-extrabold text-3xl md:text-4xl text-foreground tracking-tight">
         {pillar.title}
@@ -244,11 +244,14 @@ function PillarRow({
 }
 
 export default function SocialPillarsSection() {
+  const t = useTranslations("social.pillars")
+  const pillars = usePillars()
+
   return (
     <section className="py-24 md:py-32" aria-labelledby="pillars-heading">
       <div className="max-w-6xl mx-auto px-6">
         <h2 id="pillars-heading" className="sr-only">
-          Trzy filary naszych działań
+          {t("sectionHeading")}
         </h2>
 
         <div className="flex flex-col gap-24 md:gap-32">

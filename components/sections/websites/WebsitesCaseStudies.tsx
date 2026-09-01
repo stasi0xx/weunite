@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion"
 import Image from "next/image"
 import { ArrowUpRight } from "lucide-react"
+import { useTranslations } from "next-intl"
 import { cn } from "@/lib/utils"
 
 type Project = {
@@ -14,26 +15,22 @@ type Project = {
   alt: string
 }
 
-const projects: Project[] = [
-  {
-    label: "Deweloper",
-    title: "Nowy Relaks — Filipek Investment",
-    description:
-      "Nowy Relaks to inwestycja domów jednorodzinnych pod Białą Podlaską, prowadzona przez dewelopera Filipek Investment. Wcześniej firma korzystała z darmowego szablonu, który nie budował zaufania i nie prezentował oferty w sposób, na jaki inwestycja zasługuje. Zaprojektowaliśmy i wdrożyliśmy stronę od podstaw, z pełną prezentacją lokalizacji, etapów budowy oraz galerii wnętrz. Dodaliśmy przejrzysty formularz zapytań o dostępność konkretnych domów, trafiający wprost do zespołu sprzedaży. Efekt: nowocześniejszy wizerunek marki i więcej zapytań o zakup.",
-    href: "https://www.nowyrelaks.fi-invest.pl/",
-    image: "/casestudy/nowyrelaks-after.jpg",
-    alt: "Strona inwestycji Nowy Relaks zaprojektowana przez WeUnite",
-  },
-  {
-    label: "Klub sportowy",
-    title: "Gdynia Padel Club",
-    description:
-      "Gdynia Padel Club to klub sportowy w Gdyni, dla którego zbudowaliśmy stronę prezentującą korty i pełną ofertę zajęć. Kluczowym wyzwaniem było umożliwienie klientom szybkiej rezerwacji terminu bez telefonowania do recepcji. Wdrożyliśmy dynamiczny system rezerwacji online, zintegrowany z bieżącą dostępnością kortów. Strona prezentuje też cennik, wydarzenia i social media klubu w jednym miejscu. Efekt: mniej pracy administracyjnej dla zespołu i wygodniejsza ścieżka rezerwacji dla graczy.",
-    href: "https://www.gdyniapadelclub.pl/",
-    image: "/casestudy/gdyniapadelclub.jpg",
-    alt: "Strona Gdynia Padel Club zaprojektowana przez WeUnite",
-  },
+const projectConfig = [
+  { id: "nowyRelaks" as const, href: "https://www.nowyrelaks.fi-invest.pl/", image: "/casestudy/nowyrelaks-after.jpg" },
+  { id: "gdyniaPadelClub" as const, href: "https://www.gdyniapadelclub.pl/", image: "/casestudy/gdyniapadelclub.jpg" },
 ]
+
+function useProjects(): Project[] {
+  const t = useTranslations("websites.caseStudies")
+  return projectConfig.map(({ id, href, image }) => ({
+    href,
+    image,
+    label: t(`${id}.label`),
+    title: t(`${id}.title`),
+    description: t(`${id}.description`),
+    alt: t(`${id}.alt`),
+  }))
+}
 
 function ProjectMockup({
   image,
@@ -61,6 +58,7 @@ function ProjectMockup({
 }
 
 function ProjectRow({ project, delay }: { project: Project; delay: number }) {
+  const t = useTranslations("websites.caseStudies")
   const prefersReducedMotion = useReducedMotion()
 
   return (
@@ -76,7 +74,7 @@ function ProjectRow({ project, delay }: { project: Project; delay: number }) {
         target="_blank"
         rel="noopener noreferrer"
         className="group block"
-        aria-label={`Zobacz stronę ${project.title} (otwiera się w nowej karcie)`}
+        aria-label={t("viewAria", { title: project.title })}
       >
         <ProjectMockup
           image={project.image}
@@ -106,7 +104,7 @@ function ProjectRow({ project, delay }: { project: Project; delay: number }) {
           rel="noopener noreferrer"
           className="group/link mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-foreground hover:text-primary transition-colors duration-200 w-fit"
         >
-          Zobacz stronę na żywo
+          {t("viewLive")}
           <ArrowUpRight
             className="h-4 w-4 transition-transform duration-200 ease-out motion-safe:group-hover/link:translate-x-0.5 motion-safe:group-hover/link:-translate-y-0.5"
             aria-hidden="true"
@@ -118,6 +116,8 @@ function ProjectRow({ project, delay }: { project: Project; delay: number }) {
 }
 
 export default function WebsitesCaseStudies() {
+  const t = useTranslations("websites.caseStudies")
+  const projects = useProjects()
   const prefersReducedMotion = useReducedMotion()
 
   return (
@@ -131,7 +131,7 @@ export default function WebsitesCaseStudies() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
-          Nasze projekty
+          {t("heading")}
         </motion.h2>
 
         <motion.p
@@ -141,7 +141,7 @@ export default function WebsitesCaseStudies() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
         >
-          Kilka realizacji, które pokazują, jak podchodzimy do projektów naszych klientów.
+          {t("subheading")}
         </motion.p>
 
         <div className="mt-16 flex flex-col gap-20 md:gap-28">

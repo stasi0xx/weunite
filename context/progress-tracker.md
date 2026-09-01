@@ -444,6 +444,371 @@ change.
   - Zaktualizowano listę `sectionLinks` w stopce (`"Co robimy"` → `#services`, `"Dla kogo"` → `#mission`, `"Case study"` → `#customer-success`, `"Kontakt"` → `#contact`), wyrównując odnośniki z rzeczywistymi identyfikatorami sekcji na stronie.
 - `tsc --noEmit` przechodzi czysto.
 
+## Multi-Language Support (Feature 0001) — Phase 1 of 4 (Routing Infrastructure)
+
+- Spec: `docs/specs/0001-multi-language-support/index.md`, status **In Progress**
+  (advances to `Accepted` once all 4 phases land — see spec's Migration plan).
+- **Package**: `next-intl@4.14.1` installed.
+- **Routing**: `i18n/routing.ts` (`defineRouting`, locales `pl`/`en`, `defaultLocale: pl`,
+  `localePrefix: "as-needed"` — Polish unprefixed, English under `/en/`), `i18n/navigation.ts`
+  (`Link`/`redirect`/`usePathname`/`useRouter`/`getPathname`), `i18n/request.ts`
+  (`getRequestConfig`, statically imports `messages/pl`/`messages/en`).
+- **`proxy.ts`** (this Next.js version renamed `middleware.ts` → `proxy.ts`, confirmed via
+  `node_modules/next/dist/docs/.../file-conventions/proxy.md` — no `middleware.md` exists in
+  this version's bundled docs): wraps `next-intl/middleware`'s `createMiddleware(routing)`;
+  matcher explicitly excludes `/api`, `/booking`, `/_next`, `/ingest` (PostHog proxy),
+  `/opengraph-image` (no file extension), `favicon.ico`/`icon.png`/`apple-icon.png`,
+  `sitemap.xml`/`robots.txt`, plus any path with a dot.
+- **`next.config.ts`**: wrapped with `createNextIntlPlugin()` (`next-intl/plugin`), composed
+  inside the existing `withSentryConfig(...)` wrap (next-intl innermost, Sentry outermost).
+- **App directory restructure** (Next.js "multiple root layouts" pattern — neither layout wraps
+  the other): `app/(main)`, `app/wizualizacja`, `app/dziekujemy`, `app/sentry-example-page`
+  moved under `app/[locale]/...` via `git mv` (content unchanged). `app/[locale]/layout.tsx` is
+  a new root layout (`<html lang={locale}>` dynamic, `generateStaticParams` over
+  `routing.locales`, `setRequestLocale`, `NextIntlClientProvider`) — its `metadata`/JSON-LD are
+  still the old static Polish-only object for now, deliberately deferred to build plan task 6
+  (locale-aware `generateMetadata` + hreflang). `app/booking/layout.tsx` becomes its own
+  independent root layout (`<html lang="pl">`, unchanged behavior) since it can no longer rely
+  on the removed shared `app/layout.tsx`. `app/layout.tsx` deleted. `app/not-found.tsx` added
+  as the root-level fallback next-intl's `notFound()` needs (fires *before* `app/[locale]/layout.tsx`
+  emits `<html>`, e.g. an unsupported locale segment like `/fr/anything` — AC-9) — minimal inline
+  styles, no Tailwind, since it renders outside any locale-aware layout.
+- **Shared providers, not duplicated**: `lib/fonts.ts` (Syne/DM_Sans, previously inline in the
+  old root layout) and `components/shared/RootProviders.tsx` (PostHog, MetaPixel, CookieBanner,
+  Toaster) are imported by both root layouts instead of either wrapping the other.
+  `app/booking/layout.tsx` also wraps `RootProviders` in a **static** `NextIntlClientProvider`
+  (`locale="pl"`, `messages` imported directly from `messages/pl`, no routing/middleware
+  involvement) purely so `CookieBanner`'s `useTranslations()` call doesn't throw on `/booking` —
+  booking itself stays entirely outside the locale routing system.
+- **`components/ui/hover-link.tsx`**: swapped its plain `<a>` for next-intl's `Link` — confirmed
+  via `node_modules/next-intl/dist/.../navigation/shared/BaseLink.js` and `utils.js`
+  (`isLocalizableHref`) that this correctly auto-prefixes internal paths (`/realizacje`) with the
+  current locale while passing fragments (`#services`), `mailto:`, `tel:`, and external `https://`
+  hrefs through unchanged — so every existing `HoverLink` call site site-wide becomes
+  locale-correct immediately, not just the ones touched in this phase.
+- **`messages/pl/common.json` + `messages/en/common.json`** (+ `messages/{pl,en}/index.ts`
+  composing namespaces): first namespace, covers Navbar, Footer, and the cookie banner. More
+  namespaces get added per page-migration batch in phase 2.
+- **`components/layout/LanguageSwitcher.tsx`**: new. Swaps locale while staying on the same
+  page (AC-3) and preserves the query string, e.g. `fbclid`/`utm_*` ad tracking params (AC-12).
+  Added to `Navbar.tsx` (desktop + mobile) and `Footer.tsx` (mobile row).
+- **`Navbar.tsx`, `Footer.tsx`, `CookieBanner.tsx`** migrated to `useTranslations`; logo/internal
+  links now use next-intl's `Link` directly (not just via `HoverLink`) so they stay in the
+  current locale rather than always resolving to the Polish root.
+  **Gotcha (real build regression, not hypothetical):** making `Footer.tsx` and
+  `components/layout/MinimalFooter.tsx` render next-intl's `Link` while they were still Server
+  Components silently flipped nearly every in-scope route from statically prerendered (`●`) to
+  server-rendered on demand (`ƒ`) — a direct violation of the spec's invariant that in-scope
+  pages must stay static (tied to `project-overview.md`'s "loads in under 2s on mobile" success
+  criterion, paid ad traffic). Root-caused by isolation testing (confirmed `dziekujemy` and
+  `sentry-example-page`, which never render `Footer`/`MinimalFooter`, stayed static throughout).
+  Fixed by adding `"use client"` to both files. `components/layout/LanguageSwitcher.tsx`
+  similarly wraps its `useSearchParams()`-consuming half in `<Suspense>` (same reason
+  `app/providers.tsx`'s `PostHogPageView` already does) so it doesn't force the same bailout.
+  Verified fixed: full route table re-checked after each fix via `rm -rf .next && next build`
+  until every in-scope `[locale]` route read `●`.
+  **NOTE (accepted, not fixed):** `/booking/confirmed` went from static (`○`) to dynamic (`ƒ`)
+  as a side effect of `app/booking/layout.tsx`'s new `NextIntlClientProvider` wrap. `/booking` is
+  explicitly out of the spec's "must stay static" scope (that invariant only covers in-scope
+  paid-ad-traffic pages); `/booking/confirmed` itself has no dynamic content, so this is a minor,
+  low-impact regression on a parked demo page, not a functional issue. Left as-is; flagged here
+  rather than silently accepted.
+- **Verification**: `npx tsc --noEmit` clean. `npx eslint` clean on every file touched in this
+  phase (one pre-existing, unrelated warning remains in `CookieBanner.tsx` — a `setState` inside
+  `useEffect` on a line this phase didn't touch). `rm -rf .next && npx next build` succeeds;
+  every in-scope page under `[locale]` renders as `●` (SSG via `generateStaticParams`) at both
+  `/path` (pl) and `/en/path`; `/booking`, `/booking/confirmed`, `/api/*` render outside the
+  locale tree as before. Not yet run: a live dev-server / browser check of the switcher's actual
+  click behavior, the `/fr/anything` 404 path, or the remembered-locale cookie round trip — per
+  stored preference this project verifies UI changes via `tsc`/`eslint`/`build` rather than
+  launching a browser preview; runtime behavior is `/check verify`'s job, using the verify steps
+  this feature will emit once all 4 phases are built.
+
+## Multi-Language Support (Feature 0001) — Phase 2, home page (proof slice) — done
+
+- **`messages/{pl,en}/home.json`** created (new namespace, wired into `messages/{pl,en}/index.ts`):
+  `hero`, `clientLogos`, `problem`, `services`, `customerSuccess` (nested: `counterHero`,
+  `movementIntro`, `challengeBlock`/`challenges.<id>`, `strategyStack`/`strategists.<id>`,
+  `offlineBlock`, `resultsBlock`, `headlineStats.<id>`, `platformResults.<id>`, `outro`),
+  `contactForm` (nested: `trustSignals`, `explanations.step1-4`, `offerSelector`, `fields.*`,
+  `buttons`, `errors`). English is a first AI draft — per the spec's Follow-up, needs a content
+  review before publishing, not a same-day ship.
+- **Rich text**: `ProblemSection`'s bolded mission paragraph and `OfflineBlock`'s bolded
+  "5 schools" sentence use next-intl's `t.rich("body", { b: (chunks) => <strong>...} })` instead
+  of splitting into fragile sub-keys — the message JSON carries `<b>...</b>` inline.
+  `t.raw()` used for `platformResults.<id>.details` (a string array, not a single message).
+- **`components/sections/customer-success/data.ts`** restructured: locale-invariant structure
+  only now (ids, images, hrefs, the client-reported numbers) — see the file's own updated
+  header comment. All translatable prose (titles, roles, blurbs, labels, platform metrics/details)
+  moved to `home.json`'s `customerSuccess` namespace, looked up by the same `id` each data
+  entry already carried. Every `customer-success/*.tsx` component updated to pull its copy via
+  `useTranslations("home.customerSuccess...")` + the shared `id`, instead of reading it directly
+  off the data array.
+- **`components/sections/ServicesSection.tsx`**: the two service cards' copy (title/description/
+  imageAlt/CTA labels) moved to `home.json`'s `services` namespace, keyed by `websites` /
+  `socialMedia`; the locale-invariant bits (device, image, href) stayed inline as `serviceConfig`.
+  Its secondary CTA (`/strony-internetowe`, `/social-media`) now uses next-intl's `Link` instead
+  of plain `next/link`, so it stays in the current locale.
+- **`components/sections/ContactFormSection.tsx`** (972 lines, the largest single file in this
+  migration): every label/placeholder/button/step-explanation/toast string now comes from
+  `home.json`'s `contactForm` namespace. The 4 zod validation schemas (`step1Schema`…
+  `step4Schema`) moved from module scope into a `buildFormSchema(t)` factory called via
+  `useMemo(() => buildFormSchema(t), [t])` inside the component — they can't stay at module
+  scope once their error messages need a hook (`useTranslations`). `heading`/`description` props
+  lost their hardcoded-Polish-JSX defaults; when omitted, the component now falls back to
+  translated copy computed inside the function body instead (no caller currently overrides
+  either prop, confirmed via a repo-wide grep before making this change).
+- **Real build regression found and fixed (not hypothetical, confirmed by isolation testing):**
+  swapping `HoverLink` (`components/ui/hover-link.tsx`) from a plain `<a>` to next-intl's `Link`
+  silently flipped nearly every in-scope route from statically prerendered (`●`) to
+  server-rendered on demand (`ƒ`) — because `Footer.tsx` and `components/layout/MinimalFooter.tsx`
+  render `HoverLink` while still being **Server Components**, and next-intl's Server Component
+  `Link` reads request-scoped locale state in a way that isn't static-generation-safe here. This
+  directly violates the spec's invariant that in-scope pages must stay static (tied to
+  `project-overview.md`'s "loads in under 2s on mobile" criterion, paid ad traffic). Root-caused
+  by confirming `dziekujemy` and `sentry-example-page` — the only two in-scope routes that never
+  render `Footer`/`MinimalFooter` — stayed static throughout, while every route that does render
+  either of them flipped dynamic. **Fix**: added `"use client"` to both `Footer.tsx` and
+  `MinimalFooter.tsx`. `components/layout/LanguageSwitcher.tsx` (built in Phase 1) already wraps
+  its `useSearchParams()`-consuming half in `<Suspense>` for the same underlying reason (matches
+  `app/providers.tsx`'s existing `PostHogPageView` pattern). Verified fixed by re-running
+  `rm -rf .next && next build` after each fix until every in-scope route read `●` again.
+  **NOTE for whoever migrates `/strony-internetowe`, `/social-media`, `/realizacje`, `/wizualizacja`
+  next**: if any Server Component in those trees starts rendering `HoverLink` or next-intl's
+  `Link`/`useTranslations` directly (not just via `Footer`/`Navbar`, which are already client
+  components), check the build's route table (`●` vs `ƒ`) before moving on — the same class of
+  regression can recur silently on any newly-touched Server Component.
+- **Verification**: `npx tsc --noEmit` clean. `npx eslint` clean on every file touched this phase
+  (pre-existing, unrelated warnings remain elsewhere — a `react-hooks/set-state-in-effect` in
+  `SuccessCounterHero.tsx` and a React Compiler incompatible-library warning on
+  `form.watch()` in `ContactFormSection.tsx`, neither introduced by this phase). `rm -rf .next &&
+  npx next build` succeeds; every in-scope `[locale]` route (home included) still renders `●`.
+  A repo-wide grep for Polish diacritics across every file touched this phase turned up only code
+  comments, confirming no leftover hardcoded Polish UI text. Not yet run: a live dev-server /
+  browser check of the actual rendered English copy, form submission end to end in English, or a
+  native-speaker read of the AI-drafted English translations — per this session's stored
+  preference, UI changes here are verified via `tsc`/`eslint`/`build` rather than a browser
+  preview; deferred to `/check verify` once all 4 phases are built.
+
+## Multi-Language Support (Feature 0001) — Phase 2, remaining pages — done except legal
+
+- **`/strony-internetowe`**: `messages/{pl,en}/websites.json` (hero, 3-step process, 2 case
+  study cards). `WebsitesProcessSection.tsx`'s `/#contact` CTA swapped from `next/link` to
+  next-intl's `Link`.
+- **`/social-media`**: `messages/{pl,en}/social.json` (hero, 3 pillars — Instagram/TikTok/Ads —
+  CTA). `SocialPillarsSection.tsx`'s `AdsPanel` counter now formats via
+  `(2400).toLocaleString(useLocale())` instead of a hardcoded `"pl-PL"`, so the growing-counter
+  animation reads "2,400+" in English instead of "2 400+". `SocialReelsSection.tsx` and
+  `SocialSuccessCarousel.tsx` are imported by `social-media/page.tsx` but never actually
+  rendered (pre-existing dead imports, confirmed via grep) — left untranslated since they
+  produce no visible untranslated text on the page; not part of this migration's scope.
+- **`/realizacje`** (list + 4 detail pages): `messages/{pl,en}/caseStudies.json` covers the
+  list/intro/cta/breadcrumb/detail-shared strings plus all 4 projects' label/title/teaser/
+  description/imageAlt, keyed by camelCased slug (`nowy-relaks` → `nowyRelaks`, via the new
+  `toProjectMessageKey()` helper in `case-studies/data.ts`). `case-studies/data.ts` restructured
+  the same way as `customer-success/data.ts` (Phase 2 home-page work) — locale-invariant fields
+  only (slug, image, liveUrl, variant), translatable copy moved out to messages.
+  **Compile-breaking side effect caught and fixed**: `nowy-relaks/page.tsx` and
+  `gdynia-padel-club/page.tsx` read `project.title`/`project.teaser` (now-removed fields) for
+  their still-static-Polish-only `metadata` exports — restored as literal strings in both files
+  (marked with a `TODO(task 6)` comment) rather than left broken.
+  The `creo-gedania` deep-dive subtree (`CreoGedaniaSection`, `CreoHero`, `CreoIntro`,
+  `CreoVideoBlock`, `CreoResultsBlock`, `NumberedChapter`) got its own
+  `messages/{pl,en}/creoGedania.json`, following the identical data.ts-restructure pattern as
+  `pierwsze-trzezwe-pokolenie`'s `CustomerSuccessSection` did in Phase 2's home-page work.
+  **Same Server-Component gotcha recurred once more, caught proactively this time**:
+  `CaseStudyBreadcrumb.tsx` (rendered directly by two Server Component pages,
+  `creo-gedania/page.tsx` and `pierwsze-trzezwe-pokolenie/page.tsx`) got `"use client"` added
+  *before* building, once the pattern was recognized, rather than needing a build-regression hunt.
+- **`/wizualizacja`**: `messages/{pl,en}/visualization.json` (hero incl. the monthly-cap
+  progress bar, 2 case study cards). The "N spots left this month" line now uses next-intl's ICU
+  plural support (`{count, plural, one {...} other {...}}`) instead of the original's manual
+  `remaining === 1 ? "miejsce" : "miejsc"` ternary — deliberately kept the same one-vs-other
+  simplification the original already made (real Polish grammar needs a third "few" category for
+  2–4, which the original never handled either; not scope creep to leave that as-is).
+  `MinimalHeader.tsx` (Server Component, plain `<a href="/">`) converted to a Client Component
+  using next-intl's `Link`, matching the Footer/MinimalFooter/CaseStudyBreadcrumb fix.
+- **`/dziekujemy`**: `messages/{pl,en}/dziekujemy.json`. Page converted to a Client Component
+  (was a trivial Server Component) so its "back to home" link could use next-intl's `Link`
+  instead of a hardcoded `href="/"` that would have silently sent an English visitor back to the
+  Polish homepage.
+- **Verification**: `npx tsc --noEmit` and `npx eslint` clean after every batch above. Full
+  `rm -rf .next && npx next build` re-run after `/realizacje` (the largest, riskiest batch,
+  given the two Server-Component gotchas found in it) — every in-scope route still `●`.
+  Typecheck + lint re-confirmed clean after `/wizualizacja` and `/dziekujemy`; a final full
+  build re-run is still owed before this phase is called fully done (not yet re-run since the
+  `/dziekujemy` edit — low risk, since that page and `MinimalHeader` follow the exact
+  already-verified "use client" + next-intl Link pattern, but flagging it as unconfirmed rather
+  than silently assuming green).
+
+## Multi-Language Support (Feature 0001) — Phase 2 complete (legal pages)
+
+- **All 3 legal pages migrated**: `messages/{pl,en}/legal.json` (shared `LegalPageLayout` shell
+  strings: "last updated" label, "questions? write to us" footer line) plus one namespace per
+  page — `regulamin.json`, `politykaPrywatnosci.json`, `politykaCookies.json` — each keyed by
+  section (`s1`…`s10`, sub-items `a`–`e` for Polityka Prywatności's legal-basis breakdown,
+  `table.rows` arrays for Polityka Cookies' 3 cookie tables). ~550 lines of dense Polish legal
+  text translated into English across the three pages combined.
+- **AC-13 (new cookie-preference row)**: added a third cookie category, "c) Cookies preferencji
+  językowej" / "c) Language preference cookie", to `/polityka-cookies` documenting `NEXT_LOCALE`
+  (confirmed as next-intl's actual cookie name and session-only default lifetime by reading
+  `node_modules/next-intl/dist/.../routing/config.js` and `syncLocaleCookie.js` directly, not
+  assumed) — in both languages, following the existing table format for the other two categories.
+- **Real compile-breaking mistake caught immediately (not shipped)**: the first pass wrote all
+  three legal pages as `"use client"` components that still tried to keep their
+  `export const metadata` — which Next.js's App Router flatly disallows (`metadata` exports are
+  Server-Component-only). Caught before running any check by re-reading what had just been
+  written; fixed by splitting each into a thin Server Component `page.tsx` (keeps `metadata`,
+  still the pre-existing static Polish-only object, `TODO(task 6)` territory like the rest) that
+  renders a new Client Component holding the actual translated body:
+  `components/sections/legal/{RegulaminContent,PolitykaPrywatnosciContent,PolitykaCookiesContent}.tsx`.
+  `LegalPageLayout.tsx` (the shared shell all three render into) also got `"use client"` added
+  pre-emptively, following the now fully-established pattern from every prior batch.
+- Legal-page-specific rich text: `regulamin`'s § 9 links to the other two legal pages via
+  next-intl's `Link` (`privacyLink`/`cookiesLink` custom tags through `t.rich()`);
+  `politykaPrywatnosci`'s § 6 links to `uodo.gov.pl` (external, `target="_blank"`) the same way;
+  `politykaCookies`'s cookie tables render from `t.raw("s2.x.table.rows")` (an array of
+  `{name, purpose, duration}` objects, not translatable strings — `t.raw()` is the correct
+  next-intl call for a non-message JSON value, same pattern already used for
+  `platformResults.<id>.details` in the home-page migration).
+- **Verification**: `npx tsc --noEmit` clean, `npx eslint` clean on every file in this batch,
+  `rm -rf .next && npx next build` succeeds with every in-scope `[locale]` route (all 16 pages,
+  32 including both locales) rendering `●` — the full route table, not spot-checked. A repo-wide
+  grep for Polish diacritics across `components/sections/legal/` turned up zero matches, meaning
+  Phase 2's own stated finish line ("no leftover untranslated Polish text on the English
+  version") is met for every page this phase touched.
+- **This closes out Phase 2 entirely** (spec build plan task 5). Session paused here at the
+  engineer's explicit request, before Phase 3 begins — Phase 3's first step applies a migration
+  to the live production Supabase database, a materially different risk category from the pure
+  content work Phase 2 was.
+
+## Multi-Language Support (Feature 0001) — Phase 3, tasks 6–9 — all done, migration applied
+
+- **Task 7 update**: engineer applied `009_leads_locale.sql` to the live Supabase project and
+  confirmed via the table editor — `leads.locale` column exists, existing rows show `locale = 'pl'`
+  (AC-10 backfill confirmed live, not just generated). Task 7 is now complete; all of Phase 3
+  (tasks 6–9) is done. Remaining before this feature reaches `done`: Phase 4 (task 10, full
+  regression pass), then `/test` → `/sync`.
+- **`/check verify` run (2026-09-01)**: dev server + real Supabase project, curl across all 26
+  in-scope URLs (13 pages × 2 locales) confirmed correct `html lang`, self-referencing canonical,
+  and full hreflang set on every one (AC-7); JSON-LD `inLanguage`/`og:locale`/descriptions
+  confirmed locale-aware (AC-7); `sitemap.xml` confirmed 24 entries with hreflang (AC-8); `/fr/
+  anything` → 404 (AC-9); `/en/booking` → 404, `/booking`/`/booking/confirmed` still `lang="pl"`
+  (AC-4 routing half). Full Playwright run of the English contact form (all 4 steps) redirected to
+  `/en/dziekujemy` with the "back to home" link at `/en` (AC-11), and the resulting lead row
+  confirmed `locale = 'en'` (AC-5). A direct API call with an invalid `locale: "xx"` confirmed it
+  coerces to `'pl'` rather than being rejected, matching the spec's invariant (AC-5). Confirmed
+  zero `leads` rows have a null `locale` (AC-10). All 3 test leads created during this run were
+  deleted from the live table afterward so they don't show up as false leads to the team.
+  **Blocked, not verified**: AC-6 (the actual received confirmation email content) — submissions
+  used a fake `@example.com` address with no accessible inbox from this session; the send
+  completed without error and the correct `locale` was confirmed stored before the email call, but
+  nobody actually read a received English or Polish confirmation email. **Not run**: a full
+  Polish-locale browser submission (the coercion test exercises the same insert code path but
+  isn't a full UI walkthrough). Full `verify.md` at `docs/specs/0001-multi-language-support/
+  verify.md` has the per-step evidence. Overall: Phase 3 (tasks 6–9) conformance is a partial PASS
+  — every AC-7/8/9/10/11 check passed with cited evidence; AC-6 needs a real inbox check before
+  it can be called done, which is a task for whoever reviews the AI-drafted English copy anyway
+  (see the spec's Follow-up section) — worth doing in the same pass.
+
+- **Task 6 (locale-aware metadata + hreflang + sitemap) — done.** New `lib/seo.ts`:
+  `buildAlternates(pathname, locale)` builds a self-referencing `{ canonical, languages }` object
+  (all locales + `x-default`) off next-intl's `getPathname` (`i18n/navigation.ts`), so every
+  in-scope page's canonical points at itself, never its sibling locale (AC-7). All 14 static
+  `metadata` exports converted to `generateMetadata`: the root `app/[locale]/layout.tsx`
+  (title/description/OG/Twitter from a new `common.json` → `seo` namespace, plus its inline
+  `jsonLd` — `inLanguage`/OG `locale` now branch `pl-PL`/`pl_PL` vs `en-US`/`en_US`, and the
+  business/website/3-service descriptions now come from `t("common.seo.*")` instead of hardcoded
+  Polish strings), the home page (`app/[locale]/(main)/page.tsx`, previously had **no** metadata
+  export at all — deliberately omits its own `title` so it inherits the layout's locale-aware
+  `title.default` rather than doubling up "WeUnite | WeUnite"), `strony-internetowe`,
+  `social-media`, `realizacje` (list) + all 4 detail pages, `wizualizacja` (layout-level),
+  `dziekujemy` (layout-level, stays `noindex`), and the 3 legal pages. Every existing Polish
+  title/description string was preserved verbatim as the `pl` message value (no copy drift on
+  already-indexed pages); English is a first AI draft, same Follow-up caveat as Phase 2.
+  New `meta: { title, description }` keys added to `websites.json`, `social.json`,
+  `caseStudies.json` (list + all 4 `projects.<id>` entries), `visualization.json`,
+  `dziekujemy.json`, `regulamin.json`, `politykaPrywatnosci.json`, `politykaCookies.json` (pl+en).
+  `app/sitemap.ts` rewritten: was a hardcoded 9-URL Polish-only array missing
+  `strony-internetowe`/`social-media`/`wizualizacja` entirely; now emits both locale URLs for
+  all 12 indexable in-scope pages (24 entries) via `getPathname` + `buildAlternates(...).languages`
+  per AC-8. `/dziekujemy` deliberately excluded from the sitemap (stays `noindex`, same precedent
+  as `/booking`'s existing exclusion) — flagging this as a judgment call, not literal AC-8 text.
+  Verified: `npx tsc --noEmit` clean, `npx eslint` clean (only pre-existing unrelated warnings:
+  `social-media/page.tsx` unused imports, `ContactFormSection.tsx` `form.watch()` React Compiler
+  note, both flagged in earlier phases). `rm -rf .next && npx next build` succeeds; every in-scope
+  `[locale]` route still renders `●` (static via `generateStaticParams`), both `/pl` and `/en`.
+  **NOTE (pre-existing, not touched):** the build prints
+  `metadataBase property in metadata export is not set... using "http://localhost:3000"` twice,
+  traced to `app/opengraph-image.tsx` — it lives outside the `[locale]` tree (excluded from
+  locale routing by the spec's own invariant) and so has never inherited `metadataBase` from any
+  layout since `app/layout.tsx` was deleted in Phase 1; out of this task's scope (the spec's
+  Consequences section explicitly keeps the OG image Polish-only/unlocalized), flagged for a
+  possible separate follow-up.
+- **Task 7 (`009_leads_locale.sql`) — migration written, NOT yet applied.**
+  `supabase/migrations/009_leads_locale.sql` adds
+  `locale text not null default 'pl' check (locale in ('pl','en'))` to `leads`, backfills existing
+  rows to `'pl'`, matches the exact style of migrations 007/008. **Not applied to the live
+  Supabase project**: the Supabase CLI here isn't linked and `.env` only holds the project URL +
+  service-role/anon keys, not a DB password or personal access token, so `supabase link` /
+  `db push` and a direct Postgres connection are both unavailable from this session. Asked the
+  engineer how to proceed; they chose to apply it themselves (dashboard SQL editor or CLI once
+  linked) — **this must be applied before deploying tasks 8–9's code**, since the API route's
+  step-1 and legacy-fallback inserts now write a `locale` column that doesn't exist in the live
+  schema yet (no `PGRST204` fallback was added for it, matching the existing precedent that only
+  `current_step` — the very first progressive-saving column — got that retry-without-column
+  treatment; `offer_type` didn't get one either).
+- **Task 8 (API + form locale wiring) — done.** `app/api/leads/route.ts`: `step1Schema` and
+  `fullSchema` (the legacy single-step fallback) both gained
+  `locale: z.enum(['pl','en']).catch('pl')` — `.catch()` coerces both a missing *and* an invalid
+  value to `'pl'` rather than rejecting the request, per the spec's key invariant. `locale` added
+  to the step-1 `baseInsert` and the legacy `baseFullInsert`. `components/sections/
+  ContactFormSection.tsx`: swapped its `useRouter` import from `next/navigation` to next-intl's
+  `@/i18n/navigation` (so both existing `router.push("/dziekujemy")` calls — the marketing-plan
+  single-step flow and the normal step-4 final submit — automatically resolve to `/en/dziekujemy`
+  on the English site, satisfying AC-11, with no change needed at the call sites themselves), added
+  `useLocale()` and threaded `locale` onto all 3 client-constructed payloads that reach a
+  locale-accepting schema: the step-1 create call, the marketing-plan variant's own step-1 call,
+  and the no-`leadId` legacy fallback payload in `handleFinalSubmit`. `app/[locale]/dziekujemy/
+  page.tsx`'s "back to home" link was already using next-intl's `Link` (built in Phase 2) — no
+  change needed there, confirmed rather than assumed.
+- **Task 9 (email locale) — done.** `emails/LeadConfirmation.tsx` gained a
+  `locale?: 'pl' | 'en'` prop (default `'pl'`), `<Html lang={locale}>`, and every hardcoded string
+  (preview text, greeting, intro paragraph, the 3-step "what's next" card, CTA, signature line,
+  footer, unsubscribe link) now branches through a local `COPY` map instead of next-intl (this
+  component renders outside the app's request/locale context, so a plain per-locale object is the
+  right tool here, not `useTranslations`). `lib/resend.ts`'s `sendLeadConfirmation(to, name,
+  locale = 'pl')` gained the third param, passes it to `renderLeadConfirmation`, and now also
+  branches the **subject line** per locale (`LEAD_CONFIRMATION_SUBJECT` map) — the spec only
+  named the email body copy, but a Polish subject on an English lead's confirmation would still
+  violate AC-6's spirit, so this was extended to match. `app/api/leads/route.ts`'s two
+  `sendLeadConfirmation(...)` call sites (step-4 success branch, legacy fallback branch) now pass
+  the third argument — step-4 reads `lead.locale` off the just-refetched row (available once
+  migration 009 is live), the legacy branch reads `fullParsed.data.locale` directly.
+  `BookingConfirmation` and the internal Polish team-notification email are untouched, exactly as
+  the spec calls for.
+- **Verification**: `npx tsc --noEmit` clean across all of tasks 6–9. `npx eslint` clean (same
+  pre-existing warnings noted above, none new). `rm -rf .next && npx next build` succeeds, full
+  route table re-confirmed static for every in-scope page. Not yet run: any live behavior check
+  (submitting the form end-to-end, confirming the `locale` column round-trips, opening the actual
+  rendered English confirmation email) — blocked on migration 009 being applied first, and this
+  project's stored convention is to verify UI via `tsc`/`eslint`/`build` rather than a browser
+  preview, deferring live behavior to `/check verify`.
+
+## Next Up (Multi-Language Support, phase 3 migration + phase 4 — not started)
+
+- **Finish task 7**: engineer applies `supabase/migrations/009_leads_locale.sql` to the live
+  Supabase project (dashboard SQL editor, or `supabase link` + `db push` once the CLI has
+  credentials), then confirm the `locale` column is actually live (query or introspect — a
+  generated-but-unapplied migration doesn't count as done) before this task is marked complete.
+- **Phase 4** (spec build plan task 10): full regression pass per the spec's verify protocol —
+  `/booking` + `/booking/confirmed` unaffected by the locale middleware, `/en/booking` 404s,
+  PostHog/Meta Pixel/cookie banner still work on `/en/*`, every canonical self-references,
+  `tsc`/`next build` clean (already true going into phase 4).
+- After phase 4 lands: run `/check verify` against the verify steps this feature will emit, then
+  `/test` to lock the durable ones, then `/sync`. Spec `**Status**` advances to `Accepted` only
+  once the whole feature is `done`.
+
 ## Architecture Decisions
 
 - shadcn/ui v4 uses `@base-ui/react` instead of `@radix-ui/react-*` — form.tsx was written

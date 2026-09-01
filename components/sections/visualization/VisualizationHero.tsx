@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion, type Variants } from "framer-motion"
 import { usePostHog } from "posthog-js/react"
+import { useTranslations } from "next-intl"
 import { CtaButton } from "@/components/ui/CtaButton"
 import MonthlyCapProgress from "./MonthlyCapProgress"
 
@@ -10,6 +11,7 @@ function scrollTo(id: string) {
 }
 
 export default function VisualizationHero() {
+  const t = useTranslations("visualization.hero")
   const prefersReducedMotion = useReducedMotion()
   const posthog = usePostHog()
 
@@ -27,7 +29,7 @@ export default function VisualizationHero() {
   return (
     <section
       className="flex flex-col pt-14 pb-10 md:pt-18 md:pb-14"
-      aria-label="Sekcja główna"
+      aria-label={t("sectionAria")}
     >
       <div className="max-w-4xl mx-auto w-full px-6 flex flex-col items-center text-center gap-5">
 
@@ -38,7 +40,7 @@ export default function VisualizationHero() {
           animate="visible"
           variants={makeVariants(24, 0.1)}
         >
-          Bezpłatna wizualizacja
+          {t("heading")}
         </motion.h1>
 
         <motion.p
@@ -47,7 +49,7 @@ export default function VisualizationHero() {
           animate="visible"
           variants={makeVariants(16, 0.2)}
         >
-          Opowiedz nam o swojej firmie, a przygotujemy bezpłatny projekt wizualny Twojej nowej, inteligentnej strony internetowej. Bez żadnych zobowiązań i bez kosztów najpierw zobacz efekt, a dopiero potem zdecyduj o współpracy.
+          {t("body")}
         </motion.p>
 
         <motion.div
@@ -65,7 +67,7 @@ export default function VisualizationHero() {
           variants={makeVariants(12, 0.4)}
         >
           <CtaButton
-            label="Odbieram"
+            label={t("cta")}
             size="xl"
             onClick={() => {
               posthog?.capture("cta_clicked", { location: "wizualizacja_hero" })

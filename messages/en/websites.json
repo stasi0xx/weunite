@@ -1,0 +1,48 @@
+{
+  "meta": {
+    "title": "Websites",
+    "description": "Discover our process for building smart, conversion-focused websites — from audit and conversion architecture, through design and implementation, to automation and scaling."
+  },
+  "hero": {
+    "sectionAria": "Websites — introduction",
+    "eyebrow": "Websites",
+    "heading": "See how we build smart websites."
+  },
+  "process": {
+    "heading": "How we deliver websites that sell.",
+    "subheading": "Our process in 3 steps:",
+    "cta": "Book a consultation",
+    "steps": {
+      "audit": {
+        "title": "Audit & Conversion Architecture",
+        "description": "We don't start with design. We first analyze your target audience and design a UX wireframe so every element on the page guides the visitor toward a purchase or a lead."
+      },
+      "design": {
+        "title": "Design & Technical Build",
+        "description": "We code fast, responsive, modern websites. We pair strong visuals with flawless technical optimization (load speed, Core Web Vitals)."
+      },
+      "automation": {
+        "title": "Automation & Scaling",
+        "description": "The website is just the start. We wire up analytics, CRM systems, and email automations so your new ecosystem works for you 24/7."
+      }
+    }
+  },
+  "caseStudies": {
+    "heading": "Our projects",
+    "subheading": "A few projects that show how we approach our clients' work.",
+    "viewLive": "View live site",
+    "viewAria": "View the {title} site (opens in a new tab)",
+    "nowyRelaks": {
+      "label": "Developer",
+      "title": "Nowy Relaks — Filipek Investment",
+      "description": "Nowy Relaks is a single-family home development near Biała Podlaska, run by developer Filipek Investment. The company previously used a free template that neither built trust nor presented the offer the way the development deserved. We designed and built the site from scratch, with a full presentation of the location, construction stages, and interior galleries. We added a clear inquiry form for the availability of specific homes, going straight to the sales team. Result: a more modern brand image and more purchase inquiries.",
+      "alt": "The Nowy Relaks development site, designed by WeUnite"
+    },
+    "gdyniaPadelClub": {
+      "label": "Sports club",
+      "title": "Gdynia Padel Club",
+      "description": "Gdynia Padel Club is a sports club in Gdynia we built a site for, showcasing its courts and full class offering. The key challenge was letting members book a court quickly without calling the front desk. We implemented a dynamic online booking system, integrated with real-time court availability. The site also presents pricing, events, and the club's social media in one place. Result: less administrative work for the team and an easier booking path for players.",
+      "alt": "The Gdynia Padel Club site, designed by WeUnite"
+    }
+  }
+}

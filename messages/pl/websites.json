@@ -1,0 +1,48 @@
+{
+  "meta": {
+    "title": "Strony internetowe",
+    "description": "Poznaj nasz proces realizacji inteligentnych stron internetowych — od audytu i architektury konwersji, przez design i wdrożenie, po automatyzację i skalowanie."
+  },
+  "hero": {
+    "sectionAria": "Strony internetowe — wprowadzenie",
+    "eyebrow": "Strony internetowe",
+    "heading": "Poznaj nasz proces realizacji inteligentnych stron internetowych."
+  },
+  "process": {
+    "heading": "Jak dowozimy strony, które sprzedają?",
+    "subheading": "Nasz proces w 3 krokach:",
+    "cta": "Umów konsultację",
+    "steps": {
+      "audit": {
+        "title": "Audyt i Architektura Konwersji",
+        "description": "Nie zaczynamy od designu. Najpierw analizujemy Twoją grupę docelową i projektujemy makietę UX tak, aby każdy element strony prowadził klienta za rękę do zakupu lub zostawienia leada."
+      },
+      "design": {
+        "title": "Design i Wdrożenie Technologiczne",
+        "description": "Kodujemy szybkie, responsywne i nowoczesne strony. Łączymy estetykę z bezbłędną optymalizacją techniczną (szybkość ładowania, Core Web Vitals)."
+      },
+      "automation": {
+        "title": "Automatyzacja i Skalowanie",
+        "description": "Strona to dopiero początek. Wpinamy analitykę, systemy CRM i automatyzacje mailowe, dzięki którym Twój nowy ekosystem pracuje na Ciebie 24/7."
+      }
+    }
+  },
+  "caseStudies": {
+    "heading": "Nasze projekty",
+    "subheading": "Kilka realizacji, które pokazują, jak podchodzimy do projektów naszych klientów.",
+    "viewLive": "Zobacz stronę na żywo",
+    "viewAria": "Zobacz stronę {title} (otwiera się w nowej karcie)",
+    "nowyRelaks": {
+      "label": "Deweloper",
+      "title": "Nowy Relaks — Filipek Investment",
+      "description": "Nowy Relaks to inwestycja domów jednorodzinnych pod Białą Podlaską, prowadzona przez dewelopera Filipek Investment. Wcześniej firma korzystała z darmowego szablonu, który nie budował zaufania i nie prezentował oferty w sposób, na jaki inwestycja zasługuje. Zaprojektowaliśmy i wdrożyliśmy stronę od podstaw, z pełną prezentacją lokalizacji, etapów budowy oraz galerii wnętrz. Dodaliśmy przejrzysty formularz zapytań o dostępność konkretnych domów, trafiający wprost do zespołu sprzedaży. Efekt: nowocześniejszy wizerunek marki i więcej zapytań o zakup.",
+      "alt": "Strona inwestycji Nowy Relaks zaprojektowana przez WeUnite"
+    },
+    "gdyniaPadelClub": {
+      "label": "Klub sportowy",
+      "title": "Gdynia Padel Club",
+      "description": "Gdynia Padel Club to klub sportowy w Gdyni, dla którego zbudowaliśmy stronę prezentującą korty i pełną ofertę zajęć. Kluczowym wyzwaniem było umożliwienie klientom szybkiej rezerwacji terminu bez telefonowania do recepcji. Wdrożyliśmy dynamiczny system rezerwacji online, zintegrowany z bieżącą dostępnością kortów. Strona prezentuje też cennik, wydarzenia i social media klubu w jednym miejscu. Efekt: mniej pracy administracyjnej dla zespołu i wygodniejsza ścieżka rezerwacji dla graczy.",
+      "alt": "Strona Gdynia Padel Club zaprojektowana przez WeUnite"
+    }
+  }
+}

@@ -1,0 +1,245 @@
+{
+  "hero": {
+    "sectionAria": "Main section",
+    "srDescription": "WeUnite — marketing agency for vacation rentals: booking-ready websites, social media, automations",
+    "scrollAria": "Scroll to our services"
+  },
+  "clientLogos": {
+    "sectionAria": "Our clients",
+    "trustedBy": "Trusted by",
+    "clientSuffix": "WeUnite client"
+  },
+  "problem": {
+    "eyebrow": "Our mission",
+    "heading": "Your marketing, from Gdańsk.",
+    "body": "<b>We unite</b> social media communities around <b>your business</b> and build <b>smart websites</b> that <b>earn trust</b>.",
+    "stats": {
+      "views": "Times our materials were viewed in 2026.",
+      "sites": "Smart websites delivered in 2026.",
+      "clients": "Happy clients who trusted us."
+    }
+  },
+  "services": {
+    "eyebrow": "SERVICES",
+    "heading": "Two focus areas.\nOne team.",
+    "sectionAria": "Our services",
+    "websites": {
+      "title": "01 Smart websites",
+      "description": "We build sites that work for you. We implement smart automations, AI chatbots, advanced booking systems, and secure client-panel logins. We provide dozens of technical conveniences, fully tailored to your individual project and business needs.",
+      "imageAlt": "Nowy Relaks website project",
+      "primaryLabel": "Get your visualization",
+      "secondaryLabel": "See our projects"
+    },
+    "socialMedia": {
+      "title": "02 Social media & video",
+      "description": "We'll build a community around your brand. We fully manage your Instagram, YouTube, Facebook, and TikTok profiles, keeping the content engaging. We also provide professional video production and photo shoots anywhere in Poland, delivering material that sets you apart from the competition.",
+      "imageAlt": "Social media project for Gdynia Padel Club",
+      "primaryLabel": "Get your plan",
+      "secondaryLabel": "See more"
+    }
+  },
+  "customerSuccess": {
+    "sectionHeading": "Case study: Pierwsze Trzeźwe Pokolenie — from zero to 27 million views",
+    "counterHero": {
+      "badge": "Customer Success · Pierwsze Trzeźwe Pokolenie",
+      "fromZeroTo": "From zero to",
+      "viewsLabel": "organic",
+      "viewsLabelBold": "views",
+      "scrollCue": "Scroll"
+    },
+    "movementIntro": {
+      "eyebrow": "The idea",
+      "heading": "The first generation for whom sobriety is a choice, not a ban",
+      "body1": "Pierwsze Trzeźwe Pokolenie (\"First Sober Generation\") is an initiative of the Columbus Foundation — a movement that wants to be exactly what its name says: the first generation for whom delaying first alcohol use becomes the norm, not the exception.",
+      "body2": "Instead of lectures and bans — authentic ambassadors and honest stories, told in the language young people actually use with each other. Mateusz Kusznierewicz shows that success and real emotion can be built without substances. Łukasz Tchórzewski, known as \"the TikTok Alcoholic,\" speaks plainly about what addiction really is. The result: education that doesn't sound like education."
+    },
+    "challengeBlock": {
+      "eyebrow": "01 — The challenge",
+      "heading": "How do you talk about sobriety so young people actually want to listen?"
+    },
+    "challenges": {
+      "cringe": {
+        "title": "Avoid the cringe effect",
+        "body": "For young people, sobriety brings to mind dull lectures and bans that provoke rebellion. We had to build communication with no schoolteacher tone and no finger-wagging — stopping alcohol initiation with inspiration, not fear."
+      },
+      "attention": {
+        "title": "Win against overstimulation",
+        "body": "TikTok's and YouTube's algorithms reward quick entertainment. Our job was to smuggle deep, educational value into a format that would actually hold a viewer's attention."
+      },
+      "offline": {
+        "title": "Translate online into offline",
+        "body": "An online bubble isn't enough. The challenge was building a real educational support tool that would physically reach schools."
+      }
+    },
+    "strategyStack": {
+      "eyebrow": "02 — Strategy",
+      "heading": "The faces of the campaign you can't just scroll past."
+    },
+    "strategists": {
+      "glinka": {
+        "role": "Project initiator",
+        "blurb": "Framed the project in business and personal-development terms. Showed Gen Z that discipline is the currency of the future — not another rule to break.",
+        "imageAlt": "Bartłomiej Glinka, initiator of the Pierwsze Trzeźwe Pokolenie project"
+      },
+      "kusznierewicz": {
+        "role": "Ambassador · Olympic Champion",
+        "blurb": "A legend of Polish sport. His face became a symbol of the alternative to substances — proof that real emotion and success live in sport and passion.",
+        "imageAlt": "Mateusz Kusznierewicz — ambassador of the Pierwsze Trzeźwe Pokolenie campaign"
+      },
+      "tchorzewski": {
+        "role": "\"The TikTok Alcoholic\"",
+        "blurb": "We bet on brutally honest storytelling. The long-form video podcast built loyalty and watch time, while short clips from the same conversation went viral.",
+        "imageAlt": "Still from the video podcast recorded with Łukasz Tchórzewski for Pierwsze Trzeźwe Pokolenie",
+        "stat1Label": "podcast views",
+        "stat2Label": "clip views",
+        "hrefLabel": "Watch the podcast"
+      }
+    },
+    "offlineBlock": {
+      "eyebrow": "03 — Expansion",
+      "heading": "From the phone screen to the school hallway.",
+      "body": "Algorithms aren't everything. We initiated and closed partnerships with <b>5 schools</b>. We designed dedicated posters that now physically hang in school hallways — the project became real support for principals and teachers.",
+      "moreSchools": "+ 2 more schools in the Tri-City area"
+    },
+    "resultsBlock": {
+      "eyebrow": "04 — Results after 6 months",
+      "heading": "Smart content can generate astronomical numbers."
+    },
+    "headlineStats": {
+      "reach": { "label": "brand touchpoints across the whole ecosystem" },
+      "followers": { "label": "new followers — gained from absolute zero" },
+      "schools": { "label": "schools hosting the campaign's patronage and posters" }
+    },
+    "platformResults": {
+      "tiktok": {
+        "metric": "views",
+        "details": [
+          "Top-performing video: 2.74M views",
+          "4 more videos above 1.1M",
+          "Account grown to 17.7K followers"
+        ]
+      },
+      "youtube": {
+        "metric": "views",
+        "details": [
+          "57,900 hours of watch time",
+          "Best Short: 1.16M views",
+          "Long-form + short-form from one recording"
+        ]
+      },
+      "meta": {
+        "metric": "organic reach",
+        "details": [
+          "Reach grew by +118,370%",
+          "Over 330,000 interactions",
+          "Facebook + Instagram, with no ad budget"
+        ]
+      }
+    },
+    "outro": {
+      "line1": "We started with a blank page. We ended with a phenomenon.",
+      "line2": "Client: Pierwsze Trzeźwe Pokolenie (Columbus Foundation). Project architecture and communications — from zero, in 6 months.",
+      "viewProject": "See the project",
+      "ctaSticky": "I want results like these"
+    }
+  },
+  "contactForm": {
+    "sectionAria": "Contact form",
+    "headingLine1": "Free",
+    "headingLine2": "visualization or plan",
+    "description": "Choose the option you're interested in and fill out the form step by step. We'll prepare a free visualization or marketing plan for you within 24h.",
+    "formAria": "Lead form",
+    "trustSignals": {
+      "response": "We respond within 24h",
+      "freeMarketingPlan": "Free marketing plan",
+      "freeVisualization": "Free website visualization",
+      "noObligation": "No obligation"
+    },
+    "stepProgress": "Step {current} of {total}",
+    "explanations": {
+      "step1": {
+        "title": "Choice & Email",
+        "heading": "Why do we need your choice and email address?",
+        "textVisualization": "We need your email address to send you a free, personalized website visualization and to discuss the details. We don't send spam.",
+        "textMarketingPlan": "Give us your email and briefly describe which social media channel you want to run — we'll use it to prepare a free, personalized marketing plan. We don't send spam."
+      },
+      "step2": {
+        "title": "Project & Industry",
+        "heading": "Why do we need your project name and industry?",
+        "text": "Understanding your business helps us design a layout and style tailored exactly to your customers' needs."
+      },
+      "step3": {
+        "title": "Requirements",
+        "heading": "Why do we need a description of your project?",
+        "text": "Your description and business goals let us plan unique sections and highlight your offer's biggest strengths."
+      },
+      "step4": {
+        "title": "Visuals & Logo",
+        "heading": "Why do we need your color preferences and logo?",
+        "text": "Your preferred colors, reference sites, and logo let us create a design that's perfectly consistent with your existing brand."
+      }
+    },
+    "offerSelector": {
+      "label": "Choose what you'd like to receive for free",
+      "visualization": {
+        "title": "Free website visualization",
+        "description": "A visual design for a new website, tailored to your business."
+      },
+      "marketingPlan": {
+        "title": "Free marketing plan",
+        "description": "A strategy for promotion, leads, and online sales growth."
+      }
+    },
+    "fields": {
+      "email": { "label": "Email address", "placeholder": "john@business.com" },
+      "marketingDescription": {
+        "label": "Describe what you need",
+        "placeholder": "I'd like to run a professional channel for..."
+      },
+      "projectName": { "label": "Project / business name", "placeholder": "e.g. Lakeside Cabins" },
+      "businessType": {
+        "label": "Type of business",
+        "placeholder": "e.g. Vacation rentals, Online store..."
+      },
+      "projectDescription": {
+        "label": "Project description & your expectations",
+        "placeholder": "I want a new site with direct booking, pricing, and an availability inquiry form..."
+      },
+      "colorPreference": {
+        "label": "Color scheme",
+        "optional": "(optional)",
+        "placeholder": "e.g. warm wood tones, forest green, modern dark..."
+      },
+      "reference": {
+        "label": "Reference site / inspiration",
+        "optional": "(optional)",
+        "placeholder": "Paste a website address you like"
+      },
+      "files": {
+        "label": "Attach a logo or files",
+        "optional": "(optional)",
+        "dropzone": "Choose files or drag them here",
+        "removeAria": "Remove file {fileName}"
+      }
+    },
+    "buttons": {
+      "back": "Back",
+      "next": "Continue →",
+      "saving": "Saving...",
+      "sending": "Sending...",
+      "submitMarketing": "Send and get the plan →",
+      "submitVisualization": "Send and get the visualization →"
+    },
+    "errors": {
+      "invalidEmail": "Enter a valid email address",
+      "projectNameRequired": "Enter your project or business name",
+      "businessTypeRequired": "Enter your type of business",
+      "descriptionTooShort": "Briefly describe your project (min. 10 characters)",
+      "fileTooLarge": "The file \"{fileName}\" exceeds {maxSize} MB",
+      "tooManyFiles": "You can attach up to {maxFiles} files",
+      "saveFailed": "Something went wrong while saving. Please try again.",
+      "submitFailed": "Something went wrong. Please try again or contact us directly.",
+      "uploadFailed": "Couldn't upload the file \"{fileName}\". Please try again."
+    }
+  }
+}

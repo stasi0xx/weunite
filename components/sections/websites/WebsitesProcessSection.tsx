@@ -1,41 +1,23 @@
 "use client"
 
-import Link from "next/link"
 import { motion, useReducedMotion } from "framer-motion"
 import { Compass, Code2, Zap, ArrowRight } from "lucide-react"
+import { useTranslations } from "next-intl"
+import { Link } from "@/i18n/navigation"
 
-interface Step {
-  number: string
-  icon: typeof Compass
-  title: string
-  description: string
-}
-
-const steps: Step[] = [
-  {
-    number: "01",
-    icon: Compass,
-    title: "Audyt i Architektura Konwersji",
-    description:
-      "Nie zaczynamy od designu. Najpierw analizujemy Twoją grupę docelową i projektujemy makietę UX tak, aby każdy element strony prowadził klienta za rękę do zakupu lub zostawienia leada.",
-  },
-  {
-    number: "02",
-    icon: Code2,
-    title: "Design i Wdrożenie Technologiczne",
-    description:
-      "Kodujemy szybkie, responsywne i nowoczesne strony. Łączymy estetykę z bezbłędną optymalizacją techniczną (szybkość ładowania, Core Web Vitals).",
-  },
-  {
-    number: "03",
-    icon: Zap,
-    title: "Automatyzacja i Skalowanie",
-    description:
-      "Strona to dopiero początek. Wpinamy analitykę, systemy CRM i automatyzacje mailowe, dzięki którym Twój nowy ekosystem pracuje na Ciebie 24/7.",
-  },
+const stepConfig = [
+  { id: "audit" as const, number: "01", icon: Compass },
+  { id: "design" as const, number: "02", icon: Code2 },
+  { id: "automation" as const, number: "03", icon: Zap },
 ]
 
-function StepCard({ step, delay }: { step: Step; delay: number }) {
+function StepCard({
+  step,
+  delay,
+}: {
+  step: (typeof stepConfig)[number] & { title: string; description: string }
+  delay: number
+}) {
   const prefersReducedMotion = useReducedMotion()
   const Icon = step.icon
 
@@ -64,7 +46,13 @@ function StepCard({ step, delay }: { step: Step; delay: number }) {
 }
 
 export default function WebsitesProcessSection() {
+  const t = useTranslations("websites.process")
   const prefersReducedMotion = useReducedMotion()
+  const steps = stepConfig.map((step) => ({
+    ...step,
+    title: t(`steps.${step.id}.title`),
+    description: t(`steps.${step.id}.description`),
+  }))
 
   return (
     <section id="proces" className="py-24 md:py-32" aria-labelledby="process-heading">
@@ -77,7 +65,7 @@ export default function WebsitesProcessSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
-          Jak dowozimy strony, które sprzedają?
+          {t("heading")}
         </motion.h2>
 
         <motion.p
@@ -87,7 +75,7 @@ export default function WebsitesProcessSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
         >
-          Nasz proces w 3 krokach:
+          {t("subheading")}
         </motion.p>
 
         <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -107,7 +95,7 @@ export default function WebsitesProcessSection() {
             href="/#contact"
             className="inline-flex items-center gap-2 bg-primary text-primary-foreground rounded-full px-8 py-4 text-base font-medium hover:bg-accent transition-all duration-200 font-body"
           >
-            Umów konsultację
+            {t("cta")}
             <ArrowRight className="h-5 w-5" />
           </Link>
         </motion.div>

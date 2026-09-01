@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 import { challenges } from "./data";
 
@@ -9,6 +10,7 @@ import { challenges } from "./data";
  * heading, right column scrolls past it so the list reveals one item at a time.
  */
 export default function ChallengeBlock() {
+  const t = useTranslations("home.customerSuccess");
   const prefersReducedMotion = useReducedMotion();
 
   return (
@@ -23,7 +25,7 @@ export default function ChallengeBlock() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, ease: "easeOut" }}
             >
-              01 — Wyzwanie
+              {t("challengeBlock.eyebrow")}
             </motion.p>
             <motion.h3
               className="mt-4 font-sans text-3xl font-normal leading-tight tracking-tight text-dark-foreground md:text-4xl lg:text-5xl"
@@ -32,7 +34,7 @@ export default function ChallengeBlock() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
             >
-              Jak rozmawiać o trzeźwości, żeby młodzież chciała słuchać?
+              {t("challengeBlock.heading")}
             </motion.h3>
           </div>
         </div>
@@ -56,7 +58,7 @@ export default function ChallengeBlock() {
                 </span>
                 <div>
                   <h4 className="font-sans text-2xl font-bold tracking-tight text-dark-foreground md:text-3xl">
-                    {challenge.title}
+                    {t(`challenges.${challenge.id}.title`)}
                   </h4>
                   <motion.span
                     aria-hidden="true"
@@ -67,7 +69,7 @@ export default function ChallengeBlock() {
                     transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
                   />
                   <p className="mt-4 max-w-2xl font-body text-base leading-relaxed text-dark-foreground/70 md:text-lg">
-                    {challenge.body}
+                    {t(`challenges.${challenge.id}.body`)}
                   </p>
                 </div>
               </div>

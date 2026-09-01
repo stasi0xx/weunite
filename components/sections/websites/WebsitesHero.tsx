@@ -2,8 +2,10 @@
 
 import { motion, useReducedMotion, type Variants } from "framer-motion"
 import { MessageCircle } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 export default function WebsitesHero() {
+  const t = useTranslations("websites.hero")
   const prefersReducedMotion = useReducedMotion()
 
   function makeVariants(y: number, delay: number): Variants {
@@ -20,7 +22,7 @@ export default function WebsitesHero() {
   return (
     <section
       className="relative pt-14 pb-10 md:pt-20 md:pb-16"
-      aria-label="Strony internetowe — wprowadzenie"
+      aria-label={t("sectionAria")}
     >
       <div
         className="hero-blob absolute top-0 right-0 opacity-30 blur-3xl pointer-events-none"
@@ -34,7 +36,7 @@ export default function WebsitesHero() {
           animate="visible"
           variants={makeVariants(16, 0)}
         >
-          Strony internetowe
+          {t("eyebrow")}
         </motion.p>
 
         <motion.h1
@@ -43,7 +45,7 @@ export default function WebsitesHero() {
           animate="visible"
           variants={makeVariants(24, 0.1)}
         >
-          Poznaj nasz proces realizacji inteligentnych stron internetowych.
+          {t("heading")}
         </motion.h1>
 
         <motion.div

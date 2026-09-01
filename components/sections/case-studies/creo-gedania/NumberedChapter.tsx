@@ -1,22 +1,27 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import type { ChapterItem } from "./data";
 
 /**
  * Sticky left heading, right column scrolls past it revealing one numbered
  * item at a time. Shared between the challenge and strategy chapters — same
- * pattern, different data.
+ * pattern, different data. `messageGroup` picks which creoGedania.json branch
+ * (`challenges` or `strategySteps`) each item's title/body comes from.
  */
 export default function NumberedChapter({
   chapterLabel,
   heading,
   items,
+  messageGroup,
 }: {
   chapterLabel: string;
   heading: string;
   items: ChapterItem[];
+  messageGroup: "challenges" | "strategySteps";
 }) {
+  const t = useTranslations("creoGedania");
   const prefersReducedMotion = useReducedMotion();
 
   return (
@@ -64,7 +69,7 @@ export default function NumberedChapter({
                 </span>
                 <div>
                   <h4 className="font-sans text-2xl font-bold tracking-tight text-dark-foreground md:text-3xl">
-                    {item.title}
+                    {t(`${messageGroup}.${item.id}.title`)}
                   </h4>
                   <motion.span
                     aria-hidden="true"
@@ -75,7 +80,7 @@ export default function NumberedChapter({
                     transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
                   />
                   <p className="mt-4 max-w-2xl font-body text-base leading-relaxed text-dark-foreground/70 md:text-lg">
-                    {item.body}
+                    {t(`${messageGroup}.${item.id}.body`)}
                   </p>
                 </div>
               </div>

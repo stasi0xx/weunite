@@ -3,11 +3,14 @@
 import Image from "next/image"
 import { motion, useReducedMotion } from "framer-motion"
 import { ArrowUpRight } from "lucide-react"
+import { useTranslations } from "next-intl"
 import { CaseStudyBreadcrumb } from "./CaseStudyBreadcrumb"
 import CaseStudiesCta from "./CaseStudiesCta"
-import type { CaseStudyProject } from "./data"
+import { toProjectMessageKey, type CaseStudyProject } from "./data"
 
 export default function CaseStudyDetail({ project }: { project: CaseStudyProject }) {
+  const t = useTranslations("caseStudies")
+  const key = toProjectMessageKey(project.slug)
   const prefersReducedMotion = useReducedMotion()
 
   return (
@@ -22,7 +25,7 @@ export default function CaseStudyDetail({ project }: { project: CaseStudyProject
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
           >
-            {project.label}
+            {t(`projects.${key}.label`)}
           </motion.span>
 
           <motion.h1
@@ -32,7 +35,7 @@ export default function CaseStudyDetail({ project }: { project: CaseStudyProject
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
           >
-            {project.title}
+            {t(`projects.${key}.title`)}
           </motion.h1>
         </div>
 
@@ -47,7 +50,7 @@ export default function CaseStudyDetail({ project }: { project: CaseStudyProject
             <div className="relative w-full aspect-[16/10] rounded-lg overflow-hidden bg-background">
               <Image
                 src={project.image}
-                alt={project.imageAlt}
+                alt={t(`projects.${key}.imageAlt`)}
                 fill
                 className="object-cover"
                 style={{ objectPosition: "top" }}
@@ -66,7 +69,7 @@ export default function CaseStudyDetail({ project }: { project: CaseStudyProject
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
         >
           <p className="font-body text-base md:text-lg text-muted-foreground leading-relaxed">
-            {project.description}
+            {t(`projects.${key}.description`)}
           </p>
 
           {project.liveUrl && (
@@ -76,7 +79,7 @@ export default function CaseStudyDetail({ project }: { project: CaseStudyProject
               rel="noopener noreferrer"
               className="group mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-foreground hover:text-primary transition-colors duration-200"
             >
-              Zobacz stronę na żywo
+              {t("detail.viewLive")}
               <ArrowUpRight
                 className="h-4 w-4 transition-transform duration-200 ease-out group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                 aria-hidden="true"

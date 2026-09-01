@@ -1,12 +1,14 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 /**
  * Bridges the counter hero into the case study body: what "Pierwsze Trzeźwe
  * Pokolenie" actually is before the chapters dig into strategy and results.
  */
 export default function MovementIntro() {
+  const t = useTranslations("home.customerSuccess.movementIntro");
   const prefersReducedMotion = useReducedMotion();
 
   return (
@@ -18,7 +20,7 @@ export default function MovementIntro() {
         viewport={{ once: true }}
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
-        Idea
+        {t("eyebrow")}
       </motion.p>
 
       <motion.h3
@@ -28,7 +30,7 @@ export default function MovementIntro() {
         viewport={{ once: true }}
         transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
       >
-        Pierwsze pokolenie, dla którego trzeźwość to wybór, nie zakaz
+        {t("heading")}
       </motion.h3>
 
       <motion.p
@@ -38,10 +40,7 @@ export default function MovementIntro() {
         viewport={{ once: true }}
         transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
       >
-        Pierwsze Trzeźwe Pokolenie to inicjatywa Fundacji Columbus — ruch,
-        który chce być dokładnie tym, na co wskazuje nazwa: pierwszym
-        pokoleniem, w którym odroczenie inicjacji alkoholowej stanie się
-        normą, nie wyjątkiem.
+        {t("body1")}
       </motion.p>
 
       <motion.p
@@ -51,12 +50,7 @@ export default function MovementIntro() {
         viewport={{ once: true }}
         transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
       >
-        Zamiast pogadanek i zakazów — autentyczni ambasadorowie i szczere
-        historie w języku, którym młodzież mówi do siebie nawzajem. Mateusz
-        Kusznierewicz pokazuje, że sukces i emocje można budować bez używek.
-        Łukasz Tchórzewski, znany jako „Alkoholik z TikToka”, opowiada wprost,
-        czym naprawdę jest uzależnienie. Efekt: edukacja, która nie brzmi jak
-        edukacja.
+        {t("body2")}
       </motion.p>
     </div>
   );

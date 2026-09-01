@@ -1,4 +1,9 @@
+"use client";
+
+import { useTranslations } from "next-intl";
 import { HoverLink } from "@/components/ui/hover-link";
+import { Link } from "@/i18n/navigation";
+import { LanguageSwitcher } from "@/components/layout/LanguageSwitcher";
 
 function LinkedinIcon({ className }: { className?: string }) {
   return (
@@ -28,29 +33,31 @@ function InstagramIcon({ className }: { className?: string }) {
   );
 }
 
-const sectionLinks = [
-  { label: "Co robimy", href: "#services" },
-  { label: "Dla kogo", href: "#mission" },
-  { label: "Case study", href: "#customer-success" },
-  { label: "Realizacje", href: "/realizacje" },
-  { label: "Kontakt", href: "#contact" },
-];
-
-const legalLinks = [
-  { label: "Polityka prywatności", href: "/polityka-prywatnosci" },
-  { label: "Polityka cookies", href: "/polityka-cookies" },
-  { label: "Regulamin", href: "/regulamin" },
-];
-
-const socialLinks = [
-  { Icon: LinkedinIcon, href: "https://linkedin.com/company/weunite", label: "LinkedIn" },
-  { Icon: FacebookIcon, href: "https://facebook.com/weunite", label: "Facebook" },
-  { Icon: InstagramIcon, href: "https://instagram.com/weunite", label: "Instagram" },
-];
-
-const allMobileLinks = [...sectionLinks, ...legalLinks];
-
 export default function Footer() {
+  const t = useTranslations("common.footer");
+
+  const sectionLinks = [
+    { label: t("sectionLinks.services"), href: "#services" },
+    { label: t("sectionLinks.mission"), href: "#mission" },
+    { label: t("sectionLinks.customerSuccess"), href: "#customer-success" },
+    { label: t("sectionLinks.realizacje"), href: "/realizacje" },
+    { label: t("sectionLinks.contact"), href: "#contact" },
+  ];
+
+  const legalLinks = [
+    { label: t("legalLinks.privacy"), href: "/polityka-prywatnosci" },
+    { label: t("legalLinks.cookies"), href: "/polityka-cookies" },
+    { label: t("legalLinks.terms"), href: "/regulamin" },
+  ];
+
+  const socialLinks = [
+    { Icon: LinkedinIcon, href: "https://linkedin.com/company/weunite", label: t("social.linkedin") },
+    { Icon: FacebookIcon, href: "https://facebook.com/weunite", label: t("social.facebook") },
+    { Icon: InstagramIcon, href: "https://instagram.com/weunite", label: t("social.instagram") },
+  ];
+
+  const allMobileLinks = [...sectionLinks, ...legalLinks];
+
   return (
     <footer className="relative overflow-hidden bg-card border-t border-border pt-16 pb-8">
       <span
@@ -64,9 +71,9 @@ export default function Footer() {
       <div className="relative z-10 max-w-7xl mx-auto px-6">
         {/* ── Desktop ── */}
         <div className="hidden md:flex items-start justify-between gap-12 mb-12">
-          <a href="/" className="font-sans font-extrabold text-2xl text-foreground shrink-0">
+          <Link href="/" className="font-sans font-extrabold text-2xl text-foreground shrink-0">
             WeUnite
-          </a>
+          </Link>
 
           <ul className="space-y-1">
             {sectionLinks.map((link) => (
@@ -90,18 +97,18 @@ export default function Footer() {
 
           <div className="space-y-3 text-sm text-muted-foreground">
             <p>
-              Adres: ul. Gdyńska G/9,
+              {t("addressLine1")}
               <br />
-              80-340 Gdańsk
+              {t("addressLine2")}
             </p>
             <p>
-              Email:{" "}
+              {t("emailLabel")}{" "}
               <HoverLink href="mailto:info@weunite.pl" className="inline-flex items-center px-2 py-0.5 rounded-full">
                 info@weunite.pl
               </HoverLink>
             </p>
             <p>
-              Telefon:{" "}
+              {t("phoneLabel")}{" "}
               <HoverLink href="tel:+48537732320" className="inline-flex items-center px-2 py-0.5 rounded-full">
                 +48 537 732 320
               </HoverLink>
@@ -127,22 +134,25 @@ export default function Footer() {
         {/* ── Mobile ── */}
         <div className="md:hidden mb-8">
           <div className="flex items-center justify-between mb-8">
-            <a href="/" className="font-sans font-extrabold text-2xl text-foreground">
+            <Link href="/" className="font-sans font-extrabold text-2xl text-foreground">
               WeUnite
-            </a>
-            <div className="flex items-center gap-1">
-              {socialLinks.map(({ Icon, href, label }) => (
-                <HoverLink
-                  key={href}
-                  href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={label}
-                  className="inline-flex items-center justify-center p-2 rounded-full"
-                >
-                  <Icon className="h-5 w-5" />
-                </HoverLink>
-              ))}
+            </Link>
+            <div className="flex items-center gap-3">
+              <LanguageSwitcher />
+              <div className="flex items-center gap-1">
+                {socialLinks.map(({ Icon, href, label }) => (
+                  <HoverLink
+                    key={href}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="inline-flex items-center justify-center p-2 rounded-full"
+                  >
+                    <Icon className="h-5 w-5" />
+                  </HoverLink>
+                ))}
+              </div>
             </div>
           </div>
 
@@ -167,7 +177,7 @@ export default function Footer() {
         {/* Bottom row — copyright */}
         <div className="border-t border-border pt-6">
           <p className="text-xs text-muted-foreground text-center md:text-left">
-            Copyright © 2026 WeUnite. All rights reserved.
+            {t("copyright")}
           </p>
         </div>
       </div>

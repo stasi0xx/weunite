@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Play } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { videoRef } from "./data";
 
 /**
@@ -10,6 +11,7 @@ import { videoRef } from "./data";
  * SocialPillarsSection: no rehosting or embedding third-party creator video.
  */
 export default function CreoVideoBlock() {
+  const t = useTranslations("creoGedania.videoBlock");
   const prefersReducedMotion = useReducedMotion();
 
   return (
@@ -21,7 +23,7 @@ export default function CreoVideoBlock() {
         viewport={{ once: true }}
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
-        03 — Materiał
+        {t("eyebrow")}
       </motion.p>
       <motion.h3
         className="mt-4 max-w-2xl font-sans text-3xl font-extrabold leading-tight tracking-tight text-dark-foreground md:text-5xl"
@@ -30,7 +32,7 @@ export default function CreoVideoBlock() {
         viewport={{ once: true }}
         transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
       >
-        Rolka, która zrobiła robotę.
+        {t("heading")}
       </motion.h3>
 
       <motion.a
@@ -51,7 +53,7 @@ export default function CreoVideoBlock() {
             {videoRef.handle}
           </p>
           <p className="mt-1 font-body text-sm text-dark-foreground/60">
-            {videoRef.label}
+            {t("linkLabel")}
           </p>
         </div>
         <ArrowUpRight

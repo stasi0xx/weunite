@@ -1,7 +1,12 @@
-import Link from "next/link"
+"use client"
+
 import { ArrowLeft } from "lucide-react"
+import { useTranslations } from "next-intl"
+import { Link } from "@/i18n/navigation"
 
 export function CaseStudyBreadcrumb() {
+  const t = useTranslations("caseStudies")
+
   return (
     <div className="max-w-6xl mx-auto px-6 pt-8">
       <Link
@@ -12,7 +17,7 @@ export function CaseStudyBreadcrumb() {
           className="h-4 w-4 transition-transform duration-200 ease-out group-hover:-translate-x-0.5"
           aria-hidden="true"
         />
-        Wszystkie realizacje
+        {t("breadcrumb")}
       </Link>
     </div>
   )

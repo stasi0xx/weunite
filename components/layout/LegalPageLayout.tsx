@@ -1,4 +1,7 @@
+"use client"
+
 import type { ReactNode } from "react"
+import { useTranslations } from "next-intl"
 
 interface Section {
   title: string
@@ -31,12 +34,14 @@ export function LegalList({ items }: { items: string[] }) {
 }
 
 export default function LegalPageLayout({ title, lastUpdated, children }: Props) {
+  const t = useTranslations("legal")
+
   return (
     <div className="min-h-screen bg-background">
       <div className="max-w-3xl mx-auto px-6 py-16 md:py-24">
         <div className="mb-12">
           <p className="text-sm text-muted-foreground mb-3 font-body">
-            Ostatnia aktualizacja: {lastUpdated}
+            {t("lastUpdated", { date: lastUpdated })}
           </p>
           <h1 className="font-sans font-extrabold text-4xl md:text-5xl text-foreground tracking-tight">
             {title}
@@ -47,7 +52,7 @@ export default function LegalPageLayout({ title, lastUpdated, children }: Props)
 
         <div className="border-t border-border mt-12 pt-8 text-sm text-muted-foreground">
           <p>
-            Pytania? Napisz do nas:{" "}
+            {t("questions")}{" "}
             <a href="mailto:info@weunite.pl" className="text-foreground underline underline-offset-4">
               info@weunite.pl
             </a>

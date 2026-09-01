@@ -1,0 +1,72 @@
+{
+  "meta": {
+    "title": "Our work",
+    "description": "See our work: websites and social media campaigns for a property developer, a sports club, and a foundation — with the challenges and results behind each."
+  },
+  "intro": {
+    "sectionAria": "Case studies — introduction",
+    "eyebrow": "Case studies",
+    "heading": "See how we work — don't just read about it.",
+    "body": "A developer, a sports club, a social campaign: three different challenges and three projects that genuinely moved the needle for our clients."
+  },
+  "list": {
+    "sectionAria": "List of case studies",
+    "viewCaseStudy": "View case study",
+    "viewAria": "View case study: {title}"
+  },
+  "cta": {
+    "heading": "Want to be our next case study?",
+    "body": "Book a free consultation and see what site or campaign we could build for your business.",
+    "cta": "Book a consultation"
+  },
+  "breadcrumb": "All case studies",
+  "detail": {
+    "viewLive": "View live site"
+  },
+  "projects": {
+    "nowyRelaks": {
+      "label": "Developer",
+      "title": "Nowy Relaks — Filipek Investment",
+      "teaser": "A single-family home developer near Biała Podlaska traded a free template for a site built from scratch — with a full presentation of the development and an inquiry form going straight to the sales team.",
+      "description": "Nowy Relaks is a single-family home development near Biała Podlaska, run by developer Filipek Investment. The company previously used a free template that neither built trust nor presented the offer the way the development deserved. We designed and built the site from scratch, with a full presentation of the location, construction stages, and interior galleries. We added a clear inquiry form for the availability of specific homes, going straight to the sales team. Result: a more modern brand image and more purchase inquiries.",
+      "imageAlt": "The Nowy Relaks development site, designed by WeUnite",
+      "meta": {
+        "title": "Nowy Relaks — Filipek Investment",
+        "description": "A single-family home developer near Biała Podlaska swapped a free template for a website built from the ground up — with a full presentation of the development and an inquiry form going straight to the sales team."
+      }
+    },
+    "gdyniaPadelClub": {
+      "label": "Sports club",
+      "title": "Gdynia Padel Club",
+      "teaser": "A sports club in Gdynia got a dynamic online booking system integrated with court availability — less administrative work, an easier booking path for players.",
+      "description": "Gdynia Padel Club is a sports club in Gdynia we built a site for, showcasing its courts and full class offering. The key challenge was letting members book a court quickly without calling the front desk. We implemented a dynamic online booking system, integrated with real-time court availability. The site also presents pricing, events, and the club's social media in one place. Result: less administrative work for the team and an easier booking path for players.",
+      "imageAlt": "The Gdynia Padel Club site, designed by WeUnite",
+      "meta": {
+        "title": "Gdynia Padel Club",
+        "description": "A sports club in Gdynia gained a dynamic online booking system integrated with live court availability — less admin work, an easier booking path for players."
+      }
+    },
+    "pierwszeTrzezwePokolenie": {
+      "label": "Foundation · Social campaign",
+      "title": "Pierwsze Trzeźwe Pokolenie",
+      "teaser": "A social campaign built from zero: over 27.2M brand touchpoints, nearly 27,500 new followers, and the patronage of 5 schools — in 6 months.",
+      "description": "Architecture and communications for the Pierwsze Trzeźwe Pokolenie campaign (Columbus Foundation) — from zero, in 6 months: strategy, ambassadors, video content, and real educational support in schools.",
+      "imageAlt": "Still from the video podcast recorded for Pierwsze Trzeźwe Pokolenie",
+      "meta": {
+        "title": "Pierwsze Trzeźwe Pokolenie",
+        "description": "A social campaign built from zero: over 27.2M brand touchpoints in 6 months. Strategy, ambassadors, and video content for the Columbus Foundation."
+      }
+    },
+    "creoGedania": {
+      "label": "Private education",
+      "title": "Creo Gedania — 10 new students from two reels",
+      "teaser": "Micro-influencer marketing and precise Meta Ads + TikTok Ads: two reels with a local creator generated over 50,000 targeted views and 10 new school enrollments.",
+      "description": "Ahead of Open Days, private school Creo Gedania needed to precisely reach parents across the Tri-City area. We wrote a script for a shoot with micro-influencer @poznajtrojmiasto and backed the material with targeted Meta Ads and TikTok Ads campaigns. Result: over 50,000 targeted views and 10 new students enrolled straight after watching the material.",
+      "imageAlt": "Students and a teacher in front of the Creo Gedania school building in Gdańsk",
+      "meta": {
+        "title": "Creo Gedania",
+        "description": "How two short-form videos with a local creator generated 50,000+ targeted views and 10 new students for the private school Creo Gedania in Gdańsk."
+      }
+    }
+  }
+}

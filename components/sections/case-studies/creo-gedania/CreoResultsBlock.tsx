@@ -4,9 +4,10 @@ import { useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 import gsap from "gsap";
+import { useTranslations } from "next-intl";
 
 import { formatCount } from "../../customer-success/data";
-import { headlineStat, secondaryStat, qualitativeHighlight } from "./data";
+import { headlineStat, secondaryStat } from "./data";
 
 function CountUp({
   value,
@@ -78,6 +79,7 @@ function CountUp({
  * rather than getting an invented number.
  */
 export default function CreoResultsBlock() {
+  const t = useTranslations("creoGedania.resultsBlock");
   const prefersReducedMotion = useReducedMotion();
 
   return (
@@ -89,7 +91,7 @@ export default function CreoResultsBlock() {
         viewport={{ once: true }}
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
-        04 — Wyniki
+        {t("eyebrow")}
       </motion.p>
       <motion.h3
         className="mt-4 max-w-3xl font-sans text-3xl font-extrabold leading-tight tracking-tight text-dark-foreground md:text-5xl"
@@ -98,14 +100,14 @@ export default function CreoResultsBlock() {
         viewport={{ once: true }}
         transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
       >
-        Dwie rolki, dziesięcioro nowych uczniów.
+        {t("heading")}
       </motion.h3>
 
       <div className="mt-16 border-t border-dark-foreground/15 pt-12 md:mt-20 md:pt-16">
         <CountUp
           value={headlineStat.value}
           suffix={headlineStat.suffix}
-          label={headlineStat.label}
+          label={t("headlineStatLabel")}
           delay={0}
           numberClassName="text-[clamp(3.5rem,14vw,9rem)]"
           prefersReducedMotion={prefersReducedMotion}
@@ -115,7 +117,7 @@ export default function CreoResultsBlock() {
           <CountUp
             value={secondaryStat.value}
             suffix={secondaryStat.suffix}
-            label={secondaryStat.label}
+            label={t("secondaryStatLabel")}
             delay={0.15}
             numberClassName="text-[clamp(1.75rem,5vw,4rem)]"
             prefersReducedMotion={prefersReducedMotion}
@@ -132,7 +134,7 @@ export default function CreoResultsBlock() {
       >
         <CheckCircle2 className="mt-0.5 h-6 w-6 shrink-0 text-primary" aria-hidden="true" />
         <p className="font-body text-base leading-relaxed text-dark-foreground/80 md:text-lg">
-          {qualitativeHighlight}
+          {t("qualitativeHighlight")}
         </p>
       </motion.div>
     </div>

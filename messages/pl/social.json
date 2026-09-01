@@ -1,0 +1,41 @@
+{
+  "meta": {
+    "title": "Social media marketing",
+    "description": "Od 8 lat jednoczymy społeczności z markami w świecie social mediów — Instagram, TikTok i kampanie reklamowe, które sprzedają."
+  },
+  "hero": {
+    "sectionAria": "Social media — wprowadzenie",
+    "eyebrow": "Social media",
+    "heading": "Od 8 lat jednoczymy społeczności z markami w świecie social mediów przez…"
+  },
+  "pillars": {
+    "sectionHeading": "Trzy filary naszych działań",
+    "filarLabel": "Filar {number}",
+    "instagram": {
+      "title": "Instagram – Najpotężniejsze narzędzie wizualne.",
+      "description": "Opieramy się na estetycznych, regularnych publikacjach, które konsekwentnie budują zasięg co przekłada się na wyniki oraz silny wizerunek Twojej marki. Skalujemy zasięgi poprzez strategiczną współpracę z influencerami, błyskawicznie docierając do nowych, zaangażowanych odbiorców i zamieniając ich w Twoich lojalnych klientów.",
+      "imageAlt": "Zrzut ekranu publikacji na Instagramie — 4854 polubienia, 35 komentarzy",
+      "viewPost": "Zobacz post"
+    },
+    "tiktok": {
+      "title": "TikTok i Formaty Wideo – Wirusowe zasięgi.",
+      "description": "Nie robimy nudnych reklam. Produkujemy dynamiczne, pionowe wideo, które jest natywne dla platform i zatrzymuje scrollowanie. Przyciągamy uwagę w pierwsze 3 sekundy, generując ogromne, organiczne zasięgi.",
+      "countdown": "3s",
+      "countdownCaption": "Tyle masz, żeby zatrzymać scrollowanie"
+    },
+    "ads": {
+      "title": "Kampanie Social Ads – Paliwo dla sprzedaży.",
+      "description": "Nawet najlepszy content potrzebuje dystrybucji. Łączymy piękne kreacje z precyzyjnie targetowanymi kampaniami płatnymi, aby docierać do ludzi gotowych na zakup i domykać proces sprzedażowy.",
+      "brandLabel": "Twoja marka",
+      "sponsoredLabel": "Sponsorowane",
+      "adCopy": "Twoja oferta, przed ludźmi gotowymi kupić już dziś.",
+      "ctaLabel": "Sprawdź ofertę",
+      "counterCaption": "gotowych na zakup"
+    }
+  },
+  "cta": {
+    "heading": "Gotowy na social media, które realnie sprzedają?",
+    "body": "Umów bezpłatną konsultację i sprawdź, jak zbudujemy dla Twojej marki strategię, która przyciąga uwagę i zamienia obserwujących w klientów.",
+    "cta": "Umów konsultację"
+  }
+}

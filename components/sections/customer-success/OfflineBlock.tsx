@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { MapPin } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { schools } from "./data";
 
@@ -11,6 +12,7 @@ import { schools } from "./data";
  * slight rotation, echoing the case-study collage pattern in ui-context.
  */
 export default function OfflineBlock() {
+  const t = useTranslations("home.customerSuccess.offlineBlock");
   const wrapRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useReducedMotion();
 
@@ -40,7 +42,7 @@ export default function OfflineBlock() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, ease: "easeOut" }}
             >
-              03 — Ekspansja
+              {t("eyebrow")}
             </motion.p>
             <motion.h3
               className="mt-4 font-sans text-3xl font-extrabold leading-tight tracking-tight text-dark-foreground md:text-5xl"
@@ -49,7 +51,7 @@ export default function OfflineBlock() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
             >
-              Z ekranu telefonu na szkolny korytarz.
+              {t("heading")}
             </motion.h3>
             <motion.p
               className="mt-6 max-w-md font-body text-base leading-relaxed text-dark-foreground/70 md:text-lg"
@@ -58,11 +60,9 @@ export default function OfflineBlock() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
             >
-              Algorytmy to nie wszystko. Zainicjowaliśmy i sfinalizowaliśmy współpracę
-              z <strong className="font-bold text-dark-foreground">5 placówkami
-              edukacyjnymi</strong>. Zaprojektowaliśmy dedykowane plakaty, które dziś
-              fizycznie wiszą na szkolnych korytarzach — projekt stał się realnym
-              wsparciem dla dyrekcji i pedagogów.
+              {t.rich("body", {
+                b: (chunks) => <strong className="font-bold text-dark-foreground">{chunks}</strong>,
+              })}
             </motion.p>
           </div>
 
@@ -104,7 +104,7 @@ export default function OfflineBlock() {
               }}
             >
               <span className="font-sans text-lg font-bold tracking-tight text-dark-foreground/60 md:text-xl">
-                + 2 kolejne placówki w Trójmieście
+                {t("moreSchools")}
               </span>
             </motion.li>
           </ul>

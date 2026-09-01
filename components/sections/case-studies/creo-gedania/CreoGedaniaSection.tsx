@@ -1,9 +1,10 @@
 "use client";
 
 import { useRef } from "react";
-import Link from "next/link";
 import { motion, useReducedMotion, useScroll } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 import CreoHero from "./CreoHero";
 import CreoIntro from "./CreoIntro";
@@ -18,6 +19,7 @@ import { challenges, strategySteps } from "./data";
  * hero in place of the abstract counter opener — see CreoHero for why.
  */
 export default function CreoGedaniaSection() {
+  const t = useTranslations("creoGedania");
   const sectionRef = useRef<HTMLElement>(null);
   const prefersReducedMotion = useReducedMotion();
 
@@ -34,7 +36,7 @@ export default function CreoGedaniaSection() {
       aria-labelledby="creo-gedania-heading"
     >
       <h2 id="creo-gedania-heading" className="sr-only">
-        Case study: Creo Gedania — 10 nowych uczniów z dwóch rolek
+        {t("sectionHeading")}
       </h2>
 
       <div
@@ -50,14 +52,16 @@ export default function CreoGedaniaSection() {
       <CreoHero />
       <CreoIntro />
       <NumberedChapter
-        chapterLabel="01 — Wyzwanie"
-        heading="Jak dotrzeć do rodziców, nie przepalając budżetu poza regionem?"
+        chapterLabel={t("challengeChapter.label")}
+        heading={t("challengeChapter.heading")}
         items={challenges}
+        messageGroup="challenges"
       />
       <NumberedChapter
-        chapterLabel="02 — Strategia i realizacja"
-        heading="Scenariusz, twórca i precyzyjne ads’y."
+        chapterLabel={t("strategyChapter.label")}
+        heading={t("strategyChapter.heading")}
         items={strategySteps}
+        messageGroup="strategySteps"
       />
       <CreoVideoBlock />
       <CreoResultsBlock />
@@ -71,7 +75,7 @@ export default function CreoGedaniaSection() {
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          Precyzyjne planowanie w lokalnym marketingu działa jak skalpel.
+          {t("outro.line1")}
         </motion.p>
         <motion.p
           className="mx-auto mt-6 max-w-2xl font-body text-base leading-relaxed text-dark-foreground/65 md:text-lg"
@@ -80,9 +84,7 @@ export default function CreoGedaniaSection() {
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
         >
-          Klient: Creo Gedania. Konsultacje strategiczne, scenariusz, dobór
-          twórcy i punktowe wsparcie reklamowe — 10 nowych, pełnowymiarowych
-          czesnych z dwóch materiałów wideo.
+          {t("outro.line2")}
         </motion.p>
 
         <motion.div
@@ -98,7 +100,7 @@ export default function CreoGedaniaSection() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full border border-dark-foreground/25 px-6 py-3 font-body text-sm font-semibold text-dark-foreground transition-all duration-200 hover:border-dark-foreground/60 hover:bg-dark-foreground/5"
           >
-            Zobacz profil @poznajtrojmiasto
+            {t("outro.viewProfile")}
             <ArrowUpRight className="h-4 w-4" />
           </a>
         </motion.div>
@@ -110,7 +112,7 @@ export default function CreoGedaniaSection() {
           href="/#contact"
           className="group pointer-events-auto inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 font-body text-sm font-semibold text-primary-foreground shadow-2xl shadow-primary/40 ring-1 ring-white/20 backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-primary/90"
         >
-          Chcę takie wyniki
+          {t("outro.ctaSticky")}
           <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
         </Link>
       </div>

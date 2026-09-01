@@ -66,6 +66,8 @@ WeUnite is a two-person digital agency offering social media management, custom 
 - Static "Dziękujemy" thank-you page after form submission
 - Simple admin interface: manage available slots + trigger post-visualization email manually
 - Mobile-first responsive design
+- Bilingual site (Polish + English) across the public marketing pages, see
+  `docs/specs/0001-multi-language-support/index.md`; `/booking` stays Polish only
 
 ### Out of Scope
 
@@ -78,7 +80,6 @@ WeUnite is a two-person digital agency offering social media management, custom 
 - Client-facing booking systems (separate client deliverables — the parked booking system serves as their template)
 - SMS reminders
 - Google Calendar sync (planned for V2)
-- Multi-language support
 
 ## Tech Stack
 

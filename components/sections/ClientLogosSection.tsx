@@ -2,23 +2,41 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
-const logos = [
-  { name: "Shine Hair — klient WeUnite", src: "/logos/shine.png" },
-  { name: "Akademia Rozwoju Osobistego Columbus — klient WeUnite", src: "/logos/columbus.webp" },
-  { name: "Polska Akademia Dzieci — klient WeUnite", src: "/logos/polska akademia.webp" },
-  { name: "Gedania 1922 — klient WeUnite", src: "/logos/gedania.webp" },
-  { name: "Creo — klient WeUnite", src: "/logos/creo-1.webp" },
-  { name: "PTP — klient WeUnite", src: "/logos/ptp.png" },
-  { name: "Filipek Investment — klient WeUnite", src: "/logos/filipek.png" },
-  { name: "LanLab — klient WeUnite", src: "/logos/lanlab.webp" },
+const clientNames = [
+  "Shine Hair",
+  "Akademia Rozwoju Osobistego Columbus",
+  "Polska Akademia Dzieci",
+  "Gedania 1922",
+  "Creo",
+  "PTP",
+  "Filipek Investment",
+  "LanLab",
+];
+
+const logoSrcs = [
+  "/logos/shine.png",
+  "/logos/columbus.webp",
+  "/logos/polska akademia.webp",
+  "/logos/gedania.webp",
+  "/logos/creo-1.webp",
+  "/logos/ptp.png",
+  "/logos/filipek.png",
+  "/logos/lanlab.webp",
 ];
 
 export default function ClientLogosSection() {
+  const t = useTranslations("home.clientLogos");
+  const logos = clientNames.map((name, i) => ({
+    name: `${name} — ${t("clientSuffix")}`,
+    src: logoSrcs[i],
+  }));
+
   return (
-    <section className="border-y border-border py-10" aria-label="Nasi klienci">
+    <section className="border-y border-border py-10" aria-label={t("sectionAria")}>
       <p className="text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-8 text-center font-body">
-        Zaufali nam
+        {t("trustedBy")}
       </p>
 
       <div className="max-w-5xl mx-auto overflow-hidden">

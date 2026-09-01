@@ -3,12 +3,14 @@
 import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 function scrollTo(id: string) {
   document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 }
 
 export default function HeroSection() {
+  const t = useTranslations("home.hero");
   const prefersReducedMotion = useReducedMotion();
 
   function makeVariants(y: number, delay: number): Variants {
@@ -25,12 +27,9 @@ export default function HeroSection() {
   return (
     <section
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
-      aria-label="Sekcja główna"
+      aria-label={t("sectionAria")}
     >
-      <span className="sr-only">
-        WeUnite — agencja marketingowa dla domków letniskowych: strony internetowe z rezerwacją,
-        social media, automatyzacje
-      </span>
+      <span className="sr-only">{t("srDescription")}</span>
 
       {/* Background photo */}
       <Image
@@ -76,7 +75,7 @@ export default function HeroSection() {
       <motion.button
         type="button"
         onClick={() => scrollTo("services")}
-        aria-label="Przewiń do oferty"
+        aria-label={t("scrollAria")}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 text-white/70 hover:text-white transition-colors duration-200 cursor-pointer"
         initial="hidden"
         animate="visible"

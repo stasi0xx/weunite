@@ -1,0 +1,245 @@
+{
+  "hero": {
+    "sectionAria": "Sekcja główna",
+    "srDescription": "WeUnite — agencja marketingowa dla domków letniskowych: strony internetowe z rezerwacją, social media, automatyzacje",
+    "scrollAria": "Przewiń do oferty"
+  },
+  "clientLogos": {
+    "sectionAria": "Nasi klienci",
+    "trustedBy": "Zaufali nam",
+    "clientSuffix": "klient WeUnite"
+  },
+  "problem": {
+    "eyebrow": "Nasza misja",
+    "heading": "Twój marketing z Gdańska.",
+    "body": "<b>Jednoczymy</b> społeczności w social mediach wokół <b>Twojej firmy</b> i tworzymy <b>inteligentne strony</b>, które <b>budzą zaufanie</b>.",
+    "stats": {
+      "views": "Razy wyświetlono nasze materiały w 2026 roku.",
+      "sites": "Zrealizowanych inteligentnych stron w 2026 roku.",
+      "clients": "Zadowolonych klientów, którzy nam zaufali."
+    }
+  },
+  "services": {
+    "eyebrow": "USŁUGI",
+    "heading": "Dwa obszary.\nJeden zespół.",
+    "sectionAria": "Nasze usługi",
+    "websites": {
+      "title": "01 Inteligentne strony internetowe",
+      "description": "Tworzymy witryny, które pracują dla Ciebie. Wdrażamy inteligentne automatyzacje, chatboty AI, zaawansowane systemy rezerwacyjne oraz bezpieczne logowanie do panelu klienta. Zapewniamy dziesiątki udogodnień technologicznych, w pełni dopasowując je do Twojego indywidualnego projektu i potrzeb biznesowych.",
+      "imageAlt": "Realizacja strony internetowej Nowy Relaks",
+      "primaryLabel": "Odbierz wizualizację",
+      "secondaryLabel": "Zobacz projekty"
+    },
+    "socialMedia": {
+      "title": "02 Social media i wideo",
+      "description": "Zbudujemy społeczność wokół Twojej marki. Kompleksowo prowadzimy profile na Instagramie, YouTube, Facebooku i TikToku, dbając o angażujący content. Dodatkowo zapewniamy profesjonalną obsługę wideo i sesje zdjęciowe na terenie całej Polski, dostarczając materiały, które wyróżnią Cię na tle konkurencji.",
+      "imageAlt": "Realizacja social media dla Gdynia Padel Club",
+      "primaryLabel": "Odbierz plan",
+      "secondaryLabel": "Zobacz więcej"
+    }
+  },
+  "customerSuccess": {
+    "sectionHeading": "Case study: Pierwsze Trzeźwe Pokolenie — od zera do 27 milionów wyświetleń",
+    "counterHero": {
+      "badge": "Customer Success · Pierwsze Trzeźwe Pokolenie",
+      "fromZeroTo": "Od zera do",
+      "viewsLabel": "organicznych",
+      "viewsLabelBold": "wyświetleń",
+      "scrollCue": "Scrolluj"
+    },
+    "movementIntro": {
+      "eyebrow": "Idea",
+      "heading": "Pierwsze pokolenie, dla którego trzeźwość to wybór, nie zakaz",
+      "body1": "Pierwsze Trzeźwe Pokolenie to inicjatywa Fundacji Columbus — ruch, który chce być dokładnie tym, na co wskazuje nazwa: pierwszym pokoleniem, w którym odroczenie inicjacji alkoholowej stanie się normą, nie wyjątkiem.",
+      "body2": "Zamiast pogadanek i zakazów — autentyczni ambasadorowie i szczere historie w języku, którym młodzież mówi do siebie nawzajem. Mateusz Kusznierewicz pokazuje, że sukces i emocje można budować bez używek. Łukasz Tchórzewski, znany jako „Alkoholik z TikToka”, opowiada wprost, czym naprawdę jest uzależnienie. Efekt: edukacja, która nie brzmi jak edukacja."
+    },
+    "challengeBlock": {
+      "eyebrow": "01 — Wyzwanie",
+      "heading": "Jak rozmawiać o trzeźwości, żeby młodzież chciała słuchać?"
+    },
+    "challenges": {
+      "cringe": {
+        "title": "Ominąć efekt cringe’u",
+        "body": "Trzeźwość kojarzy się młodym z nudnymi pogadankami i zakazami, które prowokują do buntu. Musieliśmy zbudować komunikację bez szkolnego tonu i grożenia palcem — zatrzymać inicjację alkoholową inspiracją, nie strachem."
+      },
+      "attention": {
+        "title": "Wygrać z przebodźcowaniem",
+        "body": "Algorytmy TikToka i YouTube’a promują szybką rozrywkę. Naszym zadaniem było przemycić głęboką, edukacyjną wartość w formacie, który realnie utrzyma uwagę widza."
+      },
+      "offline": {
+        "title": "Przełożyć online na offline",
+        "body": "Bańka w internecie to za mało. Wyzwaniem było stworzenie realnego narzędzia wsparcia edukacyjnego, które trafi fizycznie do placówek oświatowych."
+      }
+    },
+    "strategyStack": {
+      "eyebrow": "02 — Strategia",
+      "heading": "Twarze kampanii, obok których nie da się przejść obojętnie."
+    },
+    "strategists": {
+      "glinka": {
+        "role": "Inicjator projektu",
+        "blurb": "Ubrał projekt w ramy biznesowe i rozwojowe. Pokazał pokoleniu Z, że dyscyplina to waluta przyszłości — a nie kolejny zakaz do złamania.",
+        "imageAlt": "Bartłomiej Glinka, inicjator projektu Pierwsze Trzeźwe Pokolenie"
+      },
+      "kusznierewicz": {
+        "role": "Ambasador · Mistrz Olimpijski",
+        "blurb": "Legenda polskiego sportu. Jego twarz stała się symbolem alternatywy dla używek — dowodem, że prawdziwe emocje i sukces leżą w sporcie i pasji.",
+        "imageAlt": "Mateusz Kusznierewicz — ambasador kampanii Pierwsze Trzeźwe Pokolenie"
+      },
+      "tchorzewski": {
+        "role": "„Alkoholik z TikToka”",
+        "blurb": "Postawiliśmy na brutalnie szczery storytelling. Długi podcast wideo zbudował lojalność i czas oglądania, a krótkie formaty z tej samej rozmowy poszły wiralowo.",
+        "imageAlt": "Kadr z podcastu wideo nagranego z Łukaszem Tchórzewskim dla Pierwszego Trzeźwego Pokolenia",
+        "stat1Label": "wyświetleń podcastu",
+        "stat2Label": "wyświetleń skrótów",
+        "hrefLabel": "Zobacz podcast"
+      }
+    },
+    "offlineBlock": {
+      "eyebrow": "03 — Ekspansja",
+      "heading": "Z ekranu telefonu na szkolny korytarz.",
+      "body": "Algorytmy to nie wszystko. Zainicjowaliśmy i sfinalizowaliśmy współpracę z <b>5 placówkami edukacyjnymi</b>. Zaprojektowaliśmy dedykowane plakaty, które dziś fizycznie wiszą na szkolnych korytarzach — projekt stał się realnym wsparciem dla dyrekcji i pedagogów.",
+      "moreSchools": "+ 2 kolejne placówki w Trójmieście"
+    },
+    "resultsBlock": {
+      "eyebrow": "04 — Wyniki po 6 miesiącach",
+      "heading": "Mądry content potrafi generować astronomiczne liczby."
+    },
+    "headlineStats": {
+      "reach": { "label": "kontaktów z marką w całym ekosystemie" },
+      "followers": { "label": "nowych obserwujących — pozyskanych od absolutnego zera" },
+      "schools": { "label": "placówek oświatowych z patronatem i plakatami kampanii" }
+    },
+    "platformResults": {
+      "tiktok": {
+        "metric": "wyświetleń",
+        "details": [
+          "Hitowy materiał: 2,74 mln wyświetleń",
+          "4 kolejne wideo powyżej 1,1 mln",
+          "Konto zbudowane do 17,7 tys. obserwujących"
+        ]
+      },
+      "youtube": {
+        "metric": "wyświetleń",
+        "details": [
+          "57 900 godzin spędzonych na oglądaniu",
+          "Najlepszy Short: 1,16 mln wyświetleń",
+          "Format długi + krótki z jednego nagrania"
+        ]
+      },
+      "meta": {
+        "metric": "zasięgu organicznego",
+        "details": [
+          "Wzrost zasięgu o +118 370%",
+          "Ponad 330 000 interakcji",
+          "Facebook + Instagram, bez budżetu na reklamy"
+        ]
+      }
+    },
+    "outro": {
+      "line1": "Zaczęliśmy z czystą kartą. Skończyliśmy z fenomenem.",
+      "line2": "Klient: Pierwsze Trzeźwe Pokolenie (Fundacja Columbus). Architektura i komunikacja projektu — od zera, w 6 miesięcy.",
+      "viewProject": "Zobacz projekt",
+      "ctaSticky": "Chcę takie wyniki"
+    }
+  },
+  "contactForm": {
+    "sectionAria": "Formularz kontaktowy",
+    "headingLine1": "Bezpłatna",
+    "headingLine2": "wizualizacja lub plan",
+    "description": "Wybierz interesującą Cię opcję i wypełnij formularz krok po kroku. Przygotujemy dla Ciebie darmową wizualizację lub plan marketingowy w ciągu 24h.",
+    "formAria": "Formularz zgłoszeniowy",
+    "trustSignals": {
+      "response": "Odpowiadamy w ciągu 24h",
+      "freeMarketingPlan": "Bezpłatny plan marketingowy",
+      "freeVisualization": "Bezpłatna wizualizacja strony",
+      "noObligation": "Zero zobowiązań"
+    },
+    "stepProgress": "Etap {current} z {total}",
+    "explanations": {
+      "step1": {
+        "title": "Wybór i Email",
+        "heading": "Po co nam Twój wybór i adres email?",
+        "textVisualization": "Potrzebujemy Twojego adresu email, aby przesłać Ci darmową, spersonalizowaną wizualizację strony oraz omówić szczegóły. Nie wysyłamy spamu.",
+        "textMarketingPlan": "Podaj adres email i krótko opisz, jaki kanał social media chcesz prowadzić — na tej podstawie przygotujemy darmowy, spersonalizowany plan marketingowy. Nie wysyłamy spamu."
+      },
+      "step2": {
+        "title": "Projekt i Branża",
+        "heading": "Po co nam nazwa projektu i branża?",
+        "text": "Poznanie specyfiki Twojego biznesu pomaga nam zaprojektować układ i stylistykę materiałów dostosowane dokładnie do potrzeb Twoich klientów."
+      },
+      "step3": {
+        "title": "Opis wymagań",
+        "heading": "Po co nam opis Twojego projektu?",
+        "text": "Twój opis i cele biznesowe pozwalają nam zaplanować unikalne sekcje i wyeksponować największe zalety Twojej oferty."
+      },
+      "step4": {
+        "title": "Wizualia i Logo",
+        "heading": "Po co nam preferencje kolorystyczne i logo?",
+        "text": "Twoja preferowana kolorystyka, strony referencyjne oraz logo pozwolą nam stworzyć projekt idealnie spójny z Twoją obecną marką."
+      }
+    },
+    "offerSelector": {
+      "label": "Wybierz, co chcesz bezpłatnie otrzymać",
+      "visualization": {
+        "title": "Darmowa wizualizacja strony",
+        "description": "Projekt graficzny nowej strony www dopasowany do Twojego biznesu."
+      },
+      "marketingPlan": {
+        "title": "Darmowy plan marketingowy",
+        "description": "Strategia promocji, leada i wzrostu sprzedaży w sieci."
+      }
+    },
+    "fields": {
+      "email": { "label": "Adres email", "placeholder": "jan@biznes.pl" },
+      "marketingDescription": {
+        "label": "Opis tego, czego potrzebujesz",
+        "placeholder": "Chciałbym poprowadzić profesjonalny kanał dla..."
+      },
+      "projectName": { "label": "Nazwa projektu / firmy", "placeholder": "np. Domki Pod Lasem" },
+      "businessType": {
+        "label": "Rodzaj działalności",
+        "placeholder": "np. Wynajem domków letniskowych, Sklep internetowy..."
+      },
+      "projectDescription": {
+        "label": "Opis projektu i Twoich oczekiwań",
+        "placeholder": "Chcę nową stronę z systemem rezerwacji bezpośrednich, cennikiem i opcją zapytania o wolne terminy..."
+      },
+      "colorPreference": {
+        "label": "Kolorystyka",
+        "optional": "(opcjonalnie)",
+        "placeholder": "np. ciepłe drewno, leśna zieleń, nowoczesny ciemny..."
+      },
+      "reference": {
+        "label": "Strona referencyjna / inspiracja",
+        "optional": "(opcjonalnie)",
+        "placeholder": "Wklej adres www strony, która Ci się podoba"
+      },
+      "files": {
+        "label": "Dołącz logo lub pliki",
+        "optional": "(opcjonalnie)",
+        "dropzone": "Wybierz pliki lub przeciągnij tutaj",
+        "removeAria": "Usuń plik {fileName}"
+      }
+    },
+    "buttons": {
+      "back": "Wstecz",
+      "next": "Przejdź dalej →",
+      "saving": "Zapisywanie...",
+      "sending": "Wysyłanie zgłoszenia...",
+      "submitMarketing": "Wyślij i odbierz plan →",
+      "submitVisualization": "Wyślij i odbierz wizualizację →"
+    },
+    "errors": {
+      "invalidEmail": "Podaj poprawny adres email",
+      "projectNameRequired": "Podaj nazwę projektu lub firmy",
+      "businessTypeRequired": "Podaj rodzaj działalności",
+      "descriptionTooShort": "Opisz krótko swój projekt (min. 10 znaków)",
+      "fileTooLarge": "Plik \"{fileName}\" przekracza {maxSize} MB",
+      "tooManyFiles": "Możesz dołączyć maksymalnie {maxFiles} plików",
+      "saveFailed": "Wystąpił błąd podczas zapisywania. Spróbuj ponownie.",
+      "submitFailed": "Coś poszło nie tak. Spróbuj ponownie lub napisz do nas bezpośrednio.",
+      "uploadFailed": "Nie udało się przesłać pliku \"{fileName}\". Spróbuj ponownie."
+    }
+  }
+}

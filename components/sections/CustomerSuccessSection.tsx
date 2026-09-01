@@ -1,9 +1,10 @@
 "use client";
 
 import { useRef } from "react";
-import Link from "next/link";
 import { motion, useReducedMotion, useScroll } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 import SuccessCounterHero from "./customer-success/SuccessCounterHero";
 import MovementIntro from "./customer-success/MovementIntro";
@@ -21,6 +22,7 @@ import ResultsBlock from "./customer-success/ResultsBlock";
  * somewhere to glow. Replaces the old EndorsementSection slot.
  */
 export default function CustomerSuccessSection() {
+  const t = useTranslations("home.customerSuccess");
   const sectionRef = useRef<HTMLElement>(null);
   const prefersReducedMotion = useReducedMotion();
 
@@ -37,7 +39,7 @@ export default function CustomerSuccessSection() {
       aria-labelledby="customer-success-heading"
     >
       <h2 id="customer-success-heading" className="sr-only">
-        Case study: Pierwsze Trzeźwe Pokolenie — od zera do 27 milionów wyświetleń
+        {t("sectionHeading")}
       </h2>
 
       {/* Reading-progress rail — fills as the chapter is scrolled through. */}
@@ -68,7 +70,7 @@ export default function CustomerSuccessSection() {
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         >
-          Zaczęliśmy z czystą kartą. Skończyliśmy z fenomenem.
+          {t("outro.line1")}
         </motion.p>
         <motion.p
           className="mx-auto mt-6 max-w-2xl font-body text-base leading-relaxed text-dark-foreground/65 md:text-lg"
@@ -77,8 +79,7 @@ export default function CustomerSuccessSection() {
           viewport={{ once: true, margin: "-10%" }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
         >
-          Klient: Pierwsze Trzeźwe Pokolenie (Fundacja Columbus). Architektura
-          i komunikacja projektu — od zera, w 6 miesięcy.
+          {t("outro.line2")}
         </motion.p>
 
         <motion.div
@@ -94,7 +95,7 @@ export default function CustomerSuccessSection() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full border border-dark-foreground/25 px-6 py-3 font-body text-sm font-semibold text-dark-foreground transition-all duration-200 hover:border-dark-foreground/60 hover:bg-dark-foreground/5"
           >
-            Zobacz projekt
+            {t("outro.viewProject")}
             <ArrowUpRight className="h-4 w-4" />
           </a>
         </motion.div>
@@ -106,7 +107,7 @@ export default function CustomerSuccessSection() {
           href="/#contact"
           className="group pointer-events-auto inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 font-body text-sm font-semibold text-primary-foreground shadow-2xl shadow-primary/40 ring-1 ring-white/20 backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-primary/90"
         >
-          Chcę takie wyniki
+          {t("outro.ctaSticky")}
           <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
         </Link>
       </div>

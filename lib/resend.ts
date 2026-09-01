@@ -1,15 +1,20 @@
 import { Resend } from 'resend'
-import { renderLeadConfirmation } from '@/emails/LeadConfirmation'
+import { renderLeadConfirmation, type LeadConfirmationLocale } from '@/emails/LeadConfirmation'
 import { renderBookingConfirmation } from '@/emails/BookingConfirmation'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-export async function sendLeadConfirmation(to: string, name: string) {
-  const html = await renderLeadConfirmation({ name })
+const LEAD_CONFIRMATION_SUBJECT: Record<LeadConfirmationLocale, string> = {
+  pl: 'Dobrze, że jesteś 👋 — zobaczmy, co możemy razem zbudować',
+  en: "Great to have you 👋 — let's see what we can build together",
+}
+
+export async function sendLeadConfirmation(to: string, name: string, locale: LeadConfirmationLocale = 'pl') {
+  const html = await renderLeadConfirmation({ name, locale })
   return resend.emails.send({
     from: 'WeUnite <hello@weunite.pl>',
     to,
-    subject: `Dobrze, że jesteś 👋 — zobaczmy, co możemy razem zbudować`,
+    subject: LEAD_CONFIRMATION_SUBJECT[locale],
     html,
   })
 }

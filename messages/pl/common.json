@@ -1,0 +1,64 @@
+{
+  "nav": {
+    "logo": "WeUnite",
+    "links": {
+      "services": "Co robimy",
+      "mission": "Dla kogo",
+      "customerSuccess": "Case study",
+      "realizacje": "Realizacje"
+    },
+    "cta": "Odbierz wizualizację",
+    "toggleMenu": "Otwórz menu",
+    "closeMenu": "Zamknij menu"
+  },
+  "footer": {
+    "sectionLinks": {
+      "services": "Co robimy",
+      "mission": "Dla kogo",
+      "customerSuccess": "Case study",
+      "realizacje": "Realizacje",
+      "contact": "Kontakt"
+    },
+    "legalLinks": {
+      "privacy": "Polityka prywatności",
+      "cookies": "Polityka cookies",
+      "terms": "Regulamin"
+    },
+    "addressLine1": "Adres: ul. Gdyńska G/9,",
+    "addressLine2": "80-340 Gdańsk",
+    "emailLabel": "Email:",
+    "phoneLabel": "Telefon:",
+    "social": {
+      "linkedin": "LinkedIn",
+      "facebook": "Facebook",
+      "instagram": "Instagram"
+    },
+    "copyright": "Copyright © 2026 WeUnite. Wszelkie prawa zastrzeżone."
+  },
+  "cookieBanner": {
+    "title": "Ta strona używa cookies",
+    "body": "Ruch mierzymy anonimowo, bez cookies. Zgoda pozwala nam rozpoznawać Cię między wizytami (PostHog) i mierzyć skuteczność reklam (Meta Pixel).",
+    "learnMore": "Dowiedz się więcej",
+    "acceptAll": "Akceptuj wszystkie",
+    "necessaryOnly": "Tylko niezbędne"
+  },
+  "languageSwitcher": {
+    "label": "Język",
+    "pl": "Polski",
+    "en": "English"
+  },
+  "seo": {
+    "titleTemplate": "%s | WeUnite",
+    "defaultTitle": "WeUnite — Strony internetowe i marketing dla domków letniskowych",
+    "defaultDescription": "Profesjonalne strony internetowe z systemem rezerwacji i płatności online dla właścicieli domków letniskowych. Obsługa social media i automatyzacje. Bezpłatna konsultacja i wizualizacja strony.",
+    "ogDescription": "Profesjonalne strony z systemem rezerwacji online dla właścicieli domków letniskowych. Bezpłatna konsultacja i wizualizacja.",
+    "businessDescription": "Agencja marketingowa specjalizująca się w stronach internetowych z systemami rezerwacji online, obsłudze social media i automatyzacjach dla właścicieli domków letniskowych.",
+    "websiteDescription": "Profesjonalne strony internetowe z systemem rezerwacji online dla właścicieli domków letniskowych.",
+    "serviceWebsite": "Strona internetowa z systemem rezerwacji dla domków letniskowych",
+    "serviceWebsiteDescription": "Profesjonalna strona internetowa z zintegrowanym systemem rezerwacji i płatności online — dedykowana dla właścicieli domków letniskowych i obiektów noclegowych.",
+    "serviceSocialMedia": "Obsługa social media",
+    "serviceSocialMediaDescription": "Regularne tworzenie treści, kampanie reklamowe na Facebooku i Instagramie oraz wzrost zasięgów organicznych.",
+    "serviceAutomation": "Automatyzacje biznesowe",
+    "serviceAutomationDescription": "Automatyzacja procesów biznesowych — sekwencje e-mail, przypomnienia o rezerwacjach i powiadomienia bez ręcznej pracy 24/7."
+  }
+}

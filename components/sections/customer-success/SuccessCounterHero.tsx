@@ -11,6 +11,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 import { HERO_REACH, formatCount } from "./data";
 
@@ -19,6 +20,7 @@ import { HERO_REACH, formatCount } from "./data";
  * is what makes the number climb from 0 to 27 200 000.
  */
 export default function SuccessCounterHero() {
+  const t = useTranslations("home.customerSuccess.counterHero");
   const trackRef = useRef<HTMLDivElement>(null);
   const numberRef = useRef<HTMLSpanElement>(null);
   const prefersReducedMotion = useReducedMotion();
@@ -148,12 +150,12 @@ export default function SuccessCounterHero() {
               />
             </span>
             <span className="font-body text-base font-bold uppercase tracking-widest text-dark-foreground md:text-xl">
-              Customer Success · Pierwsze Trzeźwe Pokolenie
+              {t("badge")}
             </span>
           </motion.div>
 
           <p className="mt-10 font-body text-sm uppercase tracking-[0.3em] text-dark-foreground/50">
-            Od zera do
+            {t("fromZeroTo")}
           </p>
 
           {/* 8vw max: "27 000 000+" is ~10em wide in Syne ExtraBold, so anything
@@ -167,7 +169,8 @@ export default function SuccessCounterHero() {
           </p>
 
           <p className="mt-3 font-body text-sm uppercase tracking-[0.3em] text-dark-foreground/50">
-            organicznych <span className="font-bold text-dark-foreground">wyświetleń</span>
+            {t("viewsLabel")}{" "}
+            <span className="font-bold text-dark-foreground">{t("viewsLabelBold")}</span>
           </p>
 
 
@@ -179,7 +182,7 @@ export default function SuccessCounterHero() {
           style={{ opacity: prefersReducedMotion ? 0 : cueOpacity }}
         >
           <span className="font-body text-[0.65rem] uppercase tracking-[0.25em]">
-            Scrolluj
+            {t("scrollCue")}
           </span>
           <motion.span
             animate={prefersReducedMotion ? undefined : { y: [0, 6, 0] }}

@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import gsap from "gsap";
+import { useTranslations } from "next-intl";
 
 import { formatCount, headlineStats, platformResults } from "./data";
 
@@ -80,6 +81,7 @@ function CountUp({
  * per-platform bars fill left-to-right in sequence.
  */
 export default function ResultsBlock() {
+  const t = useTranslations("home.customerSuccess");
   const prefersReducedMotion = useReducedMotion();
   const [leadStat, ...secondaryStats] = headlineStats;
 
@@ -92,7 +94,7 @@ export default function ResultsBlock() {
         viewport={{ once: true }}
         transition={{ duration: 0.5, ease: "easeOut" }}
       >
-        04 — Wyniki po 6 miesiącach
+        {t("resultsBlock.eyebrow")}
       </motion.p>
       <motion.h3
         className="mt-4 max-w-3xl font-sans text-3xl font-extrabold leading-tight tracking-tight text-dark-foreground md:text-5xl"
@@ -101,7 +103,7 @@ export default function ResultsBlock() {
         viewport={{ once: true }}
         transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
       >
-        Mądry content potrafi generować astronomiczne liczby.
+        {t("resultsBlock.heading")}
       </motion.h3>
 
       {/* The reach figure is ~9.5em wide in Syne ExtraBold — far too long to
@@ -110,7 +112,7 @@ export default function ResultsBlock() {
         <CountUp
           value={leadStat.value}
           suffix={leadStat.suffix}
-          label={leadStat.label}
+          label={t(`headlineStats.${leadStat.id}.label`)}
           delay={0}
           numberClassName="text-[clamp(1.75rem,7vw,5.5rem)]"
           labelClassName="max-w-lg text-base md:text-lg"
@@ -123,7 +125,7 @@ export default function ResultsBlock() {
               key={stat.id}
               value={stat.value}
               suffix={stat.suffix}
-              label={stat.label}
+              label={t(`headlineStats.${stat.id}.label`)}
               delay={0.15 + index * 0.15}
               numberClassName="text-[clamp(1.75rem,5vw,4rem)]"
               prefersReducedMotion={prefersReducedMotion}
@@ -149,7 +151,7 @@ export default function ResultsBlock() {
               <p className="font-sans text-xl font-extrabold tabular-nums tracking-tight text-dark-foreground md:text-2xl">
                 {formatCount(platform.value)}{" "}
                 <span className="font-body text-sm font-normal text-dark-foreground/50">
-                  {platform.metric}
+                  {t(`platformResults.${platform.id}.metric`)}
                 </span>
               </p>
             </div>
@@ -170,7 +172,7 @@ export default function ResultsBlock() {
             </div>
 
             <ul className="mt-6 grid grid-cols-1 gap-x-8 gap-y-2 sm:grid-cols-3">
-              {platform.details.map((detail) => (
+              {t.raw(`platformResults.${platform.id}.details`).map((detail: string) => (
                 <li
                   key={detail}
                   className="font-body text-sm leading-relaxed text-dark-foreground/65"

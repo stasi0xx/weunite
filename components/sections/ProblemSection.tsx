@@ -3,26 +3,12 @@
 import { useRef } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import gsap from "gsap";
+import { useTranslations } from "next-intl";
 
-const stats = [
-  {
-    value: 36,
-    suffix: " mln",
-    suffixClassName: "text-2xl md:text-3xl lg:text-4xl ",
-    label: "Razy wyświetlono nasze materiały w 2026 roku.",
-  },
-  {
-    value: 20,
-    suffix: "+",
-    suffixClassName: "",
-    label: "Zrealizowanych inteligentnych stron w 2026 roku.",
-  },
-  {
-    value: 100,
-    suffix: "+",
-    suffixClassName: "",
-    label: "Zadowolonych klientów, którzy nam zaufali.",
-  },
+const statConfig = [
+  { id: "views" as const, value: 36, suffix: " mln", suffixClassName: "text-2xl md:text-3xl lg:text-4xl " },
+  { id: "sites" as const, value: 20, suffix: "+", suffixClassName: "" },
+  { id: "clients" as const, value: 100, suffix: "+", suffixClassName: "" },
 ];
 
 function StatItem({
@@ -86,6 +72,7 @@ function StatItem({
 }
 
 export default function ProblemSection() {
+  const t = useTranslations("home.problem");
   const prefersReducedMotion = useReducedMotion();
 
   return (
@@ -98,7 +85,7 @@ export default function ProblemSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
-          Nasza misja
+          {t("eyebrow")}
         </motion.p>
 
         <motion.h2
@@ -109,7 +96,7 @@ export default function ProblemSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
         >
-          Twój marketing z Gdańska.
+          {t("heading")}
         </motion.h2>
 
         <motion.p
@@ -119,20 +106,19 @@ export default function ProblemSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.2 }}
         >
-          <strong className="font-bold text-foreground">Jednoczymy</strong> społeczności w
-          social mediach wokół <strong className="font-bold text-foreground">Twojej firmy</strong> i
-          tworzymy <strong className="font-bold text-foreground">inteligentne strony</strong>, które{" "}
-          <strong className="font-bold text-foreground">budzą zaufanie</strong>.
+          {t.rich("body", {
+            b: (chunks) => <strong className="font-bold text-foreground">{chunks}</strong>,
+          })}
         </motion.p>
 
         <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-0 md:divide-x md:divide-primary/40">
-          {stats.map((stat, i) => (
-            <div key={stat.label} className="md:px-8">
+          {statConfig.map((stat, i) => (
+            <div key={stat.id} className="md:px-8">
               <StatItem
                 value={stat.value}
                 suffix={stat.suffix}
                 suffixClassName={stat.suffixClassName}
-                label={stat.label}
+                label={t(`stats.${stat.id}`)}
                 delay={0.3 + i * 0.1}
                 prefersReducedMotion={prefersReducedMotion}
               />

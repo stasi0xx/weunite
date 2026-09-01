@@ -1,3 +1,5 @@
+"use client"
+
 import { HoverLink } from "@/components/ui/hover-link"
 
 const legalLinks = [

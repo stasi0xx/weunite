@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 /**
  * Photo-led opener for Creo Gedania — a deliberate variant of the abstract
@@ -12,6 +13,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion
  * only 596×335px — stretching it edge-to-edge would read soft on desktop.
  */
 export default function CreoHero() {
+  const t = useTranslations("creoGedania.hero");
   const frameRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useReducedMotion();
 
@@ -30,7 +32,7 @@ export default function CreoHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
-          Case Study · Creo Gedania
+          {t("badge")}
         </motion.p>
 
         <motion.div
@@ -46,7 +48,7 @@ export default function CreoHero() {
           >
             <Image
               src="/casestudy/casestudy2.jpg"
-              alt="Uczniowie i nauczycielka przed budynkiem szkoły Creo Gedania w Gdańsku"
+              alt={t("imageAlt")}
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 1024px"
@@ -71,7 +73,7 @@ export default function CreoHero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, ease: "easeOut", delay: 0.25 }}
             >
-              Jak pozyskaliśmy 10 nowych uczniów dla Creo Gedania dzięki dwóm rolkom
+              {t("heading")}
             </motion.h1>
           </div>
         </motion.div>

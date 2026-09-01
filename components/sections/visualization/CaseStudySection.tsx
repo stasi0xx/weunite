@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "framer-motion"
 import Image from "next/image"
 import { ArrowUpRight } from "lucide-react"
+import { useTranslations } from "next-intl"
 
 type Project = {
   label: string
@@ -13,28 +14,25 @@ type Project = {
   alt: string
 }
 
-const projects: Project[] = [
-  {
-    label: "Deweloper",
-    title: "Nowy Relaks — Filipek Investment",
-    description:
-      "Domy jednorodzinne pod Białą Podlaską. W miejsce darmowego szablonu z Wixa zbudowaliśmy stronę od podstaw: pełną prezentację lokalizacji i etapów budowy oraz formularz zapytań o dostępność domu.",
-    href: "https://www.nowyrelaks.fi-invest.pl/",
-    image: "/casestudy/nowyrelaks-after.jpg",
-    alt: "Strona inwestycji Nowy Relaks zaprojektowana przez WeUnite",
-  },
-  {
-    label: "Klub sportowy",
-    title: "Gdynia Padel Club",
-    description:
-      "Strona klubu padlowego w Gdyni. Dynamiczna prezentacja kortów i oferty wraz z systemem rezerwacji online, który ułatwia klientom szybkie umówienie gry.",
-    href: "https://www.gdyniapadelclub.pl/",
-    image: "/casestudy/gdyniapadelclub.jpg",
-    alt: "Strona Gdynia Padel Club zaprojektowana przez WeUnite",
-  },
+const projectConfig = [
+  { id: "nowyRelaks" as const, href: "https://www.nowyrelaks.fi-invest.pl/", image: "/casestudy/nowyrelaks-after.jpg" },
+  { id: "gdyniaPadelClub" as const, href: "https://www.gdyniapadelclub.pl/", image: "/casestudy/gdyniapadelclub.jpg" },
 ]
 
+function useProjects(): Project[] {
+  const t = useTranslations("visualization.caseStudy")
+  return projectConfig.map(({ id, href, image }) => ({
+    href,
+    image,
+    label: t(`${id}.label`),
+    title: t(`${id}.title`),
+    description: t(`${id}.description`),
+    alt: t(`${id}.alt`),
+  }))
+}
+
 function ProjectCard({ project, delay }: { project: Project; delay: number }) {
+  const t = useTranslations("visualization.caseStudy")
   const prefersReducedMotion = useReducedMotion()
 
   return (
@@ -84,7 +82,7 @@ function ProjectCard({ project, delay }: { project: Project; delay: number }) {
           rel="noopener noreferrer"
           className="group/link inline-flex items-center gap-1.5 text-sm font-medium text-foreground hover:text-primary transition-colors duration-200 w-fit"
         >
-          Zobacz stronę na żywo
+          {t("viewLive")}
           <ArrowUpRight
             className="h-4 w-4 transition-transform duration-200 ease-out motion-safe:group-hover/link:translate-x-0.5 motion-safe:group-hover/link:-translate-y-0.5"
             aria-hidden="true"
@@ -96,6 +94,8 @@ function ProjectCard({ project, delay }: { project: Project; delay: number }) {
 }
 
 export default function CaseStudySection() {
+  const t = useTranslations("visualization.caseStudy")
+  const projects = useProjects()
   const prefersReducedMotion = useReducedMotion()
 
   return (
@@ -109,7 +109,7 @@ export default function CaseStudySection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
-          Ostatnie realizacje
+          {t("heading")}
         </motion.h2>
 
         <motion.p
@@ -119,8 +119,7 @@ export default function CaseStudySection() {
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: "easeOut", delay: 0.15 }}
         >
-          Od dewelopera domów jednorodzinnych po klub sportowy — projektujemy dedykowane
-          strony, które prezentują ofertę, budują zaufanie i ułatwiają kontakt.
+          {t("body")}
         </motion.p>
 
         <div className="flex flex-col md:flex-row gap-6 items-stretch">
