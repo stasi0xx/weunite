@@ -104,10 +104,10 @@ export default function CustomerSuccessSection() {
       <div className="sticky bottom-6 z-40 flex justify-center pointer-events-none pb-6 px-4">
         <Link
           href="/#contact"
-          className="pointer-events-auto inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 font-body text-sm font-semibold text-primary-foreground shadow-2xl shadow-primary/40 ring-1 ring-white/20 backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-primary/90 hover:gap-3"
+          className="group pointer-events-auto inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 font-body text-sm font-semibold text-primary-foreground shadow-2xl shadow-primary/40 ring-1 ring-white/20 backdrop-blur-md transition-all duration-200 hover:scale-105 hover:bg-primary/90"
         >
           Chcę takie wyniki
-          <ArrowUpRight className="h-4 w-4" />
+          <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
         </Link>
       </div>
     </section>
