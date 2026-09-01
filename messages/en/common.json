@@ -5,9 +5,9 @@
       "services": "What we do",
       "mission": "Who it's for",
       "customerSuccess": "Case study",
-      "realizacje": "Our work"
+      "realizacje": "Case studies"
     },
-    "cta": "Get your visualization",
+    "cta": "Let's start",
     "toggleMenu": "Open menu",
     "closeMenu": "Close menu"
   },
@@ -16,7 +16,7 @@
       "services": "What we do",
       "mission": "Who it's for",
       "customerSuccess": "Case study",
-      "realizacje": "Our work",
+      "realizacje": "Case studies",
       "contact": "Contact"
     },
     "legalLinks": {
@@ -50,8 +50,8 @@
   "seo": {
     "titleTemplate": "%s | WeUnite",
     "defaultTitle": "WeUnite — Websites and Marketing for Vacation Rentals",
-    "defaultDescription": "Professional websites with online booking and payment systems for vacation rental owners. Social media management and automations. Free consultation and website visualization.",
-    "ogDescription": "Professional websites with online booking systems for vacation rental owners. Free consultation and visualization.",
+    "defaultDescription": "Professional websites with online booking and payment systems for vacation rental owners. Social media management and automations. Free consultation and website mockup.",
+    "ogDescription": "Professional websites with online booking systems for vacation rental owners. Free consultation and mockup.",
     "businessDescription": "Marketing agency specializing in websites with online booking systems, social media management, and automations for vacation rental owners.",
     "websiteDescription": "Professional websites with online booking systems for vacation rental owners.",
     "serviceWebsite": "Website with booking system for vacation rentals",

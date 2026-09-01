@@ -1,7 +1,7 @@
 {
   "hero": {
     "sectionAria": "Main section",
-    "srDescription": "WeUnite — marketing agency for vacation rentals: booking-ready websites, social media, automations",
+    "srDescription": "WeUnite — marketing agency for vacation rentals: websites with online booking systems, social media, automations",
     "scrollAria": "Scroll to our services"
   },
   "clientLogos": {
@@ -10,11 +10,11 @@
     "clientSuffix": "WeUnite client"
   },
   "problem": {
-    "eyebrow": "Our mission",
+    "reachBadge": "Nationwide reach",
     "heading": "Your marketing, from Gdańsk.",
     "body": "<b>We unite</b> social media communities around <b>your business</b> and build <b>smart websites</b> that <b>earn trust</b>.",
     "stats": {
-      "views": "Times our materials were viewed in 2026.",
+      "views": "Views on our content in 2026.",
       "sites": "Smart websites delivered in 2026.",
       "clients": "Happy clients who trusted us."
     }
@@ -25,9 +25,9 @@
     "sectionAria": "Our services",
     "websites": {
       "title": "01 Smart websites",
-      "description": "We build sites that work for you. We implement smart automations, AI chatbots, advanced booking systems, and secure client-panel logins. We provide dozens of technical conveniences, fully tailored to your individual project and business needs.",
+      "description": "We build sites that work for you. We implement smart automations, AI chatbots, advanced booking systems, and secure client-panel logins. Dozens of smart features built in, fully tailored to your individual project and business goals.",
       "imageAlt": "Nowy Relaks website project",
-      "primaryLabel": "Get your visualization",
+      "primaryLabel": "Get your mockup",
       "secondaryLabel": "See our projects"
     },
     "socialMedia": {
@@ -51,7 +51,11 @@
       "eyebrow": "The idea",
       "heading": "The first generation for whom sobriety is a choice, not a ban",
       "body1": "Pierwsze Trzeźwe Pokolenie (\"First Sober Generation\") is an initiative of the Columbus Foundation — a movement that wants to be exactly what its name says: the first generation for whom delaying first alcohol use becomes the norm, not the exception.",
-      "body2": "Instead of lectures and bans — authentic ambassadors and honest stories, told in the language young people actually use with each other. Mateusz Kusznierewicz shows that success and real emotion can be built without substances. Łukasz Tchórzewski, known as \"the TikTok Alcoholic,\" speaks plainly about what addiction really is. The result: education that doesn't sound like education."
+      "body2": "Instead of lectures and bans — authentic ambassadors and honest stories, told in the language young people actually use with each other. Mateusz Kusznierewicz shows that success and real emotion can be built without substances. Łukasz Tchórzewski, known as \"the TikTok Alcoholic,\" speaks plainly about what addiction really is. The result: education that doesn't sound like education.",
+      "statsBeforeAlt": "View statistics before working with WeUnite",
+      "statsAfterAlt": "View statistics after working with WeUnite",
+      "statsBeforeCaption": "Before working with WeUnite",
+      "statsAfterCaption": "After working with WeUnite"
     },
     "challengeBlock": {
       "eyebrow": "01 — The challenge",
@@ -63,8 +67,8 @@
         "body": "For young people, sobriety brings to mind dull lectures and bans that provoke rebellion. We had to build communication with no schoolteacher tone and no finger-wagging — stopping alcohol initiation with inspiration, not fear."
       },
       "attention": {
-        "title": "Win against overstimulation",
-        "body": "TikTok's and YouTube's algorithms reward quick entertainment. Our job was to smuggle deep, educational value into a format that would actually hold a viewer's attention."
+        "title": "Cut through the noise",
+        "body": "TikTok's and YouTube's algorithms reward quick entertainment. Our job was to slip real educational value into a format that would actually hold attention."
       },
       "offline": {
         "title": "Translate online into offline",
@@ -108,7 +112,7 @@
     "headlineStats": {
       "reach": { "label": "brand touchpoints across the whole ecosystem" },
       "followers": { "label": "new followers — gained from absolute zero" },
-      "schools": { "label": "schools hosting the campaign's patronage and posters" }
+      "schools": { "label": "schools that signed on as campaign partners and display its posters" }
     },
     "platformResults": {
       "tiktok": {
@@ -146,13 +150,13 @@
   "contactForm": {
     "sectionAria": "Contact form",
     "headingLine1": "Free",
-    "headingLine2": "visualization or plan",
-    "description": "Choose the option you're interested in and fill out the form step by step. We'll prepare a free visualization or marketing plan for you within 24h.",
-    "formAria": "Lead form",
+    "headingLine2": "mockup or plan",
+    "description": "Choose the option you're interested in and fill out the form step by step. We'll prepare a free mockup or marketing plan for you within 24 hours.",
+    "formAria": "Enquiry form",
     "trustSignals": {
       "response": "We respond within 24h",
       "freeMarketingPlan": "Free marketing plan",
-      "freeVisualization": "Free website visualization",
+      "freeVisualization": "Free website mockup",
       "noObligation": "No obligation"
     },
     "stepProgress": "Step {current} of {total}",
@@ -160,7 +164,7 @@
       "step1": {
         "title": "Choice & Email",
         "heading": "Why do we need your choice and email address?",
-        "textVisualization": "We need your email address to send you a free, personalized website visualization and to discuss the details. We don't send spam.",
+        "textVisualization": "We need your email address to send you a free, personalized website mockup and to discuss the details. We don't send spam.",
         "textMarketingPlan": "Give us your email and briefly describe which social media channel you want to run — we'll use it to prepare a free, personalized marketing plan. We don't send spam."
       },
       "step2": {
@@ -182,7 +186,7 @@
     "offerSelector": {
       "label": "Choose what you'd like to receive for free",
       "visualization": {
-        "title": "Free website visualization",
+        "title": "Free website mockup",
         "description": "A visual design for a new website, tailored to your business."
       },
       "marketingPlan": {
@@ -196,7 +200,7 @@
         "label": "Describe what you need",
         "placeholder": "I'd like to run a professional channel for..."
       },
-      "projectName": { "label": "Project / business name", "placeholder": "e.g. Lakeside Cabins" },
+      "projectName": { "label": "Project / business name", "placeholder": "e.g. Forest Edge Cottages" },
       "businessType": {
         "label": "Type of business",
         "placeholder": "e.g. Vacation rentals, Online store..."
@@ -226,9 +230,9 @@
       "back": "Back",
       "next": "Continue →",
       "saving": "Saving...",
-      "sending": "Sending...",
+      "sending": "Sending your request...",
       "submitMarketing": "Send and get the plan →",
-      "submitVisualization": "Send and get the visualization →"
+      "submitVisualization": "Send and get the mockup →"
     },
     "errors": {
       "invalidEmail": "Enter a valid email address",

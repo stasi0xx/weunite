@@ -1,26 +1,26 @@
 {
   "meta": {
-    "title": "Free Website Visualization",
-    "description": "Get a free visualization of your new website with a booking system for your business. No obligation, no cost."
+    "title": "Free Website Mockup",
+    "description": "Get a free mockup of your new website with a booking system for your business. No obligation, no cost."
   },
   "hero": {
     "sectionAria": "Main section",
-    "heading": "Free visualization",
+    "heading": "Free mockup",
     "body": "Tell us about your business, and we'll prepare a free visual design for your new, smart website. No obligation and no cost — see the result first, then decide whether to work with us.",
-    "cta": "Get mine"
+    "cta": "Claim my mockup"
   },
   "monthlyCap": {
-    "label": "Visualizations claimed this month",
-    "valueText": "{taken} of {cap} free visualizations claimed this month",
+    "label": "Mockups claimed this month",
+    "valueText": "{taken} of {cap} free mockups claimed this month",
     "remaining": "<b>{count, plural, one {# spot} other {# spots}} left</b> this month.",
     "full": "This month's spots are full. Leave your contact info and we'll reach out when one opens up."
   },
   "caseStudy": {
     "heading": "Recent projects",
-    "body": "From a single-family home developer to a sports club — we design dedicated sites that showcase the offer, build trust, and make it easy to get in touch.",
+    "body": "From a single-family home developer to a sports club — we design dedicated sites that showcase what you offer, build trust, and make it easy to get in touch.",
     "viewLive": "View live site",
     "nowyRelaks": {
-      "label": "Developer",
+      "label": "Property developer",
       "title": "Nowy Relaks — Filipek Investment",
       "description": "Single-family homes near Biała Podlaska. In place of a free Wix template, we built a site from scratch: a full presentation of the location and construction stages, plus a home-availability inquiry form.",
       "alt": "The Nowy Relaks development site, designed by WeUnite"
@@ -28,7 +28,7 @@
     "gdyniaPadelClub": {
       "label": "Sports club",
       "title": "Gdynia Padel Club",
-      "description": "A padel club site in Gdynia. A dynamic presentation of the courts and offering, with an online booking system that makes it easy for players to book a game quickly.",
+      "description": "A padel club site in Gdynia. A dynamic presentation of the courts and offering, with an online booking system that makes it easy for customers to book a game quickly.",
       "alt": "The Gdynia Padel Club site, designed by WeUnite"
     }
   }

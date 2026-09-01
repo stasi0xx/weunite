@@ -9,7 +9,7 @@
     "heading": "See how we build smart websites."
   },
   "process": {
-    "heading": "How we deliver websites that sell.",
+    "heading": "How do we deliver websites that sell?",
     "subheading": "Our process in 3 steps:",
     "cta": "Book a consultation",
     "steps": {
@@ -29,19 +29,19 @@
   },
   "caseStudies": {
     "heading": "Our projects",
-    "subheading": "A few projects that show how we approach our clients' work.",
+    "subheading": "A few projects that show how we approach our clients' projects.",
     "viewLive": "View live site",
     "viewAria": "View the {title} site (opens in a new tab)",
     "nowyRelaks": {
-      "label": "Developer",
+      "label": "Property developer",
       "title": "Nowy Relaks — Filipek Investment",
-      "description": "Nowy Relaks is a single-family home development near Biała Podlaska, run by developer Filipek Investment. The company previously used a free template that neither built trust nor presented the offer the way the development deserved. We designed and built the site from scratch, with a full presentation of the location, construction stages, and interior galleries. We added a clear inquiry form for the availability of specific homes, going straight to the sales team. Result: a more modern brand image and more purchase inquiries.",
+      "description": "Nowy Relaks is a single-family home development near Biała Podlaska, run by developer Filipek Investment. The company previously used a free template that neither built trust nor presented the offer the way the development deserved. We designed and built the site from scratch, with a full presentation of the location, construction stages, and interior galleries. We added a simple form for enquiring about specific homes, delivered straight to the sales team. Result: a more modern brand image and more purchase inquiries.",
       "alt": "The Nowy Relaks development site, designed by WeUnite"
     },
     "gdyniaPadelClub": {
       "label": "Sports club",
       "title": "Gdynia Padel Club",
-      "description": "Gdynia Padel Club is a sports club in Gdynia we built a site for, showcasing its courts and full class offering. The key challenge was letting members book a court quickly without calling the front desk. We implemented a dynamic online booking system, integrated with real-time court availability. The site also presents pricing, events, and the club's social media in one place. Result: less administrative work for the team and an easier booking path for players.",
+      "description": "Gdynia Padel Club is a sports club in Gdynia. We built them a site showcasing their courts and full class schedule. The key challenge was letting customers book a court quickly without calling the front desk. We implemented a dynamic online booking system, integrated with real-time court availability. The site also presents pricing, events, and the club's social media in one place. Result: less administrative work for the team and an easier booking path for players.",
       "alt": "The Gdynia Padel Club site, designed by WeUnite"
     }
   }

@@ -24,7 +24,7 @@
     "title": "3. Purposes and legal bases for processing",
     "intro": "We process your data for the following purposes:",
     "a": {
-      "title": "a) Handling your inquiry and sending a free consultation",
+      "title": "a) Handling your inquiry and delivering the free consultation",
       "body": "Legal basis: Article 6(1)(b) GDPR (necessary for the performance of a contract or to take steps prior to entering into one) and Article 6(1)(a) GDPR (consent given by submitting the form)."
     },
     "b": {
@@ -37,7 +37,7 @@
     },
     "d": {
       "title": "d) Marketing WeUnite's own services",
-      "body": "Legal basis: Article 6(1)(f) GDPR (the Controller's legitimate interest) — only toward people who have previously expressed interest in our offer."
+      "body": "Legal basis: Article 6(1)(f) GDPR (the Controller's legitimate interest) — only in relation to people who have previously expressed interest in our offer."
     },
     "e": {
       "title": "e) Analytics and improving the Site",
@@ -47,7 +47,7 @@
   "s4": {
     "title": "4. How long we keep your data",
     "items": [
-      "Data from the contact form and booking system: until your inquiry has been handled, and then for 3 years from the last contact, or until you successfully object.",
+      "Data from the contact form and booking system: until your inquiry has been handled, and then for 3 years from the last contact, or until you file a valid objection.",
       "Data used for marketing purposes: until consent is withdrawn or an objection is raised.",
       "Data necessary to establish, pursue, or defend legal claims: for the statutory limitation period for claims (generally 3 years for claims related to business activity).",
       "System logs and analytics data: up to 13 months."
@@ -77,7 +77,7 @@
       "Right to withdraw consent — at any time, without affecting the lawfulness of processing carried out before the withdrawal."
     ],
     "p1": "To exercise the rights above, contact us at <email>info@weunite.pl</email>. We will respond within 30 days of receiving your request.",
-    "p2": "You also have the right to lodge a complaint with the supervisory authority — the President of the Personal Data Protection Office (UODO), ul. Stawki 2, 00-193 Warszawa, Poland, <uodoLink>uodo.gov.pl</uodoLink>."
+    "p2": "You also have the right to lodge a complaint with the supervisory authority — the President of the Personal Data Protection Office (UODO), ul. Stawki 2, 00-193 Warsaw, Poland, <uodoLink>uodo.gov.pl</uodoLink>."
   },
   "s7": {
     "title": "7. Data security",

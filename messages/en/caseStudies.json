@@ -1,13 +1,13 @@
 {
   "meta": {
-    "title": "Our work",
+    "title": "Case studies",
     "description": "See our work: websites and social media campaigns for a property developer, a sports club, and a foundation — with the challenges and results behind each."
   },
   "intro": {
     "sectionAria": "Case studies — introduction",
     "eyebrow": "Case studies",
     "heading": "See how we work — don't just read about it.",
-    "body": "A developer, a sports club, a social campaign: three different challenges and three projects that genuinely moved the needle for our clients."
+    "body": "A property developer, a sports club, a public awareness campaign: three different challenges and three projects that genuinely moved the needle for our clients."
   },
   "list": {
     "sectionAria": "List of case studies",
@@ -25,21 +25,21 @@
   },
   "projects": {
     "nowyRelaks": {
-      "label": "Developer",
+      "label": "Property developer",
       "title": "Nowy Relaks — Filipek Investment",
       "teaser": "A single-family home developer near Biała Podlaska traded a free template for a site built from scratch — with a full presentation of the development and an inquiry form going straight to the sales team.",
-      "description": "Nowy Relaks is a single-family home development near Biała Podlaska, run by developer Filipek Investment. The company previously used a free template that neither built trust nor presented the offer the way the development deserved. We designed and built the site from scratch, with a full presentation of the location, construction stages, and interior galleries. We added a clear inquiry form for the availability of specific homes, going straight to the sales team. Result: a more modern brand image and more purchase inquiries.",
+      "description": "Nowy Relaks is a single-family home development near Biała Podlaska, run by developer Filipek Investment. The company previously used a free template that neither built trust nor presented the offer the way the development deserved. We designed and built the site from scratch, with a full presentation of the location, construction stages, and interior galleries. We added a simple form for enquiring about specific homes, delivered straight to the sales team. Result: a more modern brand image and more purchase inquiries.",
       "imageAlt": "The Nowy Relaks development site, designed by WeUnite",
       "meta": {
         "title": "Nowy Relaks — Filipek Investment",
-        "description": "A single-family home developer near Biała Podlaska swapped a free template for a website built from the ground up — with a full presentation of the development and an inquiry form going straight to the sales team."
+        "description": "A single-family home developer near Biała Podlaska traded a free template for a website built from the ground up — with a full presentation of the development and an inquiry form going straight to the sales team."
       }
     },
     "gdyniaPadelClub": {
       "label": "Sports club",
       "title": "Gdynia Padel Club",
       "teaser": "A sports club in Gdynia got a dynamic online booking system integrated with court availability — less administrative work, an easier booking path for players.",
-      "description": "Gdynia Padel Club is a sports club in Gdynia we built a site for, showcasing its courts and full class offering. The key challenge was letting members book a court quickly without calling the front desk. We implemented a dynamic online booking system, integrated with real-time court availability. The site also presents pricing, events, and the club's social media in one place. Result: less administrative work for the team and an easier booking path for players.",
+      "description": "Gdynia Padel Club is a sports club in Gdynia. We built them a site showcasing their courts and full class schedule. The key challenge was letting customers book a court quickly without calling the front desk. We implemented a dynamic online booking system, integrated with real-time court availability. The site also presents pricing, events, and the club's social media in one place. Result: less administrative work for the team and an easier booking path for players.",
       "imageAlt": "The Gdynia Padel Club site, designed by WeUnite",
       "meta": {
         "title": "Gdynia Padel Club",
@@ -47,14 +47,14 @@
       }
     },
     "pierwszeTrzezwePokolenie": {
-      "label": "Foundation · Social campaign",
+      "label": "Foundation · Public awareness campaign",
       "title": "Pierwsze Trzeźwe Pokolenie",
-      "teaser": "A social campaign built from zero: over 27.2M brand touchpoints, nearly 27,500 new followers, and the patronage of 5 schools — in 6 months.",
+      "teaser": "A public awareness campaign built from zero: over 27.2M brand touchpoints, nearly 27,500 new followers, and 5 schools signed on as partners — in 6 months.",
       "description": "Architecture and communications for the Pierwsze Trzeźwe Pokolenie campaign (Columbus Foundation) — from zero, in 6 months: strategy, ambassadors, video content, and real educational support in schools.",
       "imageAlt": "Still from the video podcast recorded for Pierwsze Trzeźwe Pokolenie",
       "meta": {
         "title": "Pierwsze Trzeźwe Pokolenie",
-        "description": "A social campaign built from zero: over 27.2M brand touchpoints in 6 months. Strategy, ambassadors, and video content for the Columbus Foundation."
+        "description": "A public awareness campaign built from zero: over 27.2M brand touchpoints in 6 months. Strategy, ambassadors, and video content for the Columbus Foundation."
       }
     },
     "creoGedania": {

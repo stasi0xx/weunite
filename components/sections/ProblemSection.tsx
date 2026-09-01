@@ -76,28 +76,30 @@ export default function ProblemSection() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <section id="mission" className="py-24 md:py-32" aria-labelledby="mission-heading">
+    <section id="mission" className="pt-20 pb-24 md:pb-32" aria-labelledby="mission-heading">
       <div className="max-w-5xl mx-auto px-6 text-center">
-        <motion.p
-          className="text-xs font-semibold tracking-widest uppercase text-muted-foreground font-body"
+        <motion.h2
+          id="mission-heading"
+          className="text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground font-sans"
           initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, ease: "easeOut" }}
         >
-          {t("eyebrow")}
-        </motion.p>
-
-        <motion.h2
-          id="mission-heading"
-          className="mt-4 text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground font-sans"
-          initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 }}
-        >
           {t("heading")}
         </motion.h2>
+
+        <motion.div
+          className="mt-6 inline-flex -rotate-3 items-center rounded-md border-2 border-primary px-4 py-1.5"
+          initial={{ opacity: 0, scale: prefersReducedMotion ? 1 : 0.85 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, ease: "easeOut", delay: 0.15 }}
+        >
+          <span className="font-body text-xs md:text-sm font-bold uppercase tracking-widest text-primary">
+            {t("reachBadge")}
+          </span>
+        </motion.div>
 
         <motion.p
           className="mt-8 text-lg md:text-xl text-muted-foreground font-body leading-relaxed"

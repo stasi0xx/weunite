@@ -110,12 +110,15 @@ change.
   `sr-only` H2, right-edge reading-progress rail (`scaleY` ← section `useScroll`), outro with
   two CTAs (`pierwszetrzezwepokolenie.pl` + `#contact`).
 - `components/sections/customer-success/` — `data.ts` (all copy + numbers, single source of
-  truth), `SuccessCounterHero.tsx` (pinned `h-[220vh]` track; reach counter 0 → 27 000 000 is
-  *scrubbed by scroll position* via `useScroll` → `useTransform` → `useSpring`, written to the
-  DOM through `useMotionValueEvent` + a ref so it never re-renders per frame; SSR renders the
-  final number so crawlers see it; stops on the rounded `HERO_REACH` = 27 000 000, while the
-  exact `TOTAL_REACH` = 27 200 000 stays in `ResultsBlock`'s stat and drives the platform share
-  bars), `ChallengeBlock.tsx` (sticky heading + 3-item list with
+  truth), `SuccessCounterHero.tsx` (normal-height `min-h-screen` section, no pin/scroll-lock; the
+  reach number is a slot-style digit flip, not a count from zero — every digit position is on
+  screen from first paint (SSR renders the real `HERO_REACH` = 27 000 000 for no-JS/crawlers, so
+  width never changes mid-animation), then once the section enters view (`useInView`,
+  `once: true`) each digit flips through a few random values on a `requestAnimationFrame` loop,
+  staggered left-to-right, and lands back on its real value (~700ms total, single `font-extrabold`
+  weight throughout — no font-weight swap mid-animation); exact `TOTAL_REACH` = 27 200 000 stays
+  in `ResultsBlock`'s stat and drives the platform share bars), `ChallengeBlock.tsx` (sticky
+  heading + 3-item list with
   line-draw dividers), `StrategyStack.tsx` (sticky card deck — Glinka / Kusznierewicz /
   Tchórzewski; each card pins at a stepped `top`, the next slides over it, covered cards scale
   to 0.94 and dim), `OfflineBlock.tsx` (parallaxed "OFFLINE" ghost word + 5 school cards
@@ -808,6 +811,14 @@ change.
 - After phase 4 lands: run `/check verify` against the verify steps this feature will emit, then
   `/test` to lock the durable ones, then `/sync`. Spec `**Status**` advances to `Accepted` only
   once the whole feature is `done`.
+
+## Customer Statistics Assets
+
+- Added the two losslessly extracted customer-statistics screenshots with transparent outer
+  backgrounds to `public/statystyki-przed-bez-tla.png` and
+  `public/statystyki-po-bez-tla.png`. File hashes match the verified source exports in
+  `output/statystyki/`, so no chart data, labels, dates, or numeric values changed during the
+  move.
 
 ## Architecture Decisions
 

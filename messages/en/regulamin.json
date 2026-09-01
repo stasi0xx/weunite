@@ -9,14 +9,14 @@
     "title": "§ 1. General provisions",
     "p1": "These Terms of Service set out the rules for using the website available at <b>weunite.pl</b> (the \"Site\") and the terms on which WeUnite, based at ul. Gdyńska G/9, 80-340 Gdańsk, Poland (the \"Service Provider\" or \"WeUnite\"), provides services by electronic means.",
     "p2": "Service Provider contact details: email <email>info@weunite.pl</email>, phone +48 537 732 320.",
-    "p3": "Using the Site means you accept these Terms of Service. If you do not agree with its provisions, please do not use the Site."
+    "p3": "Using the Site means you accept these Terms of Service. If you do not agree with these provisions, please do not use the Site."
   },
   "s2": {
     "title": "§ 2. Definitions",
     "items": [
       "Site — the website available at weunite.pl, together with all its subpages.",
-      "User — any natural person, legal person, or organizational unit using the Site.",
-      "Lead / Form — the contact form allowing a User to sign up for a free consultation and website visualization.",
+      "User — any natural person, legal person, or unincorporated organizational unit using the Site.",
+      "Lead / Form — the contact form allowing a User to sign up for a free consultation and website mockup.",
       "Booking system — the built-in calendar that lets a User independently choose a time for a strategy call.",
       "Services — the services provided by WeUnite, in particular: building websites with booking and payment systems, social media management, and business automations.",
       "GDPR — Regulation (EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of natural persons with regard to the processing of personal data."
@@ -26,24 +26,24 @@
     "title": "§ 3. Type and scope of electronic services",
     "intro": "Through the Site, WeUnite provides the following electronic services:",
     "items": [
-      "Providing the contact form (Lead) — allowing a User to submit their details in order to receive a free consultation and website visualization.",
+      "Providing the contact form (Lead) — allowing a User to submit their details in order to receive a free consultation and website mockup.",
       "An automatic email sequence — after filling out the form, the User receives a series of emails (Day 0 / Day 2 / Day 4) containing information about the Services and an invitation to book a call.",
       "A strategy call booking system — allowing the User to independently choose an available time slot and receive a confirmation and reminders (48h / 24h / 1h before the call).",
-      "Presentation of the offer — information about WeUnite's Services, case studies, and references."
+      "Presentation of our services — information about WeUnite's Services, case studies, and references."
     ],
     "p1": "The services listed above are free of charge. Any paid services (project delivery) are governed by a separate agreement between WeUnite and the client."
   },
   "s4": {
     "title": "§ 4. Conditions for using the Site",
-    "intro1": "To use the Site, you need:",
+    "intro1": "To use the Site, the User needs:",
     "items1": [
       "a device with internet access (computer, tablet, smartphone),",
       "an up-to-date web browser supporting HTML5, CSS3, and JavaScript,",
       "an active email address (if using the form or booking system)."
     ],
-    "intro2": "The User agrees to:",
+    "intro2": "The User undertakes to:",
     "items2": [
-      "use the Site in accordance with applicable law and good practice,",
+      "use the Site in accordance with applicable law and accepted standards of conduct,",
       "refrain from any action that could disrupt the Site's proper functioning,",
       "not provide third parties' personal data without their consent,",
       "provide true and current information in any forms."
@@ -52,7 +52,7 @@
   "s5": {
     "title": "§ 5. Contact form and booking system",
     "p1": "Filling out the contact form is voluntary. It constitutes an invitation to start a business relationship and does not create a binding agreement to provide services.",
-    "p2": "By submitting the form, the User consents to being contacted by WeUnite by email to present the offer and arrange a call.",
+    "p2": "By submitting the form, the User consents to being contacted by WeUnite by email to present its services and arrange a call.",
     "p3": "Booking a strategy call through the booking system is equivalent to expressing interest in a free consultation. It does not constitute entering into an agreement for paid services.",
     "p4": "WeUnite reserves the right to cancel or reschedule a booked call in the event of circumstances beyond the Service Provider's control, with reasonable notice given by email."
   },

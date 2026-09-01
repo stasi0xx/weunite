@@ -18,7 +18,7 @@
       "table": {
         "name": "Name",
         "purpose": "Purpose",
-        "duration": "Lifetime",
+        "duration": "Duration",
         "rows": [
           { "name": "sb-*", "purpose": "User session (Supabase Auth — admin panel)", "duration": "Session / 1 week" }
         ]
@@ -30,7 +30,7 @@
       "table": {
         "name": "Name",
         "purpose": "Purpose",
-        "duration": "Lifetime",
+        "duration": "Duration",
         "rows": [
           { "name": "ph_*", "purpose": "Analytics session identifier (PostHog)", "duration": "1 year" },
           { "name": "posthog", "purpose": "Distinguishing unique users (PostHog)", "duration": "1 year" }
@@ -44,7 +44,7 @@
       "table": {
         "name": "Name",
         "purpose": "Purpose",
-        "duration": "Lifetime",
+        "duration": "Duration",
         "rows": [
           { "name": "NEXT_LOCALE", "purpose": "Remembering your chosen Site language", "duration": "Browser session" }
         ]

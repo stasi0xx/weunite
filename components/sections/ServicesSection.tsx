@@ -17,6 +17,7 @@ interface ServiceData {
   description: string;
   device: "monitor" | "phone";
   image: string;
+  video?: string;
   imageAlt: string;
   primaryLabel: string;
   primaryHref: string;
@@ -34,6 +35,7 @@ const serviceConfig = {
   socialMedia: {
     device: "phone" as const,
     image: "/casestudy/gdyniapadelclub.jpg",
+    video: "/casestudy/rolka-promocja.mp4",
     primaryHref: "#contact",
     secondaryHref: "/social-media",
   },
@@ -158,24 +160,53 @@ function MonitorMockup({ image, alt }: { image: string; alt: string }) {
   );
 }
 
-function PhoneMockup({ image, alt }: { image: string; alt: string }) {
+function PhoneMockup({ image, alt, video }: { image: string; alt: string; video?: string }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  // Only fetch the (heavy) video once the mockup is about to scroll into
+  // view, so it never competes with the initial page load.
+  const isInView = useInView(containerRef, { once: true, margin: "200px" });
+
+  useEffect(() => {
+    if (!video || !isInView || !videoRef.current) return;
+    const el = videoRef.current;
+    el.load();
+    el.play().catch(() => {});
+  }, [video, isInView]);
+
   return (
-    <div className="mx-auto w-full max-w-[240px] md:max-w-[260px]">
+    <div ref={containerRef} className="mx-auto w-full max-w-[240px] md:max-w-[260px]">
       <div className="relative rounded-[2.5rem] bg-foreground p-3 shadow-2xl">
         <div className="relative w-full aspect-[9/19.5] rounded-[1.75rem] overflow-hidden bg-background">
-          <Image
-            src={image}
-            alt={alt}
-            fill
-            sizes="(min-width: 768px) 20vw, 60vw"
-            className="object-cover"
-            style={{ objectPosition: "top" }}
+          {video ? (
+            <video
+              ref={videoRef}
+              poster={image}
+              muted
+              loop
+              playsInline
+              preload="none"
+              aria-label={alt}
+              className="absolute inset-0 h-full w-full object-cover"
+              style={{ objectPosition: "top" }}
+            >
+              {isInView && <source src={video} type="video/mp4" />}
+            </video>
+          ) : (
+            <Image
+              src={image}
+              alt={alt}
+              fill
+              sizes="(min-width: 768px) 20vw, 60vw"
+              className="object-cover"
+              style={{ objectPosition: "top" }}
+            />
+          )}
+          <div
+            className="absolute top-2 left-1/2 -translate-x-1/2 w-12 h-4 rounded-full bg-foreground z-10"
+            aria-hidden="true"
           />
         </div>
-        <div
-          className="absolute top-3 left-1/2 -translate-x-1/2 w-16 h-5 rounded-full bg-foreground"
-          aria-hidden="true"
-        />
       </div>
     </div>
   );
@@ -187,7 +218,7 @@ function ServicePhoto({ service }: { service: ServiceData }) {
       {service.device === "monitor" ? (
         <MonitorMockup image={service.image} alt={service.imageAlt} />
       ) : (
-        <PhoneMockup image={service.image} alt={service.imageAlt} />
+        <PhoneMockup image={service.image} alt={service.imageAlt} video={service.video} />
       )}
     </div>
   );

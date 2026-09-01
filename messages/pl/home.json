@@ -10,7 +10,7 @@
     "clientSuffix": "klient WeUnite"
   },
   "problem": {
-    "eyebrow": "Nasza misja",
+    "reachBadge": "Z ogólnopolskim zasięgiem",
     "heading": "Twój marketing z Gdańska.",
     "body": "<b>Jednoczymy</b> społeczności w social mediach wokół <b>Twojej firmy</b> i tworzymy <b>inteligentne strony</b>, które <b>budzą zaufanie</b>.",
     "stats": {
@@ -51,7 +51,11 @@
       "eyebrow": "Idea",
       "heading": "Pierwsze pokolenie, dla którego trzeźwość to wybór, nie zakaz",
       "body1": "Pierwsze Trzeźwe Pokolenie to inicjatywa Fundacji Columbus — ruch, który chce być dokładnie tym, na co wskazuje nazwa: pierwszym pokoleniem, w którym odroczenie inicjacji alkoholowej stanie się normą, nie wyjątkiem.",
-      "body2": "Zamiast pogadanek i zakazów — autentyczni ambasadorowie i szczere historie w języku, którym młodzież mówi do siebie nawzajem. Mateusz Kusznierewicz pokazuje, że sukces i emocje można budować bez używek. Łukasz Tchórzewski, znany jako „Alkoholik z TikToka”, opowiada wprost, czym naprawdę jest uzależnienie. Efekt: edukacja, która nie brzmi jak edukacja."
+      "body2": "Zamiast pogadanek i zakazów — autentyczni ambasadorowie i szczere historie w języku, którym młodzież mówi do siebie nawzajem. Mateusz Kusznierewicz pokazuje, że sukces i emocje można budować bez używek. Łukasz Tchórzewski, znany jako „Alkoholik z TikToka”, opowiada wprost, czym naprawdę jest uzależnienie. Efekt: edukacja, która nie brzmi jak edukacja.",
+      "statsBeforeAlt": "Statystyki wyświetleń przed współpracą z WeUnite",
+      "statsAfterAlt": "Statystyki wyświetleń po współpracy z WeUnite",
+      "statsBeforeCaption": "Przed współpracą z WeUnite",
+      "statsAfterCaption": "Po współpracy z WeUnite"
     },
     "challengeBlock": {
       "eyebrow": "01 — Wyzwanie",
