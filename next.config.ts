@@ -38,6 +38,22 @@ export default withSentryConfig(nextConfig, {
   // Upload a larger set of source maps for prettier stack traces (increases build time)
   widenClientFileUpload: true,
 
+  // Sentry's release/sourcemap-upload API was timing out (504 "Downstream
+  // timeout") during build, hanging the whole deploy for minutes. On
+  // Turbopack this all runs through the runAfterProductionCompile hook, so
+  // disabling it skips the Sentry build plugin's network calls entirely.
+  // Disabled until that's confirmed resolved on Sentry's side — re-enable by
+  // removing this block. Runtime error reporting to Sentry is unaffected.
+  useRunAfterProductionCompileHook: false,
+  sourcemaps: {
+    disable: true,
+  },
+  release: {
+    create: false,
+    finalize: false,
+  },
+  telemetry: false,
+
   // Uncomment to route browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers.
   // This can increase your server load as well as your hosting bill.
   // Note: Check that the configured route will not match with your Next.js middleware, otherwise reporting of client-
