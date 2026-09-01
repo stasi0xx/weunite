@@ -34,7 +34,7 @@ const serviceConfig = {
   },
   socialMedia: {
     device: "phone" as const,
-    image: "/casestudy/gdyniapadelclub.jpg",
+    image: "/casestudy/rolka-promocja-poster.jpg",
     video: "/casestudy/rolka-promocja.mp4",
     primaryHref: "#contact",
     secondaryHref: "/social-media",
