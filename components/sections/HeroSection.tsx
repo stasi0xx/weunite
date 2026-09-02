@@ -53,16 +53,11 @@ export default function HeroSection() {
       />
 
       {/* Wordmark */}
-      <motion.div
-        className="relative z-10 flex flex-col items-center px-6"
-        initial="hidden"
-        animate="visible"
-        variants={makeVariants(24, 0.15)}
-      >
+      <div className="relative z-10 flex flex-col items-center px-6">
         <h1 className="font-sans font-extrabold tracking-tight text-white text-6xl sm:text-7xl md:text-8xl lg:text-[9rem] leading-none">
           WeUnite
         </h1>
-      </motion.div>
+      </div>
 
       {/* Scroll cue */}
       <motion.button
