@@ -62,13 +62,6 @@ export default function HeroSection() {
         <h1 className="font-sans font-extrabold tracking-tight text-white text-6xl sm:text-7xl md:text-8xl lg:text-[9rem] leading-none">
           WeUnite
         </h1>
-        <motion.span
-          className="mt-4 md:mt-6 h-1 md:h-1.5 w-full bg-white rounded-full origin-center"
-          initial={{ scaleX: prefersReducedMotion ? 1 : 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 0.9, ease: "easeOut" as const, delay: 0.5 }}
-          aria-hidden="true"
-        />
       </motion.div>
 
       {/* Scroll cue */}

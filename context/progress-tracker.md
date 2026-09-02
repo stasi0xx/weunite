@@ -819,6 +819,10 @@ change.
   `public/statystyki-po-bez-tla.png`. File hashes match the verified source exports in
   `output/statystyki/`, so no chart data, labels, dates, or numeric values changed during the
   move.
+- Replaced `public/casestudy/1.png` and `public/casestudy/2.png` in place with deterministic
+  transparent-background versions. Both assets retain their original 940×788 canvas and all
+  panel/chart pixels; only the surrounding red-orange and green gradient backgrounds were
+  removed. Both files now use 32-bit ARGB PNG output.
 
 ## Architecture Decisions
 

@@ -15,17 +15,17 @@ export default function MovementIntro() {
   return (
     <div className="mx-auto flex w-full max-w-[1900px] flex-col items-center gap-10 px-6 py-24 md:flex-row md:justify-center md:gap-4 md:py-32 lg:px-8 xl:gap-6">
       <motion.div
-        className="w-full max-w-md shrink-0 md:max-w-none md:flex-1 lg:max-w-2xl"
+        className="w-full max-w-md shrink-0 md:max-w-none md:flex-1"
         initial={{ opacity: 0, x: prefersReducedMotion ? 0 : -30 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
       >
         <Image
-          src="/statystyki-przed-bez-tla.png"
+          src="/casestudy/1.png"
           alt={t("statsBeforeAlt")}
-          width={994}
-          height={411}
+          width={940}
+          height={788}
           className="h-auto w-full"
         />
         <p className="mt-3 text-center font-body text-xs font-semibold uppercase tracking-widest text-dark-foreground/50">
@@ -76,17 +76,17 @@ export default function MovementIntro() {
       </div>
 
       <motion.div
-        className="w-full max-w-md shrink-0 md:max-w-none md:flex-1 lg:max-w-2xl"
+        className="w-full max-w-md shrink-0 md:max-w-none md:flex-1"
         initial={{ opacity: 0, x: prefersReducedMotion ? 0 : 30 }}
         whileInView={{ opacity: 1, x: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
       >
         <Image
-          src="/statystyki-po-bez-tla.png"
+          src="/casestudy/2.png"
           alt={t("statsAfterAlt")}
-          width={994}
-          height={420}
+          width={940}
+          height={788}
           className="h-auto w-full"
         />
         <p className="mt-3 text-center font-body text-xs font-semibold uppercase tracking-widest text-dark-foreground/50">

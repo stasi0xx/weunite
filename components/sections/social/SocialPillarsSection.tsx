@@ -47,7 +47,7 @@ function GhostNumeral({ value, align }: { value: string; align: "left" | "right"
 function InstagramFrame() {
   const t = useTranslations("social.pillars.instagram")
   return (
-    <div className="relative max-w-lg md:ml-auto">
+    <div className="relative max-w-xs sm:max-w-sm md:ml-auto">
       <div
         aria-hidden="true"
         className="absolute inset-0 translate-x-4 translate-y-4 rounded-2xl bg-card"
@@ -56,15 +56,15 @@ function InstagramFrame() {
         href={instagramPostUrl}
         target="_blank"
         rel="noopener noreferrer"
-        className="group relative block aspect-[3/2] rounded-2xl overflow-hidden ring-1 ring-foreground/10 transition-transform duration-300 ease-out motion-safe:hover:-translate-y-1"
+        className="group relative block aspect-[1320/2270] rounded-2xl overflow-hidden ring-1 ring-foreground/10 transition-transform duration-300 ease-out motion-safe:hover:-translate-y-1"
       >
         <Image
-          src="/casestudy/ig-socialmedia2.png"
+          src="/casestudy/edzio-post.jpg"
           alt={t("imageAlt")}
           fill
           className="object-cover"
           style={{ objectPosition: "top" }}
-          sizes="(max-width: 768px) 90vw, 500px"
+          sizes="(max-width: 768px) 60vw, 384px"
         />
         <div
           className="absolute inset-0 bg-foreground/0 group-hover:bg-foreground/10 transition-colors duration-200"

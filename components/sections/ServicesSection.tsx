@@ -175,9 +175,9 @@ function PhoneMockup({ image, alt, video }: { image: string; alt: string; video?
   }, [video, isInView]);
 
   return (
-    <div ref={containerRef} className="mx-auto w-full max-w-[240px] md:max-w-[260px]">
+    <div ref={containerRef} className="mx-auto w-full max-w-[260px] md:max-w-[290px]">
       <div className="relative rounded-[2.5rem] bg-foreground p-3 shadow-2xl">
-        <div className="relative w-full aspect-[9/19.5] rounded-[1.75rem] overflow-hidden bg-background">
+        <div className="relative w-full aspect-[240/427] rounded-[1.75rem] overflow-hidden bg-background">
           {video ? (
             <video
               ref={videoRef}
